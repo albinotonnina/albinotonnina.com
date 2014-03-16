@@ -1,0 +1,582 @@
+#scene3 {
+    $start3: $scene_03_begin - 200;
+    #wire3 {
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: miter;
+        stroke-miterlimit: 4;
+        stroke-dasharray: 6000;
+        stroke-dashoffset: 0;
+        stroke-opacity: 0.7;
+        -skrollr-animation-name: wire3;
+    }
+    @-skrollr-keyframes wire3 {
+        #{$start3 - 245} {
+            stroke-dashoffset: 6000;
+        }
+        #{$start3 + 1400} {
+            stroke-dashoffset: 0;
+        }
+    }
+
+
+    #interested {
+        -skrollr-animation-name: interested;
+    }
+    @-skrollr-keyframes interested {
+        #{$start3 + 350} {
+           opacity:0;
+        }
+        #{$start3 + 400} {
+            opacity:1;
+        }
+    }
+
+    #lalineag {
+        -skrollr-animation-name: lalineag;
+    }
+    @-skrollr-keyframes lalineag {
+        #{$start3 + 300} {
+           opacity:0;
+        }
+        #{$start3 + 350} {
+            opacity:1;
+        }
+    }
+
+    #list {
+        -skrollr-animation-name: list;
+    }
+    @-skrollr-keyframes list {
+        #{$start3 + 100} {
+            transform: translate(0px, 0px) scale(1);
+        }
+        #{$start3 + 150} {
+            transform: translate(-200px, -230px) scale(2);
+        }
+    }
+
+    #listshadow {
+        -skrollr-animation-name: listshadow;
+    }
+    @-skrollr-keyframes listshadow {
+        #{$start3 + 100} {
+            transform: translate(0px, 0px) scale(1);
+            opacity: 1;
+        }
+        #{$start3 + 120} {
+            transform: translate(-60px, -3px) scale(1.1);
+            opacity: 0;
+        }
+    }
+
+    #list2 {
+        -skrollr-animation-name: list2;
+    }
+    @-skrollr-keyframes list2 {
+        #{$start3 + 300} {
+            transform: translate(0px, 0px) scale(1);
+        }
+        #{$start3 + 350} {
+            transform: translate(-1000px, -900px) scale(2.5);
+        }
+    }
+
+    #list2shadow {
+        -skrollr-animation-name: list2shadow;
+    }
+    @-skrollr-keyframes list2shadow {
+        #{$start3 + 300} {
+            transform: translate(0px, 0px) scale(1);
+            opacity: 1;
+        }
+        #{$start3 + 320} {
+            transform: translate(-60px, -3px) scale(1.1);
+            opacity: 0;
+        }
+    }
+
+    #skill01 {
+        -skrollr-animation-name: skill01;
+        transform-origin: 50% 80%;
+        -ms-transform-origin: 50% 80%;
+        -webkit-transform-origin: 50% 80%;
+    }
+    @-skrollr-keyframes skill01 {
+        #{$start3 - 150} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 - 140} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill02 {
+        -skrollr-animation-name: skill02;
+        transform-origin: 50% 80%;
+        -ms-transform-origin: 50% 80%;
+        -webkit-transform-origin: 50% 80%;
+    }
+    @-skrollr-keyframes skill02 {
+        #{$start3 - 110} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 - 100} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill03 {
+        -skrollr-animation-name: skill03;
+        transform-origin: 50% 80%;
+        -ms-transform-origin: 50% 80%;
+        -webkit-transform-origin: 50% 80%;
+    }
+    @-skrollr-keyframes skill03 {
+        #{$start3 - 50} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 - 40} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill04 {
+        -skrollr-animation-name: skill04;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill04 {
+        #{$start3 - 10} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 - 0} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill05 {
+        -skrollr-animation-name: skill05;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill05 {
+        #{$start3 + 10} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 20} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill06 {
+        -skrollr-animation-name: skill06;
+        transform-origin: 50% 80%;
+        -ms-transform-origin: 50% 80%;
+        -webkit-transform-origin: 50% 80%;
+    }
+    @-skrollr-keyframes skill06 {
+        #{$start3 + 40} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 50} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill07 {
+        -skrollr-animation-name: skill07;
+        transform-origin: 50% 10%;
+        -ms-transform-origin: 50% 10%;
+        -webkit-transform-origin: 50% 10%;
+    }
+    @-skrollr-keyframes skill07 {
+        #{$start3 + 80} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 90} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill08 {
+        -skrollr-animation-name: skill08;
+        transform-origin: 50% 80%;
+        -ms-transform-origin: 50% 80%;
+        -webkit-transform-origin: 50% 80%;
+    }
+    @-skrollr-keyframes skill08 {
+        #{$start3 + 120} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 130} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill09 {
+        -skrollr-animation-name: skill09;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill09 {
+        #{$start3 + 140} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 150} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill10 {
+        -skrollr-animation-name: skill10;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill10 {
+        #{$start3 + 160} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 170} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill11 {
+        -skrollr-animation-name: skill11;
+        transform-origin: 96% 50%;
+        -ms-transform-origin: 96% 50%;
+        -webkit-transform-origin: 96% 50%;
+    }
+    @-skrollr-keyframes skill11 {
+        #{$start3 + 170} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 180} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+    #skill12 {
+        -skrollr-animation-name: skill12;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill12 {
+        #{$start3 + 180} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 190} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill13 {
+        -skrollr-animation-name: skill13;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill13 {
+        #{$start3 + 190} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 200} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+    #skill14 {
+        -skrollr-animation-name: skill14;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill14 {
+        #{$start3 + 200} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 210} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill15 {
+        -skrollr-animation-name: skill15;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill15 {
+        #{$start3 + 210} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 220} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+
+   #skill16 {
+        -skrollr-animation-name: skill16;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill16 {
+        #{$start3 + 220} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 230} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill17 {
+        -skrollr-animation-name: skill17;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill17 {
+        #{$start3 + 230} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 240} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+
+   #skill18 {
+        -skrollr-animation-name: skill18;
+        transform-origin: 10% 50%;
+        -ms-transform-origin: 10% 50%;
+        -webkit-transform-origin: 10% 50%;
+    }
+    @-skrollr-keyframes skill18 {
+        #{$start3 + 240} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 250} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill19 {
+        -skrollr-animation-name: skill19;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill19 {
+        #{$start3 + 450} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 460} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill20 {
+        -skrollr-animation-name: skill20;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill20 {
+        #{$start3 + 460} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 470} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+   #skill21 {
+        -skrollr-animation-name: skill21;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill21 {
+        #{$start3 + 470} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 480} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+   #skill22 {
+        -skrollr-animation-name: skill22;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill22 {
+        #{$start3 + 480} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 490} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+   #skill23 {
+        -skrollr-animation-name: skill23;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill23 {
+        #{$start3 + 800} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 810} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill24 {
+        -skrollr-animation-name: skill24;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill24 {
+        #{$start3 + 810} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 820} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+   #skill25 {
+        -skrollr-animation-name: skill25;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill25 {
+        #{$start3 + 820} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 830} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+
+   #skill26 {
+        -skrollr-animation-name: skill26;
+        transform-origin: 90% 50%;
+        -ms-transform-origin: 90% 50%;
+        -webkit-transform-origin: 90% 50%;
+    }
+    @-skrollr-keyframes skill26 {
+        #{$start3 + 830} {
+            transform#{"[bounce]"}: scale(0);
+            opacity:0;
+        }
+        #{$start3 + 840} {
+            transform#{"[bounce]"}: scale(1);
+            opacity:1;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
