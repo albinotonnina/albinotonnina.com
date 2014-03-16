@@ -457,6 +457,10 @@ figure[role="loader"] {
 .it div {
   opacity: 0.5;
 }
+.myresume header,
+.myresume div {
+  opacity: 1;
+}
 html,
 body {
   overflow: hidden;
