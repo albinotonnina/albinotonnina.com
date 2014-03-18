@@ -1,6 +1,5 @@
 #scene2 {
-    background-color:#44C650;
-    
+    background-color: #44C650;
     $start: $scene_02_begin - 370;
     #wire2 {
         stroke-width: 2;
@@ -21,108 +20,83 @@
         }
     }
 
-
     #title {
         -skrollr-animation-name: s2-title;
     }
     @-skrollr-keyframes s2-title {
         #{$start + 240} {
-           opacity:0;
-           transform#{"[swing]"}: translate(0px, 50px);
+            opacity: 0;
+            transform#{"[swing]"}: translate(0px, 50px);
         }
         #{$start + 270} {
-           opacity:1;
-           transform#{"[swing]"}: translate(0px, 60px);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0px, 60px);
         }
     }
-
 
     #linecover2 {
         -skrollr-animation-name: wheel2;
-        transform-origin: 50% 50%;
+        opacity: 0;
         -ms-transform-origin: 50% 50%;
-        /* IE 9 */
         -webkit-transform-origin: 50% 50%;
-        /* Chrome, Safari, Opera */
+        -moz-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
     }
-    @-skrollr-keyframes wheel2 {
-        #{$scene_02_begin} {
-            transform: scale(1);
-        }
-        #{$scene_02_end + 200} {
-            transform: scale(0);
-        }
-    }
-
-
-
-
-
-
     #tblock1 {
         -skrollr-animation-name: tblock1;
     }
     @-skrollr-keyframes tblock1 {
         #{$start + 340} {
-           opacity: 0;
+            opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
         }
         #{$start + 360} {
-            opacity:1;
-             transform#{"[swing]"}: translate(0, 0);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0, 0);
         }
     }
-
-
 
     #tblock2 {
         -skrollr-animation-name: tblock2;
     }
     @-skrollr-keyframes tblock2 {
         #{$start + 600} {
-           opacity: 0;
+            opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
         }
         #{$start + 620} {
-            opacity:1;
-             transform#{"[swing]"}: translate(0, 0);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0, 0);
         }
     }
-
 
     #tblock3 {
         -skrollr-animation-name: tblock3;
     }
     @-skrollr-keyframes tblock3 {
         #{$start + 840} {
-           opacity: 0;
+            opacity: 0;
             transform#{"[swing]"}: translate(-20px, 0);
         }
         #{$start + 860} {
-            opacity:1;
-             transform#{"[swing]"}: translate(0, 0);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0, 0);
         }
     }
-
-
-
 
     #imac {
         -skrollr-animation-name: imac;
         #grid rect {
-            transform-origin: 100% 100%;
             -ms-transform-origin: 100% 100%;
-            /* IE 9 */
             -webkit-transform-origin: 100% 100%;
-            /* Chrome, Safari, Opera */
+            -moz-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
         }
         #gridbg {
-
-            transform-origin: 50% 100%;
             -ms-transform-origin: 50% 100%;
-            /* IE 9 */
             -webkit-transform-origin: 50% 100%;
-
+            -moz-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
             -skrollr-animation-name: gridbg;
         }
         #grid1 {
@@ -435,22 +409,18 @@
                 -skrollr-animation-name: s2-g21;
             }
         }
-
-          
     }
     $ipad_animation: $scene_02_begin + 400;
-   @-skrollr-keyframes ipad {
+    @-skrollr-keyframes ipad {
         #{$ipad_animation - 30} {
-           opacity:0;
-           transform#{"[swing]"}: translate(10px,0);
+            opacity: 0;
+            transform#{"[swing]"}: translate(10px, 0);
         }
         #{$ipad_animation} {
-            opacity:1;
-            transform#{"[swing]"}: translate(0px,0);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0px, 0);
         }
     }
-
-
 
     @-skrollr-keyframes s2-bg1 {
         #{$ipad_animation} {
@@ -609,25 +579,18 @@
                 -skrollr-animation-name: s3-i11;
             }
         }
-
-
-
-
     }
     $iphone_animation: $scene_02_begin + 350;
-
     @-skrollr-keyframes iphone {
         #{$iphone_animation - 30} {
-transform#{"[swing]"}: translate(10px,0);
-            opacity:0;
+            transform#{"[swing]"}: translate(10px, 0);
+            opacity: 0;
         }
         #{$iphone_animation} {
-           opacity:1;
-           transform#{"[swing]"}: translate(0px,0);
+            opacity: 1;
+            transform#{"[swing]"}: translate(0px, 0);
         }
     }
-
-
 
     @-skrollr-keyframes s3-bg1 {
         #{$iphone_animation - 20} {
@@ -930,5 +893,4 @@ transform#{"[swing]"}: translate(10px,0);
             opacity: 1;
         }
     }
-
 }
