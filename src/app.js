@@ -60,26 +60,35 @@ Site.ajax = function(url, data, datatype, success, failure) {
 	});
 };
 Site.resize = function() {
-	var windowWith = $(window).innerWidth();
+	var windowWidth = $(window).innerWidth();
 	var windowHeight = $(window).innerHeight();
-	var windowAspectRatio = windowWith / windowHeight;
+	var windowAspectRatio = windowWidth / windowHeight;
+	var viewBox = {
+		width: 1024,
+		height: 768
+	}
+	var bBox = {
+		width: 3 * viewBox.width,
+		height: 3 * viewBox.height
+	};
+
+	var maxHeight = viewBox.height / viewBox.width * windowWidth;
+	if (windowHeight > maxHeight) {
+		Site.hide(true);
+	} else {
+		Site.unhide();
+	}
+
+	var maxAspectRatio = bBox.width / viewBox.height;
+	var minAspectRatio = viewBox.width / bBox.height;
+	var viewBoxRatio = viewBox.width / viewBox.height;
+
 	$('[data-scene] svg').each(function() {
 		var $svg = $(this);
-		var viewBox = {
-			width: 1024,
-			height: 768
-		}
-		var bBox = {
-			width: 3 * viewBox.width,
-			height: 3 * viewBox.height
-		};
-		var maxAspectRatio = bBox.width / viewBox.height;
-		var minAspectRatio = viewBox.width / bBox.height;
-		var viewBoxRatio = viewBox.width / viewBox.height;
 		if (windowAspectRatio > maxAspectRatio) {
 			$svg.attr({
-				width: windowWith,
-				height: windowWith / maxAspectRatio
+				width: windowWidth,
+				height: windowWidth / maxAspectRatio
 			})
 		} else if (windowAspectRatio < minAspectRatio) {
 			$svg.attr({
@@ -88,29 +97,35 @@ Site.resize = function() {
 			})
 		} else {
 			$svg.attr({
-				width: windowWith,
+				width: windowWidth,
 				height: windowHeight
 			})
 		}
 	});
+
+	var viewBox = {
+		width: 1024,
+		height: 60
+	}
+	var bBox = {
+		width: 3 * viewBox.width,
+		height: 3 * viewBox.height
+	};
+
+	var maxAspectRatio = (bBox.width / (viewBox.height));
+	var minAspectRatio = viewBox.width / (bBox.height - 768);
+	var viewBoxRatio = viewBox.width / viewBox.height;
+
+
 	$('nav svg').each(function() {
 		var $svg = $(this);
-		var viewBox = {
-			width: 1024,
-			height: 60
-		}
-		var bBox = {
-			width: 3 * viewBox.width,
-			height: 3 * viewBox.height
-		};
-		var maxAspectRatio = (bBox.width / (viewBox.height));
-		var minAspectRatio = viewBox.width / (bBox.height - 768);
-		var viewBoxRatio = viewBox.width / viewBox.height;
+
+
 		var attrs;
 		if (windowAspectRatio > maxAspectRatio) {
 			attrs = {
-				width: windowWith,
-				height: windowWith / maxAspectRatio
+				width: windowWidth,
+				height: windowWidth / maxAspectRatio
 			};
 			$svg.attr(attrs);
 			$('nav').css(attrs);
@@ -123,13 +138,15 @@ Site.resize = function() {
 			$('nav').css(attrs);
 		} else {
 			attrs = {
-				width: windowWith,
+				width: windowWidth,
 				height: (windowHeight * 60) / 768
 			};
 			$svg.attr(attrs);
 			$('nav').css(attrs);
 		}
 	});
+
+
 }
 Site.loadAnalytics = function() {
 	window._gaq.push(['_setAccount', Site.trackingAccount]);
@@ -354,21 +371,30 @@ Site.beforePrint = function() {
 	$('body div').css('display', 'block');
 };
 Site.afterPrint = function() {};
-Site.hide = function() {
+Site.hide = function(soft) {
 	Site.isHidden = true;
 	$('figure[role=site]').hide('400', function() {
 		$('html,body').css('overflow-y', 'scroll');
 		$('body').css('height', 'auto').removeClass('this').addClass('myresume');
 		$('body > div').fadeIn();
-		Site.skrollr.destroy();
-		$("html, body").animate({
-			scrollTop: 0
-		}, 400, function() {});
+
+		if (!soft) {
+			Site.skrollr.destroy();
+			$("html, body").animate({
+				scrollTop: 0
+			}, 400);
+
+		}
+
+
+
 	})
 }
-Site.show = function(callback) {
+Site.show = function(callback, soft) {
 	$("html, body").css('overflow-y', 'scroll').animate({
+
 		scrollTop: 0
+
 	}, 400, function() {
 		if (Site.isHidden) {
 			$('figure[role=site]').show('400', function() {
@@ -386,6 +412,27 @@ Site.show = function(callback) {
 		}
 	});
 }
+
+
+Site.unhide = function() {
+	if (Site.isHidden) {
+		$('figure[role=site]').show('400', function() {
+
+			$('body').removeClass('myresume').removeClass('it').addClass('this');
+			Site.isHidden = false;
+			if (skrollr.get()) {
+				Site.skrollr.refresh();
+			} else {
+				Site.initSkrollr();
+			}
+
+
+
+		});
+
+	}
+}
+
 
 Site.isIE = function() {
 	var myNav = navigator.userAgent.toLowerCase();
