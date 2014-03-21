@@ -14,6 +14,7 @@ Project files for <http://www.albinotonnina.com>
 2. <http://visionmedia.github.io/move.js>
 3. <http://gruntjs.com>
 4. <http://jquery.com>
+5. <http://scrolldepth.parsnip.io>
 
 ##Instructions
 Build with Grunt ([Getting started guide](gruntjs.com/getting-started)) . See `Gruntfile.js`
