@@ -1,8 +1,8 @@
 {
   "name": "albinotonnina",
-  "title": "albinotonnina.com",
+  "title": "Hello",
   "description": "Personal website.",
-  "version": "0.0.1",
+  "version": "1.0",
   "homepage": "https://www.albinotonnina.com",
   "author": {
     "name": "Albino Tonnina",
@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/"
+    "url": "git@github.com:albinotonnina/albinotonnina.com.git"
   },
   "bugs": {
-    "url": "https://github.com/"
+    "url": "https://github.com/albinotonnina/albinotonnina.com"
   },
   "engines": {
     "node": ">=0.8"
