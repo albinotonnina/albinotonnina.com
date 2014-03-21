@@ -511,7 +511,7 @@ Print styles
   html {
     background-color: #fff;
   }
-  #thislink {
+  aside #thislink {
     display: block;
   }
   aside h3{
