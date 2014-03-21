@@ -191,7 +191,7 @@ module.exports = function(grunt) {
         dest: 'tmp/animation.scss'
       },
       js: {
-        src: ['src/libs/jquery-2.1.0.min.js', 'src/libs/modernizr.custom.40987.js', 'src/libs/async.js', 'src/app.js', 'src/svg/*/animation.js'],
+        src: ['src/libs/jquery-2.1.0.min.js', 'src/libs/modernizr.custom.40987.js', 'src/libs/jquery.scrolldepth.min.js','src/libs/async.js', 'src/app.js', 'src/svg/*/animation.js'],
         dest: 'js/lib.js'
       },
       skrollr: {

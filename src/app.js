@@ -77,10 +77,12 @@ Site.resize = function() {
 		Site.hide(true);
 	} else {
 
+
 		if(skrollr.get()){
 			Site.unhide();
 		}
 		
+
 	}
 
 	var maxAspectRatio = bBox.width / viewBox.height;
@@ -480,6 +482,7 @@ Site.subscribe("init", function() {
 	if (!Modernizr.inlinesvg || !Modernizr.svg || !Modernizr.svgclippaths) {
 		Site.hide();
 	} else {
+		$.scrollDepth();
 		if (Site.isIE()) {
 			$('.vignette').passThrough('.box');
 		}
@@ -523,13 +526,8 @@ Site.subscribe("init", function() {
 					});
 				} else {
 					Site.show(function() {
-				
-
 						Site.movetheThing();
 						Site.activateCvLink();
-
-				
-
 					});
 				}
 			});
@@ -593,4 +591,6 @@ $.fn.passThrough = function(target) {
 			});
 		}
 	});
+
 };
+
