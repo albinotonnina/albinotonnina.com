@@ -1,0 +1,14 @@
+{
+  "name": "www-albinotonnina-com",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~2.1.0",
+    "bower-skrollr": "~0.6.21",
+    "async" : "~0.2.10",
+    "skrollr-ie":"~1.0.2",
+    "skrollr-stylesheets":"~0.0.4",
+    "move.js":"~0.3.3"
+  },
+  "devDependencies": {}
+}

@@ -1,300 +1,561 @@
+// Generated on 2014-03-22 using generator-webapp 0.4.8
+'use strict';
+
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// use this if you want to recursively match all subfolders:
+// 'test/spec/**/*.js'
+
 module.exports = function(grunt) {
-  grunt.initConfig({
-    svgmin: {
-      options: {
-        plugins: [{
-          removeViewBox: false
-        }, {
-          removeUselessStrokeAndFill: false
-        }, {
-          removeEmptyAttrs: false
-        }, {
-          cleanupIDs: false
-        }, {
-          convertShapeToPath: false
-        }]
-      },
-      dist: {
-        files: [{
-          expand: true,
-          src: ['svg/*/scene.svg'],
-          dest: 'build/',
-          ext: '.min.svg'
-        }]
-      }
-    },
-    uglify: {
-      js: {
-        files: [{
-          expand: true,
-          cwd: 'tmp/js',
-          src: '**/*.js',
-          dest: 'build/js',
-          ext: '.min.js'
-        }]
-      }
-    },
-    cssmin: {
-      minify: {
-        expand: true,
-        cwd: 'css/',
-        src: ['styles.css'],
-        dest: 'build/css/',
-        ext: '.css'
-      }
-    },
-    replace: {
-      js: {
-        src: ['js/*.js'],
-        dest: 'tmp/js/',
-        replacements: [{
-          from: 'skrollr.js',
-          to: 'skrollr.min.js'
-        }, {
-          from: 'scene.svg',
-          to: 'scene.min.svg'
-        }, {
-          from: 'Foo',
-          to: function(matchedWord) {
-            return matchedWord + ' Bar';
-          }
-        }]
-      },
-      html: {
-        src: ['index.html'],
-        dest: 'build/',
-        replacements: [{
-          from: 'lib.js',
-          to: 'lib.min.js'
-        }]
-      },
-      json: {
-        src: ['src/svg/timing.json'],
-        dest: 'build/svg/',
-        replacements: [{
-          from: '',
-          to: ''
-        }]
-      },
-      svgfonts1: {
-        src: ['src/svg/scene1/scene.svg'],
-        dest: 'svg/scene1/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Bold\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }]
-      },
-      svgfonts2: {
-        src: ['src/svg/scene2/scene.svg'],
-        dest: 'svg/scene2/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }]
-      },
-      svgfonts3: {
-        src: ['src/svg/scene3/scene.svg'],
-        dest: 'svg/scene3/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }, {
-          from: 'font-family="\'VT323-Regular\'"',
-          to: ''
-        }]
-      },
-      svgfonts4: {
-        src: ['src/svg/scene4/scene.svg'],
-        dest: 'svg/scene4/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }]
-      },
-      svgfonts5: {
-        src: ['src/svg/scene5/scene.svg'],
-        dest: 'svg/scene5/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }]
-      },
-      svgfonts6: {
-        src: ['src/svg/menu/scene.svg'],
-        dest: 'svg/menu/',
-        replacements: [{
-          from: 'font-family="\'Roboto-Thin\'"',
-          to: 'font-weight="100"'
-        }, {
-          from: 'font-family="\'Roboto-Light\'"',
-          to: 'font-weight="300"'
-        }, {
-          from: 'font-family="\'Roboto-Black\'"',
-          to: 'font-weight="900"'
-        }, {
-          from: 'font-family="\'Roboto-Regular\'"',
-          to: 'font-weight="400"'
-        }]
-      }
-    },
-    concat: {
-      css: {
-        src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
-        dest: 'tmp/animation.scss'
-      },
-      js: {
-        src: ['src/libs/jquery-2.1.0.min.js', 'src/libs/modernizr.custom.40987.js', 'src/libs/jquery.scrolldepth.min.js','src/libs/async.js', 'src/app.js', 'src/svg/*/animation.js'],
-        dest: 'js/lib.js'
-      },
-      skrollr: {
-        src: ['src/libs/skrollr.stylesheets.min.js', 'src/libs/skrollr.min.js', 'src/libs/skrollr.menu.min.js', 'src/libs/skrollr.ie.min.js', 'src/libs/skrollr.helpers.js'],
-        dest: 'js/skrollr.js'
-      }
-    },
-    sass: {
-      dist: {
-        files: {
-          'build/css/animation.css': 'tmp/animation.scss'
+
+    // Load grunt tasks automatically
+    require('load-grunt-tasks')(grunt);
+
+    // Time how long tasks take. Can help when optimizing build times
+    require('time-grunt')(grunt);
+
+    // Define the configuration for all the tasks
+    grunt.initConfig({
+
+        // pkg: grunt.file.read('package.json'),
+        pkg: grunt.file.readJSON('package.json'),
+        banner: '/*! <%= pkg.name %> by <%= pkg.author.name %> - v<%= pkg.version %> - ' +
+            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+            '* http://<%= pkg.homepage %>/\n' +
+            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+            '<%= pkg.author.name %>; Licensed MIT */',
+
+        htmlbanner: '<!-- \nHello, curious visitor!\n' +
+            'If you are so interested why don\'t you check the source code of this site on GitHub?\n' +
+            'I used a lot of very cool tools like Yeoman, Bower, Grunt and others!\n' +
+            'Hope you like it :)\n' +
+            '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+            '* http://<%= pkg.homepage %>\n' +
+            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+            '<%= pkg.author.name %>; Licensed MIT \n-->',
+
+        // Project settings
+        config: {
+            // Configurable paths
+            app: 'app',
+            dist: 'dist'
+        },
+
+        // Watches files for changes and runs tasks based on the changed files
+        watch: {
+
+            js: {
+                files: ['src/{,*/}*.js'],
+                tasks: ['concat:js'],
+                options: {
+                    livereload: true
+                }
+            },
+            jstest: {
+                files: ['test/spec/{,*/}*.js'],
+                tasks: ['test:watch']
+            },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
+            styles: {
+                files: ['<%= config.app %>/styles/{,*/}*.css'],
+                tasks: ['newer:copy:styles']
+            },
+            svg: {
+                files: 'src/svg/*/*.svg',
+                tasks: ['replace']
+            },
+            livereload: {
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+                files: [
+                    '<%= config.app %>/{,*/}*.html',
+                    '.tmp/styles/{,*/}*.css',
+                    '<%= config.app %>/images/{,*/}*'
+                ]
+            }
+        },
+
+        // The actual grunt server settings
+        connect: {
+            options: {
+                port: 9000,
+                livereload: 35729,
+                // Change this to '0.0.0.0' to access the server from outside
+                hostname: 'localhost'
+            },
+            livereload: {
+                options: {
+                    open: true,
+                    base: [
+                        '.tmp',
+                        '<%= config.app %>'
+                    ]
+                }
+            },
+            test: {
+                options: {
+                    port: 9001,
+                    base: [
+                        '.tmp',
+                        'test',
+                        '<%= config.app %>'
+                    ]
+                }
+            },
+            dist: {
+                options: {
+                    open: true,
+                    base: '<%= config.dist %>',
+                    livereload: false
+                }
+            }
+        },
+
+        // Empties folders to start fresh
+        clean: {
+            dist: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.tmp',
+                        '<%= config.dist %>/*',
+                        '!<%= config.dist %>/.git*'
+                    ]
+                }]
+            },
+            server: '.tmp'
+        },
+
+        // Make sure code styles are up to par and there are no obvious mistakes
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish')
+            },
+            all: [
+                'Gruntfile.js',
+                '<%= config.app %>/scripts/{,*/}*.js',
+                '!<%= config.app %>/scripts/vendor/*',
+                'test/spec/{,*/}*.js'
+            ]
+        },
+
+        // Mocha testing framework configuration options
+        mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
+                }
+            }
+        },
+
+
+
+        // Renames files for browser caching purposes
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= config.dist %>/scripts/lib.js',
+                        '<%= config.dist %>/styles/main.css',
+                        '<%= config.dist %>/images/{,*/}*.*',
+                        '<%= config.dist %>/styles/fonts/{,*/}*.*',
+                        '<%= config.dist %>/*.{ico,png}'
+                    ]
+                }
+            }
+        },
+
+        // Reads HTML for usemin blocks to enable smart builds that automatically
+        // concat, minify and revision files. Creates configurations in memory so
+        // additional tasks can operate on them
+        useminPrepare: {
+            options: {
+                dest: '<%= config.dist %>'
+            },
+            html: '<%= config.app %>/index.html'
+        },
+
+        // Performs rewrites based on rev and the useminPrepare configuration
+        usemin: {
+            options: {
+                assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+            },
+            html: ['<%= config.dist %>/{,*/}*.html'],
+            css: ['<%= config.dist %>/styles/{,*/}*.css']
+        },
+
+        // The following *-min tasks produce minified files in the dist folder
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/images',
+                    src: '{,*/}*.{gif,jpeg,jpg,png}',
+                    dest: '<%= config.dist %>/images'
+                }]
+            }
+        },
+        svgmin: {
+            options: {
+                plugins: [{
+                    removeViewBox: false
+                }, {
+                    removeUselessStrokeAndFill: false
+                }, {
+                    removeEmptyAttrs: false
+                }, {
+                    cleanupIDs: false
+                }, {
+                    convertShapeToPath: false
+                }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/svg',
+                    src: '{,*/}*.svg',
+                    dest: '<%= config.dist %>/svg'
+                }]
+            }
+        },
+        usebanner: {
+            html: {
+                options: {
+                    position: 'top',
+                    banner: '<%= htmlbanner %>'
+                },
+                files: {
+                    src: '<%= config.dist %>/index.html'
+                }
+            },
+            other: {
+                options: {
+                    position: 'top',
+                    banner: '<%= banner %>'
+                },
+                files: {
+                    src: ['<%= config.dist %>/scripts/*.js', '<%= config.dist %>/styles/*.css']
+                }
+            }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    removeCommentsFromCDATA: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.dist %>',
+                    src: '{,*/}*.html',
+                    dest: '<%= config.dist %>'
+                }]
+            }
+        },
+
+        // By default, your `index.html`'s <!-- Usemin block --> will take care of
+        // minification. These next options are pre-configured if you do not wish
+        // to use the Usemin blocks.
+        cssmin: {
+            dist: {
+                files: {
+                    '<%= config.dist %>/styles/main.css': [
+                        '.tmp/styles/{,*/}*.css',
+                        '<%= config.app %>/styles/{,*/}*.css'
+                    ]
+                }
+            }
+        },
+        uglify: {
+            dist: {
+                files: [{
+                    '<%= config.dist %>/scripts/skrollr.js': [
+                        '<%= config.dist %>/scripts/skrollr.js'
+                    ]
+                }, {
+                    '<%= config.dist %>/scripts/lib.js': [
+                        '<%= config.dist %>/scripts/lib.js'
+                    ]
+                }]
+            }
+        },
+
+        concat: {
+            css: {
+                src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
+                dest: 'tmp/animation.scss'
+            },
+            js: {
+                src: ['<%= config.app %>/bower_components/jquery/dist/jquery.js', 'src/libs/jquery.scrolldepth.min.js', '<%= config.app %>/bower_components/async/lib/async.js', '<%= config.app %>/bower_components/move.js/move.min.js', 'src/site.js', 'src/svg/*/animation.js'],
+                dest: '<%= config.app %>/scripts/lib.js'
+            },
+            skrollr: {
+                src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js', '<%= config.app %>/bower_components/skrollr-ie/dis/skrollr.ie.min.js', 'src/libs/skrollr.helpers.js'],
+                dest: '<%= config.app %>/scripts/skrollr.js'
+            }
+        },
+        sass: {
+            dist: {
+                files: {
+                    '<%= config.dist %>/styles/animation.css': 'tmp/animation.scss'
+                }
+            },
+            dev: {
+                files: {
+                    '<%= config.app %>/styles/animation.css': 'tmp/animation.scss'
+                }
+            }
+        },
+        // Copies remaining files to places other tasks can use
+        copy: {
+            dist: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.app %>',
+                    dest: '<%= config.dist %>',
+                    src: [
+                        '*.{ico,png,txt}',
+                        '.htaccess',
+                        'images/{,*/}*.webp',
+                        'scripts/*.js',
+                        '{,*/}*.html',
+                        'styles/fonts/{,*/}*.*'
+                    ]
+                }, {
+                    src: 'src/svg/timing.json',
+                    dest: '<%= config.app %>/svg/timing.json',
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    src: 'src/svg/timing.json',
+                    dest: '<%= config.dist %>/svg/timing.json',
+                    flatten: true,
+                    filter: 'isFile'
+                }]
+            },
+            styles: {
+                expand: true,
+                dot: true,
+                cwd: '<%= config.app %>/styles',
+                dest: '.tmp/styles/',
+                src: '{,*/}*.css'
+            }
+        },
+
+
+        replace: {
+
+            svgfonts1: {
+                src: ['src/svg/scene1/scene.svg'],
+                dest: '<%= config.app %>/svg/scene1/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Bold\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }]
+            },
+            svgfonts2: {
+                src: ['src/svg/scene2/scene.svg'],
+                dest: '<%= config.app %>/svg/scene2/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }]
+            },
+            svgfonts3: {
+                src: ['src/svg/scene3/scene.svg'],
+                dest: '<%= config.app %>/svg/scene3/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }, {
+                    from: 'font-family="\'VT323-Regular\'"',
+                    to: ''
+                }]
+            },
+            svgfonts4: {
+                src: ['src/svg/scene4/scene.svg'],
+                dest: '<%= config.app %>/svg/scene4/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }]
+            },
+            svgfonts5: {
+                src: ['src/svg/scene5/scene.svg'],
+                dest: '<%= config.app %>/svg/scene5/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }]
+            },
+            svgfonts6: {
+                src: ['src/svg/menu/scene.svg'],
+                dest: '<%= config.app %>/svg/menu/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }]
+            }
+        },
+
+
+
+        // Generates a custom Modernizr build that includes only the tests you
+        // reference in your app
+        modernizr: {
+            devFile: '<%= config.app %>/bower_components/modernizr/modernizr.js',
+            outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
+            files: [
+                '<%= config.dist %>/scripts/{,*/}*.js',
+                '<%= config.dist %>/styles/{,*/}*.css',
+                '!<%= config.dist %>/scripts/vendor/*'
+            ],
+            uglify: true
+        },
+
+        // Run some tasks in parallel to speed up build process
+        concurrent: {
+            server: [
+                'copy:styles'
+            ],
+            test: [
+                'copy:styles'
+            ],
+            dist: [
+                'copy:styles',
+
+                'svgmin'
+            ]
         }
-      },
-      dev: {
-        files: {
-          'css/animation.css': 'tmp/animation.scss'
+    });
+
+
+    grunt.registerTask('serve', function(target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
-      }
-    },
-    copy: {
-      timing: {
-        src: 'src/svg/timing.json',
-        dest: 'svg/timing.json',
-        flatten: true,
-        filter: 'isFile'
-      },
-      favicon: {
-        src: 'favicon.ico',
-        dest: 'build/favicon.ico',
-        flatten: true,
-        filter: 'isFile'
-      },
-      normalize: {
-        src: 'css/normalize.css',
-        dest: 'build/css/normalize.css',
-        flatten: true,
-        filter: 'isFile'
-      },
-      move: {
-        src: 'src/libs/move.min.js',
-        dest: 'js/move.min.js',
-        flatten: true,
-        filter: 'isFile'
-      },
-       png: {
-        src: 'src/images/clientsplain.png',
-        dest: 'images/clientsplain.png',
-        flatten: true,
-        filter: 'isFile'
-      },
-      pngbuild: {
-        src: 'images/clientsplain.png',
-        dest: 'build/images/clientsplain.png',
-        flatten: true,
-        filter: 'isFile'
-      },
 
-    },
-    clean: {
-      files: 'tmp'
-    },
-    watch: {
-      css: {
-        files: ['src/svg/**.scss', 'src/svg/*/*.scss'],
-        tasks: ['dev'],
-      },
-      js: {
-        files: ['src/*.js', 'src/svg/*/*.js'],
-        tasks: ['dev'],
-      },
-      svg: {
-        files: 'src/svg/*/*.svg',
-        tasks: ['dev'],
-      },
-    },
-    devserver: {
-      options: {}
-    }
-  });
+        grunt.task.run([
+            'clean:server',
+            'concurrent:server',
 
+            'connect:livereload',
+            'watch'
+        ]);
+    });
 
+    grunt.registerTask('server', function(target) {
+        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+        grunt.task.run([target ? ('serve:' + target) : 'serve']);
+    });
 
-  grunt.event.on('watch', function(action, filepath, target) {
-    grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
-  });
+    grunt.registerTask('test', function(target) {
+        if (target !== 'watch') {
+            grunt.task.run([
+                'clean:server',
+                'concurrent:test'
+            ]);
+        }
 
+        grunt.task.run([
+            'connect:test',
+            'mocha'
+        ]);
+    });
 
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-text-replace');
-  grunt.loadNpmTasks('grunt-svgmin');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-devserver');
+    grunt.registerTask('build', [
+        'clean:dist',
+        'replace',
+        'useminPrepare',
+        'concurrent:dist',
+        'imagemin',
+        'concat',
+        'sass',
+        'copy:dist',
+        'modernizr',
+        'uglify',
+        'rev',
+        'usemin',
+        'cssmin',
+        //'htmlmin',
+        'usebanner'
 
+    ]);
 
-  grunt.registerTask('dist', ['dev','concat', 'sass:dist', 'svgmin', 'replace:js', 'replace:html', 'replace:json', 'uglify', 'cssmin', 'copy:favicon', 'copy:normalize', 'copy:pngbuild', 'clean']);
-  grunt.registerTask('dev', ['concat', 'replace:svgfonts1', 'replace:svgfonts2', 'replace:svgfonts3', 'replace:svgfonts4', 'replace:svgfonts5', 'replace:svgfonts6', 'sass:dev', 'copy:timing','copy:move','copy:png', 'clean']);
-  grunt.registerTask('default', ['dev', 'devserver']);
+    grunt.registerTask('default', [
 
-
-
+        //'newer:jshint',
+        'test',
+        'build'
+    ]);
 };

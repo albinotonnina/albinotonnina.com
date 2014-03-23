@@ -14,12 +14,12 @@
 <g id="introduction" inkscape:version="0.48.4 r9939" sodipodi:docname="drawing.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<g id="intro">
 		<g id="intro1">
-			<text transform="matrix(1 0 0 1 30.7058 451.1562)" fill="#ECF0F1" font-family="'Roboto-Thin'" font-size="30">I’m Albino Tonnina,</text>
-			<text transform="matrix(1 0 0 1 30.7058 487.1562)" fill="#ECF0F1" font-family="'Roboto-Thin'" font-size="30">a self-taught full-stack web developer.</text>
+			<text transform="matrix(1 0 0 1 30.7058 451.1562)" fill="#ECF0F1" font-weight="100" font-size="30">I’m Albino Tonnina,</text>
+			<text transform="matrix(1 0 0 1 30.7058 487.1562)" fill="#ECF0F1" font-weight="100" font-size="30">a self-taught full-stack web developer.</text>
 		</g>
 		<g id="intro2">
-			<text transform="matrix(1 0 0 1 30.2058 537.6025)" fill="#F5F7FA" font-family="'Roboto-Thin'" font-size="30">Currently I work in Rome for Numidia, </text>
-			<text transform="matrix(1 0 0 1 30.2058 573.6025)" fill="#F5F7FA" font-family="'Roboto-Thin'" font-size="30">a fresh and dynamic development company I co-founded in 2011.</text>
+			<text transform="matrix(1 0 0 1 30.2058 537.6025)" fill="#F5F7FA" font-weight="100" font-size="30">Currently I work in Rome for Numidia, </text>
+			<text transform="matrix(1 0 0 1 30.2058 573.6025)" fill="#F5F7FA" font-weight="100" font-size="30">a fresh and dynamic development company I co-founded in 2011.</text>
 		</g>
 	</g>
 	<g id="macbook">
@@ -785,12 +785,12 @@
 				<rect x="1158.894" y="25.754" transform="matrix(-0.6843 -0.7292 0.7292 -0.6843 1933.6929 897.9988)" fill="#ECF0F1" width="4.669" height="9.349"/>
 		</g>
 	</g>
-	<text id="hello" transform="matrix(1 0 0 1 30.7058 389.209)" fill="#ECF0F1" font-family="'Roboto-Black'" font-size="120">hello</text>
+	<text id="hello" transform="matrix(1 0 0 1 30.7058 389.209)" fill="#ECF0F1" font-weight="900" font-size="120">hello</text>
 	<g id="subtitle">
 		
-			<text id="scrolldown" transform="matrix(1 0 0 1 409.5745 389.209)" fill="#F5ECD9" font-family="'Roboto-Regular'" font-size="14">scroll down</text>
+			<text id="scrolldown" transform="matrix(1 0 0 1 409.5745 389.209)" fill="#F5ECD9" font-weight="400" font-size="14">scroll down</text>
 		
-			<text id="viewresume" transform="matrix(1 0 0 1 484.1746 389.209)" fill="#DED6C7" font-family="'Roboto-Regular'" font-size="14">or just view my resume.</text>
+			<text id="viewresume" transform="matrix(1 0 0 1 484.1746 389.209)" fill="#DED6C7" font-weight="400" font-size="14">or just view my resume.</text>
 	</g>
 </g>
 <g id="scrollthing">

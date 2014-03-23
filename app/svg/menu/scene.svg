@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="svgmenu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1024px" height="60px" viewBox="0 0 1024 60" enable-background="new 0 0 1024 60" xml:space="preserve">
+<g id="menu">
+	<rect id="barcenter" x="-3200" fill="#2BACB5" width="9600.001" height="60"/>
+	<rect id="barleft" x="-1199" fill="#229098" width="1200" height="60"/>
+	<rect id="bar" fill="#229098" width="1024" height="60"/>
+	<g id="testi">
+		<text id="sc-menu1" transform="matrix(1 0 0 1 96.0068 38.2969)" fill="#F5ECD9" font-weight="400" font-size="24">ABOUT ME</text>
+		<text id="sc-menu2" transform="matrix(1 0 0 1 352.3423 38.2969)" fill="#F5ECD9" font-weight="400" font-size="24">SKILLS</text>
+		<text id="sc-menu4" transform="matrix(1 0 0 1 587.4268 38.2969)" fill="#F5ECD9" font-weight="400" font-size="24">WORK</text>
+		<text id="sc-menu5" transform="matrix(1 0 0 1 797.9951 38.2969)" fill="#F5ECD9" font-weight="400" font-size="24">CONNECT</text>
+	</g>
+</g>
+</svg>

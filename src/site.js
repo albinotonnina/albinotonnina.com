@@ -1,8 +1,8 @@
 /* 
 	www.albinotonnina.com
  */
+'use strict';
 
-var _gaq = _gaq || [];
 var Site;
 Site = {};
 Site.queue = [];
@@ -13,7 +13,7 @@ Site.skrollr = {};
 Site.cache = {};
 Site.isHidden = true;
 Site.subscriptions = {};
-Site.trackingAccount = "UA-265680-29";
+Site.trackingAccount = 'UA-265680-29';
 Site.defaults = {
 	mobileDeceleration: 0.1,
 	scale: 1,
@@ -21,52 +21,33 @@ Site.defaults = {
 	smoothScrolling: true
 };
 Site.addVideoPlayer = function() {
-	$("#videoPlayer").append("<iframe id='vimeoPlayer' src='//player.vimeo.com/video/88016428' width='100%' height='100%'  frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>");
-}
-Site.publish = function(topic, args) {
-	Site.subscriptions[topic] && $.each(Site.subscriptions[topic], function() {
-		this.apply(Site, args || []);
-	});
-};
-Site.subscribe = function(topic, callback) {
-	if (!Site.subscriptions[topic]) {
-		Site.subscriptions[topic] = [];
-	}
-	Site.subscriptions[topic].push(callback);
-	return [topic, callback];
-};
-Site.unsubscribe = function(handle) {
-	var t;
-	t = handle[0];
-	Site.subscriptions[t] && $.each(Site.subscriptions[t], function(idx) {});
-	if (this === handle[1]) {
-		Site.subscriptions[t].splice(idx, 1);
-	}
+	$('#videoPlayer').append('<iframe id="vimeoPlayer" src="//player.vimeo.com/video/88016428" width="100%" height="100%"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
 };
 Site.ajax = function(url, data, datatype, success, failure) {
 	$.ajax({
-		type: "get",
+		type: 'get',
 		url: url,
 		data: data,
 		dataType: datatype,
 		success: function(data) {
-			Site.publish("ajax_request_success");
+
 			success(data);
 		},
 		error: function(request, status, error) {
-			Site.publish("ajax_request_success");
+
 			failure(request, status, error);
 		}
 	});
 };
 Site.resize = function() {
+
 	var windowWidth = $(window).innerWidth();
 	var windowHeight = $(window).innerHeight();
 	var windowAspectRatio = windowWidth / windowHeight;
 	var viewBox = {
 		width: 1024,
 		height: 768
-	}
+	};
 	var bBox = {
 		width: 3 * viewBox.width,
 		height: 3 * viewBox.height
@@ -78,10 +59,10 @@ Site.resize = function() {
 	} else {
 
 
-		if(skrollr.get()){
+		if (skrollr.get()) {
 			Site.unhide();
 		}
-		
+
 
 	}
 
@@ -95,32 +76,32 @@ Site.resize = function() {
 			$svg.attr({
 				width: windowWidth,
 				height: windowWidth / maxAspectRatio
-			})
+			});
 		} else if (windowAspectRatio < minAspectRatio) {
 			$svg.attr({
 				width: minAspectRatio * windowHeight,
 				height: windowHeight
-			})
+			});
 		} else {
 			$svg.attr({
 				width: windowWidth,
 				height: windowHeight
-			})
+			});
 		}
 	});
 
-	var viewBox = {
+	viewBox = {
 		width: 1024,
 		height: 60
-	}
-	var bBox = {
+	};
+	bBox = {
 		width: 3 * viewBox.width,
 		height: 3 * viewBox.height
 	};
 
-	var maxAspectRatio = (bBox.width / (viewBox.height));
-	var minAspectRatio = viewBox.width / (bBox.height - 768);
-	var viewBoxRatio = viewBox.width / viewBox.height;
+	maxAspectRatio = (bBox.width / (viewBox.height));
+	minAspectRatio = viewBox.width / (bBox.height - 768);
+	viewBoxRatio = viewBox.width / viewBox.height;
 
 
 	$('nav svg').each(function() {
@@ -153,65 +134,57 @@ Site.resize = function() {
 	});
 
 
-}
-Site.loadAnalytics = function() {
-	window._gaq.push(['_setAccount', Site.trackingAccount]);
-	window._gaq.push(['_trackPageview']);
-	var ga = document.createElement('script');
-	ga.type = 'text/javascript';
-	ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(ga, s);
-}
-Site.addLoader = function(obj) {
-	var site = document.createElement("figure");
-	$(site).attr("role", "site");
+};
+
+Site.addLoader = function() {
+	var site = document.createElement('figure');
+	$(site).attr('role', 'site');
 	$('body').append(site);
-	var loader = document.createElement("figure");
-	$(loader).attr("role", "loader");
+	var loader = document.createElement('figure');
+	$(loader).attr('role', 'loader');
 	$('body').append(loader);
-	var spinner = document.createElement("div");
-	$(spinner).attr("class", "spinner");
+	var spinner = document.createElement('div');
+	$(spinner).attr('class', 'spinner');
 	$(loader).append(spinner);
-}
+};
 Site.buildScenes = function(obj) {
 	$(document.head).append(
-		$("<link/>")
+		$('<link/>')
 		.attr({
 			'data-skrollr-stylesheet': true,
-			rel: "stylesheet",
-			type: "text/css",
-			href: "css/animation.css"
+			rel: 'stylesheet',
+			type: 'text/css',
+			href: 'styles/animation.css'
 		})
 	);
-	$("figure[role=site]").append("<nav/>");
-	Site.ajax("svg/menu/scene.svg", {}, "html", function(data) {
+	$('figure[role=site]').append('<nav/>');
+	Site.ajax('svg/menu/scene.svg', {}, 'html', function(data) {
 		$('nav').append(data);
-	}, function(request, status, error) {});
-	$("figure[role=site]").append("<div id='videoPlayer' />");
+	});
+	$('figure[role=site]').append('<div id="videoPlayer" />');
 	if (!Site.isMobile()) {
-		$("aside").append("<h3><a id='reopen' href='#'>Re-open full version</a></h3>");
+		$('aside').append('<h3><a id="reopen" href="#">Re-open full version</a></h3>');
 	}
-	//var debug = document.createElement("div");
-	//$(debug).attr("class", "debug");
+	//var debug = document.createElement('div');
+	//$(debug).attr('class', 'debug');
 	//$('figure[role=site]').append(debug);
-	var vignette = document.createElement("div");
-	$(vignette).attr("class", "vignette");
+	var vignette = document.createElement('div');
+	$(vignette).attr('class', 'vignette');
 	$('figure[role=site]').append(vignette);
 	var sc = 1;
 	for (var key in obj) {
-		var scene = document.createElement("div");
-		$(scene).attr("data-scene", key);
-		$(scene).attr("id", 'scene' + sc);
+		var scene = document.createElement('div');
+		$(scene).attr('data-scene', key);
+		$(scene).attr('id', 'scene' + sc);
 		$('figure[role=site]').append(scene);
-		sc++
+		sc++;
 	}
-}
+};
+
 Site.loadScene = function(element, callback) {
 	var $element = $(element);
 	var name = $element.data('scene');
-	Site.ajax("svg/" + name + "/scene.svg", {}, "html", function(data) {
+	Site.ajax('svg/' + name + '/scene.svg', {}, 'html', function(data) {
 		$element.append(data);
 		if (Site.scenes[name] && Site.scenes[name].easing) {
 			$.extend(options, Site.scenes[name]);
@@ -220,99 +193,112 @@ Site.loadScene = function(element, callback) {
 	}, function(request, status, error) {
 		console.log(error);
 	});
-}
+};
 Site.clickEvents = function() {
-	$("#lalineag").bind("click", function(e) {
-		window.open("http://en.wikipedia.org/wiki/La_Linea_(TV_series)");
+	$('#lalineag').bind('click', function() {
+		window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
 	});
-	$("#intro2,#numidia").bind("click", function(e) {
-		window.open("http://www.numidia.it", "_blank");
+	$('#intro2,#numidia').bind('click', function() {
+		window.open('http://www.numidia.it', '_blank');
 	});
-	$("#viewresume").bind("click", function(e) {
+	$('#viewresume').bind('click', function() {
 		Site.hide();
 	});
-	$("#email").bind("click", function(e) {
-		window.open("mailto:albinotonnina@gmail.com");
+	$('#email').bind('click', function() {
+		window.open('mailto:albinotonnina@gmail.com');
 	});
-	$("#linkedin").bind("click", function(e) {
-		window.open("http://www.linkedin.com/in/albinotonnina", "_blank");
+	$('#linkedin').bind('click', function() {
+		window.open('http://www.linkedin.com/in/albinotonnina', '_blank');
 	});
-	$("#phone").bind("click", function(e) {
-		window.open("tel:+393934318597");
+	$('#phone').bind('click', function() {
+		window.open('tel:+393934318597');
 	});
-	$("#skype").bind("click", function(e) {
-		window.open("skype:albino.tonnina");
+	$('#skype').bind('click', function() {
+		window.open('skype:albino.tonnina');
 	});
-	$("#l500px").bind("click", function(e) {
-		window.open("http://500px.com/albinotonnina", "_blank");
+	$('#l500px').bind('click', function() {
+		window.open('http://500px.com/albinotonnina', '_blank');
 	});
-	$("#contactresume").bind("click", function(e) {
+	$('#contactresume').bind('click', function() {
 		Site.hide();
 	});
-	$("#githubsite").bind("click", function(e) {
-		window.open("http://github.com/albinotonnina/albinotonnina.com", "_blank");
+	$('#githubsite').bind('click', function() {
+		window.open('http://github.com/albinotonnina/albinotonnina.com', '_blank');
 	});
-	$("#addressnumidia").bind("click", function(e) {
-		window.open("https://www.google.it/maps/preview?ie=UTF8&cid=4787770226768960673&q=Numidia+S.r.l.&iwloc=A&gl=IT&hl=en", "_blank");
+	$('#addressnumidia').bind('click', function() {
+		window.open('https://www.google.it/maps/preview?ie=UTF8&cid=4787770226768960673&q=Numidia+S.r.l.&iwloc=A&gl=IT&hl=en', '_blank');
 	});
-	$("#reopen").bind("click", function(e) {
+	$('#reopen').bind('click', function(e) {
 		Site.show();
 		e.preventDefault();
 	});
-}
+};
+
+
+
 //http://stackoverflow.com/questions/5680013/how-to-be-notified-once-a-web-font-has-loaded
 Site.waitForWebfonts = function(fonts, callback) {
 	var loadedFonts = 0;
-	for (var i = 0, l = fonts.length; i < l; ++i) {
-		(function(font) {
-			var node = document.createElement('span');
-			// Characters that vary significantly among different fonts
-			node.innerHTML = 'giItT1WQy@!-/#';
-			// Visible - so we can measure it - but not on the screen
-			node.style.position = 'absolute';
-			node.style.left = '-10000px';
-			node.style.top = '-10000px';
-			// Large font size makes even subtle changes obvious
-			node.style.fontSize = '300px';
-			// Reset any font properties
-			node.style.fontFamily = 'sans-serif';
-			node.style.fontVariant = 'normal';
-			node.style.fontStyle = 'normal';
-			node.style.fontWeight = 'normal';
-			node.style.letterSpacing = '0';
-			document.body.appendChild(node);
-			// Remember width with no applied web font
-			var width = node.offsetWidth;
-			node.style.fontFamily = font;
-			var interval;
 
-			function checkFont() {
-				// Compare current width with original width
-				if (node && node.offsetWidth != width) {
-					++loadedFonts;
-					node.parentNode.removeChild(node);
-					node = null;
-				}
-				// If all fonts have been loaded
-				if (loadedFonts >= fonts.length) {
-					if (interval) {
-						clearInterval(interval);
-					}
-					if (loadedFonts == fonts.length) {
-						callback();
-						return true;
-					}
-				}
-			};
-			if (!checkFont()) {
-				interval = setInterval(checkFont, 50);
+	function doNode(font) {
+		var node = document.createElement('span');
+		// Characters that vary significantly among different fonts
+		node.innerHTML = 'giItT1WQy@!-/#';
+		// Visible - so we can measure it - but not on the screen
+		node.style.position = 'absolute';
+		node.style.left = '-10000px';
+		node.style.top = '-10000px';
+		// Large font size makes even subtle changes obvious
+		node.style.fontSize = '300px';
+		// Reset any font properties
+		node.style.fontFamily = 'sans-serif';
+		node.style.fontVariant = 'normal';
+		node.style.fontStyle = 'normal';
+		node.style.fontWeight = 'normal';
+		node.style.letterSpacing = '0';
+		document.body.appendChild(node);
+		// Remember width with no applied web font
+		var width = node.offsetWidth;
+		node.style.fontFamily = font;
+		var interval;
+
+
+
+		function checkFont() {
+			// Compare current width with original width
+			if (node && node.offsetWidth !== width) {
+				++loadedFonts;
+				node.parentNode.removeChild(node);
+				node = null;
 			}
-		})(fonts[i]);
+			// If all fonts have been loaded
+			if (loadedFonts >= fonts.length) {
+				if (interval) {
+					clearInterval(interval);
+				}
+				if (loadedFonts === fonts.length) {
+					callback();
+					return true;
+				}
+			}
+		}
+
+
+
+		if (!checkFont()) {
+			interval = setInterval(checkFont, 50);
+		}
 	}
-}
+
+
+
+	for (var i = 0, l = fonts.length; i < l; ++i) {
+		doNode(fonts[i]);
+	}
+};
 Site.framecount = function() {
-	$('.debug').html(window.scrollY / this.defaults.scale + "<br>" + (window.scrollY + window.innerHeight) / this.defaults.scale);
-}
+	$('.debug').html(window.scrollY / this.defaults.scale + '<br>' + (window.scrollY + window.innerHeight) / this.defaults.scale);
+};
 Site.time = function(obj, timing) {
 	if (obj.curTop <= timing.begin * Site.defaults.scale) {
 		return 0;
@@ -321,7 +307,7 @@ Site.time = function(obj, timing) {
 		return 1;
 	}
 	return (obj.curTop - timing.begin * Site.defaults.scale) / timing.duration * Site.defaults.scale;
-}
+};
 Site.removeMe = function() {
 	move('figure[role=site]')
 		.set('opacity', 0)
@@ -332,8 +318,8 @@ Site.removeMe = function() {
 				Site.skrollr.destroy();
 				$('html,body').css('overflow-y', 'scroll');
 			});
-		})
-}
+		});
+};
 
 Site.activateCvLink = function() {
 	move('#scrolldown')
@@ -344,10 +330,10 @@ Site.activateCvLink = function() {
 				.set('opacity', 1)
 				.end();
 		});
-}
+};
 Site.movetheThing = function() {
 	var pos = $('#scrollthing').position();
-	var group = document.getElementById("scrollthing").getBoundingClientRect();
+	var group = document.getElementById('scrollthing').getBoundingClientRect();
 	move('#scrollthing')
 		.x($(window).innerWidth() - pos.left - group.width - 50)
 		.y(Math.abs(pos.top) + 50)
@@ -371,7 +357,7 @@ Site.movetheThing = function() {
 						.end();
 				});
 		});
-}
+};
 Site.beforePrint = function() {
 	$('body').css('height', 'auto');
 	$('figure').css('display', 'none');
@@ -387,7 +373,7 @@ Site.hide = function(soft) {
 
 		if (!soft) {
 			Site.skrollr.destroy();
-			$("html, body").animate({
+			$('html, body').animate({
 				scrollTop: 0
 			}, 400);
 
@@ -395,10 +381,10 @@ Site.hide = function(soft) {
 
 
 
-	})
-}
-Site.show = function(callback, soft) {
-	$("html, body").css('overflow-y', 'scroll').animate({
+	});
+};
+Site.show = function(callback) {
+	$('html, body').css('overflow-y', 'scroll').animate({
 
 		scrollTop: 0
 
@@ -418,7 +404,7 @@ Site.show = function(callback, soft) {
 			}
 		}
 	});
-}
+};
 
 
 Site.unhide = function() {
@@ -438,21 +424,23 @@ Site.unhide = function() {
 		});
 
 	}
-}
+};
 
 
 Site.isIE = function() {
 	var myNav = navigator.userAgent.toLowerCase();
-	return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
-}
+	return (myNav.indexOf('msie') !== -1) ? parseInt(myNav.split('msie')[1]) : false;
+};
 Site.isMobile = function() {
 	return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-}
+};
 Site.initSkrollr = function() {
 	var renderTimeout;
 	$.extend(Site.options, Site.defaults, {
 		render: function(obj) {
-			if (renderTimeout) clearTimeout(renderTimeout);
+			if (renderTimeout) {
+				clearTimeout(renderTimeout);
+			}
 			renderTimeout = setTimeout(function() {
 				for (var name in Site.scenes) {
 					if (typeof Site.scenes[name].render === 'function') {
@@ -477,8 +465,8 @@ Site.initSkrollr = function() {
 			return Math.abs(currentTop - targetTop) * 0.5;
 		}
 	});
-}
-Site.subscribe("init", function() {
+};
+Site.init = function() {
 	if (!Modernizr.inlinesvg || !Modernizr.svg || !Modernizr.svgclippaths) {
 		Site.hide();
 	} else {
@@ -486,30 +474,34 @@ Site.subscribe("init", function() {
 		if (Site.isIE()) {
 			$('.vignette').passThrough('.box');
 		}
-		Site.loadAnalytics();
+
 		Site.addLoader();
-		Site.ajax("svg/timing.json", {}, "json", function(data) {
+		Site.ajax('svg/timing.json', {}, 'json', function(data) {
 			var begin = 0;
 			for (var scene in data) {
 				begin += data[scene].offset;
 				data[scene].begin = begin;
-				data[scene].end = begin + data[scene].duration
+				data[scene].end = begin + data[scene].duration;
 				begin += data[scene].duration;
 			}
 			Site.timing = data;
 			Site.buildScenes(Site.timing);
-			async.each($('[data-scene]'), Site.loadScene, function(err) {
+			async.each($('[data-scene]'), Site.loadScene, function() {
+
+
+
 				$(document.head).append($('<script/>', {
-					src: 'js/skrollr.js'
-				})).append($('<script/>', {
-					src: 'js/move.min.js'
+					src: 'scripts/skrollr.js'
 				}));
+
+
+
 				Site.clickEvents();
 				Site.resize();
 				Site.initSkrollr();
 				$('body > div,figure[role=loader]').fadeOut('300', function() {});
 				if (Site.isMobile()) {
-					var mql = window.matchMedia("(orientation: portrait)");
+					var mql = window.matchMedia('(orientation: portrait)');
 					if (mql.matches) {
 						Site.hide();
 					} else {
@@ -531,24 +523,22 @@ Site.subscribe("init", function() {
 					});
 				}
 			});
-		}, function(request, status, error) {
+		}, function() {
 			Site.hide();
 		});
 	}
-});
-Site.subscribe("destroy", function() {
-	Site.removeMe();
-});
+};
+
 /*
-  	Events
+Events
 */
-jQuery(function($) {
+jQuery(function() {
 	Site.waitForWebfonts(['roboto'], function() {
-		Site.publish("init");
+		Site.init();
 	});
 });
 jQuery(window).unload(function() {
-	Site.publish("destroy");
+	Site.removeMe();
 });
 jQuery(window).resize(function() {
 	Site.resize();
@@ -562,7 +552,7 @@ window.onload = function() {
 	setTimeout(function() {
 		window.scrollTo(0, -1);
 	}, 0);
-}
+};
 if (window.matchMedia) {
 	var mediaQueryList = window.matchMedia('print');
 	mediaQueryList.addListener(function(mql) {
@@ -572,7 +562,7 @@ if (window.matchMedia) {
 			Site.afterPrint();
 		}
 	});
-};
+}
 
 $.fn.passThrough = function(target) {
 	var $target = $(target);
@@ -585,12 +575,13 @@ $.fn.passThrough = function(target) {
 				$target.each(function() {
 					var rect = this.getBoundingClientRect();
 					if (e.pageX > rect.left && e.pageX < rect.right &&
-						e.pageY > rect.top && e.pageY < rect.bottom)
+						e.pageY > rect.top && e.pageY < rect.bottom) {
 						$(this).trigger(e.type);
+					}
+
 				});
 			});
 		}
 	});
 
 };
-
