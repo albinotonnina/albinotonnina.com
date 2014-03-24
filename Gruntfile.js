@@ -295,7 +295,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
         concat: {
             css: {
                 src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
