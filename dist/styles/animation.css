@@ -1,4 +1,2255 @@
 /*! albinotonnina by Albino Tonnina - v1.2.0 - 2014-03-24
 * http://https://github.com/albinotonnina/albinotonnina.com/
 * Copyright (c) 2014 Albino Tonnina; Licensed MIT */
+#scene1 {
+  -skrollr-animation-name: scene1; }
 
+@-skrollr-keyframes scene1 {
+  0 {
+    top: 0%; }
+
+  400 {
+    top: 0%; }
+
+  900 {
+    top: -100%; } }
+
+#scene2 {
+  -skrollr-animation-name: scene2; }
+
+@-skrollr-keyframes scene2 {
+  400 {
+    top: 100%; }
+
+  900 {
+    top: 0%; }
+
+  1500 {
+    top: 0%; }
+
+  2000 {
+    top: -100%; } }
+
+#scene3 {
+  -skrollr-animation-name: scene3; }
+
+@-skrollr-keyframes scene3 {
+  1500 {
+    top: 100%; }
+
+  2000 {
+    top: 0%; }
+
+  2500 {
+    top: 0%; }
+
+  3000 {
+    top: -100%; } }
+
+#scene4 {
+  -skrollr-animation-name: scene4; }
+
+@-skrollr-keyframes scene4 {
+  2500 {
+    top: 100%; }
+
+  3000 {
+    top: 0%; }
+
+  4600 {
+    top: 0%; }
+
+  5100 {
+    top: -100%; } }
+
+#scene5 {
+  -skrollr-animation-name: scene5; }
+
+@-skrollr-keyframes scene5 {
+  4600 {
+    top: 100%; }
+
+  5100 {
+    top: 0%; }
+
+  5600 {
+    top: 0%; } }
+
+nav {
+  @-skrollr-keyframes menubar {
+    0 {
+      transform: scale(0, 1);
+      fill: rgba(52, 152, 219, 0.99); }
+
+    600 {
+      transform: scale(0.34, 1);
+      fill: rgba(52, 152, 219, 0.99); }
+
+    620 {
+      transform: scale(0.35, 1);
+      fill: rgba(68, 198, 80, 0.99); }
+
+    900 {
+      transform: scale(0.38, 1);
+      fill: rgba(68, 198, 80, 0.99); }
+
+    2700 {
+      transform: scale(0.58, 1);
+      fill: rgba(68, 198, 80, 0.99); }
+
+    2720 {
+      transform: scale(0.59, 1);
+      fill: rgba(231, 76, 60, 0.99); }
+
+    3000 {
+      transform: scale(0.62, 1);
+      fill: rgba(231, 76, 60, 0.99); }
+
+    4800 {
+      transform: scale(0.72, 1);
+      fill: rgba(231, 76, 60, 0.99); }
+
+    4820 {
+      transform: scale(0.73, 1);
+      fill: rgba(43, 172, 181, 0.99); }
+
+    5100 {
+      transform: scale(0.75, 1);
+      fill: rgba(43, 172, 181, 0.99); }
+
+    5800 {
+      transform: scale(1, 1);
+      fill: rgba(43, 172, 181, 0.99); }
+
+    5820 {
+      transform: scale(1.15, 1);
+      fill: rgba(43, 172, 181, 0.99); }
+
+    6100 {
+      transform: scale(4, 1);
+      fill: rgba(43, 172, 181, 0.99); } }
+
+  @-skrollr-keyframes menu {
+    60 {
+      transform: translate(0px, 200px); }
+
+    100 {
+      transform: translate(0px, 0px); } }
+
+  @-skrollr-keyframes barleft {
+    0 {
+      fill: rgba(52, 152, 219, 0.99); }
+
+    600 {
+      fill: rgba(52, 152, 219, 0.99); }
+
+    620 {
+      fill: rgba(68, 198, 80, 0.99); }
+
+    1700 {
+      fill: rgba(68, 198, 80, 0.99); }
+
+    2700 {
+      fill: rgba(68, 198, 80, 0.99); }
+
+    2720 {
+      fill: rgba(231, 76, 60, 0.99); }
+
+    4800 {
+      fill: rgba(231, 76, 60, 0.99); }
+
+    4820 {
+      fill: rgba(43, 172, 181, 0.99); }
+
+    5800 {
+      fill: rgba(43, 172, 181, 0.99); }
+
+    5820 {
+      fill: rgba(43, 172, 181, 0.99); }
+
+    6100 {
+      fill: rgba(43, 172, 181, 0.99); } }
+
+  @-skrollr-keyframes barcenter {
+    0 {
+      fill: rgba(51, 127, 177, 0.99); }
+
+    600 {
+      fill: rgba(51, 127, 177, 0.99); }
+
+    620 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    1700 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    2700 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    2720 {
+      fill: rgba(190, 61, 47, 0.99); }
+
+    4800 {
+      fill: rgba(190, 61, 47, 0.99); }
+
+    4820 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    5800 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    5820 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    6100 {
+      fill: rgba(34, 144, 152, 0.99); } }
+
+  @-skrollr-keyframes barright {
+    0 {
+      fill: rgba(51, 127, 177, 0.99); }
+
+    600 {
+      fill: rgba(51, 127, 177, 0.99); }
+
+    620 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    1700 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    2700 {
+      fill: rgba(69, 155, 69, 0.99); }
+
+    2720 {
+      fill: rgba(190, 61, 47, 0.99); }
+
+    4800 {
+      fill: rgba(190, 61, 47, 0.99); }
+
+    4820 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    5800 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    5820 {
+      fill: rgba(34, 144, 152, 0.99); }
+
+    6100 {
+      fill: rgba(34, 144, 152, 0.99); } }
+ }
+  nav #bgmenu {
+    opacity: 0;
+    pointer-events: none; }
+  nav #sc-menu1 {
+    cursor: pointer; }
+  nav #sc-menu2 {
+    cursor: pointer; }
+  nav #sc-menu4 {
+    cursor: pointer; }
+  nav #sc-menu5 {
+    cursor: pointer; }
+  nav #bar {
+    -skrollr-animation-name: menubar; }
+  nav #menu {
+    -skrollr-animation-name: menu; }
+  nav #barleft {
+    -skrollr-animation-name: barleft; }
+  nav #barcenter {
+    -skrollr-animation-name: barcenter; }
+  nav #barright {
+    -skrollr-animation-name: barright; }
+
+#scene1 {
+  @-skrollr-keyframes wire1 {
+    100 {
+      stroke-dashoffset: 6000; }
+
+    2464 {
+      stroke-dashoffset: 0; } }
+
+  @-skrollr-keyframes scrollthing {
+    0 {
+      opacity: 1;
+      transition-delay: 2000ms;
+      transition-duration: 500ms; }
+
+    5 {
+      opacity: 1;
+      transition-delay: 0;
+      transition-duration: 0; }
+
+    30 {
+      opacity: 0;
+      transition-delay: 0;
+      transition-duration: 0; } }
+
+  @-skrollr-keyframes hellohello {
+    0 {
+      transform: translate(390px, 370px); }
+
+    100 {
+      transform: translate(30px, 400px); } }
+
+  @-skrollr-keyframes subtitle {
+    0 {
+      opacity: 1; }
+
+    50 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes intro1 {
+    100 {
+      transform[swing]: translate(0, -10px);
+      opacity: 0; }
+
+    200 {
+      transform[swing]: translate(0, 0px);
+      opacity: 1; } }
+
+  @-skrollr-keyframes intro2 {
+    120 {
+      transform[swing]: translate(0, -10px);
+      opacity: 0; }
+
+    170 {
+      transform[swing]: translate(0, 0px);
+      opacity: 1; } }
+
+  @-skrollr-keyframes macbook {
+    50 {
+      transform[swing]: translate(0, -500px) rotate(-10deg);
+      opacity: 0; }
+
+    150 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes mouse {
+    100 {
+      transform[swing]: translate(200px, 0px) rotate(-30deg);
+      opacity: 0; }
+
+    200 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes schema {
+    100 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    200 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes bevanda {
+    150 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    250 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes matita1 {
+    25 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    125 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes cancelleria1 {
+    125 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    225 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes righello {
+    175 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    275 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes gomma {
+    120 {
+      transform[swing]: translate(0, -200px) rotate(-10deg);
+      opacity: 0; }
+
+    220 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes iphone2 {
+    150 {
+      transform[swing]: translate(-200px, 0) rotate(-10deg);
+      opacity: 0; }
+
+    200 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes occhiali {
+    270 {
+      transform[swing]: translate(100px, -300px) rotate(-10deg);
+      opacity: 0; }
+
+    310 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes foglio1 {
+    0 {
+      transform[swing]: translate(0, -500px) rotate(-10deg);
+      opacity: 0; }
+
+    75 {
+      transform[swing]: translate(0, -500px) rotate(-10deg);
+      opacity: 1; }
+
+    175 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes foglio2 {
+    50 {
+      transform[swing]: translate(-200px, 0) rotate(-10deg);
+      opacity: 0; }
+
+    150 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+
+  @-skrollr-keyframes calcolatrice {
+    0 {
+      transform[swing]: translate(-500px, 0) rotate(-10deg);
+      opacity: 0; }
+
+    200 {
+      transform[swing]: translate(0, 0) rotate(0deg);
+      opacity: 1; } }
+ }
+  #scene1 #wire1 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 0;
+    -skrollr-animation-name: wire1; }
+  #scene1 #linecover1 {
+    opacity: 0;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    transform-origin: 50% 50%; }
+  #scene1 #scrollthing {
+    -skrollr-animation-name: scrollthing; }
+  #scene1 #viewresume {
+    cursor: pointer;
+    opacity: 0; }
+  #scene1 #viewresume:hover {
+    fill: rgba(44, 62, 80, 0.99); }
+  #scene1 #scrolldown {
+    opacity: 0; }
+  #scene1 #hello {
+    -skrollr-animation-name: hellohello; }
+  #scene1 #subtitle {
+    -skrollr-animation-name: subtitle; }
+  #scene1 #intro1 {
+    -skrollr-animation-name: intro1; }
+  #scene1 #intro2 {
+    -skrollr-animation-name: intro2;
+    cursor: pointer; }
+  #scene1 #intro2:hover text {
+    fill: rgba(214, 219, 220, 0.99); }
+  #scene1 #macbook {
+    -skrollr-animation-name: macbook; }
+  #scene1 #mouse {
+    -skrollr-animation-name: mouse; }
+  #scene1 #schema {
+    -skrollr-animation-name: schema; }
+  #scene1 #bevanda {
+    -skrollr-animation-name: bevanda; }
+  #scene1 #matita1 {
+    -skrollr-animation-name: matita1; }
+  #scene1 #cancelleria1 {
+    -skrollr-animation-name: cancelleria1; }
+  #scene1 #righello {
+    -skrollr-animation-name: righello; }
+  #scene1 #gomma {
+    -skrollr-animation-name: gomma; }
+  #scene1 #iphone {
+    -skrollr-animation-name: iphone2; }
+  #scene1 #occhiali {
+    -skrollr-animation-name: occhiali; }
+  #scene1 #foglio1 {
+    -skrollr-animation-name: foglio1; }
+  #scene1 #foglio2 {
+    -skrollr-animation-name: foglio2; }
+  #scene1 #calcolatrice {
+    -skrollr-animation-name: calcolatrice; }
+
+#scene2 {
+  background-color: #44C650;
+  @-skrollr-keyframes wire2 {
+    730 {
+      stroke-dashoffset: 6000; }
+
+    2730 {
+      stroke-dashoffset: 0; } }
+
+  @-skrollr-keyframes s2-title {
+    770 {
+      opacity: 0;
+      transform[swing]: translate(0px, 50px); }
+
+    800 {
+      opacity: 1;
+      transform[swing]: translate(0px, 60px); } }
+
+  @-skrollr-keyframes tblock1 {
+    870 {
+      opacity: 0;
+      transform[swing]: translate(-30px, 0); }
+
+    890 {
+      opacity: 1;
+      transform[swing]: translate(0, 0); } }
+
+  @-skrollr-keyframes tblock2 {
+    1130 {
+      opacity: 0;
+      transform[swing]: translate(-30px, 0); }
+
+    1150 {
+      opacity: 1;
+      transform[swing]: translate(0, 0); } }
+
+  @-skrollr-keyframes tblock3 {
+    1370 {
+      opacity: 0;
+      transform[swing]: translate(-20px, 0); }
+
+    1390 {
+      opacity: 1;
+      transform[swing]: translate(0, 0); } }
+
+  @-skrollr-keyframes imac {}
+  @-skrollr-keyframes gridbg {
+    1050 {
+      transform: scale(1, 0);
+      opacity: 0; }
+
+    1080 {
+      transform: scale(1, 1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes grid1 {
+    940 {
+      transform: scale(1, 0); }
+
+    960 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid2 {
+    950 {
+      transform: scale(1, 0); }
+
+    970 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid3 {
+    960 {
+      transform: scale(1, 0); }
+
+    980 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid4 {
+    970 {
+      transform: scale(1, 0); }
+
+    990 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid5 {
+    980 {
+      transform: scale(1, 0); }
+
+    1000 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid6 {
+    990 {
+      transform: scale(1, 0); }
+
+    1010 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid7 {
+    1000 {
+      transform: scale(1, 0); }
+
+    1020 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid8 {
+    1010 {
+      transform: scale(1, 0); }
+
+    1030 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid9 {
+    1020 {
+      transform: scale(1, 0); }
+
+    1040 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid10 {
+    1030 {
+      transform: scale(1, 0); }
+
+    1050 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes grid11 {
+    1040 {
+      transform: scale(1, 0); }
+
+    1060 {
+      transform: scale(1, 1); } }
+
+  @-skrollr-keyframes s1-f18 {
+    1070 {
+      display: none; }
+
+    1090 {
+      display: inline; } }
+
+  @-skrollr-keyframes b4 {
+    1080 {
+      display: none; }
+
+    1100 {
+      display: inline; } }
+
+  @-skrollr-keyframes s1-f13 {
+    1090 {
+      display: none; }
+
+    1110 {
+      display: inline; } }
+
+  @-skrollr-keyframes b3 {
+    1100 {
+      display: none; }
+
+    1120 {
+      display: inline; } }
+
+  @-skrollr-keyframes s1-f8 {
+    1110 {
+      display: none; }
+
+    1130 {
+      display: inline; } }
+
+  @-skrollr-keyframes b2 {
+    1120 {
+      display: none; }
+
+    1140 {
+      display: inline; } }
+
+  @-skrollr-keyframes b1 {
+    1130 {
+      display: none; }
+
+    1150 {
+      display: inline; } }
+
+  @-skrollr-keyframes s1-f1 {
+    1140 {
+      display: none; }
+
+    1160 {
+      display: inline; } }
+
+  @-skrollr-keyframes s1-bg2 {
+    1150 {
+      display: none; }
+
+    1170 {
+      display: inline; } }
+
+  @-skrollr-keyframes s1-bg1 {
+    1180 {
+      opacity: 0; }
+
+    1200 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ipad {
+    1270 {
+      opacity: 0;
+      transform[swing]: translate(10px, 0); }
+
+    1300 {
+      opacity: 1;
+      transform[swing]: translate(0px, 0); } }
+
+  @-skrollr-keyframes s2-bg1 {
+    1300 {
+      display: none; }
+
+    1320 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g1 {
+    1380 {
+      display: none; }
+
+    1400 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g2g {
+    1390 {
+      display: none; }
+
+    1410 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g6g {
+    1400 {
+      display: none; }
+
+    1420 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g10 {
+    1410 {
+      display: none; }
+
+    1430 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g11g {
+    1420 {
+      display: none; }
+
+    1440 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g15 {
+    1430 {
+      display: none; }
+
+    1450 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g16 {
+    1440 {
+      display: none; }
+
+    1460 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g17 {
+    1450 {
+      display: none; }
+
+    1470 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g18 {
+    1460 {
+      display: none; }
+
+    1480 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g19 {
+    1470 {
+      display: none; }
+
+    1490 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g20 {
+    1480 {
+      display: none; }
+
+    1500 {
+      display: inline; } }
+
+  @-skrollr-keyframes s2-g21 {
+    1490 {
+      display: none; }
+
+    1510 {
+      display: inline; } }
+
+  @-skrollr-keyframes iphone {
+    1220 {
+      transform[swing]: translate(10px, 0);
+      opacity: 0; }
+
+    1250 {
+      opacity: 1;
+      transform[swing]: translate(0px, 0); } }
+
+  @-skrollr-keyframes s3-bg1 {
+    1230 {
+      display: none; }
+
+    1250 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i1 {
+    1250 {
+      display: none; }
+
+    1270 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i2 {
+    1260 {
+      display: none; }
+
+    1280 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i3 {
+    1270 {
+      display: none; }
+
+    1290 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i4 {
+    1280 {
+      display: none; }
+
+    1300 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i5 {
+    1290 {
+      display: none; }
+
+    1310 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i6 {
+    1300 {
+      display: none; }
+
+    1320 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i7 {
+    1310 {
+      display: none; }
+
+    1330 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i8 {
+    1320 {
+      display: none; }
+
+    1340 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i9 {
+    1330 {
+      display: none; }
+
+    1350 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i10 {
+    1360 {
+      display: none; }
+
+    1380 {
+      display: inline; } }
+
+  @-skrollr-keyframes s3-i11 {
+    1370 {
+      display: none; }
+
+    1390 {
+      display: inline; } }
+
+  @-skrollr-keyframes appunti {
+    1275 {
+      transform[swing]: translate(0, 510px); }
+
+    1325 {
+      transform[swing]: translate(0, 0); } }
+
+  @-skrollr-keyframes ag1 {
+    1325 {
+      opacity: 0; }
+
+    1345 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ag2 {
+    1345 {
+      opacity: 0; }
+
+    1365 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ag3 {
+    1355 {
+      opacity: 0; }
+
+    1375 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ag4 {
+    1365 {
+      opacity: 0; }
+
+    1385 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ag5 {
+    1375 {
+      opacity: 0; }
+
+    1395 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes diagramma1 {
+    1320 {
+      transform[swing]: translate(0, 610px); }
+
+    1370 {
+      transform[swing]: translate(0, 0); } }
+
+  @-skrollr-keyframes dg1 {
+    1390 {
+      opacity: 0; }
+
+    1410 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg2 {
+    1400 {
+      opacity: 0; }
+
+    1420 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg3 {
+    1410 {
+      opacity: 0; }
+
+    1430 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg4 {
+    1420 {
+      opacity: 0; }
+
+    1440 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg5 {
+    1430 {
+      opacity: 0; }
+
+    1450 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg6 {
+    1440 {
+      opacity: 0; }
+
+    1460 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg7 {
+    1450 {
+      opacity: 0; }
+
+    1470 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg8 {
+    1460 {
+      opacity: 0; }
+
+    1480 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes dg9 {
+    1470 {
+      opacity: 0; }
+
+    1490 {
+      opacity: 1; } }
+ }
+  #scene2 #wire2 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: wire2; }
+  #scene2 #title {
+    -skrollr-animation-name: s2-title; }
+  #scene2 #linecover2 {
+    -skrollr-animation-name: wheel2;
+    opacity: 0;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    transform-origin: 50% 50%; }
+  #scene2 #tblock1 {
+    -skrollr-animation-name: tblock1; }
+  #scene2 #tblock2 {
+    -skrollr-animation-name: tblock2; }
+  #scene2 #tblock3 {
+    -skrollr-animation-name: tblock3; }
+  #scene2 #imac {
+    -skrollr-animation-name: imac; }
+    #scene2 #imac #grid rect {
+      -ms-transform-origin: 100% 100%;
+      -webkit-transform-origin: 100% 100%;
+      -moz-transform-origin: 100% 100%;
+      transform-origin: 100% 100%; }
+    #scene2 #imac #gridbg {
+      -ms-transform-origin: 50% 100%;
+      -webkit-transform-origin: 50% 100%;
+      -moz-transform-origin: 50% 100%;
+      transform-origin: 50% 100%;
+      -skrollr-animation-name: gridbg; }
+    #scene2 #imac #grid1 {
+      -skrollr-animation-name: grid1; }
+    #scene2 #imac #grid2 {
+      -skrollr-animation-name: grid2; }
+    #scene2 #imac #grid3 {
+      -skrollr-animation-name: grid3; }
+    #scene2 #imac #grid4 {
+      -skrollr-animation-name: grid4; }
+    #scene2 #imac #grid5 {
+      -skrollr-animation-name: grid5; }
+    #scene2 #imac #grid6 {
+      -skrollr-animation-name: grid6; }
+    #scene2 #imac #grid7 {
+      -skrollr-animation-name: grid7; }
+    #scene2 #imac #grid8 {
+      -skrollr-animation-name: grid8; }
+    #scene2 #imac #grid9 {
+      -skrollr-animation-name: grid9; }
+    #scene2 #imac #grid10 {
+      -skrollr-animation-name: grid10; }
+    #scene2 #imac #grid11 {
+      -skrollr-animation-name: grid11; }
+    #scene2 #imac #b1 {
+      -skrollr-animation-name: b1; }
+    #scene2 #imac #b2 {
+      -skrollr-animation-name: b2; }
+    #scene2 #imac #b3 {
+      -skrollr-animation-name: b3; }
+    #scene2 #imac #b4 {
+      -skrollr-animation-name: b4; }
+    #scene2 #imac #bg1 {
+      -skrollr-animation-name: s1-bg1; }
+    #scene2 #imac #bg2 {
+      -skrollr-animation-name: s1-bg2; }
+    #scene2 #imac #f1 {
+      -skrollr-animation-name: s1-f1; }
+    #scene2 #imac #f8 {
+      -skrollr-animation-name: s1-f8; }
+    #scene2 #imac #f13 {
+      -skrollr-animation-name: s1-f13; }
+    #scene2 #imac #f18 {
+      -skrollr-animation-name: s1-f18; }
+  #scene2 #ipad {
+    -skrollr-animation-name: ipad; }
+    #scene2 #ipad #s2 #s2-bg1 {
+      -skrollr-animation-name: s2-bg1; }
+    #scene2 #ipad #s2 #g1 {
+      -skrollr-animation-name: s2-g1; }
+    #scene2 #ipad #s2 #g2g {
+      -skrollr-animation-name: s2-g2g; }
+    #scene2 #ipad #s2 #g6g {
+      -skrollr-animation-name: s2-g6g; }
+    #scene2 #ipad #s2 #g10 {
+      -skrollr-animation-name: s2-g10; }
+    #scene2 #ipad #s2 #g11g {
+      -skrollr-animation-name: s2-g11g; }
+    #scene2 #ipad #s2 #g15 {
+      -skrollr-animation-name: s2-g15; }
+    #scene2 #ipad #s2 #g16 {
+      -skrollr-animation-name: s2-g16; }
+    #scene2 #ipad #s2 #g17 {
+      -skrollr-animation-name: s2-g17; }
+    #scene2 #ipad #s2 #g18 {
+      -skrollr-animation-name: s2-g18; }
+    #scene2 #ipad #s2 #g19 {
+      -skrollr-animation-name: s2-g19; }
+    #scene2 #ipad #s2 #g20 {
+      -skrollr-animation-name: s2-g20; }
+    #scene2 #ipad #s2 #g21 {
+      -skrollr-animation-name: s2-g21; }
+  #scene2 #iphone {
+    -skrollr-animation-name: iphone; }
+    #scene2 #iphone #s3 #s3-bg1 {
+      -skrollr-animation-name: s3-bg1; }
+    #scene2 #iphone #s3 #i1 {
+      -skrollr-animation-name: s3-i1; }
+    #scene2 #iphone #s3 #i2 {
+      -skrollr-animation-name: s3-i2; }
+    #scene2 #iphone #s3 #i3 {
+      -skrollr-animation-name: s3-i3; }
+    #scene2 #iphone #s3 #i4 {
+      -skrollr-animation-name: s3-i4; }
+    #scene2 #iphone #s3 #i5 {
+      -skrollr-animation-name: s3-i5; }
+    #scene2 #iphone #s3 #i6 {
+      -skrollr-animation-name: s3-i6; }
+    #scene2 #iphone #s3 #i7 {
+      -skrollr-animation-name: s3-i7; }
+    #scene2 #iphone #s3 #i8 {
+      -skrollr-animation-name: s3-i8; }
+    #scene2 #iphone #s3 #i9 {
+      -skrollr-animation-name: s3-i9; }
+    #scene2 #iphone #s3 #i10 {
+      -skrollr-animation-name: s3-i10; }
+    #scene2 #iphone #s3 #i11 {
+      -skrollr-animation-name: s3-i11; }
+  #scene2 #appunti {
+    -skrollr-animation-name: appunti; }
+    #scene2 #appunti #ag1 {
+      -skrollr-animation-name: ag1; }
+    #scene2 #appunti #ag2 {
+      -skrollr-animation-name: ag2; }
+    #scene2 #appunti #ag3 {
+      -skrollr-animation-name: ag3; }
+    #scene2 #appunti #ag4 {
+      -skrollr-animation-name: ag4; }
+    #scene2 #appunti #ag5 {
+      -skrollr-animation-name: ag5; }
+  #scene2 #diagramma1 {
+    -skrollr-animation-name: diagramma1; }
+    #scene2 #diagramma1 #dg1 {
+      -skrollr-animation-name: dg1; }
+    #scene2 #diagramma1 #dg2 {
+      -skrollr-animation-name: dg2; }
+    #scene2 #diagramma1 #dg3 {
+      -skrollr-animation-name: dg3; }
+    #scene2 #diagramma1 #dg4 {
+      -skrollr-animation-name: dg4; }
+    #scene2 #diagramma1 #dg5 {
+      -skrollr-animation-name: dg5; }
+    #scene2 #diagramma1 #dg6 {
+      -skrollr-animation-name: dg6; }
+    #scene2 #diagramma1 #dg7 {
+      -skrollr-animation-name: dg7; }
+    #scene2 #diagramma1 #dg8 {
+      -skrollr-animation-name: dg8; }
+    #scene2 #diagramma1 #dg9 {
+      -skrollr-animation-name: dg9; }
+
+#scene3 {
+  @-skrollr-keyframes wire3 {
+    1555 {
+      stroke-dashoffset: 6000; }
+
+    3200 {
+      stroke-dashoffset: 0; } }
+
+  @-skrollr-keyframes interested {
+    2150 {
+      opacity: 0; }
+
+    2200 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes lalineag {
+    2100 {
+      opacity: 0; }
+
+    2150 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes list {
+    1900 {
+      transform: translate(0px, 0px) scale(1); }
+
+    1950 {
+      transform: translate(-200px, -230px) scale(2); } }
+
+  @-skrollr-keyframes listshadow {
+    1900 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; }
+
+    1920 {
+      transform: translate(-60px, -3px) scale(1.1);
+      opacity: 0; } }
+
+  @-skrollr-keyframes list2 {
+    2100 {
+      transform: translate(0px, 0px) scale(1); }
+
+    2150 {
+      transform: translate(-1000px, -900px) scale(2.5); } }
+
+  @-skrollr-keyframes list2shadow {
+    2100 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; }
+
+    2120 {
+      transform: translate(-60px, -3px) scale(1.1);
+      opacity: 0; } }
+
+  @-skrollr-keyframes skill01 {
+    1650 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1660 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill02 {
+    1690 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1700 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill03 {
+    1750 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1760 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill04 {
+    1790 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1800 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill05 {
+    1810 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1820 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill06 {
+    1840 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1850 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill07 {
+    1880 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1890 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill08 {
+    1920 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1930 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill09 {
+    1940 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1950 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill10 {
+    1960 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1970 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill11 {
+    1970 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1980 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill12 {
+    1980 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    1990 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill13 {
+    1990 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2000 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill14 {
+    2000 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2010 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill15 {
+    2010 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2020 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill16 {
+    2020 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2030 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill17 {
+    2030 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2040 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill18 {
+    2040 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2050 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill19 {
+    2250 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2260 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill20 {
+    2260 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2270 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill21 {
+    2270 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2280 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill22 {
+    2280 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2290 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill23 {
+    2600 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2610 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill24 {
+    2610 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2620 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill25 {
+    2620 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2630 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes skill26 {
+    2630 {
+      transform[bounce]: scale(0);
+      opacity: 0; }
+
+    2640 {
+      transform[bounce]: scale(1);
+      opacity: 1; } }
+ }
+  #scene3 #wire3 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: wire3; }
+  #scene3 #interested {
+    -skrollr-animation-name: interested; }
+  #scene3 #lalineag {
+    -skrollr-animation-name: lalineag; }
+  #scene3 #list {
+    -skrollr-animation-name: list; }
+  #scene3 #listshadow {
+    -skrollr-animation-name: listshadow; }
+  #scene3 #list2 {
+    -skrollr-animation-name: list2; }
+  #scene3 #list2shadow {
+    -skrollr-animation-name: list2shadow; }
+  #scene3 #skill01 {
+    -skrollr-animation-name: skill01;
+    transform-origin: 50% 80%;
+    -ms-transform-origin: 50% 80%;
+    -webkit-transform-origin: 50% 80%; }
+  #scene3 #skill02 {
+    -skrollr-animation-name: skill02;
+    transform-origin: 50% 80%;
+    -ms-transform-origin: 50% 80%;
+    -webkit-transform-origin: 50% 80%; }
+  #scene3 #skill03 {
+    -skrollr-animation-name: skill03;
+    transform-origin: 50% 80%;
+    -ms-transform-origin: 50% 80%;
+    -webkit-transform-origin: 50% 80%; }
+  #scene3 #skill04 {
+    -skrollr-animation-name: skill04;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill05 {
+    -skrollr-animation-name: skill05;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill06 {
+    -skrollr-animation-name: skill06;
+    transform-origin: 50% 80%;
+    -ms-transform-origin: 50% 80%;
+    -webkit-transform-origin: 50% 80%; }
+  #scene3 #skill07 {
+    -skrollr-animation-name: skill07;
+    transform-origin: 50% 10%;
+    -ms-transform-origin: 50% 10%;
+    -webkit-transform-origin: 50% 10%; }
+  #scene3 #skill08 {
+    -skrollr-animation-name: skill08;
+    transform-origin: 50% 80%;
+    -ms-transform-origin: 50% 80%;
+    -webkit-transform-origin: 50% 80%; }
+  #scene3 #skill09 {
+    -skrollr-animation-name: skill09;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill10 {
+    -skrollr-animation-name: skill10;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill11 {
+    -skrollr-animation-name: skill11;
+    transform-origin: 96% 50%;
+    -ms-transform-origin: 96% 50%;
+    -webkit-transform-origin: 96% 50%; }
+  #scene3 #skill12 {
+    -skrollr-animation-name: skill12;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill13 {
+    -skrollr-animation-name: skill13;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill14 {
+    -skrollr-animation-name: skill14;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill15 {
+    -skrollr-animation-name: skill15;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill16 {
+    -skrollr-animation-name: skill16;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill17 {
+    -skrollr-animation-name: skill17;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill18 {
+    -skrollr-animation-name: skill18;
+    transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%; }
+  #scene3 #skill19 {
+    -skrollr-animation-name: skill19;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill20 {
+    -skrollr-animation-name: skill20;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill21 {
+    -skrollr-animation-name: skill21;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill22 {
+    -skrollr-animation-name: skill22;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill23 {
+    -skrollr-animation-name: skill23;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill24 {
+    -skrollr-animation-name: skill24;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill25 {
+    -skrollr-animation-name: skill25;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+  #scene3 #skill26 {
+    -skrollr-animation-name: skill26;
+    transform-origin: 90% 50%;
+    -ms-transform-origin: 90% 50%;
+    -webkit-transform-origin: 90% 50%; }
+
+#wire4 {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+  stroke-dasharray: 6000;
+  stroke-dashoffset: 0;
+  stroke-opacity: 0.7;
+  -skrollr-animation-name: wire4; }
+
+@-skrollr-keyframes wire4 {
+  2615 {
+    stroke-dashoffset: 6000; }
+
+  4000 {
+    stroke-dashoffset: 0; } }
+
+#videoPlayer {
+  -skrollr-animation-name: videoPlayer; }
+
+@-skrollr-keyframes videoPlayer {
+  4350 {
+    opacity: 0;
+    display: none; }
+
+  4370 {
+    opacity: 1;
+    display: inline; }
+
+  4590 {
+    opacity: 1;
+    display: inline; }
+
+  4610 {
+    opacity: 0;
+    display: none; } }
+
+#scene4 {
+  @-skrollr-keyframes bg {
+    3000 {
+      opacity: 0; }
+
+    3160 {
+      opacity: 0; }
+
+    3200 {
+      opacity: 1; }
+
+    3350 {
+      opacity: 1; }
+
+    3390 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes scene4r {
+    4150 {
+      transform: rotate(0deg) translate(0px, 0px) scale(1); }
+
+    4350 {
+      transform: rotate(90deg) translate(-2600px, -3200px) scale(8); } }
+
+  @-skrollr-keyframes fgg {
+    3000 {
+      opacity: 0; }
+
+    3160 {
+      opacity: 0; }
+
+    3200 {
+      opacity: 0.4; }
+
+    3350 {
+      opacity: 0.4; }
+
+    3390 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes s4-title {
+    2760 {
+      opacity: 0;
+      transform[swing]: translate(0px, 50px); }
+
+    2800 {
+      opacity: 1;
+      transform[swing]: translate(0px, 60px); } }
+
+  @-skrollr-keyframes title1 {
+    3000 {
+      opacity: 0; }
+
+    3100 {
+      opacity: 1; }
+
+    3300 {
+      opacity: 1; }
+
+    3350 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes title2 {
+    3000 {
+      opacity: 0; }
+
+    3400 {
+      opacity: 0; }
+
+    3450 {
+      opacity: 1; }
+
+    3900 {
+      opacity: 1; }
+
+    3950 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes title3 {
+    3940 {
+      opacity: 0; }
+
+    3980 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes desks {
+    3400 {
+      transform: translate(0px, 0px) scale(1); }
+
+    3450 {
+      transform: translate(200px, 100px) scale(0.6); }
+
+    3900 {
+      transform: translate(200px, 100px) scale(0.6); }
+
+    3950 {
+      transform: translate(0px, 0px) scale(1); } }
+
+  @-skrollr-keyframes unilever {
+    3100 {
+      transform: translate(-3000px, -8000px) scale(16);
+      opacity: 0; }
+
+    3150 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes luiss {
+    3140 {
+      transform: translate(0px, 1000px);
+      opacity: 0; }
+
+    3210 {
+      transform: translate(0px, 0px);
+      opacity: 1; } }
+
+  @-skrollr-keyframes algida {
+    3260 {
+      transform: translate(-3000px, -8000px) scale(16);
+      opacity: 0; }
+
+    3310 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes alitalia {
+    3350 {
+      transform: translate(-3000px, -8000px) scale(16);
+      opacity: 0; }
+
+    3400 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes enel {
+    3450 {
+      transform: translate(-2600px, -8000px) scale(16);
+      opacity: 0; }
+
+    3500 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes equitalia {
+    3560 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    3610 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes infostrada {
+    3700 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    3750 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes nintendo {
+    3770 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    3820 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes peroni {
+    3850 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    3900 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes sapienza {
+    3950 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    4000 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes wind {
+    4050 {
+      transform: translate(-4700px, -8000px) scale(16);
+      opacity: 0; }
+
+    4100 {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1; } }
+
+  @-skrollr-keyframes mouse04 {
+    2800 {
+      transform: rotate(1deg); }
+
+    2850 {
+      transform: rotate(-1deg); }
+
+    2900 {
+      transform: rotate(2deg); }
+
+    2950 {
+      transform: rotate(-1deg); }
+
+    3000 {
+      transform: rotate(0deg); }
+
+    3050 {
+      transform: rotate(0deg); }
+
+    3100 {
+      transform: rotate(-1deg); }
+
+    3150 {
+      transform: rotate(-2deg); }
+
+    3300 {
+      transform: rotate(-2deg); }
+
+    3350 {
+      transform: rotate(1deg); }
+
+    3550 {
+      transform: rotate(1deg); }
+
+    3600 {
+      transform: rotate(2deg); }
+
+    3650 {
+      transform: rotate(1deg); }
+
+    3750 {
+      transform: rotate(0deg); }
+
+    3850 {
+      transform: rotate(1deg); }
+
+    4050 {
+      transform: rotate(2deg); }
+
+    4250 {
+      transform: rotate(-1deg); } }
+
+  @-skrollr-keyframes mouse04-1 {
+    2800 {
+      transform: rotate(1deg); }
+
+    2850 {
+      transform: rotate(-1deg); }
+
+    2900 {
+      transform: rotate(2deg); }
+
+    2950 {
+      transform: rotate(-1deg); }
+
+    3000 {
+      transform: rotate(0deg); }
+
+    3050 {
+      transform: rotate(0deg); }
+
+    3100 {
+      transform: rotate(-1deg); }
+
+    3150 {
+      transform: rotate(-2deg); }
+
+    3300 {
+      transform: rotate(-2deg); }
+
+    3350 {
+      transform: rotate(1deg); }
+
+    3550 {
+      transform: rotate(1deg); }
+
+    3600 {
+      transform: rotate(2deg); }
+
+    3650 {
+      transform: rotate(1deg); }
+
+    3750 {
+      transform: rotate(0deg); }
+
+    3850 {
+      transform: rotate(1deg); }
+
+    4050 {
+      transform: rotate(2deg); }
+
+    4250 {
+      transform: rotate(-1deg); } }
+
+  @-skrollr-keyframes mouse04-2 {
+    2800 {
+      transform: rotate(1deg); }
+
+    2850 {
+      transform: rotate(-1deg); }
+
+    2900 {
+      transform: rotate(2deg); }
+
+    2950 {
+      transform: rotate(-1deg); }
+
+    3000 {
+      transform: rotate(0deg); }
+
+    3050 {
+      transform: rotate(0deg); }
+
+    3100 {
+      transform: rotate(-1deg); }
+
+    3150 {
+      transform: rotate(-2deg); }
+
+    3300 {
+      transform: rotate(-2deg); }
+
+    3350 {
+      transform: rotate(1deg); }
+
+    3550 {
+      transform: rotate(1deg); }
+
+    3600 {
+      transform: rotate(2deg); }
+
+    3650 {
+      transform: rotate(1deg); }
+
+    3750 {
+      transform: rotate(0deg); }
+
+    3850 {
+      transform: rotate(1deg); }
+
+    4050 {
+      transform: rotate(2deg); }
+
+    4250 {
+      transform: rotate(-1deg); } }
+
+  @-skrollr-keyframes employee {
+    3400 {
+      opacity: 0; }
+
+    3450 {
+      opacity: 1; }
+
+    3900 {
+      opacity: 1; }
+
+    3950 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes entrepeneur {
+    3900 {
+      opacity: 0; }
+
+    3950 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes freelance {
+    3400 {
+      opacity: 1; }
+
+    3450 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes deskleft {
+    3400 {
+      opacity: 0;
+      transform: translate(-500px, 0px); }
+
+    3450 {
+      opacity: 1;
+      transform: translate(0px, 0px); }
+
+    3900 {
+      opacity: 1;
+      transform: translate(0px, 0px); }
+
+    3950 {
+      opacity: 0;
+      transform: translate(-500px, 0px); } }
+
+  @-skrollr-keyframes deskright {
+    3400 {
+      opacity: 0;
+      transform: translate(500px, 0px); }
+
+    3450 {
+      opacity: 1;
+      transform: translate(0px, 0px); }
+
+    3900 {
+      opacity: 1;
+      transform: translate(0px, 0px); }
+
+    3950 {
+      opacity: 0;
+      transform: translate(500px, 0px); } }
+ }
+  #scene4 #bg {
+    -skrollr-animation-name: bg; }
+  #scene4 #scene {
+    -skrollr-animation-name: scene4r; }
+    #scene4 #scene #iphone05 {
+      -webkit-transition: transform 2s linear;
+      transition: transform 2s linear; }
+  #scene4 #fg {
+    -skrollr-animation-name: fgg; }
+  #scene4 #title {
+    -skrollr-animation-name: s4-title; }
+  #scene4 #titles #title1 {
+    -skrollr-animation-name: title1; }
+  #scene4 #titles #title2 {
+    -skrollr-animation-name: title2; }
+  #scene4 #titles #title3 {
+    -skrollr-animation-name: title3; }
+  #scene4 #desks {
+    -skrollr-animation-name: desks; }
+    #scene4 #desks #employee {
+      -skrollr-animation-name: employee; }
+    #scene4 #desks #entrepeneur {
+      -skrollr-animation-name: entrepeneur; }
+    #scene4 #desks #freelance {
+      -skrollr-animation-name: freelance; }
+  #scene4 #clients #luiss {
+    -skrollr-animation-name: luiss; }
+  #scene4 #clients #algida {
+    -skrollr-animation-name: algida; }
+  #scene4 #clients #unilever {
+    -skrollr-animation-name: unilever; }
+  #scene4 #clients #alitalia {
+    -skrollr-animation-name: alitalia; }
+  #scene4 #clients #enel {
+    -skrollr-animation-name: enel; }
+  #scene4 #clients #equitalia {
+    -skrollr-animation-name: equitalia; }
+  #scene4 #clients #infostrada {
+    -skrollr-animation-name: infostrada; }
+  #scene4 #clients #nintendo {
+    -skrollr-animation-name: nintendo; }
+  #scene4 #clients #peroni {
+    -skrollr-animation-name: peroni; }
+  #scene4 #clients #sapienza {
+    -skrollr-animation-name: sapienza; }
+  #scene4 #clients #wind {
+    -skrollr-animation-name: wind; }
+  #scene4 #mouse04 {
+    -skrollr-animation-name: mouse04; }
+  #scene4 #mouse04-1 {
+    -skrollr-animation-name: mouse04-1; }
+  #scene4 #mouse04-2 {
+    -skrollr-animation-name: mouse04-2; }
+  #scene4 #deskleft {
+    -skrollr-animation-name: deskleft; }
+  #scene4 #deskright {
+    -skrollr-animation-name: deskright; }
+
+#scene5 {
+  @-skrollr-keyframes passionate {
+    4850 {
+      opacity: 0; }
+
+    4950 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes ownership {
+    5100 {
+      opacity: 0; }
+
+    5150 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes leaving {
+    5400 {
+      opacity: 0;
+      fill: #f5ecd9; }
+
+    5500 {
+      opacity: 1;
+      fill: #f5ecd9; }
+
+    5800 {
+      fill: #f5ecd9; }
+
+    5850 {
+      fill: #2bacb5; } }
+
+  @-skrollr-keyframes contacts {
+    5900 {
+      opacity: 0; }
+
+    5950 {
+      opacity: 1; } }
+
+  @-skrollr-keyframes sky {
+    5400 {
+      opacity: 0; }
+
+    5450 {
+      opacity: 1; }
+
+    5800 {
+      opacity: 1; }
+
+    5850 {
+      opacity: 0; } }
+
+  @-skrollr-keyframes clouds {
+    5400 {
+      transform: translate(-100px, 0px);
+      opacity: 0; }
+
+    5450 {
+      transform: translate(-50px, 0);
+      opacity: 1; }
+
+    5800 {
+      transform: translate(0px, 0);
+      opacity: 1; }
+
+    5850 {
+      opacity: 0;
+      transform: translate(100px, 0); } }
+
+  @-skrollr-keyframes plane {
+    5400 {
+      transform: translate(-2600px, 0px);
+      opacity: 1; }
+
+    5900 {
+      transform: translate(2600px, -600px);
+      opacity: 1; } }
+
+  @-skrollr-keyframes mountains {
+    5400 {
+      transform: translate(-200px, 0px);
+      opacity: 0; }
+
+    5450 {
+      transform: translate(0px, 0px);
+      opacity: 1; }
+
+    5800 {
+      transform: translate(50px, 0px);
+      opacity: 1; }
+
+    5850 {
+      transform: translate(-200px, 0px);
+      opacity: 0; } }
+
+  @-skrollr-keyframes torre {
+    5300 {
+      transform: translate(-1200px, 0px) scale(1);
+      opacity: 1; }
+
+    5400 {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1; }
+
+    5850 {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1; }
+
+    5900 {
+      transform: translate(-300px, 0px) scale(1);
+      opacity: 0; } }
+ }
+  #scene5 #email, #scene5 #linkedin, #scene5 #skype, #scene5 #numidia, #scene5 #l500px, #scene5 #numidia, #scene5 #addressnumidia, #scene5 #phone, #scene5 #contactresume, #scene5 #githubsite {
+    cursor: pointer;
+    transition-duration: 500ms; }
+  #scene5 #email:hover text, #scene5 #linkedin:hover text, #scene5 #skype:hover text, #scene5 #numidia:hover text, #scene5 #l500px:hover text, #scene5 #numidia:hover text, #scene5 #addressnumidia:hover tspan, #scene5 #phone:hover text, #scene5 #contactresume:hover text, #scene5 #githubsite:hover text {
+    fill: rgba(44, 62, 80, 0.99); }
+  #scene5 #passionate {
+    -skrollr-animation-name: passionate; }
+  #scene5 #ownership {
+    -skrollr-animation-name: ownership; }
+  #scene5 #leaving text {
+    -skrollr-animation-name: leaving; }
+  #scene5 #contacts {
+    -skrollr-animation-name: contacts; }
+  #scene5 #sky {
+    -skrollr-animation-name: sky; }
+  #scene5 #clouds {
+    -skrollr-animation-name: clouds; }
+  #scene5 #plane {
+    -skrollr-animation-name: plane; }
+  #scene5 #mountains {
+    -skrollr-animation-name: mountains; }
+  #scene5 #torre {
+    -skrollr-animation-name: torre; }
