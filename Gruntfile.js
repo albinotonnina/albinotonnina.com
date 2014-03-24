@@ -26,12 +26,12 @@ module.exports = function(grunt) {
             '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
             '<%= pkg.author.name %>; Licensed MIT */',
 
-        htmlbanner: '<!-- \nHello, curious visitor!\n' +
-            'If you are so interested why don\'t you check the source code of this site on GitHub?\n' +
-            'I used a lot of very cool tools like Yeoman, Bower, Grunt and others!\n' +
+        htmlbanner: '<!-- \nHello, interested visitor!\n' +
+            'Why don\'t you check the source code of this site on GitHub?\n' +
+            'I used several great tools like Yeoman, Bower and Grunt.\n' +
             'Hope you like it :)\n' +
             '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* http://<%= pkg.homepage %>\n' +
+            '* <%= pkg.homepage %>\n' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
             '<%= pkg.author.name %>; Licensed MIT \n-->',
 

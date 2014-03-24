@@ -7,7 +7,11 @@
     "email": "albinotonnina@gmail.com",
     "url": "http://www.albinotonnina.com"
   },
-  "dependencies": {},
+  "main": "web.js",
+  "dependencies": {
+    "logfmt": "^1.0.0",
+    "express": "^3.5.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
