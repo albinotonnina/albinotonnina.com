@@ -67,6 +67,10 @@ module.exports = function(grunt) {
                 files: 'src/svg/*/*.svg',
                 tasks: ['replace']
             },
+            sass: {
+                files: 'src/svg/*/*.scss',
+                tasks: ['concat:css','sass:dev']
+            },            
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -493,7 +497,6 @@ module.exports = function(grunt) {
             ],
             dist: [
                 'copy:styles',
-
                 'svgmin'
             ]
         }

@@ -2123,10 +2123,28 @@ nav {
 #scene5 {
   @-skrollr-keyframes passionate {
     4850 {
-      opacity: 0; }
+      opacity: 0;
+      fill: rgba(232, 77, 91, 0.99); }
 
     4950 {
-      opacity: 1; } }
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99); }
+
+    5400 {
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99); }
+
+    5500 {
+      opacity: 1;
+      fill: rgba(245, 236, 217, 0.99); }
+
+    5800 {
+      opacity: 1;
+      fill: rgba(245, 236, 217, 0.99); }
+
+    5850 {
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99); } }
 
   @-skrollr-keyframes ownership {
     5100 {

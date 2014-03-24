@@ -19,14 +19,32 @@ $start:$scene_05_begin;
 	}
 
 	@-skrollr-keyframes passionate {
-
 		#{$start - 250} {
 			opacity:0;
+			fill:rgba(232,77,91,0.99);
 		}
-
 		#{$start - 150} {
 			opacity:1;
+			fill:rgba(232,77,91,0.99);
 		}
+		#{$start + 300} {
+			opacity:1;
+			fill:rgba(232,77,91,0.99);
+		}
+
+		#{$start + 400} {
+			opacity:1;
+			fill:rgba(245,236,217,0.99);
+		}
+		#{$start + 700} {
+			opacity:1;
+			fill:rgba(245,236,217,0.99);
+		}
+		#{$start + 750} {
+			opacity:1;
+			fill:rgba(232,77,91,0.99);
+		}
+
 	}
 	#ownership {
 		-skrollr-animation-name: ownership;
@@ -68,6 +86,9 @@ $start:$scene_05_begin;
 		}
 		
 	}
+
+
+
 
 
 	#contacts {
