@@ -585,6 +585,7 @@ Print styles
   position:absolute;
   top:40px;
   z-index:9999;
+  opacity: 0.7;
 }
 
 /* Left */
@@ -616,6 +617,33 @@ Print styles
 #awwwards.left.white a {
   background-image:url('../images/ribbons/awwwards_honorable_white_left.png');
 }
+
+
+/* onepagelove ribbon */
+
+.opl {
+  opacity: 0.7;
+position:relative;
+top:180px;
+left:0px;
+z-index:99999;
+}
+.opl a {
+width:73px;
+height:56px;
+text-indent:-9999px;
+display:block;
+background:url('https://s3.amazonaws.com/onepagelove/one-page-love-award-left.png') no-repeat;
+}
+
+
+
+
+
+
+
+
+
 
 /* MEDIA QUERIES */
 
