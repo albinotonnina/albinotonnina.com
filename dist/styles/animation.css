@@ -1,4 +1,4 @@
-/*! albinotonnina by Albino Tonnina - v1.2.0 - 2014-04-01
+/*! albinotonnina by Albino Tonnina - v1.2.0 - 2014-04-20
 * http://https://github.com/albinotonnina/albinotonnina.com/
 * Copyright (c) 2014 Albino Tonnina; Licensed MIT */
 #scene1 {
@@ -72,7 +72,7 @@
   5100 {
     top: 0%; }
 
-  5600 {
+  6600 {
     top: 0%; } }
 
 nav {
@@ -117,15 +117,15 @@ nav {
       transform: scale(0.75, 1);
       fill: rgba(43, 172, 181, 0.99); }
 
-    5800 {
+    6800 {
       transform: scale(1, 1);
       fill: rgba(43, 172, 181, 0.99); }
 
-    5820 {
+    6820 {
       transform: scale(1.15, 1);
       fill: rgba(43, 172, 181, 0.99); }
 
-    6100 {
+    7100 {
       transform: scale(4, 1);
       fill: rgba(43, 172, 181, 0.99); } }
 
@@ -161,13 +161,13 @@ nav {
     4820 {
       fill: rgba(43, 172, 181, 0.99); }
 
-    5800 {
+    6800 {
       fill: rgba(43, 172, 181, 0.99); }
 
-    5820 {
+    6820 {
       fill: rgba(43, 172, 181, 0.99); }
 
-    6100 {
+    7100 {
       fill: rgba(43, 172, 181, 0.99); } }
 
   @-skrollr-keyframes barcenter {
@@ -195,13 +195,13 @@ nav {
     4820 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    5800 {
+    6800 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    5820 {
+    6820 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    6100 {
+    7100 {
       fill: rgba(34, 144, 152, 0.99); } }
 
   @-skrollr-keyframes barright {
@@ -229,13 +229,13 @@ nav {
     4820 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    5800 {
+    6800 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    5820 {
+    6820 {
       fill: rgba(34, 144, 152, 0.99); }
 
-    6100 {
+    7100 {
       fill: rgba(34, 144, 152, 0.99); } }
  }
   nav #bgmenu {
