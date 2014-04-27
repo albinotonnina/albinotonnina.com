@@ -10082,6 +10082,7 @@ return jQuery;
  */
 'use strict';
 
+
 var Site;
 Site = {};
 Site.queue = [];
@@ -10307,6 +10308,11 @@ Site.clickEvents = function() {
 	$('#addressnumidia').bind('click', function() {
 		window.open('https://www.google.it/maps/preview?ie=UTF8&cid=4787770226768960673&q=Numidia+S.r.l.&iwloc=A&gl=IT&hl=en', '_blank');
 	});
+	$('#pegu').bind('click', function() {
+		window.open('http://www.pegu.it', '_blank');
+	});
+
+
 	$('#reopen').bind('click', function(e) {
 		Site.show();
 		e.preventDefault();

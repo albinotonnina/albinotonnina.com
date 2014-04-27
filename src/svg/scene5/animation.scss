@@ -4,12 +4,12 @@ $start:$scene_05_begin;
 
 
 
-#email,#linkedin,#skype,#numidia,#l500px,#numidia,#addressnumidia,#phone,#contactresume,#githubsite{
+#email,#linkedin,#skype,#numidia,#l500px,#numidia,#addressnumidia,#phone,#contactresume,#githubsite,#pegu{
 	cursor:pointer;
 	transition-duration: 500ms;
 }
 
-#email:hover text,#linkedin:hover text,#skype:hover text,#numidia:hover text,#l500px:hover text,#numidia:hover text,#addressnumidia:hover tspan,#phone:hover text,#contactresume:hover text,#githubsite:hover text{
+#email:hover text,#linkedin:hover text,#skype:hover text,#numidia:hover text,#l500px:hover text,#numidia:hover text,#addressnumidia:hover tspan,#phone:hover text,#contactresume:hover text,#githubsite:hover text,#pegu:hover text{
 	fill:rgba(44,62,80,0.99); 
 }
 
@@ -104,7 +104,40 @@ $start:$scene_05_begin;
 		#{$start + 850} {
 			opacity:1;
 		}
+
+
 	}
+
+	#pegu {
+		-skrollr-animation-name: pegu;
+	}
+
+	@-skrollr-keyframes pegu {
+
+		#{$start + 1800} {
+			opacity:0;
+		}
+
+		#{$start + 1900} {
+			opacity:1;
+		}
+	}
+
+	#rightside {
+		-skrollr-animation-name: rightside;
+	}
+
+	@-skrollr-keyframes rightside {
+
+		#{$start + 1800} {
+			opacity:1;
+		}
+
+		#{$start + 1900} {
+			opacity:0;
+		}
+	}
+
 
 
 	#sky { 
