@@ -1689,10 +1689,10 @@ nav #barright {
   #scene4 3950  {
     opacity: 0;
     transform: translate(500px, 0px); } }
-#scene5 #email, #scene5 #linkedin, #scene5 #skype, #scene5 #numidia, #scene5 #l500px, #scene5 #numidia, #scene5 #addressnumidia, #scene5 #phone, #scene5 #contactresume, #scene5 #githubsite, #scene5 #pegu {
+#scene5 #email, #scene5 #linkedin, #scene5 #skype, #scene5 #numidia, #scene5 #l500px, #scene5 #numidia, #scene5 #addressnumidia, #scene5 #phone, #scene5 #contactresume, #scene5 #githubsite, #scene5 #pegu, #scene5 #junetext, #scene5 #worksharelogo {
   cursor: pointer;
   transition-duration: 500ms; }
-#scene5 #email:hover text, #scene5 #linkedin:hover text, #scene5 #skype:hover text, #scene5 #numidia:hover text, #scene5 #l500px:hover text, #scene5 #numidia:hover text, #scene5 #addressnumidia:hover tspan, #scene5 #phone:hover text, #scene5 #contactresume:hover text, #scene5 #githubsite:hover text, #scene5 #pegu:hover text {
+#scene5 #email:hover text, #scene5 #linkedin:hover text, #scene5 #skype:hover text, #scene5 #numidia:hover text, #scene5 #l500px:hover text, #scene5 #numidia:hover text, #scene5 #addressnumidia:hover tspan, #scene5 #phone:hover text, #scene5 #contactresume:hover text, #scene5 #githubsite:hover text, #scene5 #pegu:hover text, #scene5 #junetext:hover text {
   fill: rgba(44, 62, 80, 0.99); }
 #scene5 #passionate {
   -skrollr-animation-name: passionate; }
@@ -1732,29 +1732,79 @@ nav #barright {
     opacity: 1;
     fill: #f5ecd9; }
   #scene5 5800  {
+    opacity: 1;
     fill: #f5ecd9; }
   #scene5 5850  {
+    opacity: 1;
+    fill: #2bacb5; }
+  #scene5 5950  {
+    opacity: 1;
+    fill: #2bacb5; }
+  #scene5 6000  {
+    opacity: 0;
     fill: #2bacb5; } }
+#scene5 #london {
+  -skrollr-animation-name: london; }
+@-skrollr-keyframes london {
+  #scene5 6100  {
+    transform: translate(10px, -10px); }
+  #scene5 6400  {
+    transform: translate(-100px, -250px); }
+  #scene5 6800  {
+    transform: translate(-250px, -250px); } }
+#scene5 #planebig {
+  -skrollr-animation-name: planebig; }
+@-skrollr-keyframes planebig {
+  #scene5 6000  {
+    transform: translate(50px, 10px); }
+  #scene5 6700  {
+    transform: translate(3000px, 200px); }
+  #scene5 6900  {
+    transform: translate(8000px, 400px); } }
+#scene5 #junetext {
+  -skrollr-animation-name: june; }
+@-skrollr-keyframes june {
+  #scene5 5890  {
+    opacity: 0;
+    display: none; }
+  #scene5 5900  {
+    opacity: 0;
+    display: block; }
+  #scene5 6000  {
+    opacity: 1; }
+  #scene5 6300  {
+    opacity: 1; }
+  #scene5 6350  {
+    opacity: 0; } }
+#scene5 #thankyouforscrolling {
+  -skrollr-animation-name: thankyou; }
+@-skrollr-keyframes thankyou {
+  #scene5 6300  {
+    opacity: 0; }
+  #scene5 6350  {
+    opacity: 1; } }
 #scene5 #contacts {
   -skrollr-animation-name: contacts; }
 @-skrollr-keyframes contacts {
-  #scene5 5900  {
+  #scene5 6900  {
+    transform: translate(0, 100px);
     opacity: 0; }
-  #scene5 5950  {
+  #scene5 6950  {
+    transform: translate(0, 1px);
     opacity: 1; } }
 #scene5 #pegu {
   -skrollr-animation-name: pegu; }
 @-skrollr-keyframes pegu {
-  #scene5 6900  {
+  #scene5 7900  {
     opacity: 0; }
-  #scene5 7000  {
+  #scene5 8000  {
     opacity: 1; } }
 #scene5 #rightside {
   -skrollr-animation-name: rightside; }
 @-skrollr-keyframes rightside {
-  #scene5 6900  {
+  #scene5 7900  {
     opacity: 1; }
-  #scene5 7000  {
+  #scene5 8000  {
     opacity: 0; } }
 #scene5 #sky {
   -skrollr-animation-name: sky; }

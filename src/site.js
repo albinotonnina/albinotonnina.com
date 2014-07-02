@@ -226,8 +226,8 @@ Site.clickEvents = function() {
 	$('#githubsite').bind('click', function() {
 		window.open('http://github.com/albinotonnina/albinotonnina.com', '_blank');
 	});
-	$('#addressnumidia').bind('click', function() {
-		window.open('https://www.google.it/maps/preview?ie=UTF8&cid=4787770226768960673&q=Numidia+S.r.l.&iwloc=A&gl=IT&hl=en', '_blank');
+	$('#worksharelogo,#junetext').bind('click', function() {
+		window.open('http://www.workshare.com', '_blank');
 	});
 	$('#pegu').bind('click', function() {
 		window.open('http://www.pegu.it', '_blank');
