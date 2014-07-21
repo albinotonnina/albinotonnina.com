@@ -1230,9 +1230,7 @@
 </g>
 <text id="passionate" transform="matrix(1 0 0 1 26.6038 62.3535)" fill="#E84D5B" font-family="'Roboto-Thin'" font-size="36">I’m passionate about my job.</text>
 <g id="thankyouforscrolling">
-	<g>
-		<text transform="matrix(1 0 0 1 26.6038 319.3447)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="36">Thank you for scrolling this far :)</text>
-	</g>
+	<text transform="matrix(1 0 0 1 26.6038 319.3447)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="36">Thank you for scrolling this far :)</text>
 </g>
 <g id="planebig">
 	<g>
