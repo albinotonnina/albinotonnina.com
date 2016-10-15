@@ -1,0 +1,95 @@
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+.vignette {
+  position: fixed;
+  /* to prevent empty space around the vignette */
+
+  top: 0;
+  left: 0;
+  /* extends to the whole visible area */
+
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 200px rgba(0, 0, 0, 0.3) inset;
+  z-index: 109;
+  pointer-events: none;
+}
+.this nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 103;
+}
+.this #videoPlayer {
+  background-color: black;
+  margin: 0 auto;
+  width: 1px;
+  z-index: 110;
+  height: 1px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+.it figure[role="site"] {
+  display: none;
+}
+figure[role="loader"] {
+  padding: 0 3em;
+  overflow: visible;
+  position: absolute;
+  top: 20%;
+  width: 100%;
+}
+.it header, .it div {
+  opacity: 0.5;
+}
+.myresume header, .myresume div {
+  opacity: 1;
+}
+html, body {
+  //overflow: hidden;
+}
+html.no-js, .no-js body {
+  overflow: auto;
+}
+.no-js div, .no-js header {
+  opacity: 1;
+}
+.debug {
+  text-align: left;
+  position: fixed;
+  z-index: 105;
+  background-color: white;
+  padding: 10px;
+  top: 0;
+}
+.skrollable {
+  /* * First-level skrollables are positioned relative to window */
+
+  position: fixed;
+  /* * Skrollables by default have a z-index of 100 in order to make it easy to position elements in front/back without changing each skrollable */
+
+  z-index: 100;
+}
+.skrollr-mobile .skrollable {
+  /* May cause issues on Android default browser (see #331 on GitHub). */
+
+  position: absolute;
+}
+.skrollable .skrollable {
+  /* * Second-level skrollables are positioned relative their parent skrollable */
+
+  position: absolute;
+}
+.skrollable .skrollable .skrollable {
+  /* * Third-level (and below) skrollables are positioned static */
+
+  position: static;
+}

@@ -1,0 +1,82 @@
+
+/* --- Awwwards Ribbons --- */
+
+/* Base */
+
+#awwwards {
+  position: absolute;
+  top: 40px;
+  z-index: 9999;
+  opacity: 0.7;
+}
+/* Left */
+
+#awwwards.left {
+  left: 0;
+}
+/* Right */
+
+#awwwards.right {
+  right: 0;
+}
+/* Link */
+
+#awwwards a {
+  display: block;
+  width: 70px;
+  height: 105px;
+  text-indent: -8000px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  overflow: hidden;
+}
+/* White */
+
+#awwwards.left.white a {
+  background-image: url('../images/ribbons/awwwards_honorable_white_left.png');
+}
+/* onepagelove ribbon */
+
+.opl {
+  opacity: 0.7;
+  position: absolute;
+  top: 180px;
+  left: 0px;
+  z-index: 99999;
+}
+.opl a {
+  width: 73px;
+  height: 56px;
+  text-indent: -9999px;
+  display: block;
+  background: url('https://s3.amazonaws.com/onepagelove/one-page-love-award-left.png') no-repeat;
+}
+/* MEDIA QUERIES */
+
+/* Landscape phone to portrait tablet */
+
+@media (max-width: 767px) {
+  /* hidden */
+
+  #awwwards {
+    display: none;
+  }
+}
+/* Retina Displays */
+
+/* Target any device with retina display (ie iPad 3 and MacBook Pro) */
+
+@media only screen and (-Webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
+  #awwwards a {
+    -moz-background-size: 70px 105px;
+    -ie-background-size: 70px 105px;
+    -o-background-size: 70px 105px;
+    -webkit-background-size: 70px 105px;
+    background-size: 70px 105px;
+  }
+  /* White */
+
+  #awwwards.left.white a {
+    background-image: url('../images/ribbons/awwwards_honorable_white_left2x.png');
+  }
+}

@@ -68,8 +68,8 @@ module.exports = function(grunt) {
                 tasks: ['replace']
             },
             sass: {
-                files: 'src/svg/*/*.scss',
-                tasks: ['concat:css','sass:dev']
+                files: ['src/svg/*/*.scss','src/*/*.scss'],
+                tasks: ['concat:css','sass:dev','sass:styles']
             },            
             livereload: {
                 options: {
@@ -318,6 +318,11 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     '<%= config.app %>/styles/animation.css': 'tmp/animation.scss'
+                }
+            },
+            styles: {
+                files: {
+                    '<%= config.app %>/styles/main.css': 'src/styles/main.scss'
                 }
             }
         },

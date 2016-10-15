@@ -10,7 +10,7 @@ $start:$scene_05_begin;
 }
 
 #email:hover text,#linkedin:hover text,#skype:hover text,#numidia:hover text,#l500px:hover text,#numidia:hover text,#addressnumidia:hover tspan,#phone:hover text,#contactresume:hover text,#githubsite:hover text,#pegu:hover text,#junetext:hover text{
-	fill:rgba(44,62,80,0.99); 
+	fill:rgba(44,62,80,0.99);
 }
 
 
@@ -89,11 +89,11 @@ $start:$scene_05_begin;
 		#{$start + 850} {
 			opacity:1;
 			fill:rgb(43,172,181);
-		}	
+		}
 		#{$start + 900} {
 			opacity:0;
 			fill:rgb(43,172,181);
-		}	
+		}
 
 
 	}
@@ -116,7 +116,7 @@ $start:$scene_05_begin;
 		#{$start + 1700} {
 	transform: translate(-250px, -250px);
 		}
-		
+
 	}
 
 
@@ -137,12 +137,13 @@ $start:$scene_05_begin;
 		#{$start + 1800} {
 		transform: translate(8000px, 400px);
 		}
-		
+
 	}
 
-	#junetext {
+	#june {
 		-skrollr-animation-name: june;
 	}
+
 
 	@-skrollr-keyframes june {
 
@@ -166,7 +167,7 @@ $start:$scene_05_begin;
 		#{$start + 1250} {
 			opacity:0;
 		}
-		
+
 	}
 
 
@@ -239,7 +240,7 @@ $start:$scene_05_begin;
 
 
 
-	#sky { 
+	#sky {
 		-skrollr-animation-name: sky;
 
 	}
@@ -309,7 +310,7 @@ $start:$scene_05_begin;
 			#{$start+300} {
 			transform: translate(-200px, 0px);
 			opacity:0;
-		}	
+		}
 		#{$start+350} {
 			transform: translate(0px, 0px);
 			opacity:1;
