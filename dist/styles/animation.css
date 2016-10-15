@@ -2012,7 +2012,7 @@ nav #barright {
   #scene5 6900 {
     transform: translate(8000px, 400px); } }
 
-#scene5 #junetext {
+#scene5 #june {
   -skrollr-animation-name: june; }
 
 @-skrollr-keyframes june {
