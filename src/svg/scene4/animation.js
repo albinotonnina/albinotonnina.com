@@ -1,4 +1,4 @@
-Site.scenes['scene4'] = {
+export default {
 	iskey: 0,
 	keylast: 0,
 	keyfreq: Math.floor(Math.random() * (7 - 4 + 1)) + 4,

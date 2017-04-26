@@ -1,352 +1,353 @@
- #scene5{
-
-$start:$scene_05_begin;
-
-
-
-#email,#linkedin,#skype,#numidia,#l500px,#numidia,#addressnumidia,#phone,#contactresume,#githubsite,#pegu,#junetext,#worksharelogo{
-	cursor:pointer;
-	transition-duration: 500ms;
-}
-
-#email:hover text,#linkedin:hover text,#skype:hover text,#numidia:hover text,#l500px:hover text,#numidia:hover text,#addressnumidia:hover tspan,#phone:hover text,#contactresume:hover text,#githubsite:hover text,#pegu:hover text,#junetext:hover text{
-	fill:rgba(44,62,80,0.99);
-}
-
-
-	#passionate {
-		-skrollr-animation-name: passionate;
-	}
-
-	@-skrollr-keyframes passionate {
-		#{$start - 250} {
-			opacity:0;
-			fill:rgba(232,77,91,0.99);
-		}
-		#{$start - 150} {
-			opacity:1;
-			fill:rgba(232,77,91,0.99);
-		}
-		#{$start + 300} {
-			opacity:1;
-			fill:rgba(232,77,91,0.99);
-		}
+#scene5 {
+
+  $start: $scene_05_begin;
+
+  #email, #linkedin, #skype, #numidia, #l500px, #numidia, #addressnumidia, #phone, #contactresume, #githubsite, #pegu, #junetext, #worksharelogo {
+    cursor: pointer;
+    transition-duration: 500ms;
+  }
+
+  #email:hover text, #linkedin:hover text, #skype:hover text, #numidia:hover text, #l500px:hover text, #numidia:hover text, #addressnumidia:hover tspan, #phone:hover text, #contactresume:hover text, #githubsite:hover text, #pegu:hover text, #junetext:hover text {
+    fill: rgba(44, 62, 80, 0.99);
+  }
+
+  #passionate {
+    -skrollr-animation-name: passionate;
+  }
+
+  @-skrollr-keyframes passionate {
+    #{$start - 250} {
+      opacity: 0;
+      fill: rgba(232, 77, 91, 0.99);
+    }
+
+    #{$start - 150} {
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99);
+    }
+
+    #{$start + 300} {
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99);
+    }
 
-		#{$start + 400} {
-			opacity:1;
-			fill:rgba(245,236,217,0.99);
-		}
-		#{$start + 700} {
-			opacity:1;
-			fill:rgba(245,236,217,0.99);
-		}
-		#{$start + 750} {
-			opacity:1;
-			fill:rgba(232,77,91,0.99);
-		}
+    #{$start + 400} {
+      opacity: 1;
+      fill: rgba(245, 236, 217, 0.99);
+    }
+
+    #{$start + 700} {
+      opacity: 1;
+      fill: rgba(245, 236, 217, 0.99);
+    }
 
-	}
-	#ownership {
-		-skrollr-animation-name: ownership;
-	}
+    #{$start + 750} {
+      opacity: 1;
+      fill: rgba(232, 77, 91, 0.99);
+    }
 
-	@-skrollr-keyframes ownership {
+  }
+  #ownership {
+    -skrollr-animation-name: ownership;
+  }
 
-		#{$start} {
-			opacity:0;
-		}
+  @-skrollr-keyframes ownership {
 
-		#{$start + 50} {
-			opacity:1;
-		}
-	}
+    #{$start} {
+      opacity: 0;
+    }
 
+    #{$start + 50} {
+      opacity: 1;
+    }
+  }
 
+  #leaving text {
+    -skrollr-animation-name: leaving;
+  }
 
-	#leaving text {
-		-skrollr-animation-name: leaving;
-	}
+  @-skrollr-keyframes leaving {
+
+    #{$start + 300} {
+      opacity: 0;
+      fill: rgb(245, 236, 217);
+    }
 
-	@-skrollr-keyframes leaving {
+    #{$start + 400} {
+      opacity: 1;
+      fill: rgb(245, 236, 217);
+    }
 
-		#{$start + 300} {
-			opacity:0;
-			fill:rgb(245,236,217);
-		}
+    #{$start + 700} {
+      opacity: 1;
+      fill: rgb(245, 236, 217);
+    }
 
-		#{$start + 400} {
-			opacity:1;
-			fill:rgb(245,236,217);
-		}
-		#{$start + 700} {
-			opacity:1;
-			fill:rgb(245,236,217);
-		}
-		#{$start + 750} {
-			opacity:1;
-			fill:rgb(43,172,181);
-		}
-		#{$start + 850} {
-			opacity:1;
-			fill:rgb(43,172,181);
-		}
-		#{$start + 900} {
-			opacity:0;
-			fill:rgb(43,172,181);
-		}
+    #{$start + 750} {
+      opacity: 1;
+      fill: rgb(43, 172, 181);
+    }
 
+    #{$start + 850} {
+      opacity: 1;
+      fill: rgb(43, 172, 181);
+    }
 
-	}
+    #{$start + 900} {
+      opacity: 0;
+      fill: rgb(43, 172, 181);
+    }
 
+  }
 
-	#london {
-		-skrollr-animation-name: london;
-	}
+  #london {
+    -skrollr-animation-name: london;
+  }
 
-	@-skrollr-keyframes london {
+  @-skrollr-keyframes london {
 
-		#{$start + 1000} {
-	transform: translate(10px, -10px);
-		}
+    #{$start + 1000} {
+      transform: translate(10px, -10px);
+    }
 
-		#{$start + 1300} {
-	transform: translate(-100px, -250px);
-		}
+    #{$start + 1300} {
+      transform: translate(-100px, -250px);
+    }
 
-		#{$start + 1700} {
-	transform: translate(-250px, -250px);
-		}
+    #{$start + 1700} {
+      transform: translate(-250px, -250px);
+    }
 
-	}
+  }
 
+  #planebig {
+    -skrollr-animation-name: planebig;
+  }
 
+  @-skrollr-keyframes planebig {
 
-	#planebig {
-		-skrollr-animation-name: planebig;
-	}
+    #{$start + 900} {
+      transform: translate(50px, 10px);
+    }
 
-	@-skrollr-keyframes planebig {
+    #{$start + 1600} {
+      transform: translate(3000px, 200px);
+    }
 
-		#{$start + 900} {
-	transform: translate(50px, 10px);
-		}
+    #{$start + 1800} {
+      transform: translate(8000px, 400px);
+    }
 
-		#{$start + 1600} {
-		transform: translate(3000px, 200px);
-		}
-		#{$start + 1800} {
-		transform: translate(8000px, 400px);
-		}
+  }
 
-	}
+  #june {
+    -skrollr-animation-name: june;
+  }
 
-	#june {
-		-skrollr-animation-name: june;
-	}
+  @-skrollr-keyframes june {
 
+    #{$start + 790} {
+      opacity: 0;
+      display: none;
+    }
 
-	@-skrollr-keyframes june {
+    #{$start + 800} {
+      opacity: 0;
+      display: block;
+    }
 
-		#{$start + 790} {
-			opacity:0;
-			display:none;
-		}
+    #{$start + 900} {
+      opacity: 1;
+    }
 
+    #{$start + 1200} {
+      opacity: 1;
+    }
 
-		#{$start + 800} {
-			opacity:0;
-			display:block;
-		}
+    #{$start + 1250} {
+      opacity: 0;
+    }
 
-		#{$start + 900} {
-			opacity:1;
-		}
-		#{$start + 1200} {
-			opacity:1;
-		}
-		#{$start + 1250} {
-			opacity:0;
-		}
+  }
 
-	}
+  #thankyouforscrolling {
+    -skrollr-animation-name: thankyou;
+  }
 
+  @-skrollr-keyframes thankyou {
 
+    #{$start + 1200} {
+      opacity: 0;
+    }
 
-	#thankyouforscrolling {
-		-skrollr-animation-name: thankyou;
-	}
+    #{$start + 1250} {
+      opacity: 1;
+    }
 
-	@-skrollr-keyframes thankyou {
+  }
 
-		#{$start + 1200} {
-			opacity:0;
-		}
+  #contacts {
+    -skrollr-animation-name: contacts;
+  }
 
-		#{$start + 1250} {
-			opacity:1;
-		}
+  @-skrollr-keyframes contacts {
 
+    #{$start + 1800} {
+      transform: translate(0, 100px);
+      opacity: 0;
+    }
 
-	}
+    #{$start + 1850} {
+      transform: translate(0, 1px);
+      opacity: 1;
+    }
 
-	#contacts {
-		-skrollr-animation-name: contacts;
-	}
+  }
 
-	@-skrollr-keyframes contacts {
+  #pegu {
+    -skrollr-animation-name: pegu;
+  }
 
-		#{$start + 1800} {
-			transform: translate(0, 100px);
-			opacity:0;
-		}
+  @-skrollr-keyframes pegu {
 
-		#{$start + 1850} {
-			transform: translate(0, 1px);
-			opacity:1;
-		}
+    #{$start + 2800} {
+      opacity: 0;
+    }
 
+    #{$start + 2900} {
+      opacity: 1;
+    }
+  }
 
-	}
+  #rightside {
+    -skrollr-animation-name: rightside;
+  }
 
-	#pegu {
-		-skrollr-animation-name: pegu;
-	}
+  @-skrollr-keyframes rightside {
 
-	@-skrollr-keyframes pegu {
+    #{$start + 2800} {
+      opacity: 1;
+    }
 
-		#{$start + 2800} {
-			opacity:0;
-		}
+    #{$start + 2900} {
+      opacity: 0;
+    }
+  }
 
-		#{$start + 2900} {
-			opacity:1;
-		}
-	}
+  #sky {
+    -skrollr-animation-name: sky;
 
-	#rightside {
-		-skrollr-animation-name: rightside;
-	}
+  }
 
-	@-skrollr-keyframes rightside {
-
-		#{$start + 2800} {
-			opacity:1;
-		}
-
-		#{$start + 2900} {
-			opacity:0;
-		}
-	}
-
-
-
-	#sky {
-		-skrollr-animation-name: sky;
-
-	}
-
-	@-skrollr-keyframes sky {
-		#{$start + 300} {
-			opacity:0;
-		}
-
-		#{$start + 350} {
-			opacity:1;
-		}
-
-		#{$start + 700} {
-			opacity:1;
-		}
-		#{$start + 750} {
-			opacity:0;
-		}
-	}
-
-
-	#clouds {
-		-skrollr-animation-name: clouds;
-	}
-
-	@-skrollr-keyframes clouds {
-
-		#{$start + 300} {
-			transform: translate(-100px, 0px);
-			opacity:0;
-		}
-
-		#{$start + 350} {
-			transform: translate(-50px, 0);
-			opacity:1;
-		}
-
-		#{$start + 700} {
-				transform: translate(0px, 0);
-			opacity:1;
-		}
-		#{$start + 750} {
-			opacity:0;
-			transform: translate(100px, 0);
-		}
-
-	}
-
-	#plane {
-		-skrollr-animation-name: plane;
-	}
-	@-skrollr-keyframes plane {
-		#{$start+300} {
-			transform: translate(-2600px, 0px);
-			opacity:1;
-		}
-		#{$start + 800} {
-			transform: translate(2600px, -600px);
-			opacity:1;
-		}
-	}
-	#mountains {
-		-skrollr-animation-name: mountains;
-	}
-	@-skrollr-keyframes mountains {
-			#{$start+300} {
-			transform: translate(-200px, 0px);
-			opacity:0;
-		}
-		#{$start+350} {
-			transform: translate(0px, 0px);
-			opacity:1;
-		}
-		#{$start + 700} {
-			transform: translate(50px, 0px);
-			opacity:1;
-		}
-
-		#{$start + 750} {
-			transform: translate(-200px, 0px);
-			opacity:0;
-		}
-
-	}
-
-	#torre {
-		-skrollr-animation-name: torre;
-	}
-
-	@-skrollr-keyframes torre {
-		#{$start + 200} {
-			transform: translate(-1200px, 0px) scale(1);
-			opacity:1;
-		}
-		#{$start + 300} {
-			transform: translate(-10px, 10px) scale(0.7);
-			opacity:1;
-		}
-		#{$start + 750} {
-			transform: translate(-10px, 10px) scale(0.7);
-			opacity:1;
-		}
-		#{$start + 800} {
-			transform: translate(-300px, 0px) scale(1);
-			opacity:0;
-		}
-	}
+  @-skrollr-keyframes sky {
+    #{$start + 300} {
+      opacity: 0;
+    }
+
+    #{$start + 350} {
+      opacity: 1;
+    }
+
+    #{$start + 700} {
+      opacity: 1;
+    }
+
+    #{$start + 750} {
+      opacity: 0;
+    }
+  }
+
+  #clouds {
+    -skrollr-animation-name: clouds;
+  }
+
+  @-skrollr-keyframes clouds {
+
+    #{$start + 300} {
+      transform: translate(-100px, 0px);
+      opacity: 0;
+    }
+
+    #{$start + 350} {
+      transform: translate(-50px, 0);
+      opacity: 1;
+    }
+
+    #{$start + 700} {
+      transform: translate(0px, 0);
+      opacity: 1;
+    }
+
+    #{$start + 750} {
+      opacity: 0;
+      transform: translate(100px, 0);
+    }
+
+  }
+
+  #plane {
+    -skrollr-animation-name: plane;
+  }
+  @-skrollr-keyframes plane {
+    #{$start+300} {
+      transform: translate(-2600px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 800} {
+      transform: translate(2600px, -600px);
+      opacity: 1;
+    }
+  }
+  #mountains {
+    -skrollr-animation-name: mountains;
+  }
+  @-skrollr-keyframes mountains {
+    #{$start+300} {
+      transform: translate(-200px, 0px);
+      opacity: 0;
+    }
+
+    #{$start+350} {
+      transform: translate(0px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 700} {
+      transform: translate(50px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 750} {
+      transform: translate(-200px, 0px);
+      opacity: 0;
+    }
+
+  }
+
+  #torre {
+    -skrollr-animation-name: torre;
+  }
+
+  @-skrollr-keyframes torre {
+    #{$start + 200} {
+      transform: translate(-1200px, 0px) scale(1);
+      opacity: 1;
+    }
+
+    #{$start + 300} {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1;
+    }
+
+    #{$start + 750} {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1;
+    }
+
+    #{$start + 800} {
+      transform: translate(-300px, 0px) scale(1);
+      opacity: 0;
+    }
+  }
 }

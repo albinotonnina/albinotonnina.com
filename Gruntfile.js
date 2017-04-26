@@ -7,7 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
@@ -21,25 +21,26 @@ module.exports = function(grunt) {
         // pkg: grunt.file.read('package.json'),
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*! <%= pkg.name %> by <%= pkg.author.name %> - v<%= pkg.version %> - ' +
-            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* http://<%= pkg.homepage %>/\n' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-            '<%= pkg.author.name %>; Licensed MIT */',
+        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '* http://<%= pkg.homepage %>/\n' +
+        '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+        '<%= pkg.author.name %>; Licensed MIT */',
 
         htmlbanner: '<!-- \nHello, interested visitor!\n' +
-            'Why don\'t you check the source code of this site on GitHub?\n' +
-            'I used several great tools like Yeoman, Bower and Grunt.\n' +
-            'Hope you like it :)\n' +
-            '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* <%= pkg.homepage %>\n' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-            '<%= pkg.author.name %>; Licensed MIT \n-->',
+        'Why don\'t you check the source code of this site on GitHub?\n' +
+        'I used several great tools like Yeoman, Bower and Grunt.\n' +
+        'Hope you like it :)\n' +
+        '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '* <%= pkg.homepage %>\n' +
+        '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+        '<%= pkg.author.name %>; Licensed MIT \n-->',
 
         // Project settings
         config: {
             // Configurable paths
             app: 'app',
-            dist: 'dist'
+            dist: 'dist',
+            tmp: '.tmp'
         },
 
         // Watches files for changes and runs tasks based on the changed files
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
 
             js: {
                 files: ['src/{,*/}*.js'],
-                tasks: ['concat:js'],
+                tasks: ['babel', 'browserify'],
                 options: {
                     livereload: true
                 }
@@ -68,9 +69,9 @@ module.exports = function(grunt) {
                 tasks: ['replace']
             },
             sass: {
-                files: ['src/svg/*/*.scss','src/*/*.scss'],
-                tasks: ['concat:css','sass:dev','sass:styles']
-            },            
+                files: ['src/svg/*/*.scss', 'src/*/*.scss'],
+                tasks: ['concat:css', 'sass:dev', 'sass:styles']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -86,7 +87,7 @@ module.exports = function(grunt) {
         // The actual grunt server settings
         connect: {
             options: {
-                port: 9000,
+                port: 5000,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
@@ -157,8 +158,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-
-
 
         // Renames files for browser caching purposes
         rev: {
@@ -300,10 +299,6 @@ module.exports = function(grunt) {
                 src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
                 dest: 'tmp/animation.scss'
             },
-            js: {
-                src: ['<%= config.app %>/bower_components/jquery/dist/jquery.js', 'src/libs/jquery.scrolldepth.min.js', '<%= config.app %>/bower_components/async/lib/async.js', '<%= config.app %>/bower_components/move.js/move.min.js', 'src/site.js', 'src/svg/*/animation.js'],
-                dest: '<%= config.app %>/scripts/lib.js'
-            },
             skrollr: {
                 src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js', '<%= config.app %>/bower_components/skrollr-ie/dis/skrollr.ie.min.js', 'src/libs/skrollr.helpers.js'],
                 dest: '<%= config.app %>/scripts/skrollr.js'
@@ -362,7 +357,6 @@ module.exports = function(grunt) {
                 src: '{,*/}*.css'
             }
         },
-
 
         replace: {
 
@@ -476,8 +470,6 @@ module.exports = function(grunt) {
             }
         },
 
-
-
         // Generates a custom Modernizr build that includes only the tests you
         // reference in your app
         modernizr: {
@@ -503,11 +495,34 @@ module.exports = function(grunt) {
                 'copy:styles',
                 'svgmin'
             ]
+        },
+
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/',
+                        src: '**/*.js',
+                        dest: '.tmp/'
+                    }
+                ]
+            }
+        },
+
+        browserify: {
+            dist: {
+                src: ['.tmp/scripts/index.js'],
+                dest: '<%= config.app %>/scripts/lib.js'
+            }
         }
     });
 
-
-    grunt.registerTask('serve', function(target) {
+    grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
@@ -515,18 +530,12 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
-
             'connect:livereload',
             'watch'
         ]);
     });
 
-    grunt.registerTask('server', function(target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run([target ? ('serve:' + target) : 'serve']);
-    });
-
-    grunt.registerTask('test', function(target) {
+    grunt.registerTask('test', function (target) {
         if (target !== 'watch') {
             grunt.task.run([
                 'clean:server',
@@ -546,6 +555,8 @@ module.exports = function(grunt) {
         'useminPrepare',
         'concurrent:dist',
         'imagemin',
+        'babel',
+        'browserify',
         'concat',
         'sass',
         'copy:dist',
@@ -560,7 +571,6 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default', [
-
         //'newer:jshint',
         'test',
         'build'

@@ -1,6 +1,6 @@
 
 
-Site.scenes['scene1'] = {
+export default {
 	lightfreq: Math.floor(Math.random() * (10 - 5 + 1)) + 5,
 	lightlast: 'none',
 	islight: 0,
