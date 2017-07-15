@@ -23,14 +23,15 @@
     #title {
         -skrollr-animation-name: s2-title;
     }
+
     @-skrollr-keyframes s2-title {
         #{$start + 240} {
             opacity: 0;
-            transform#{"[swing]"}: translate(0px, 50px);
+            transform#{"[swing]"}: translate(0px, 0px);
         }
         #{$start + 270} {
             opacity: 1;
-            transform#{"[swing]"}: translate(0px, 60px);
+            transform#{"[swing]"}: translate(0px, 20px);
         }
     }
 

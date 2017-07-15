@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default {
 	iskey: 0,
 	keylast: 0,
@@ -23,6 +25,7 @@ export default {
 			}
 
 			var rect = document.getElementById("iphone5positionpath").getBoundingClientRect();
+
 			$('#videoPlayer').css({
 				left: rect.left + 'px',
 				top: rect.top + 'px',

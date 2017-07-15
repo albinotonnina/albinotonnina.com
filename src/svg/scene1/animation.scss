@@ -59,16 +59,16 @@
     }
   }
 
-  #hello {
+  #hellocontainer {
     -skrollr-animation-name: hellohello;
   }
   @-skrollr-keyframes hellohello {
     #{$start} {
-      transform: translate(390px, 370px);
+      transform#{"[swing]"}: translate(355px, -30px);
     }
 
     #{$start + 100} {
-      transform: translate(30px, 400px);
+      transform#{"[swing]"}: translate(0px, 0px);
     }
   }
 
@@ -105,7 +105,7 @@
     cursor: pointer;
   }
   #intro2:hover text {
-    fill: rgba(214, 219, 220, 0.99);
+    fill: rgba(214, 219, 220, 0.8);
   }
   @-skrollr-keyframes intro2 {
     #{$start + 120} {
@@ -114,6 +114,24 @@
     }
 
     #{$start + 170} {
+      transform#{"[swing]"}: translate(0, 0px);
+      opacity: 1;
+    }
+  }
+
+
+  #intro3 {
+    -skrollr-animation-name: intro3;
+    cursor: pointer;
+  }
+
+  @-skrollr-keyframes intro3 {
+    #{$start + 230} {
+      transform#{"[swing]"}: translate(0, -10px);
+      opacity: 0;
+    }
+
+    #{$start + 300} {
       transform#{"[swing]"}: translate(0, 0px);
       opacity: 1;
     }

@@ -475,11 +475,15 @@ module.exports = function (grunt) {
         modernizr: {
             devFile: '<%= config.app %>/bower_components/modernizr/modernizr.js',
             outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-            files: [
-                '<%= config.dist %>/scripts/{,*/}*.js',
-                '<%= config.dist %>/styles/{,*/}*.css',
-                '!<%= config.dist %>/scripts/vendor/*'
-            ],
+            files: {
+                src: [
+                    '<%= config.dist %>/scripts/{,*/}*.js',
+                    '<%= config.dist %>/styles/{,*/}*.css',
+                    '!<%= config.dist %>/scripts/vendor/*'
+                ]
+            },
+            cache: true,
+            crawl: false,
             uglify: true
         },
 

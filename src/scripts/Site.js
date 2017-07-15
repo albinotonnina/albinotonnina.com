@@ -56,6 +56,8 @@ export default {
 
                 this.buildScenes(this.timing);
 
+                this.addVideoPlayer();
+
                 async.each($('[data-scene]'), this.loadScene.bind(this), () => {
 
                     $(document.head).append($('<script/>', {
@@ -104,12 +106,17 @@ export default {
     initSkrollr: function () {
         let renderTimeout;
         const options = Object.assign(this.defaults, {
-            render: function (obj) {
+            render:  (obj) => {
                 if (renderTimeout) {
                     clearTimeout(renderTimeout);
                 }
                 renderTimeout = setTimeout(() => {
+
+                    //  dconsole.log('this.scenes', this.scenes);
+
                     for (let name in this.scenes) {
+
+                        //console.log(this.scenes[name]);
 
                         if (typeof this.scenes[name].render === 'function') {
 
@@ -122,8 +129,7 @@ export default {
                         }
                     }
                 }, 1);
-
-
+                
             }
         });
 
@@ -309,7 +315,7 @@ export default {
             callback();
 
         }, function (request, status, error) {
-            console.log(error);
+            //console.log(error);
         });
     },
 
@@ -319,8 +325,12 @@ export default {
             window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
         });
 
-        $('#intro2,#numidia').bind('click', function () {
+        $('#numidia').bind('click', function () {
             window.open('http://www.numidia.it', '_blank');
+        });
+
+        $('#intro2').bind('click', function () {
+            window.open('http://www.workshare.com', '_blank');
         });
 
         $('#viewresume').bind('click', this.hide.bind(this));

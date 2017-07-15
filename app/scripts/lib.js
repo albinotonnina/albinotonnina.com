@@ -87,6 +87,8 @@ exports.default = {
 
                 _this.buildScenes(_this.timing);
 
+                _this.addVideoPlayer();
+
                 _async2.default.each((0, _jquery2.default)('[data-scene]'), _this.loadScene.bind(_this), function () {
 
                     (0, _jquery2.default)(document.head).append((0, _jquery2.default)('<script/>', {
@@ -133,16 +135,21 @@ exports.default = {
     },
 
     initSkrollr: function initSkrollr() {
+        var _this2 = this;
+
         var renderTimeout = void 0;
         var options = Object.assign(this.defaults, {
             render: function render(obj) {
-                var _this2 = this;
-
                 if (renderTimeout) {
                     clearTimeout(renderTimeout);
                 }
                 renderTimeout = setTimeout(function () {
+
+                    //  dconsole.log('this.scenes', this.scenes);
+
                     for (var name in _this2.scenes) {
+
+                        //console.log(this.scenes[name]);
 
                         if (typeof _this2.scenes[name].render === 'function') {
 
@@ -334,7 +341,7 @@ exports.default = {
 
             callback();
         }, function (request, status, error) {
-            console.log(error);
+            //console.log(error);
         });
     },
 
@@ -345,8 +352,12 @@ exports.default = {
             window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
         });
 
-        (0, _jquery2.default)('#intro2,#numidia').bind('click', function () {
+        (0, _jquery2.default)('#numidia').bind('click', function () {
             window.open('http://www.numidia.it', '_blank');
+        });
+
+        (0, _jquery2.default)('#intro2').bind('click', function () {
+            window.open('http://www.workshare.com', '_blank');
         });
 
         (0, _jquery2.default)('#viewresume').bind('click', this.hide.bind(this));
@@ -686,11 +697,18 @@ var isIE = exports.isIE = function isIE() {
 
 
 },{"jquery":15}],4:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
 	lightfreq: Math.floor(Math.random() * (10 - 5 + 1)) + 5,
 	lightlast: 'none',
@@ -701,7 +719,8 @@ exports.default = {
 		if (obj.curTop > this.minY && obj.curTop < this.maxY) {
 			if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
 				this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
-				$('#mbplight').css('display', this.lightlast);
+				(0, _jquery2.default)('#mbplight').css('display', this.lightlast);
+
 				this.islight = obj.curTop;
 			}
 		}
@@ -709,12 +728,19 @@ exports.default = {
 };
 
 
-},{}],5:[function(require,module,exports){
-"use strict";
+},{"jquery":15}],5:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
 	iskey: 0,
 	keylast: 0,
@@ -738,7 +764,8 @@ exports.default = {
 			}
 
 			var rect = document.getElementById("iphone5positionpath").getBoundingClientRect();
-			$('#videoPlayer').css({
+
+			(0, _jquery2.default)('#videoPlayer').css({
 				left: rect.left + 'px',
 				top: rect.top + 'px',
 				width: rect.width + 'px',
@@ -748,18 +775,18 @@ exports.default = {
 
 		if (obj.curTop > this.minY && obj.curTop < this.maxY) {
 			if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
-				$('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#ccd1d9');
-				$('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
-				$('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
+				(0, _jquery2.default)('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#ccd1d9');
+				(0, _jquery2.default)('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
+				(0, _jquery2.default)('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
 				this.keylast = Math.floor(Math.random() * 50 + 1);
-				$('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
-				$('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
-				$('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+				(0, _jquery2.default)('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+				(0, _jquery2.default)('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+				(0, _jquery2.default)('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
 				this.iskey = obj.curTop;
 			}
 			if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
 				this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
-				$('#imaclight').css('display', this.lightlast);
+				(0, _jquery2.default)('#imaclight').css('display', this.lightlast);
 				this.islight = obj.curTop;
 			}
 		}
@@ -767,7 +794,7 @@ exports.default = {
 };
 
 
-},{}],6:[function(require,module,exports){
+},{"jquery":15}],6:[function(require,module,exports){
 var hasTransitions = require('has-transitions');
 var emitter = require('css-emitter');
 
@@ -17714,6 +17741,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');

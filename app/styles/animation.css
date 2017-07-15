@@ -258,14 +258,14 @@ nav #barright {
     transition-delay: 0;
     transition-duration: 0; } }
 
-#scene1 #hello {
+#scene1 #hellocontainer {
   -skrollr-animation-name: hellohello; }
 
 @-skrollr-keyframes hellohello {
   #scene1 0 {
-    transform: translate(390px, 370px); }
+    transform[swing]: translate(355px, -30px); }
   #scene1 100 {
-    transform: translate(30px, 400px); } }
+    transform[swing]: translate(0px, 0px); } }
 
 #scene1 #subtitle {
   -skrollr-animation-name: subtitle; }
@@ -292,13 +292,25 @@ nav #barright {
   cursor: pointer; }
 
 #scene1 #intro2:hover text {
-  fill: rgba(214, 219, 220, 0.99); }
+  fill: rgba(214, 219, 220, 0.8); }
 
 @-skrollr-keyframes intro2 {
   #scene1 120 {
     transform[swing]: translate(0, -10px);
     opacity: 0; }
   #scene1 170 {
+    transform[swing]: translate(0, 0px);
+    opacity: 1; } }
+
+#scene1 #intro3 {
+  -skrollr-animation-name: intro3;
+  cursor: pointer; }
+
+@-skrollr-keyframes intro3 {
+  #scene1 230 {
+    transform[swing]: translate(0, -10px);
+    opacity: 0; }
+  #scene1 300 {
     transform[swing]: translate(0, 0px);
     opacity: 1; } }
 
@@ -472,10 +484,10 @@ nav #barright {
 @-skrollr-keyframes s2-title {
   #scene2 770 {
     opacity: 0;
-    transform[swing]: translate(0px, 50px); }
+    transform[swing]: translate(0px, 0px); }
   #scene2 800 {
     opacity: 1;
-    transform[swing]: translate(0px, 60px); } }
+    transform[swing]: translate(0px, 20px); } }
   #scene2 #linecover2 {
     -skrollr-animation-name: wheel2;
     opacity: 0;
@@ -1064,7 +1076,7 @@ nav #barright {
 @-skrollr-keyframes wire3 {
   #scene3 1555 {
     stroke-dashoffset: 6000; }
-  #scene3 3200 {
+  #scene3 3160 {
     stroke-dashoffset: 0; } }
 
 #scene3 #interested {
@@ -1125,369 +1137,71 @@ nav #barright {
     transform: translate(-60px, -3px) scale(1.1);
     opacity: 0; } }
 
-#scene3 #skill01 {
-  -skrollr-animation-name: skill01;
-  transform-origin: 50% 80%;
-  -ms-transform-origin: 50% 80%;
-  -webkit-transform-origin: 50% 80%; }
+#scene3 #book1 {
+  -skrollr-animation-name: book1; }
 
-@-skrollr-keyframes skill01 {
-  #scene3 1650 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1660 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill02 {
-  -skrollr-animation-name: skill02;
-  transform-origin: 50% 80%;
-  -ms-transform-origin: 50% 80%;
-  -webkit-transform-origin: 50% 80%; }
-
-@-skrollr-keyframes skill02 {
-  #scene3 1690 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
+@-skrollr-keyframes book1 {
   #scene3 1700 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill03 {
-  -skrollr-animation-name: skill03;
-  transform-origin: 50% 80%;
-  -ms-transform-origin: 50% 80%;
-  -webkit-transform-origin: 50% 80%; }
-
-@-skrollr-keyframes skill03 {
+    opacity: 0;
+    transform: translate(-20px, -20px); }
   #scene3 1750 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1760 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
+    opacity: 1;
+    transform: translate(0px, 0px); } }
 
-#scene3 #skill04 {
-  -skrollr-animation-name: skill04;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
+#scene3 #book3 {
+  -skrollr-animation-name: book3; }
 
-@-skrollr-keyframes skill04 {
-  #scene3 1790 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
+@-skrollr-keyframes book3 {
+  #scene3 1700 {
+    opacity: 0;
+    transform: translate(-20px, -20px); }
+  #scene3 1750 {
+    opacity: 1;
+    transform: translate(0px, 0px); } }
+
+#scene3 #notebook1 {
+  -skrollr-animation-name: notebook1; }
+
+@-skrollr-keyframes notebook1 {
   #scene3 1800 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill05 {
-  -skrollr-animation-name: skill05;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill05 {
-  #scene3 1810 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1820 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill06 {
-  -skrollr-animation-name: skill06;
-  transform-origin: 50% 80%;
-  -ms-transform-origin: 50% 80%;
-  -webkit-transform-origin: 50% 80%; }
-
-@-skrollr-keyframes skill06 {
-  #scene3 1840 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
+    opacity: 0;
+    transform: translate(-20px, -20px); }
   #scene3 1850 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
+    opacity: 1;
+    transform: translate(0px, 0px); } }
 
-#scene3 #skill07 {
-  -skrollr-animation-name: skill07;
-  transform-origin: 50% 10%;
-  -ms-transform-origin: 50% 10%;
-  -webkit-transform-origin: 50% 10%; }
+#scene3 #book2 {
+  -skrollr-animation-name: book1; }
 
-@-skrollr-keyframes skill07 {
-  #scene3 1880 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1890 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
+@-skrollr-keyframes book1 {
+  #scene3 1850 {
+    opacity: 0;
+    transform: translate(-20px, -20px); }
+  #scene3 1900 {
+    opacity: 1;
+    transform: translate(0px, 0px); } }
 
-#scene3 #skill08 {
-  -skrollr-animation-name: skill08;
-  transform-origin: 50% 80%;
-  -ms-transform-origin: 50% 80%;
-  -webkit-transform-origin: 50% 80%; }
+#scene3 #book4 {
+  -skrollr-animation-name: book4; }
 
-@-skrollr-keyframes skill08 {
-  #scene3 1920 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1930 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill09 {
-  -skrollr-animation-name: skill09;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill09 {
-  #scene3 1940 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
+@-skrollr-keyframes book4 {
+  #scene3 1900 {
+    opacity: 0;
+    transform: translate(-20px, -20px); }
   #scene3 1950 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
+    opacity: 1;
+    transform: translate(0px, 0px); } }
 
-#scene3 #skill10 {
-  -skrollr-animation-name: skill10;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
+#scene3 #book5 {
+  -skrollr-animation-name: book5; }
 
-@-skrollr-keyframes skill10 {
-  #scene3 1960 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1970 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill11 {
-  -skrollr-animation-name: skill11;
-  transform-origin: 96% 50%;
-  -ms-transform-origin: 96% 50%;
-  -webkit-transform-origin: 96% 50%; }
-
-@-skrollr-keyframes skill11 {
-  #scene3 1970 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1980 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill12 {
-  -skrollr-animation-name: skill12;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill12 {
-  #scene3 1980 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 1990 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill13 {
-  -skrollr-animation-name: skill13;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill13 {
-  #scene3 1990 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2000 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill14 {
-  -skrollr-animation-name: skill14;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill14 {
-  #scene3 2000 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2010 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill15 {
-  -skrollr-animation-name: skill15;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill15 {
-  #scene3 2010 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2020 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill16 {
-  -skrollr-animation-name: skill16;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill16 {
-  #scene3 2020 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2030 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill17 {
-  -skrollr-animation-name: skill17;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill17 {
-  #scene3 2030 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2040 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill18 {
-  -skrollr-animation-name: skill18;
-  transform-origin: 10% 50%;
-  -ms-transform-origin: 10% 50%;
-  -webkit-transform-origin: 10% 50%; }
-
-@-skrollr-keyframes skill18 {
-  #scene3 2040 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
+@-skrollr-keyframes book5 {
   #scene3 2050 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill19 {
-  -skrollr-animation-name: skill19;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill19 {
-  #scene3 2250 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2260 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill20 {
-  -skrollr-animation-name: skill20;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill20 {
-  #scene3 2260 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2270 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill21 {
-  -skrollr-animation-name: skill21;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill21 {
-  #scene3 2270 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2280 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill22 {
-  -skrollr-animation-name: skill22;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill22 {
-  #scene3 2280 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2290 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill23 {
-  -skrollr-animation-name: skill23;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill23 {
-  #scene3 2600 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2610 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill24 {
-  -skrollr-animation-name: skill24;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill24 {
-  #scene3 2610 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2620 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill25 {
-  -skrollr-animation-name: skill25;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill25 {
-  #scene3 2620 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2630 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
-
-#scene3 #skill26 {
-  -skrollr-animation-name: skill26;
-  transform-origin: 90% 50%;
-  -ms-transform-origin: 90% 50%;
-  -webkit-transform-origin: 90% 50%; }
-
-@-skrollr-keyframes skill26 {
-  #scene3 2630 {
-    transform[bounce]: scale(0);
-    opacity: 0; }
-  #scene3 2640 {
-    transform[bounce]: scale(1);
-    opacity: 1; } }
+    opacity: 0;
+    transform: translate(-20px, -20px); }
+  #scene3 2100 {
+    opacity: 1;
+    transform: translate(0px, 0px); } }
 
 #wire4 {
   stroke-width: 2;
