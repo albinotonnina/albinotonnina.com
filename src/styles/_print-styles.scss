@@ -12,6 +12,7 @@ Print styles
   }
   html {
     background-color: #fff;
+    height: auto !important;
   }
   aside #thislink {
     display: block;
@@ -38,8 +39,8 @@ Print styles
   body {
     display: block;
     font-size: 12px;
-    overflow: auto;
-    height: auto;
+    overflow: hidden;
+    height: auto !important;
   }
   /* Show link destinations in brackets after the link text */
 

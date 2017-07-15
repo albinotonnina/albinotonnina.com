@@ -7,16 +7,20 @@ $scene_02_duration: 1100;
 $scene_02_end: $scene_02_begin + $scene_02_duration;
 
 $scene_03_begin: $scene_02_end;
-$scene_03_duration: 1000;
+$scene_03_duration: 1100;
 $scene_03_end: $scene_03_begin + $scene_03_duration;
 
 $scene_04_begin: $scene_03_end;
-$scene_04_duration: 2100;
+$scene_04_duration: 1000;
 $scene_04_end: $scene_04_begin + $scene_04_duration;
 
 $scene_05_begin: $scene_04_end;
-$scene_05_duration: 2000;
+$scene_05_duration: 2100;
 $scene_05_end: $scene_05_begin + $scene_05_duration;
+
+$scene_06_begin: $scene_05_end;
+$scene_06_duration: 2500;
+$scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 #scene1 { -skrollr-animation-name: scene1; }
@@ -58,9 +62,6 @@ $scene_05_end: $scene_05_begin + $scene_05_duration;
 
 
 
-
-
-
 #scene3 { -skrollr-animation-name: scene3; }
 
 @-skrollr-keyframes scene3 {
@@ -77,6 +78,11 @@ $scene_05_end: $scene_05_begin + $scene_05_duration;
     top: -100%;
   }
 }
+
+
+
+
+
 
 
 
@@ -99,13 +105,10 @@ $scene_05_end: $scene_05_begin + $scene_05_duration;
 
 
 
-
-
-
-
 #scene5 { -skrollr-animation-name: scene5; }
 
 @-skrollr-keyframes scene5 {
+
   #{$scene_05_begin - 500} {
     top: 100%;
   }
@@ -115,238 +118,304 @@ $scene_05_end: $scene_05_begin + $scene_05_duration;
   #{$scene_05_end - 500} {
     top: 0%;
   }
+  #{$scene_05_end} {
+    top: -100%;
+  }
+}
+
+
+
+
+
+
+
+#scene6 { -skrollr-animation-name: scene6; }
+
+@-skrollr-keyframes scene6 {
+
+  #{$scene_06_begin - 500} {
+    top: 100%;
+  }
+  #{$scene_06_begin} {
+    top: 0%;
+  }
+  #{$scene_06_end - 500} {
+    top: 0%;
+  }
 }
 
 
 nav {
-    $start: $scene_02_begin - 500;
-    $color1-light: rgba(52, 152, 219, 0.99);
-    $color1-dark: rgba(51, 127, 177, 0.99);
-    $color2-light: rgba(68, 198, 80, 0.99);
-    $color2-dark: rgba(69, 155, 69, 0.99);
-    $color3-light: rgba(44, 62, 80, 0.99);
-    $color3-dark: rgba(21, 39, 53, 0.99);
-    $color4-light: rgba(231, 76, 60, 0.99);
-    $color4-dark: rgba(190, 61, 47, 0.99);
-    $color5-light: rgba(43, 172, 181, 0.99);
-    $color5-dark: rgba(34, 144, 152, 0.99);
+  $start: $scene_02_begin - 500;
+  $color1-light: rgba(52, 152, 219, 0.99);
+  $color1-dark: rgba(51, 127, 177, 0.99);
+  $color2-light: rgba(68, 198, 80, 0.99);
+  $color2-dark: rgba(69, 155, 69, 0.99);
+  $color3-light: rgba(44, 62, 80, 0.99);
+  $color3-dark: rgba(21, 39, 53, 0.99);
+  $color4-light: rgba(231, 76, 60, 0.99);
+  $color4-dark: rgba(190, 61, 47, 0.99);
+  $color5-light: rgba(43, 172, 181, 0.99);
+  $color5-dark: rgba(34, 144, 152, 0.99);
 
+  #bgmenu {
 
-#bgmenu{
+    opacity: 0;
+    pointer-events: none;
 
-opacity:0;
-pointer-events:none;
+  }
 
-}
+  #sc-menu1 {
+    cursor: pointer;
+  }
 
-
-    #sc-menu1 {
-        cursor: pointer;
-    }
-    
-    #sc-menu2 {
-        cursor: pointer;
-    }
-    #sc-menu4 {
-        cursor: pointer;
-    }
-    #sc-menu5 {
-        cursor: pointer;
-    }
-    #bar {
-        -skrollr-animation-name: menubar;
-    }
-    @-skrollr-keyframes menubar {
-        #{$scene_01_begin} {
-            transform: scale(0, 1);
-            fill: $color1-light;
-        }
-        #{$scene_02_begin - 300} {
-            transform: scale(0.34, 1);
-            fill: $color1-light;
-        }
-        #{$scene_02_begin - 280} {
-            transform: scale(0.35, 1);
-            fill: $color2-light;
-        }
-        #{$scene_02_begin} {
-            transform: scale(0.38, 1);
-            fill: $color2-light;
-        }
-
-
-        #{$scene_03_end - 300} {
-            transform: scale(0.58, 1);
-            fill: $color2-light;
-        }
-        #{$scene_03_end - 280} {
-            transform: scale(0.59, 1);
-            fill: $color4-light;
-        }
-        #{$scene_04_begin} {
-            transform: scale(0.62, 1);
-            fill: $color4-light;
-        }
-        #{$scene_04_end - 300} {
-            transform: scale(0.72, 1);
-            fill: $color4-light;
-        }
-        #{$scene_04_end - 280} {
-            transform: scale(0.73, 1);
-            fill: $color5-light;
-        }
-        #{$scene_05_begin} {
-            transform: scale(0.75, 1);
-            fill: $color5-light;
-        }
-        #{$scene_05_end - 300} {
-            transform: scale(1, 1);
-            fill: $color5-light;
-        }
-        #{$scene_05_end - 280} {
-            transform: scale(1.15, 1);
-            fill: $color5-light;
-        }
-        #{$scene_05_end} {
-            transform: scale(4, 1);
-            fill: $color5-light;
-        }
+  #sc-menu3 {
+    cursor: pointer;
+  }
+  #sc-menu5 {
+    cursor: pointer;
+  }
+  #sc-menu6 {
+    cursor: pointer;
+  }
+  #bar {
+    -skrollr-animation-name: menubar;
+  }
+  @-skrollr-keyframes menubar {
+    #{$scene_01_begin} {
+      transform: scale(0, 1);
+      fill: $color1-light;
     }
 
-    #menu {
-        -skrollr-animation-name: menu;
-
-    }
-    @-skrollr-keyframes menu {
-        #{$scene_01_begin + 60} {
-            transform: translate(0px, 200px);
-        }
-        #{$scene_01_begin + 100} {
-            transform: translate(0px, 0px);
-        }
+    #{$scene_02_begin - 300} {
+      transform: scale(0.34, 1);
+      fill: $color1-light;
     }
 
-    #barleft {
-        -skrollr-animation-name: barleft;
-    }
-    @-skrollr-keyframes barleft {
-        #{$scene_01_begin} {
-            fill: $color1-light;
-        }
-        #{$scene_02_begin - 300} {
-            fill: $color1-light;
-        }
-        #{$scene_02_begin - 280} {
-            fill: $color2-light;
-        }
-        #{$scene_02_end - 300} {
-            fill: $color2-light;
-        }
-
-        #{$scene_03_end - 300} {
-            fill: $color2-light;
-        }
-        #{$scene_03_end - 280} {
-            fill: $color4-light;
-        }
-        #{$scene_04_end - 300} {
-            fill: $color4-light;
-        }
-        #{$scene_04_end - 280} {
-            fill: $color5-light;
-        }
-        #{$scene_05_end - 300} {
-            fill: $color5-light;
-        }
-        #{$scene_05_end - 280} {
-            fill: $color5-light;
-        }
-        #{$scene_05_end} {
-            fill: $color5-light;
-        }
+    #{$scene_03_begin - 280} {
+      transform: scale(0.35, 1);
+      fill: $color2-light;
     }
 
-    #barcenter {
-        -skrollr-animation-name: barcenter;
-    }
-    @-skrollr-keyframes barcenter {
-        #{$scene_01_begin} {
-            fill: $color1-dark;
-        }
-        #{$scene_02_begin - 300} {
-            fill: $color1-dark;
-        }
-        #{$scene_02_begin - 280} {
-            fill: $color2-dark;
-        }
-        #{$scene_02_end - 300} {
-            fill: $color2-dark;
-        }
-
-        #{$scene_03_end - 300} {
-            fill: $color2-dark;
-        }
-        #{$scene_03_end - 280} {
-            fill: $color4-dark;
-        }
-        #{$scene_04_end - 300} {
-            fill: $color4-dark;
-        }
-        #{$scene_04_end - 280} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end - 300} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end - 280} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end} {
-            fill: $color5-dark;
-        }
+    #{$scene_03_begin} {
+      transform: scale(0.38, 1);
+      fill: $color2-light;
     }
 
-    #barright {
-        -skrollr-animation-name: barright;
+    #{$scene_04_end - 300} {
+      transform: scale(0.58, 1);
+      fill: $color2-light;
     }
-    @-skrollr-keyframes barright {
-        #{$scene_01_begin} {
-            fill: $color1-dark;
-        }
-        #{$scene_02_begin - 300} {
-            fill: $color1-dark;
-        }
-        #{$scene_02_begin - 280} {
-            fill: $color2-dark;
-        }
-        #{$scene_02_end - 300} {
-            fill: $color2-dark;
-        }
-   
-        #{$scene_03_end - 300} {
-            fill: $color2-dark;
-        }
-        #{$scene_03_end - 280} {
-            fill: $color4-dark;
-        }
-        #{$scene_04_end - 300} {
-            fill: $color4-dark;
-        }
-        #{$scene_04_end - 280} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end - 300} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end - 280} {
-            fill: $color5-dark;
-        }
-        #{$scene_05_end} {
-            fill: $color5-dark;
-        }
+
+    #{$scene_04_end - 280} {
+      transform: scale(0.59, 1);
+      fill: $color4-light;
     }
+
+    #{$scene_05_begin} {
+      transform: scale(0.62, 1);
+      fill: $color4-light;
+    }
+
+    #{$scene_05_end - 300} {
+      transform: scale(0.72, 1);
+      fill: $color4-light;
+    }
+
+    #{$scene_05_end - 280} {
+      transform: scale(0.73, 1);
+      fill: $color5-light;
+    }
+
+    #{$scene_06_begin} {
+      transform: scale(0.75, 1);
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end - 300} {
+      transform: scale(0.9, 1);
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end - 280} {
+      transform: scale(1.15, 1);
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end} {
+      transform: scale(1.16, 1);
+      fill: $color5-light;
+    }
+  }
+
+  #menu {
+    -skrollr-animation-name: menu;
+
+  }
+  @-skrollr-keyframes menu {
+    #{$scene_01_begin + 60} {
+      transform: translate(0px, 200px);
+    }
+
+    #{$scene_01_begin + 100} {
+      transform: translate(0px, 0px);
+    }
+  }
+
+  #barleft {
+    -skrollr-animation-name: barleft;
+  }
+  @-skrollr-keyframes barleft {
+    #{$scene_01_begin} {
+      fill: $color1-light;
+    }
+
+    #{$scene_02_begin - 300} {
+      fill: $color1-light;
+    }
+
+    #{$scene_03_begin - 280} {
+      fill: $color2-light;
+    }
+
+    #{$scene_03_end - 300} {
+      fill: $color2-light;
+    }
+
+    #{$scene_04_end - 300} {
+      fill: $color2-light;
+    }
+
+    #{$scene_04_end - 280} {
+      fill: $color4-light;
+    }
+
+    #{$scene_05_end - 300} {
+      fill: $color4-light;
+    }
+
+    #{$scene_05_end - 280} {
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end - 300} {
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end - 280} {
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end} {
+      fill: $color5-light;
+    }
+  }
+
+  #barcenter {
+    -skrollr-animation-name: barcenter;
+  }
+  @-skrollr-keyframes barcenter {
+    #{$scene_01_begin} {
+      fill: $color1-dark;
+    }
+
+    #{$scene_02_begin - 300} {
+      fill: $color1-dark;
+    }
+
+    #{$scene_03_begin - 280} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_03_end - 300} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_04_end - 300} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_04_end - 280} {
+      fill: $color4-dark;
+    }
+
+    #{$scene_05_end - 300} {
+      fill: $color4-dark;
+    }
+
+    #{$scene_05_end - 280} {
+      fill: $color5-dark;
+    }
+
+    #{$scene_06_end - 300} {
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end - 280} {
+      fill: $color5-light;
+    }
+
+    #{$scene_06_end} {
+      fill: $color5-light;
+    }
+  }
+
+  #barright {
+    -skrollr-animation-name: barright;
+  }
+  @-skrollr-keyframes barright {
+    #{$scene_01_begin} {
+      fill: $color1-dark;
+    }
+
+    #{$scene_03_begin - 300} {
+      fill: $color1-dark;
+    }
+
+    #{$scene_03_begin - 280} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_03_end - 300} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_04_end - 300} {
+      fill: $color2-dark;
+    }
+
+    #{$scene_04_end - 280} {
+      fill: $color4-dark;
+    }
+
+    #{$scene_05_end - 300} {
+      fill: $color4-dark;
+    }
+
+    #{$scene_05_end - 280} {
+      fill: $color5-dark;
+    }
+
+    #{$scene_06_end - 300} {
+      fill: $color5-dark;
+    }
+
+    #{$scene_06_end - 280} {
+      fill: $color5-dark;
+    }
+
+    #{$scene_06_end} {
+      fill: $color5-dark;
+    }
+  }
 }
 #scene1 {
+
+  .svg{
+    width: 100%;
+    height: 100%;
+  }
+
   $start: $scene_01_begin;
   #wire1 {
     stroke-width: 2;
@@ -453,10 +522,15 @@ pointer-events:none;
     cursor: pointer;
   }
   #intro2:hover text {
-    fill: rgba(214, 219, 220, 0.8);
+    fill: rgba(214, 219, 220, 0.8) !important;
   }
   @-skrollr-keyframes intro2 {
+    #{$start} {
+      pointer-events: none;
+    }
+
     #{$start + 120} {
+      pointer-events: auto;
       transform#{"[swing]"}: translate(0, -10px);
       opacity: 0;
     }
@@ -470,7 +544,6 @@ pointer-events:none;
 
   #intro3 {
     -skrollr-animation-name: intro3;
-    cursor: pointer;
   }
 
   @-skrollr-keyframes intro3 {
@@ -690,23 +763,281 @@ pointer-events:none;
 
 
 #scene2 {
+
+  .svg{
+    width: 100%;
+    height: 100%;
+  }
+
+  $start: $scene_02_begin;
+
+  #wire2 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 0;
+    -skrollr-animation-name: wire2;
+  }
+  @-skrollr-keyframes wire2 {
+    #{$start - 170} {
+      stroke-dashoffset: 6000;
+    }
+
+    //#{$start + 1200} {
+    //  stroke-dashoffset: 2100;
+    //}
+
+
+    #{$start + 2320} {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  #text1 {
+    -skrollr-animation-name: text1;
+  }
+
+  @-skrollr-keyframes text1 {
+    #{$start - 100} {
+      opacity: 0;
+    }
+
+    #{$start - 50} {
+      opacity: 1;
+    }
+
+  }
+
+  #text2 {
+    -skrollr-animation-name: text2;
+  }
+
+  @-skrollr-keyframes text2 {
+
+    #{$start - 50} {
+      opacity: 0;
+    }
+
+    #{$start } {
+      opacity: 1;
+    }
+
+    #{$start + 150} {
+      opacity: 1;
+    }
+
+    #{$start + 200} {
+      opacity: 0;
+    }
+  }
+
+  #text3 {
+    -skrollr-animation-name: text3;
+  }
+
+  @-skrollr-keyframes text3 {
+
+    #{$start + 150} {
+      opacity: 0;
+    }
+
+    #{$start + 250} {
+      opacity: 1;
+      //fill: rgb(245, 236, 217);
+    }
+
+  }
+
+  #london {
+    -skrollr-animation-name: london;
+  }
+
+  @-skrollr-keyframes london {
+
+    #{$start + 200} {
+      transform: translate(-250px, 600px);
+    }
+
+    #{$start + 400} {
+      transform: translate(0px, 0px);
+    }
+
+  }
+
+  #bus1 {
+    -skrollr-animation-name: bus1;
+  }
+
+  @-skrollr-keyframes bus1 {
+
+    #{$start + 300} {
+      transform: translate(0px, 0px);
+    }
+
+    #{$start + 1200} {
+      transform: translate(-400px, 0px);
+    }
+
+  }
+
+  #bus2 {
+    -skrollr-animation-name: bus2;
+  }
+
+  @-skrollr-keyframes bus2 {
+
+    #{$start + 300} {
+      transform: translate(0px, 0px);
+    }
+
+    #{$start + 1200} {
+      transform: translate(300px, 0px);
+    }
+
+  }
+
+  #planebig {
+    -skrollr-animation-name: planebig;
+  }
+
+  @-skrollr-keyframes planebig {
+
+    #{$start + 100} {
+      transform: translate(50px, 10px);
+    }
+
+    #{$start + 400} {
+      transform: translate(3000px, 200px);
+    }
+
+    #{$start + 600} {
+      transform: translate(8000px, 400px);
+    }
+
+  }
+
+  #clouds {
+    -skrollr-animation-name: clouds;
+  }
+
+  @-skrollr-keyframes clouds {
+
+    #{$start - 150} {
+      transform: translate(-100px, 0px);
+      opacity: 0;
+    }
+
+    #{$start - 100} {
+      transform: translate(-50px, 0);
+      opacity: 1;
+    }
+
+    #{$start + 700} {
+      transform: translate(0px, 0);
+      opacity: 1;
+    }
+
+    #{$start + 1100} {
+      opacity: 1;
+      transform: translate(200px, 0);
+    }
+
+  }
+
+  #plane {
+    -skrollr-animation-name: plane;
+  }
+  @-skrollr-keyframes plane {
+    #{$start - 150} {
+      transform: translate(-2600px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 400} {
+      transform: translate(2600px, -600px);
+      opacity: 1;
+    }
+  }
+
+  #mountains {
+    -skrollr-animation-name: mountains;
+  }
+
+  @-skrollr-keyframes mountains {
+    #{$start - 50} {
+      transform: translate(-200px, 0px);
+      opacity: 0;
+    }
+
+    #{$start} {
+      transform: translate(0px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 200} {
+      transform: translate(50px, 0px);
+      opacity: 1;
+    }
+
+    #{$start + 250} {
+      transform: translate(-200px, 0px);
+      opacity: 0;
+    }
+
+  }
+
+  #torre {
+    -skrollr-animation-name: torre;
+  }
+
+  @-skrollr-keyframes torre {
+    #{$start - 100} {
+      transform: translate(-1200px, 0px) scale(1);
+      opacity: 1;
+    }
+
+    #{$start - 50} {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1;
+    }
+
+    #{$start + 250} {
+      transform: translate(-10px, 10px) scale(0.7);
+      opacity: 1;
+    }
+
+    #{$start + 300} {
+      transform: translate(-300px, 0px) scale(1);
+      opacity: 0;
+    }
+  }
+}
+
+#scene3 {
+
+    .svg{
+        width: 100%;
+        height: 100%;
+    }
+
     background-color: #44C650;
-    $start: $scene_02_begin - 370;
-    #wire2 {
+    $start: $scene_03_begin - 370;
+    #wire3 {
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: miter;
         stroke-miterlimit: 4;
         stroke-dasharray: 6000;
         stroke-dashoffset: 0;
-        stroke-opacity: 0.7;
-        -skrollr-animation-name: wire2;
+        -skrollr-animation-name: wire3;
     }
-    @-skrollr-keyframes wire2 {
-        #{$start + 200} {
+    @-skrollr-keyframes wire3 {
+        #{$start + 195} {
             stroke-dashoffset: 6000;
         }
-        #{$start + 2200} {
+        #{$start + 2120} {
             stroke-dashoffset: 0;
         }
     }
@@ -738,11 +1069,11 @@ pointer-events:none;
         -skrollr-animation-name: tblock1;
     }
     @-skrollr-keyframes tblock1 {
-        #{$start + 340} {
+        #{$start + 540} {
             opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
         }
-        #{$start + 360} {
+        #{$start + 560} {
             opacity: 1;
             transform#{"[swing]"}: translate(0, 0);
         }
@@ -752,11 +1083,11 @@ pointer-events:none;
         -skrollr-animation-name: tblock2;
     }
     @-skrollr-keyframes tblock2 {
-        #{$start + 600} {
+        #{$start + 740} {
             opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
         }
-        #{$start + 620} {
+        #{$start + 760} {
             opacity: 1;
             transform#{"[swing]"}: translate(0, 0);
         }
@@ -766,11 +1097,11 @@ pointer-events:none;
         -skrollr-animation-name: tblock3;
     }
     @-skrollr-keyframes tblock3 {
-        #{$start + 840} {
+        #{$start + 800} {
             opacity: 0;
             transform#{"[swing]"}: translate(-20px, 0);
         }
-        #{$start + 860} {
+        #{$start + 820} {
             opacity: 1;
             transform#{"[swing]"}: translate(0, 0);
         }
@@ -855,7 +1186,8 @@ pointer-events:none;
             -skrollr-animation-name: s1-f18;
         }
     }
-    $imac_animation: $scene_02_begin + 30;
+    $imac_animation: $scene_03_begin + 30;
+
     @-skrollr-keyframes imac {}
 
     @-skrollr-keyframes gridbg {
@@ -1102,7 +1434,8 @@ pointer-events:none;
             }
         }
     }
-    $ipad_animation: $scene_02_begin + 400;
+    $ipad_animation: $scene_03_begin + 400;
+
     @-skrollr-keyframes ipad {
         #{$ipad_animation - 30} {
             opacity: 0;
@@ -1272,7 +1605,7 @@ pointer-events:none;
             }
         }
     }
-    $iphone_animation: $scene_02_begin + 350;
+    $iphone_animation: $scene_03_begin + 350;
     @-skrollr-keyframes iphone {
         #{$iphone_animation - 30} {
             transform#{"[swing]"}: translate(10px, 0);
@@ -1410,7 +1743,7 @@ pointer-events:none;
             -skrollr-animation-name: ag5;
         }
     }
-    $appunti_animation: 425 + $scene_02_begin;
+    $appunti_animation: 425 + $scene_03_begin;
     @-skrollr-keyframes appunti {
         #{$appunti_animation - 50} {
             transform#{"[swing]"}: translate(0, 510px);
@@ -1495,7 +1828,7 @@ pointer-events:none;
             -skrollr-animation-name: dg9;
         }
     }
-    $diagramma1_animation: 470 + $scene_02_begin;
+    $diagramma1_animation: 570 + $scene_03_begin;
     @-skrollr-keyframes diagramma1 {
         #{$diagramma1_animation - 50} {
             transform#{"[swing]"}: translate(0, 610px);
@@ -1587,31 +1920,31 @@ pointer-events:none;
     }
 
 }
-#scene3 {
-    $start3: $scene_03_begin - 200;
-    #wire3 {
+
+#scene4 {
+    $start3: $scene_04_begin - 200;
+    #wire4 {
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: miter;
         stroke-miterlimit: 4;
         stroke-dasharray: 6000;
         stroke-dashoffset: 0;
-        stroke-opacity: 0.7;
-        -skrollr-animation-name: wire3;
+        -skrollr-animation-name: wire4;
     }
-    @-skrollr-keyframes wire3 {
-        #{$start3 - 245} {
+    @-skrollr-keyframes wire4 {
+        #{$start3 - 205} {
             stroke-dashoffset: 6000;
         }
-        #{$start3 + 1360} {
+        #{$start3 + 1350} {
             stroke-dashoffset: 0;
         }
     }
 
-
     #interested {
         -skrollr-animation-name: interested;
     }
+
     @-skrollr-keyframes interested {
         #{$start3 + 350} {
            opacity:0;
@@ -1690,11 +2023,11 @@ pointer-events:none;
         -skrollr-animation-name: book1;
     }
     @-skrollr-keyframes book1 {
-        #{$start3 - 100} {
+        #{$start3 - 50} {
             opacity: 0;
             transform: translate(-20px, -20px);
         }
-        #{$start3 - 50} {
+        #{$start3} {
             opacity: 1;
             transform: translate(0px, 0px);
         }
@@ -1736,9 +2069,9 @@ pointer-events:none;
 
 
     #book2 {
-        -skrollr-animation-name: book1;
+        -skrollr-animation-name: book2;
     }
-    @-skrollr-keyframes book1 {
+    @-skrollr-keyframes book2 {
         #{$start3 + 50} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -1798,27 +2131,10 @@ pointer-events:none;
 
 
 }
-$start: $scene_04_begin;
 
-#wire4 {
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: miter;
-    stroke-miterlimit: 4;
-    stroke-dasharray: 6000;
-    stroke-dashoffset: 0;
-    stroke-opacity: 0.7;
-    -skrollr-animation-name: wire4;
-}
+$start: $scene_05_begin;
 
-@-skrollr-keyframes wire4 {
-    #{$start - 385} {
-        stroke-dashoffset: 6000;
-    }
-    #{$start + 1000} {
-        stroke-dashoffset: 0;
-    }
-}
+
 
 
 #videoPlayer {
@@ -1846,7 +2162,29 @@ $start: $scene_04_begin;
 }
 
 
-#scene4 {
+#scene5 {
+
+
+    #wire5 {
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: miter;
+        stroke-miterlimit: 4;
+        stroke-dasharray: 6000;
+        stroke-dashoffset: 0;
+        -skrollr-animation-name: wire5;
+    }
+
+    @-skrollr-keyframes wire5 {
+        #{$start - 385} {
+            stroke-dashoffset: 6000;
+        }
+        #{$start + 1000} {
+            stroke-dashoffset: 0;
+        }
+    }
+
+
     #bg {
         -skrollr-animation-name: bg;
     }
@@ -1880,7 +2218,7 @@ $start: $scene_04_begin;
             transform: rotate(0deg) translate(0px, 0px) scale(1);
         }
         #{$start + 1350} {
-            transform: rotate(90deg) translate(-2600px, -3200px) scale(8);
+            transform: rotate(90deg) translate(-6930px, -530px) scale(8);
         }
     }
 
@@ -1905,19 +2243,7 @@ $start: $scene_04_begin;
         }
     }
 
-    #title {
-        -skrollr-animation-name: s4-title;
-    }
-    @-skrollr-keyframes s4-title {
-        #{$start - 240} {
-            opacity: 0;
-            transform#{"[swing]"}: translate(0px, 50px);
-        }
-        #{$start - 200} {
-            opacity: 1;
-            transform#{"[swing]"}: translate(0px, 60px);
-        }
-    }
+
 
     #titles {
         #title1 {
@@ -1989,10 +2315,10 @@ $start: $scene_04_begin;
             transform: translate(0px, 0px) scale(1);
         }
         #{$start + 450} {
-            transform: translate(200px, 100px) scale(0.6);
+            transform: translate(300px, 0px) scale(0.6);
         }
         #{$start + 900} {
-            transform: translate(200px, 100px) scale(0.6);
+            transform: translate(300px, 0px) scale(0.6);
         }
         #{$start + 950} {
             transform: translate(0px, 0px) scale(1);
@@ -2421,192 +2747,211 @@ $start: $scene_04_begin;
         }
     }
 }
-#scene5 {
 
-  $start: $scene_05_begin;
+#scene6 {
 
-  #email, #linkedin, #skype, #numidia, #l500px, #numidia, #addressnumidia, #phone, #contactresume, #githubsite, #pegu, #junetext, #worksharelogo {
+  $start: $scene_06_begin;
+  $photostart: $start + 1500;
+
+  //background-color: #2BACB5;
+
+  .scene-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+    pointer-events: none;
+    -skrollr-animation-name: a_scene6_content;
+  }
+
+  @-skrollr-keyframes a_scene6_content {
+
+    #{$start - 300} {
+      display: block;
+      opacity: 0;
+    }
+
+    #{$start + 0} {
+      opacity: 1;
+    }
+
+  }
+
+  #skills_container {
+    padding: 128px;
+    width: 100%;
+    height: 100%;
+    -skrollr-animation-name: a_scene6_skillsContainer;
+  }
+
+  @-skrollr-keyframes a_scene6_skillsContainer {
+    #{$start + 1200} {
+      opacity: 1;
+      display: block;
+    }
+
+    #{$start + 1250} {
+      opacity: 0.5;
+      display: block;
+    }
+
+    #{$start + 1260} {
+      display: none;
+    }
+
+  }
+
+  .word {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    white-space: nowrap;
+    transform-origin: 0 0;
+    color: #f5f5f5;
+    font-weight: 100;
+  }
+
+  .polaroid {
+    width: 36vh;
+    height: 36vh;
+    background: #1e1c18;
+    border: 2vh solid #f5f5f5;
+    border-bottom: 8vh solid #f5f5f5;
+    box-shadow: 0 0 1vh -0.1vh #000;
+    overflow: hidden;
+  }
+
+  .caption {
+    width: 36vh;
+    margin-top: -9vh;
+    margin-left: 2vh;
+  }
+
+  #photo_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .photo1 {
+    position: absolute;
+    left: 0;
+    -skrollr-animation-name: a_scene6_photo1;
+  }
+
+  @-skrollr-keyframes a_scene6_photo1 {
+    #{$photostart} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 50} {
+      transform: translate(0vh, 0vh) rotate(-5deg);
+    }
+  }
+
+  .photo2 {
+    position: absolute;
+    left: 3vh;
+    -skrollr-animation-name: a_scene6_photo2;
+  }
+
+  @-skrollr-keyframes a_scene6_photo2 {
+    #{$photostart + 100} {
+      transform: translate(-50vh, 0vh) rotate(-5deg);
+    }
+
+    #{$photostart + 150} {
+      transform: translate(0vh, 0vh) rotate(0deg);
+    }
+  }
+
+  .photo3 {
+    position: absolute;
+    left: 0vh;
+    -skrollr-animation-name: a_scene6_photo3;
+  }
+
+  @-skrollr-keyframes a_scene6_photo3 {
+    #{$photostart + 200} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 250} {
+      transform: translate(0vh, 0vh) rotate(5deg);
+    }
+  }
+
+  .photo4 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo4;
+  }
+
+  @-skrollr-keyframes a_scene6_photo4 {
+    #{$photostart + 300} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 350} {
+      transform: translate(0vh, 0vh) rotate(-4deg);
+    }
+  }
+
+  .photo5 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo5;
+  }
+
+  @-skrollr-keyframes a_scene6_photo5 {
+    #{$photostart + 400} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 450} {
+      transform: translate(0vh, 0vh) rotate(3deg);
+    }
+  }
+
+  .photo6 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo6;
+  }
+
+  @-skrollr-keyframes a_scene6_photo6 {
+    #{$photostart + 500} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 550} {
+      transform: translate(0vh, 0vh) rotate(2deg);
+    }
+  }
+
+  .photo7 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo7;
+  }
+
+  @-skrollr-keyframes a_scene6_photo7 {
+    #{$photostart + 600} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 650} {
+      transform: translate(0vh, 0vh) rotate(4deg);
+    }
+  }
+
+  #email, #linkedin, #instagram, #contactresume, #githubsite, #medium {
     cursor: pointer;
     transition-duration: 500ms;
   }
 
-  #email:hover text, #linkedin:hover text, #skype:hover text, #numidia:hover text, #l500px:hover text, #numidia:hover text, #addressnumidia:hover tspan, #phone:hover text, #contactresume:hover text, #githubsite:hover text, #pegu:hover text, #junetext:hover text {
+  #email:hover text, #linkedin:hover text, #instagram:hover text, #contactresume:hover text, #githubsite:hover text, #medium:hover text {
     fill: rgba(44, 62, 80, 0.99);
-  }
-
-  #passionate {
-    -skrollr-animation-name: passionate;
-  }
-
-  @-skrollr-keyframes passionate {
-    #{$start - 250} {
-      opacity: 0;
-      fill: rgba(232, 77, 91, 0.99);
-    }
-
-    #{$start - 150} {
-      opacity: 1;
-      fill: rgba(232, 77, 91, 0.99);
-    }
-
-    #{$start + 300} {
-      opacity: 1;
-      fill: rgba(232, 77, 91, 0.99);
-    }
-
-    #{$start + 400} {
-      opacity: 1;
-      fill: rgba(245, 236, 217, 0.99);
-    }
-
-    #{$start + 700} {
-      opacity: 1;
-      fill: rgba(245, 236, 217, 0.99);
-    }
-
-    #{$start + 750} {
-      opacity: 1;
-      fill: rgba(232, 77, 91, 0.99);
-    }
-
-  }
-  #ownership {
-    -skrollr-animation-name: ownership;
-  }
-
-  @-skrollr-keyframes ownership {
-
-    #{$start} {
-      opacity: 0;
-    }
-
-    #{$start + 50} {
-      opacity: 1;
-    }
-  }
-
-  #leaving text {
-    -skrollr-animation-name: leaving;
-  }
-
-  @-skrollr-keyframes leaving {
-
-    #{$start + 300} {
-      opacity: 0;
-      fill: rgb(245, 236, 217);
-    }
-
-    #{$start + 400} {
-      opacity: 1;
-      fill: rgb(245, 236, 217);
-    }
-
-    #{$start + 700} {
-      opacity: 1;
-      fill: rgb(245, 236, 217);
-    }
-
-    #{$start + 750} {
-      opacity: 1;
-      fill: rgb(43, 172, 181);
-    }
-
-    #{$start + 850} {
-      opacity: 1;
-      fill: rgb(43, 172, 181);
-    }
-
-    #{$start + 900} {
-      opacity: 0;
-      fill: rgb(43, 172, 181);
-    }
-
-  }
-
-  #london {
-    -skrollr-animation-name: london;
-  }
-
-  @-skrollr-keyframes london {
-
-    #{$start + 1000} {
-      transform: translate(10px, -10px);
-    }
-
-    #{$start + 1300} {
-      transform: translate(-100px, -250px);
-    }
-
-    #{$start + 1700} {
-      transform: translate(-250px, -250px);
-    }
-
-  }
-
-  #planebig {
-    -skrollr-animation-name: planebig;
-  }
-
-  @-skrollr-keyframes planebig {
-
-    #{$start + 900} {
-      transform: translate(50px, 10px);
-    }
-
-    #{$start + 1600} {
-      transform: translate(3000px, 200px);
-    }
-
-    #{$start + 1800} {
-      transform: translate(8000px, 400px);
-    }
-
-  }
-
-  #june {
-    -skrollr-animation-name: june;
-  }
-
-  @-skrollr-keyframes june {
-
-    #{$start + 790} {
-      opacity: 0;
-      display: none;
-    }
-
-    #{$start + 800} {
-      opacity: 0;
-      display: block;
-    }
-
-    #{$start + 900} {
-      opacity: 1;
-    }
-
-    #{$start + 1200} {
-      opacity: 1;
-    }
-
-    #{$start + 1250} {
-      opacity: 0;
-    }
-
-  }
-
-  #thankyouforscrolling {
-    -skrollr-animation-name: thankyou;
-  }
-
-  @-skrollr-keyframes thankyou {
-
-    #{$start + 1200} {
-      opacity: 0;
-    }
-
-    #{$start + 1250} {
-      opacity: 1;
-    }
-
   }
 
   #contacts {
@@ -2615,162 +2960,169 @@ $start: $scene_04_begin;
 
   @-skrollr-keyframes contacts {
 
-    #{$start + 1800} {
+    #{$start + 1400} {
       transform: translate(0, 100px);
       opacity: 0;
     }
 
-    #{$start + 1850} {
+    #{$start + 1450} {
       transform: translate(0, 1px);
       opacity: 1;
     }
 
   }
 
-  #pegu {
-    -skrollr-animation-name: pegu;
+  #sc6title {
+    -skrollr-animation-name: a_sc6_title;
   }
 
-  @-skrollr-keyframes pegu {
-
-    #{$start + 2800} {
+  @-skrollr-keyframes a_sc6_title {
+    #{$start - 200} {
       opacity: 0;
     }
 
-    #{$start + 2900} {
-      opacity: 1;
-    }
-  }
-
-  #rightside {
-    -skrollr-animation-name: rightside;
-  }
-
-  @-skrollr-keyframes rightside {
-
-    #{$start + 2800} {
+    #{$start - 150} {
       opacity: 1;
     }
 
-    #{$start + 2900} {
-      opacity: 0;
-    }
-  }
-
-  #sky {
-    -skrollr-animation-name: sky;
-
-  }
-
-  @-skrollr-keyframes sky {
-    #{$start + 300} {
-      opacity: 0;
-    }
-
-    #{$start + 350} {
+    #{$start + 1200} {
       opacity: 1;
     }
 
-    #{$start + 700} {
-      opacity: 1;
-    }
-
-    #{$start + 750} {
-      opacity: 0;
-    }
-  }
-
-  #clouds {
-    -skrollr-animation-name: clouds;
-  }
-
-  @-skrollr-keyframes clouds {
-
-    #{$start + 300} {
-      transform: translate(-100px, 0px);
-      opacity: 0;
-    }
-
-    #{$start + 350} {
-      transform: translate(-50px, 0);
-      opacity: 1;
-    }
-
-    #{$start + 700} {
-      transform: translate(0px, 0);
-      opacity: 1;
-    }
-
-    #{$start + 750} {
-      opacity: 0;
-      transform: translate(100px, 0);
-    }
-
-  }
-
-  #plane {
-    -skrollr-animation-name: plane;
-  }
-  @-skrollr-keyframes plane {
-    #{$start+300} {
-      transform: translate(-2600px, 0px);
-      opacity: 1;
-    }
-
-    #{$start + 800} {
-      transform: translate(2600px, -600px);
-      opacity: 1;
-    }
-  }
-  #mountains {
-    -skrollr-animation-name: mountains;
-  }
-  @-skrollr-keyframes mountains {
-    #{$start+300} {
-      transform: translate(-200px, 0px);
-      opacity: 0;
-    }
-
-    #{$start+350} {
-      transform: translate(0px, 0px);
-      opacity: 1;
-    }
-
-    #{$start + 700} {
-      transform: translate(50px, 0px);
-      opacity: 1;
-    }
-
-    #{$start + 750} {
-      transform: translate(-200px, 0px);
+    #{$start + 1250} {
       opacity: 0;
     }
 
   }
 
-  #torre {
-    -skrollr-animation-name: torre;
+  #graph1 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: graph1;
   }
 
-  @-skrollr-keyframes torre {
-    #{$start + 200} {
-      transform: translate(-1200px, 0px) scale(1);
+  @-skrollr-keyframes graph1 {
+
+    #{$start - 150} {
+      stroke-dashoffset: 3000;
+    }
+
+    #{$start + 600} {
+      stroke-dashoffset: 0;
+    }
+
+  }
+
+  #graph2 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: graph2;
+  }
+
+  @-skrollr-keyframes graph2 {
+
+    #{$start - 100} {
+      stroke-dashoffset: 3000;
+    }
+
+    #{$start + 400} {
+      stroke-dashoffset: 0;
+    }
+
+  }
+  #skills {
+
+    -skrollr-animation-name: a_skills;
+  }
+
+  @-skrollr-keyframes a_skills {
+
+    #{$start + 1350} {
       opacity: 1;
     }
 
-    #{$start + 300} {
-      transform: translate(-10px, 10px) scale(0.7);
-      opacity: 1;
-    }
-
-    #{$start + 750} {
-      transform: translate(-10px, 10px) scale(0.7);
-      opacity: 1;
-    }
-
-    #{$start + 800} {
-      transform: translate(-300px, 0px) scale(1);
+    #{$start + 1400} {
       opacity: 0;
     }
+
   }
+  #skillpath {
+
+    -skrollr-animation-name: a_skillpath;
+  }
+
+  @-skrollr-keyframes a_skillpath {
+
+    #{$start } {
+      opacity: 0;
+    }
+
+    #{$start + 50} {
+      opacity: 1;
+    }
+
+  }
+
+  #skillnames {
+
+    -skrollr-animation-name: a_skillnames;
+  }
+
+  @-skrollr-keyframes a_skillnames {
+
+    #{$start } {
+      opacity: 0;
+    }
+
+    #{$start + 100} {
+      opacity: 1;
+    }
+
+  }
+
+  #invincible {
+
+    -skrollr-animation-name: a_invincible;
+  }
+
+  @-skrollr-keyframes a_invincible {
+
+    #{$start + 950} {
+      opacity: 0;
+    }
+
+    #{$start + 1000} {
+      opacity: 1;
+    }
+
+    #{$start + 1300} {
+      opacity: 1;
+    }
+
+    #{$start + 1320} {
+      opacity: 0;
+      display: block;
+    }
+
+    #{$start + 1350} {
+      display: none;
+    }
+
+  }
+
+
+  .clip-svg {
+    clip-path: url('#myClip');
+  }
+
 }

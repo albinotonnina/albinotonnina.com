@@ -1,84 +1,86 @@
 @import 'normalize';
-@import 'spinner';
-@import 'ribbons';
 
-figure {
+@import 'helpers';
+@import 'skrollr';
+@import 'print-styles';
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
   margin: 0;
 }
 
 body {
-  background-color: #EBEFF0;
   font-family: 'Roboto', sans-serif;
-}
-
-a:link {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-a:visited {
-  color: #3498db;
-}
-
-a:hover, a:focus {
   color: #151D29;
+
+  &[data-display="none"]{
+    background: #3498db;
+  }
 }
 
-a:active {
-  color: #151D29;
+#resume {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1026px;
+  [data-display="none"] & {
+    display: none;
+  }
 }
 
-aside a strong {
-  font-weight: normal;
+#sidebar {
+  border-top: 15px solid #388ac1;
+  background: #3498db;
+
+  a {
+    strong {
+      font-weight: normal;
+    }
+
+    &:link, &:visited {
+      color: white;
+      font-weight: 100;
+    }
+
+    &:hover, &:focus {
+      color: #151D29;
+    }
+
+  }
+
+  #thislink {
+    display: none;
+  }
+
+  #printfriendly {
+    font-weight: 100;
+    font-size: small;
+  }
+
 }
 
-aside a:link, aside a:visited {
-  color: white;
-  font-weight: 100;
-}
 
-aside a:hover, aside a:focus {
-  color: #151D29;
-}
-
-aside #thislink {
+.portrait-mode {
   display: none;
 }
 
-aside p#printfriendly {
-  font-weight: 100;
-  font-size: small;
+@media all and (orientation: portrait) {
+  .portrait-mode {
+    display: block;
+    text-align: center;
+    background: #3498db;
+    font-size: 1.5em;
+    color: white;
+    padding: 1.5em;
+  }
+
 }
 
-.wrapper {
-  width: 90%;
-  margin: 0 5%;
-}
 
-.header-container, .main {
-  color: #151D29;
-}
 
-.header-container {
-}
 
-.main aside {
-  border-top: 15px solid #388ac1;
-}
 
-.main aside {
-  background: #3498db;
-}
-
-.title {
-  font-weight: 100;
-  font-size: 36px;
-}
-
-/* ==============
-MOBILE:Main
-============== */
 
 .main {
   padding: 0;
@@ -113,38 +115,38 @@ MOBILE:Main
 
 ========================================================================== */
 
-h1 {
-  margin: 0.37em 0;
-}
+.list {
 
-.list time {
-  float: right;
-}
+  time {
+    float: right;
+  }
 
-.list section {
-  border-bottom: 1px solid #151D29;
-  font-size: small;
-  margin-left: 1em;
-}
+  section {
+    border-bottom: 1px solid #151D29;
+    font-size: small;
+    margin-left: 1em;
+  }
 
-.list p {
-  margin-top: 0;
-  margin-bottom: 0.3em;
-  clear: left;
-}
+  p {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    clear: left;
+  }
 
-.list h3 {
-  float: left;
-  margin-bottom: 0;
-  margin-top: 0.3em;
+  h3 {
+    float: left;
+    margin-bottom: 0;
+    margin-top: 0.3em;
+  }
+
 }
 
 #reopen {
   color: #151D29;
-}
 
-#reopen:hover {
-  color: white;
+  &:hover {
+    color: white;
+  }
 }
 
 .skill-set {
@@ -182,7 +184,7 @@ h1 {
 
   li {
 
-    &:last-child,&:nth-child(1) {
+    &:last-child, &:nth-child(1) {
       &:after {
         content: '';
         margin: 0;
@@ -204,47 +206,24 @@ h1 {
   }
 }
 
-/* ==========================================================================
-Media Queries
-========================================================================== */
-
 @media only screen and (min-width: 768px) {
-  /* ====================
-WIDE:CSS3 Effects
-==================== */
-
-  .main aside {
-    -webkit-box-shadow: 0 5px 10px #aaa;
-    -moz-box-shadow: 0 5px 10px #aaa;
+  #sidebar {
     box-shadow: 0 5px 10px #aaa;
-  }
-  /* ============
- WIDE:Main
- ============ */
-
-  .main article {
-    float: left;
-    width: 57%;
-  }
-  .main aside {
     float: right;
     width: 28%;
   }
-}
 
-@media only screen and (min-width: 1140px) {
-  /* ===============
-Maximal Width
-=============== */
-
-  .wrapper {
-    width: 1026px;
-    /* 1140px - 10% for margins */
-
-    margin: 0 auto;
+  #resumeData {
+    float: left;
+    width: 57%;
   }
 }
 
-@import 'helpers';
-@import 'skrollr';
-@import 'print-styles';
+
+
+
+
+
+
+
+

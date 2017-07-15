@@ -5,21 +5,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _animejs = require('animejs');
+
+var _animejs2 = _interopRequireDefault(_animejs);
+
 var _utilities = require('./utilities');
 
 var utils = _interopRequireWildcard(_utilities);
-
-var _scrollDepth = require('scroll-depth');
-
-var _scrollDepth2 = _interopRequireDefault(_scrollDepth);
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _moveJs = require('move-js');
-
-var _moveJs2 = _interopRequireDefault(_moveJs);
 
 var _async = require('async');
 
@@ -33,504 +27,328 @@ var _animation3 = require('../svg/scene4/animation');
 
 var _animation4 = _interopRequireDefault(_animation3);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _animation5 = require('../svg/scene5/animation');
+
+var _animation6 = _interopRequireDefault(_animation5);
+
+var _animation7 = require('../svg/scene6/animation');
+
+var _animation8 = _interopRequireDefault(_animation7);
+
+var _timing = require('./timing');
+
+var _timing2 = _interopRequireDefault(_timing);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-exports.default = {
-    // queue: [],
-    timing: {},
-    scenes: {
-        scene1: _animation2.default,
-        scene4: _animation4.default
-    },
-    // options: {},
-    skrollr: {},
-    cache: {},
-    isHidden: true,
-    // subscriptions: {},
-    // trackingAccount: 'UA-265680-29',
-    defaults: {
-        mobileDeceleration: 0.1,
-        scale: 1,
-        smoothScrollingDuration: 200,
-        smoothScrolling: true
-    },
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    init: function init() {
-        var _this = this;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-        if (!Modernizr.inlinesvg || !Modernizr.svg || !Modernizr.svgclippaths) {
+var _class = function () {
+    function _class() {
+        _classCallCheck(this, _class);
 
-            this.hide();
-        } else {
+        this.scenes = {
+            scene1: _animation2.default,
+            scene5: _animation6.default,
+            scene4: _animation4.default,
+            scene6: _animation8.default
+        };
 
-            (0, _scrollDepth2.default)();
+        this.defaults = {
+            mobileDeceleration: 0.001,
+            scale: 1,
+            smoothScrollingDuration: 200,
+            smoothScrolling: true
+        };
 
-            if (utils.isIE()) {
-                (0, _jquery2.default)('.vignette').passThrough('.box');
-            }
+        this.siteRoot = utils.createElementWithAttrs('figure', {
+            role: 'site'
+        });
 
-            this.addLoader();
+        document.body.appendChild(this.siteRoot);
 
-            utils.ajax('svg/timing.json', {}, 'json', function (data) {
-                var begin = 0;
+        this.loader = utils.createElementWithAttrs('figure', {
+            id: 'loader'
+        });
 
-                for (var scene in data) {
-                    begin += data[scene].offset;
-                    data[scene].begin = begin;
-                    data[scene].end = begin + data[scene].duration;
-                    begin += data[scene].duration;
-                }
+        document.body.appendChild(this.loader);
 
-                _this.timing = data;
+        document.body.setAttribute('data-display', 'divertissement');
 
-                _this.buildScenes(_this.timing);
+        this.calculateTiming();
 
-                _this.addVideoPlayer();
+        this.buildScenes();
 
-                _async2.default.each((0, _jquery2.default)('[data-scene]'), _this.loadScene.bind(_this), function () {
+        this.addVideoPlayer();
+    }
 
-                    (0, _jquery2.default)(document.head).append((0, _jquery2.default)('<script/>', {
-                        src: 'scripts/skrollr.js'
-                    }));
+    _createClass(_class, [{
+        key: 'initSkrollr',
+        value: function initSkrollr() {
+            var _this = this;
 
-                    _this.clickEvents();
+            if (!skrollr.get()) {
 
-                    _this.resize();
+                var onRender = function onRender(obj) {
+                    for (var name in _this.scenes) {
 
-                    _this.initSkrollr();
-
-                    (0, _jquery2.default)('body > div,figure[role=loader]').fadeOut('300');
-
-                    if (utils.isMobile()) {
-
-                        var mql = window.matchMedia('(orientation: portrait)');
-
-                        if (mql.matches) {
-                            _this.hide();
-                        } else {
-                            _this.show(function () {
-                                _this.activateCvLink();
-                            });
-                        }
-                        mql.addListener(function (m) {
-                            if (m.matches) {
-                                _this.hide();
-                            } else {
-                                _this.show();
-                            }
-                        });
-                    } else {
-                        _this.show(function () {
-                            _this.movetheThing();
-                            _this.activateCvLink();
-                        });
-                    }
-                });
-            }, function () {
-                _this.hide();
-            });
-        }
-    },
-
-    initSkrollr: function initSkrollr() {
-        var _this2 = this;
-
-        var renderTimeout = void 0;
-        var options = Object.assign(this.defaults, {
-            render: function render(obj) {
-                if (renderTimeout) {
-                    clearTimeout(renderTimeout);
-                }
-                renderTimeout = setTimeout(function () {
-
-                    //  dconsole.log('this.scenes', this.scenes);
-
-                    for (var name in _this2.scenes) {
-
-                        //console.log(this.scenes[name]);
-
-                        if (typeof _this2.scenes[name].render === 'function') {
-
-                            var pos = _this2.time(obj, _this2.timing[name] || {
+                        if (typeof _this.scenes[name].render === 'function') {
+                            var pos = _this.time(obj, _this.timing[name] || {
                                 begin: 0,
                                 end: 1
                             });
-
-                            _this2.scenes[name].render(pos, obj);
+                            _this.scenes[name].render(pos, obj);
                         }
                     }
-                }, 1);
-            }
-        });
-
-        this.skrollr = skrollr.init(options);
-
-        skrollr.menu.init(this.skrollr, {
-            animate: true,
-            easing: 'swing',
-            scenes: this.timing,
-            scale: 1,
-            duration: function duration(currentTop, targetTop) {
-                return Math.abs(currentTop - targetTop) * 0.5;
-            }
-        });
-    },
-
-    addLoader: function addLoader() {
-        var site = document.createElement('figure');
-        (0, _jquery2.default)(site).attr('role', 'site');
-        (0, _jquery2.default)('body').append(site);
-        var loader = document.createElement('figure');
-        (0, _jquery2.default)(loader).attr('role', 'loader');
-        (0, _jquery2.default)('body').append(loader);
-        var spinner = document.createElement('div');
-        (0, _jquery2.default)(spinner).attr('class', 'spinner');
-        (0, _jquery2.default)(loader).append(spinner);
-    },
-
-    addVideoPlayer: function addVideoPlayer() {
-        (0, _jquery2.default)('#videoPlayer').append('<iframe id="vimeoPlayer" src="//player.vimeo.com/video/88016428" width="100%" height="100%"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
-    },
-
-    resize: function resize() {
-
-        var windowWidth = (0, _jquery2.default)(window).innerWidth();
-        var windowHeight = (0, _jquery2.default)(window).innerHeight();
-        var windowAspectRatio = windowWidth / windowHeight;
-        var viewBox = {
-            width: 1024,
-            height: 768
-        };
-        var bBox = {
-            width: 3 * viewBox.width,
-            height: 3 * viewBox.height
-        };
-
-        var maxHeight = viewBox.height / viewBox.width * windowWidth;
-        if (windowHeight > maxHeight) {
-            this.hide(true);
-        } else {
-
-            if (skrollr.get()) {
-                this.unhide();
-            }
-        }
-
-        var maxAspectRatio = bBox.width / viewBox.height;
-        var minAspectRatio = viewBox.width / bBox.height;
-        var viewBoxRatio = viewBox.width / viewBox.height;
-
-        (0, _jquery2.default)('[data-scene] svg').each(function () {
-            var $svg = (0, _jquery2.default)(this);
-            if (windowAspectRatio > maxAspectRatio) {
-                $svg.attr({
-                    width: windowWidth,
-                    height: windowWidth / maxAspectRatio
-                });
-            } else if (windowAspectRatio < minAspectRatio) {
-                $svg.attr({
-                    width: minAspectRatio * windowHeight,
-                    height: windowHeight
-                });
-            } else {
-                $svg.attr({
-                    width: windowWidth,
-                    height: windowHeight
-                });
-            }
-        });
-
-        viewBox = {
-            width: 1024,
-            height: 60
-        };
-        bBox = {
-            width: 3 * viewBox.width,
-            height: 3 * viewBox.height
-        };
-
-        maxAspectRatio = bBox.width / viewBox.height;
-        minAspectRatio = viewBox.width / (bBox.height - 768);
-        viewBoxRatio = viewBox.width / viewBox.height;
-
-        (0, _jquery2.default)('nav svg').each(function () {
-            var $svg = (0, _jquery2.default)(this);
-
-            var attrs;
-            if (windowAspectRatio > maxAspectRatio) {
-                attrs = {
-                    width: windowWidth,
-                    height: windowWidth / maxAspectRatio
                 };
-                $svg.attr(attrs);
-                (0, _jquery2.default)('nav').css(attrs);
-            } else if (windowAspectRatio < minAspectRatio) {
-                attrs = {
-                    width: minAspectRatio * windowHeight,
-                    height: windowHeight * 60 / 768
-                };
-                $svg.attr(attrs);
-                (0, _jquery2.default)('nav').css(attrs);
-            } else {
-                attrs = {
-                    width: windowWidth,
-                    height: windowHeight * 60 / 768
-                };
-                $svg.attr(attrs);
-                (0, _jquery2.default)('nav').css(attrs);
-            }
-        });
-    },
 
-    buildScenes: function buildScenes(obj) {
+                var options = Object.assign(this.defaults, {
+                    render: onRender
+                });
 
-        (0, _jquery2.default)(document.head).append((0, _jquery2.default)('<link/>').attr({
-            'data-skrollr-stylesheet': true,
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: 'styles/animation.css'
-        }));
+                this.skrollr = skrollr.init(options);
 
-        (0, _jquery2.default)('figure[role=site]').append('<nav/>');
+                for (var name in this.scenes) {
+                    if (typeof this.scenes[name].init === 'function') {
+                        this.scenes[name].init(this);
+                    }
+                }
 
-        utils.ajax('svg/menu/scene.svg', {}, 'html', function (data) {
-            (0, _jquery2.default)('nav').append(data);
-        });
-
-        (0, _jquery2.default)('figure[role=site]').append('<div id="videoPlayer" />');
-
-        if (!utils.isMobile()) {
-            (0, _jquery2.default)('aside').append('<h3><a id="reopen" href="#">Re-open full version</a></h3>');
-        }
-
-        //var debug = document.createElement('div');
-        //$(debug).attr('class', 'debug');
-        //$('figure[role=site]').append(debug);
-
-        var vignette = document.createElement('div');
-
-        (0, _jquery2.default)(vignette).attr('class', 'vignette');
-
-        (0, _jquery2.default)('figure[role=site]').append(vignette);
-
-        var sc = 1;
-        for (var key in obj) {
-            var scene = document.createElement('div');
-            (0, _jquery2.default)(scene).attr('data-scene', key);
-            (0, _jquery2.default)(scene).attr('id', 'scene' + sc);
-            (0, _jquery2.default)('figure[role=site]').append(scene);
-            sc++;
-        }
-    },
-
-    loadScene: function loadScene(element, callback) {
-        var _this3 = this;
-
-        var elObj = (0, _jquery2.default)(element);
-        var name = elObj.data('scene');
-
-        utils.ajax('svg/' + name + '/scene.svg', {}, 'html', function (data) {
-
-            elObj.append(data);
-
-            if (_this3.scenes[name] && _this3.scenes[name].easing) {
-                _jquery2.default.extend(options, _this3.scenes[name]);
-            }
-
-            callback();
-        }, function (request, status, error) {
-            //console.log(error);
-        });
-    },
-
-    clickEvents: function clickEvents() {
-        var _this4 = this;
-
-        (0, _jquery2.default)('#lalineag').bind('click', function () {
-            window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
-        });
-
-        (0, _jquery2.default)('#numidia').bind('click', function () {
-            window.open('http://www.numidia.it', '_blank');
-        });
-
-        (0, _jquery2.default)('#intro2').bind('click', function () {
-            window.open('http://www.workshare.com', '_blank');
-        });
-
-        (0, _jquery2.default)('#viewresume').bind('click', this.hide.bind(this));
-
-        (0, _jquery2.default)('#email').bind('click', function () {
-            window.open('mailto:albinotonnina@gmail.com');
-        });
-
-        (0, _jquery2.default)('#linkedin').bind('click', function () {
-            window.open('http://www.linkedin.com/in/albinotonnina', '_blank');
-        });
-
-        (0, _jquery2.default)('#phone').bind('click', function () {
-            window.open('tel:+393934318597');
-        });
-
-        (0, _jquery2.default)('#skype').bind('click', function () {
-            window.open('skype:albino.tonnina');
-        });
-
-        (0, _jquery2.default)('#l500px').bind('click', function () {
-            window.open('http://500px.com/albinotonnina', '_blank');
-        });
-
-        (0, _jquery2.default)('#contactresume').bind('click', this.hide.bind(this));
-
-        (0, _jquery2.default)('#githubsite').bind('click', function () {
-            window.open('http://github.com/albinotonnina/albinotonnina.com', '_blank');
-        });
-
-        (0, _jquery2.default)('#worksharelogo,#junetext').bind('click', function () {
-            window.open('http://www.workshare.com', '_blank');
-        });
-
-        (0, _jquery2.default)('#pegu').bind('click', function () {
-            window.open('http://www.pegu.it', '_blank');
-        });
-
-        (0, _jquery2.default)('#reopen').bind('click', function (e) {
-            _this4.show();
-            e.preventDefault();
-        });
-    },
-
-    framecount: function framecount() {
-        (0, _jquery2.default)('.debug').html(window.scrollY / this.defaults.scale + '<br>' + (window.scrollY + window.innerHeight) / this.defaults.scale);
-    },
-
-    time: function time(obj, timing) {
-        if (obj.curTop <= timing.begin * this.defaults.scale) {
-            return 0;
-        }
-        if (obj.curTop >= timing.end * this.defaults.scale) {
-            return 1;
-        }
-        return (obj.curTop - timing.begin * this.defaults.scale) / timing.duration * this.defaults.scale;
-    },
-
-    removeMe: function removeMe() {
-        var _this5 = this;
-
-        (0, _moveJs2.default)('figure[role=site]').set('opacity', 0).end(function () {
-            (0, _jquery2.default)('figure[role=site]').html('');
-            (0, _jquery2.default)('body').css('height', 'auto').removeClass('this').addClass('myresume');
-            (0, _jquery2.default)('body > div').fadeIn('300', function () {
-                _this5.skrollr.destroy();
-                (0, _jquery2.default)('html,body').css('overflow-y', 'scroll');
-            });
-        });
-    },
-
-    activateCvLink: function activateCvLink() {
-        (0, _moveJs2.default)('#scrolldown').delay('1s').set('opacity', 1).end(function () {
-            (0, _moveJs2.default)('#viewresume').set('opacity', 1).end();
-        });
-    },
-
-    movetheThing: function movetheThing() {
-        var pos = (0, _jquery2.default)('#scrollthing').position();
-        var group = document.getElementById('scrollthing').getBoundingClientRect();
-        (0, _moveJs2.default)('#scrollthing').x((0, _jquery2.default)(window).innerWidth() - pos.left - group.width - 50 - 100).y(Math.abs(pos.top) + 50).delay('2s').end(function () {
-            (0, _moveJs2.default)('#cursor').duration(800).translate(45, 0).end(function () {
-                (0, _moveJs2.default)('#moving').duration(800).translate(0, 50).then().duration(800).translate(0, 25).then().translate(0, -50).duration(800).pop().pop().end();
-            });
-        });
-    },
-
-    beforePrint: function beforePrint() {
-        (0, _jquery2.default)('body').css('height', 'auto');
-        (0, _jquery2.default)('figure').css('display', 'none');
-        (0, _jquery2.default)('body div').css('display', 'block');
-    },
-
-    afterPrint: function afterPrint() {},
-
-    hide: function hide(soft) {
-        var _this6 = this;
-
-        this.isHidden = true;
-
-        (0, _jquery2.default)('figure[role=site]').hide('400', function () {
-
-            (0, _jquery2.default)('html,body').css('overflow-y', 'scroll');
-
-            (0, _jquery2.default)('body').css('height', 'auto').removeClass('this').addClass('myresume');
-
-            (0, _jquery2.default)('body > div').fadeIn();
-
-            if (!soft) {
-                _this6.skrollr.destroy();
-                (0, _jquery2.default)('html, body').animate({
-                    scrollTop: 0
-                }, 400);
-            }
-        });
-    },
-
-    show: function show(callback) {
-        var _this7 = this;
-
-        (0, _jquery2.default)('html, body').css('overflow-y', 'scroll').animate({
-            scrollTop: 0
-        }, 400, function () {
-            if (_this7.isHidden) {
-
-                (0, _jquery2.default)('figure[role=site]').show('400', function () {
-
-                    (0, _jquery2.default)('body').removeClass('myresume').removeClass('it').addClass('this');
-
-                    _this7.isHidden = false;
-
-                    if (skrollr.get()) {
-                        _this7.skrollr.refresh();
-                    } else {
-                        _this7.initSkrollr();
+                skrollr.menu.init(this.skrollr, {
+                    animate: true,
+                    easing: 'swing',
+                    scenes: this.timing,
+                    scale: 1,
+                    duration: function duration(currentTop, targetTop) {
+                        return Math.abs(currentTop - targetTop) * 0.5;
                     }
                 });
+            } else {
 
-                if (callback) {
-                    callback();
-                }
+                this.skrollr.refresh();
             }
-        });
-    },
+        }
+    }, {
+        key: 'removeLoader',
+        value: function removeLoader() {
+            document.body.removeChild(this.loader);
+        }
+    }, {
+        key: 'addVideoPlayer',
+        value: function addVideoPlayer() {
 
-    unhide: function unhide() {
-        var _this8 = this;
+            var videoPlayerDiv = utils.createElementWithAttrs('div', {
+                id: 'videoPlayer'
+            });
 
-        if (this.isHidden) {
+            var videoPlayerIframe = utils.createElementWithAttrs('iframe', {
+                id: 'vimeoPlayer',
+                src: '//player.vimeo.com/video/88016428',
+                width: '100%',
+                height: '100%',
+                frameborder: '0',
+                allowfullscreen: true
+            });
 
-            (0, _jquery2.default)('figure[role=site]').show('400', function () {
+            videoPlayerDiv.appendChild(videoPlayerIframe);
+            this.siteRoot.appendChild(videoPlayerDiv);
+        }
+    }, {
+        key: 'resizeScenes',
+        value: function resizeScenes() {
 
-                (0, _jquery2.default)('body').removeClass('myresume').removeClass('it').addClass('this');
+            var svgWidth = void 0,
+                svgHeight = void 0;
+            svgWidth = window.innerWidth;
+            svgHeight = document.documentElement.clientHeight;
 
-                _this8.isHidden = false;
+            var scenes = document.querySelectorAll('[data-scene] svg');
 
-                if (skrollr.get()) {
-                    _this8.skrollr.refresh();
-                } else {
-                    _this8.initSkrollr();
-                }
+            [].forEach.call(scenes, function (scene) {
+                utils.setAttributes(scene, {
+                    width: svgWidth,
+                    height: svgHeight
+                });
             });
         }
-    }
-};
+    }, {
+        key: 'resizeMenu',
+        value: function resizeMenu() {
+
+            utils.setAttributes(document.querySelector('#menu svg'), {
+                width: window.innerWidth,
+                height: document.documentElement.clientHeight * 60 / 768
+            });
+
+            document.querySelector('#menu').style.width = window.innerWidth + 'px';
+            document.querySelector('#menu').style.height = document.documentElement.clientHeight * 60 / 768 + 'px';
+        }
+    }, {
+        key: 'resize',
+        value: function resize() {
+            var _this2 = this;
+
+            var maxHeight = 768 / 1024 * window.innerWidth;
+            var shouldShowResume = document.documentElement.clientHeight > maxHeight;
+
+            if (shouldShowResume) {
+                this.destroy();
+            } else {
+                this.resizeMenu();
+                this.resizeScenes();
+
+                setTimeout(function () {
+                    _this2.show();
+                }, 500);
+            }
+        }
+    }, {
+        key: 'calculateTiming',
+        value: function calculateTiming() {
+            var begin = 0;
+
+            for (var scene in _timing2.default) {
+                begin += _timing2.default[scene].offset;
+                _timing2.default[scene].begin = begin;
+                _timing2.default[scene].end = begin + _timing2.default[scene].duration;
+                begin += _timing2.default[scene].duration;
+            }
+
+            this.timing = _timing2.default;
+        }
+    }, {
+        key: 'buildScenes',
+        value: function buildScenes() {
+
+            var nav = utils.createElementWithAttrs('nav', {
+                id: 'menu'
+            });
+
+            this.siteRoot.appendChild(nav);
+
+            utils.ajax('svg/menu/scene.svg', {}, 'html', function (data) {
+                nav.innerHTML = data;
+            });
+
+            this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
+                id: 'vignette'
+            }));
+
+            for (var key in this.timing) {
+                this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
+                    'data-scene': key,
+                    id: key
+                }));
+            }
+
+            _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadAllScenes.bind(this));
+        }
+    }, {
+        key: 'loadScene',
+        value: function loadScene(element, callback) {
+            var _this3 = this;
+
+            this.loadHtml(element, function () {
+                _this3.loadSvg(element, callback);
+            });
+        }
+    }, {
+        key: 'loadHtml',
+        value: function loadHtml(element, callback) {
+
+            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.html', {}, 'html', function (data) {
+
+                element.innerHTML = data;
+
+                callback();
+            });
+        }
+    }, {
+        key: 'loadSvg',
+        value: function loadSvg(element, callback) {
+
+            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.svg', {}, 'html', function (data) {
+
+                element.querySelector('.svg').innerHTML = data;
+
+                callback();
+            });
+        }
+    }, {
+        key: 'onLoadAllScenes',
+        value: function onLoadAllScenes() {
+
+            document.head.appendChild(utils.createElementWithAttrs('link', {
+                'data-skrollr-stylesheet': true,
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'styles/animation.css'
+            }));
+
+            utils.addScript('scripts/skrollr.js', this.initDivertissement.bind(this));
+        }
+    }, {
+        key: 'initDivertissement',
+        value: function initDivertissement() {
+            this.removeLoader();
+
+            this.show();
+            this.resize();
+
+            this.activateCvLink();
+        }
+    }, {
+        key: 'time',
+        value: function time(obj, timing) {
+            if (obj.curTop <= timing.begin * this.defaults.scale) {
+                return 0;
+            }
+            if (obj.curTop >= timing.end * this.defaults.scale) {
+                return 1;
+            }
+
+            return (obj.curTop - timing.begin * this.defaults.scale) / timing.duration * this.defaults.scale;
+        }
+    }, {
+        key: 'activateCvLink',
+        value: function activateCvLink() {
+            (0, _animejs2.default)({ targets: '#scrolldown', opacity: 1, delay: 1000 });
+            (0, _animejs2.default)({ targets: '#viewresume', opacity: 1, delay: 2000 });
+        }
+    }, {
+        key: 'show',
+        value: function show() {
+            this.siteRoot.setAttribute('uiState', 'show');
+            this.initSkrollr();
+        }
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            document.body.removeAttribute('style');
+            document.body.removeAttribute('data-display');
+            this.siteRoot.setAttribute('uiState', 'hidden');
+            if (skrollr.get()) {
+                this.skrollr.destroy();
+                window.scroll(0, 0);
+            }
+        }
+    }]);
+
+    return _class;
+}();
+
+exports.default = _class;
+;
 
 
-},{"../svg/scene1/animation":4,"../svg/scene4/animation":5,"./utilities":3,"async":7,"jquery":15,"move-js":16,"scroll-depth":18}],2:[function(require,module,exports){
+},{"../svg/scene1/animation":5,"../svg/scene4/animation":6,"../svg/scene5/animation":7,"../svg/scene6/animation":8,"./timing":3,"./utilities":4,"animejs":10,"async":11}],2:[function(require,module,exports){
 'use strict';
 
-var _jquery = require('jquery');
+var _throttleDebounce = require('throttle-debounce');
 
-var _jquery2 = _interopRequireDefault(_jquery);
+var _utilities = require('./utilities');
 
 var _Site = require('./Site');
 
@@ -538,137 +356,103 @@ var _Site2 = _interopRequireDefault(_Site);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
- Events
- */
+var onLoad = function onLoad() {
 
-(0, _jquery2.default)(function () {
-    waitForWebfonts(['roboto'], function () {
-        _Site2.default.init();
-    });
-});
+    if (Modernizr.inlinesvg || Modernizr.svg || Modernizr.svgclippaths) {
 
-(0, _jquery2.default)(window).on('unload', function () {
-    _Site2.default.removeMe();
-});
+        var SiteInstance = new _Site2.default();
 
-(0, _jquery2.default)(window).resize(function () {
-    _Site2.default.resize();
-});
+        window.onresize = (0, _throttleDebounce.debounce)(100, false, SiteInstance.resize.bind(SiteInstance));
 
-//$(window).scroll(function() {
-//Site.framecount();
-//});
+        window.onbeforeprint = SiteInstance.destroy.bind(SiteInstance);
 
-window.onbeforeprint = _Site2.default.beforePrint;
-
-window.onafterprint = _Site2.default.afterPrint;
-
-window.onload = function () {
-    setTimeout(function () {
-        window.scrollTo(0, -1);
-    }, 0);
-};
-
-if (window.matchMedia) {
-    var mediaQueryList = window.matchMedia('print');
-    mediaQueryList.addListener(function (mql) {
-        if (mql.matches) {
-            _Site2.default.beforePrint();
-        } else {
-            _Site2.default.afterPrint();
-        }
-    });
-}
-
-_jquery2.default.fn.passThrough = function (target) {
-    var $target = (0, _jquery2.default)(target);
-    return this.each(function () {
-        var style = this.style;
-        if ('pointerEvents' in style) {
-            style.pointerEvents = style.userSelect = style.touchCallout = 'none';
-        } else {
-            (0, _jquery2.default)(this).on('click tap mousedown mouseup mouseenter mouseleave', function (e) {
-                $target.each(function () {
-                    var rect = this.getBoundingClientRect();
-                    if (e.pageX > rect.left && e.pageX < rect.right && e.pageY > rect.top && e.pageY < rect.bottom) {
-                        (0, _jquery2.default)(this).trigger(e.type);
-                    }
-                });
+        if (window.matchMedia) {
+            var mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function (mql) {
+                if (mql.matches) {
+                    SiteInstance.beforePrint();
+                }
             });
         }
-    });
+
+        document.querySelector('#reopen').addEventListener('click', function (ev) {
+            SiteInstance.show();
+            ev.preventDefault();
+        });
+    }
 };
 
-//http://stackoverflow.com/questions/5680013/how-to-be-notified-once-a-web-font-has-loaded
-function waitForWebfonts(fonts, callback) {
-    var loadedFonts = 0;
+window.onload = (0, _utilities.waitForWebfonts)(['Roboto:400,100,300,700,900'], onLoad);
 
-    function doNode(font) {
-        var node = document.createElement('span');
-        // Characters that vary significantly among different fonts
-        node.innerHTML = 'giItT1WQy@!-/#';
-        // Visible - so we can measure it - but not on the screen
-        node.style.position = 'absolute';
-        node.style.left = '-10000px';
-        node.style.top = '-10000px';
-        // Large font size makes even subtle changes obvious
-        node.style.fontSize = '300px';
-        // Reset any font properties
-        node.style.fontFamily = 'sans-serif';
-        node.style.fontVariant = 'normal';
-        node.style.fontStyle = 'normal';
-        node.style.fontWeight = 'normal';
-        node.style.letterSpacing = '0';
-        document.body.appendChild(node);
-        // Remember width with no applied web font
-        var width = node.offsetWidth;
-        node.style.fontFamily = font;
-        var interval;
 
-        function checkFont() {
-            // Compare current width with original width
-            if (node && node.offsetWidth !== width) {
-                ++loadedFonts;
-                node.parentNode.removeChild(node);
-                node = null;
-            }
-            // If all fonts have been loaded
-            if (loadedFonts >= fonts.length) {
-                if (interval) {
-                    clearInterval(interval);
-                }
-                if (loadedFonts === fonts.length) {
-                    callback();
-                    return true;
-                }
-            }
-        }
+},{"./Site":1,"./utilities":4,"throttle-debounce":16}],3:[function(require,module,exports){
+"use strict";
 
-        if (!checkFont()) {
-            interval = setInterval(checkFont, 50);
-        }
-    }
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    scene1: {
+        offset: 0,
+        duration: 900,
+        menuoffset: 300
+    },
+    scene2: {
+        offset: 0,
+        duration: 1100,
+        menuoffset: 600
+    },
+    scene3: {
+        offset: 0,
+        duration: 1100,
+        menuoffset: 600
+    },
 
-    for (var i = 0, l = fonts.length; i < l; ++i) {
-        doNode(fonts[i]);
+    scene4: {
+        offset: 0,
+        duration: 1000,
+        menuoffset: 0
+    },
+
+    scene5: {
+        offset: 0,
+        duration: 2100,
+        menuoffset: 1470
+    },
+    scene6: {
+        offset: 0,
+        duration: 2500,
+        menuoffset: 1400
     }
 };
 
 
-},{"./Site":1,"jquery":15}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.isIE = exports.isMobile = exports.ajax = undefined;
+exports.addScript = exports.createElementWithAttrs = exports.setAttributes = exports.isIE = exports.isMobile = exports.ajax = exports.waitForWebfonts = undefined;
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _webfontloader = require('webfontloader');
+
+var _webfontloader2 = _interopRequireDefault(_webfontloader);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var waitForWebfonts = exports.waitForWebfonts = function waitForWebfonts(fonts, callback) {
+    _webfontloader2.default.load({
+        google: {
+            families: fonts
+        },
+        active: callback
+    });
+};
 
 var ajax = exports.ajax = function ajax(url, data, datatype, onSuccess, onFailure) {
     _jquery2.default.ajax({
@@ -695,8 +479,50 @@ var isIE = exports.isIE = function isIE() {
     return myNav.indexOf('msie') !== -1 ? parseInt(myNav.split('msie')[1]) : false;
 };
 
+var setAttributes = exports.setAttributes = function setAttributes(el, attrs) {
+    for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
+};
 
-},{"jquery":15}],4:[function(require,module,exports){
+var createElementWithAttrs = exports.createElementWithAttrs = function createElementWithAttrs(tagName, attrs) {
+    var el = document.createElement(tagName);
+    setAttributes(el, attrs);
+    return el;
+};
+
+var addScript = exports.addScript = function addScript(filepath, callback) {
+    if (filepath) {
+
+        var fileref = createElementWithAttrs('script', {
+            type: 'text/javascript',
+            src: filepath
+        });
+
+        var head = document.getElementsByTagName('head')[0];
+
+        var done = false;
+
+        fileref.onload = fileref.onreadystatechange = function (ev) {
+            if (!done && (!ev.readyState || ev.readyState === 'loaded' || ev.readyState === 'complete')) {
+                done = true;
+
+                callback();
+
+                // Handle memory leak in IE
+                fileref.onload = fileref.onreadystatechange = null;
+                if (head && fileref.parentNode) {
+                    head.removeChild(fileref);
+                }
+            }
+        };
+
+        head.appendChild(fileref);
+    }
+};
+
+
+},{"jquery":12,"webfontloader":18}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -715,6 +541,18 @@ exports.default = {
 	islight: 0,
 	minY: 400,
 	maxY: 700,
+
+	init: function init(site) {
+		document.querySelector('#intro2').addEventListener('click', function () {
+			window.open('http://www.workshare.com', '_blank');
+		});
+
+		document.querySelector('#viewresume').addEventListener('click', function () {
+			site.destroy();
+		});
+	},
+
+
 	render: function render(pos, obj) {
 		if (obj.curTop > this.minY && obj.curTop < this.maxY) {
 			if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
@@ -728,11 +566,26 @@ exports.default = {
 };
 
 
-},{"jquery":15}],5:[function(require,module,exports){
+},{"jquery":12}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
+});
+exports.default = {
+    init: function init() {
+        document.querySelector('#lalineag').addEventListener('click', function () {
+            window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
+        });
+    }
+};
+
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
 
 var _jquery = require('jquery');
@@ -742,78 +595,253 @@ var _jquery2 = _interopRequireDefault(_jquery);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-	iskey: 0,
-	keylast: 0,
-	keyfreq: Math.floor(Math.random() * (7 - 4 + 1)) + 4,
-	lightfreq: Math.floor(Math.random() * (30 - 10 + 1)) + 10,
-	lightlast: 'none',
-	islight: 0,
-	mousefreq: Math.floor(Math.random() * (50 - 30 + 1)) + 30,
-	ismouse: 0,
-	mouselast: 0,
-	minY: 2300,
-	maxY: 4200,
-	newq: [0, 0],
+    iskey: 0,
+    keylast: 0,
+    keyfreq: Math.floor(Math.random() * (7 - 4 + 1)) + 4,
+    lightfreq: Math.floor(Math.random() * (30 - 10 + 1)) + 10,
+    lightlast: 'none',
+    islight: 0,
+    mousefreq: Math.floor(Math.random() * (50 - 30 + 1)) + 30,
+    ismouse: 0,
+    mouselast: 0,
+    minY: 3600,
+    maxY: 5800,
+    newq: [0, 0],
 
-	render: function render(pos, obj) {
+    render: function render(pos, obj) {
 
-		if (obj.curTop > 4350 && obj.curTop < 4500) {
+        // console.log('obj.curTop',obj.curTop);
 
-			if (document.getElementById("vimeoPlayer") == null) {
-				Site.addVideoPlayer();
-			}
+        if (obj.curTop > 5550 && obj.curTop < 5900) {
 
-			var rect = document.getElementById("iphone5positionpath").getBoundingClientRect();
+            if (document.getElementById('vimeoPlayer') == null) {
+                Site.addVideoPlayer();
+            }
 
-			(0, _jquery2.default)('#videoPlayer').css({
-				left: rect.left + 'px',
-				top: rect.top + 'px',
-				width: rect.width + 'px',
-				height: rect.height + 'px'
-			});
-		}
+            var rect = document.getElementById('iphone5positionpath').getBoundingClientRect();
 
-		if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-			if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
-				(0, _jquery2.default)('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#ccd1d9');
-				(0, _jquery2.default)('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
-				(0, _jquery2.default)('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
-				this.keylast = Math.floor(Math.random() * 50 + 1);
-				(0, _jquery2.default)('#scene4 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
-				(0, _jquery2.default)('#scene4 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
-				(0, _jquery2.default)('#scene4 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
-				this.iskey = obj.curTop;
-			}
-			if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
-				this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
-				(0, _jquery2.default)('#imaclight').css('display', this.lightlast);
-				this.islight = obj.curTop;
-			}
-		}
-	}
+            (0, _jquery2.default)('#videoPlayer').css({
+                left: rect.left + 'px',
+                top: rect.top + 'px',
+                width: rect.width + 'px',
+                height: rect.height + 'px'
+            });
+        }
+
+        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
+            if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
+                (0, _jquery2.default)('#scene5 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#ccd1d9');
+                (0, _jquery2.default)('#scene5 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
+                (0, _jquery2.default)('#scene5 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#f7f9f8');
+                this.keylast = Math.floor(Math.random() * 50 + 1);
+                (0, _jquery2.default)('#scene5 #keyboard rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+                (0, _jquery2.default)('#scene5 #keyboard2 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+                (0, _jquery2.default)('#scene5 #keyboard3 rect:eq( ' + this.keylast + ' )').css('fill', '#aab2bd');
+                this.iskey = obj.curTop;
+            }
+            if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
+                this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
+                (0, _jquery2.default)('#imaclight').css('display', this.lightlast);
+                this.islight = obj.curTop;
+            }
+        }
+    }
 };
 
 
-},{"jquery":15}],6:[function(require,module,exports){
-var hasTransitions = require('has-transitions');
-var emitter = require('css-emitter');
+},{"jquery":12}],8:[function(require,module,exports){
+'use strict';
 
-function afterTransition(el, callback) {
-  if(hasTransitions(el)) {
-    return emitter(el).bind(callback);
-  }
-  return callback.apply(el);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _animejs = require('animejs');
+
+var _animejs2 = _interopRequireDefault(_animejs);
+
+var _keywords = require('./keywords');
+
+var _keywords2 = _interopRequireDefault(_keywords);
+
+var _knuthShuffle = require('knuth-shuffle');
+
+var _utilities = require('../../scripts/utilities');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import $ from 'jquery';
+exports.default = {
+    skillShape: {
+        pos: [6000, 6400, 6500, 6700, 6900, 7100, 7400],
+        points: ['1011.3,-124.6 1048.4,78.7 957.3,96.1', '1011.3,-124.6 1121,146.4 911.7,137', '1011.3,-150.7 1143.5,167.3 897.2,150.6', '1011.3,-176.7 1112,138 846.5,197.8', '1011.3,-222.7 1196.5,216.7 831.7,211.6', '1011.3,-241.8 1218,236.8 804.7,236.8'],
+        repeat: 0
+    },
+
+    bg: {
+        colors: ['#F40B0B', '#F20CEC', '#0F0FEF', '#11EDED', '#13EA23', '#E3E815', '#E51717', '#2bacb5'],
+        pos: [7200, 7260, 7300],
+        repeat: 0
+    },
+
+    minY: 6000,
+    maxY: 7300,
+    keyfreq: 30,
+    iskey: 0,
+
+    repeat: 0,
+
+    skills: (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0)),
+
+    init: function init(site) {
+
+        document.querySelector('#email').addEventListener('click', function () {
+            window.open('mailto:albinotonnina@gmail.com');
+        });
+
+        document.querySelector('#medium').addEventListener('click', function () {
+            window.open('https://medium.com/@albinotonnina');
+        });
+
+        document.querySelector('#linkedin').addEventListener('click', function () {
+            window.open('http://www.linkedin.com/in/albinotonnina', '_blank');
+        });
+
+        document.querySelector('#githubsite').addEventListener('click', function () {
+            window.open('http://github.com/albinotonnina/albinotonnina.com', '_blank');
+        });
+
+        document.querySelector('#instagram').addEventListener('click', function () {
+            window.open('http://www.instagram.com/albino_tonnina', '_blank');
+        });
+
+        document.querySelector('#contactresume').addEventListener('click', function () {
+            site.destroy();
+        });
+    },
+
+
+    get newskills() {
+        return (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0));
+    },
+
+    animateSkills: function animateSkills(points, animationNum) {
+        var _this = this;
+
+        (0, _animejs2.default)({
+            targets: '#skillpath',
+            points: points,
+            easing: 'easeOutQuad',
+            duration: 1000,
+            begin: function begin() {
+                _this.skillShape.repeat = animationNum;
+            }
+        });
+    },
+    animateBg: function animateBg(colors, animationNum) {
+        var _this2 = this;
+
+        (0, _animejs2.default)({
+            targets: '#svg6 #bg',
+            fill: colors,
+            easing: 'linear',
+            duration: 2000,
+            begin: function begin() {
+                _this2.bg.repeat = animationNum;
+            }
+        });
+    },
+
+
+    render: function render(pos, obj) {
+
+        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
+            if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
+
+                var fontRandom = Math.abs((Math.random() * 2).toFixed(3)) + 1,
+                    topRandom = Math.floor(Math.random() * window.innerHeight - 164),
+                    leftRandom = Math.floor(Math.random() * window.innerWidth - 64);
+
+                var word = this.skills.pop(),
+                    wordTag = (0, _utilities.createElementWithAttrs)('div', {
+                    class: 'word',
+                    style: 'font-size: ' + fontRandom + 'rem; top: ' + topRandom + 'px; left: ' + leftRandom + 'px'
+                });
+
+                wordTag.innerHTML = word;
+                document.querySelector('#skills_container').appendChild(wordTag);
+
+                (0, _animejs2.default)({
+                    targets: wordTag,
+                    opacity: 1,
+                    scale: 1.4,
+                    direction: 'alternate',
+                    easing: 'easeInOutQuart'
+                });
+
+                if (this.skills.length < 1) {
+                    this.skills = this.newskills;
+                }
+
+                this.iskey = obj.curTop;
+            }
+        } else {
+            document.querySelector('#skills_container').innerHTML = '';
+        }
+
+        for (var i = 0; i < this.skillShape.points.length; i++) {
+            if (obj.curTop > this.skillShape.pos[i] && obj.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
+                this.animateSkills(this.skillShape.points[i], i + 1);
+            }
+        }
+
+        for (var _i = 0; _i < this.bg.colors.length; _i++) {
+            if (obj.curTop > this.bg.pos[_i] && obj.curTop < this.bg.pos[_i + 1] && this.bg.repeat !== _i + 1) {
+                this.animateBg(this.bg.colors, _i + 1);
+            }
+        }
+    }
 };
 
-afterTransition.once = function(el, callback) {
-  afterTransition(el, function fn(){
-    callback.apply(el);
-    emitter(el).unbind(fn);
-  });
-};
 
-module.exports = afterTransition;
-},{"css-emitter":11,"has-transitions":13}],7:[function(require,module,exports){
+},{"../../scripts/utilities":4,"./keywords":9,"animejs":10,"knuth-shuffle":13}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+        value: true
+});
+exports.default = ['Progressive disclosure', 'Red route', 'Stakeholder Interviews', 'Usability engineering', 'User-centred design', 'User journey', 'Lean UX', 'Iterative design', 'Information scent', 'The Double Diamond', 'Principles Over Standards', 'Accessibility First', 'Functional Programming', 'Offline Web Apps', 'Shadow DOM', 'Continuous integration', 'Test-driven development', 'Pair programming', 'Experience design', 'Module bundlers', 'React', 'Redux', 'Application architectures', 'ES2017', 'Jest', 'Visual regression testing', 'Snapshot testing', 'Type inference', 'RxJS', 'Focus on affordance', 'Forward thinking', 'Leadership', 'Mentoring', 'Internet of things', 'Async functions'];
+
+
+},{}],10:[function(require,module,exports){
+/*
+ 2017 Julian Garnier
+ Released under the MIT license
+*/
+var $jscomp$this=this;
+(function(v,p){"function"===typeof define&&define.amd?define([],p):"object"===typeof module&&module.exports?module.exports=p():v.anime=p()})(this,function(){function v(a){if(!g.col(a))try{return document.querySelectorAll(a)}catch(b){}}function p(a){return a.reduce(function(a,d){return a.concat(g.arr(d)?p(d):d)},[])}function w(a){if(g.arr(a))return a;g.str(a)&&(a=v(a)||a);return a instanceof NodeList||a instanceof HTMLCollection?[].slice.call(a):[a]}function F(a,b){return a.some(function(a){return a===b})}
+function A(a){var b={},d;for(d in a)b[d]=a[d];return b}function G(a,b){var d=A(a),c;for(c in a)d[c]=b.hasOwnProperty(c)?b[c]:a[c];return d}function B(a,b){var d=A(a),c;for(c in b)d[c]=g.und(a[c])?b[c]:a[c];return d}function S(a){a=a.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,function(a,b,d,h){return b+b+d+d+h+h});var b=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(a);a=parseInt(b[1],16);var d=parseInt(b[2],16),b=parseInt(b[3],16);return"rgb("+a+","+d+","+b+")"}function T(a){function b(a,b,c){0>
+c&&(c+=1);1<c&&--c;return c<1/6?a+6*(b-a)*c:.5>c?b:c<2/3?a+(b-a)*(2/3-c)*6:a}var d=/hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\)/g.exec(a);a=parseInt(d[1])/360;var c=parseInt(d[2])/100,d=parseInt(d[3])/100;if(0==c)c=d=a=d;else{var e=.5>d?d*(1+c):d+c-d*c,l=2*d-e,c=b(l,e,a+1/3),d=b(l,e,a);a=b(l,e,a-1/3)}return"rgb("+255*c+","+255*d+","+255*a+")"}function x(a){if(a=/([\+\-]?[0-9#\.]+)(%|px|pt|em|rem|in|cm|mm|ex|pc|vw|vh|deg|rad|turn)?/.exec(a))return a[2]}function U(a){if(-1<a.indexOf("translate"))return"px";
+if(-1<a.indexOf("rotate")||-1<a.indexOf("skew"))return"deg"}function H(a,b){return g.fnc(a)?a(b.target,b.id,b.total):a}function C(a,b){if(b in a.style)return getComputedStyle(a).getPropertyValue(b.replace(/([a-z])([A-Z])/g,"$1-$2").toLowerCase())||"0"}function I(a,b){if(g.dom(a)&&F(V,b))return"transform";if(g.dom(a)&&(a.getAttribute(b)||g.svg(a)&&a[b]))return"attribute";if(g.dom(a)&&"transform"!==b&&C(a,b))return"css";if(null!=a[b])return"object"}function W(a,b){var d=U(b),d=-1<b.indexOf("scale")?
+1:0+d;a=a.style.transform;if(!a)return d;for(var c=[],e=[],l=[],h=/(\w+)\((.+?)\)/g;c=h.exec(a);)e.push(c[1]),l.push(c[2]);a=l.filter(function(a,c){return e[c]===b});return a.length?a[0]:d}function J(a,b){switch(I(a,b)){case "transform":return W(a,b);case "css":return C(a,b);case "attribute":return a.getAttribute(b)}return a[b]||0}function K(a,b){var d=/^(\*=|\+=|-=)/.exec(a);if(!d)return a;b=parseFloat(b);a=parseFloat(a.replace(d[0],""));switch(d[0][0]){case "+":return b+a;case "-":return b-a;case "*":return b*
+a}}function D(a){return g.obj(a)&&a.hasOwnProperty("totalLength")}function X(a,b){function d(c){c=void 0===c?0:c;return a.el.getPointAtLength(1<=b+c?b+c:0)}var c=d(),e=d(-1),l=d(1);switch(a.property){case "x":return c.x;case "y":return c.y;case "angle":return 180*Math.atan2(l.y-e.y,l.x-e.x)/Math.PI}}function L(a,b){var d=/-?\d*\.?\d+/g;a=D(a)?a.totalLength:a;if(g.col(a))b=g.rgb(a)?a:g.hex(a)?S(a):g.hsl(a)?T(a):void 0;else{var c=x(a);a=c?a.substr(0,a.length-c.length):a;b=b?a+b:a}b+="";return{original:b,
+numbers:b.match(d)?b.match(d).map(Number):[0],strings:b.split(d)}}function Y(a,b){return b.reduce(function(b,c,e){return b+a[e-1]+c})}function M(a){return(a?p(g.arr(a)?a.map(w):w(a)):[]).filter(function(a,d,c){return c.indexOf(a)===d})}function Z(a){var b=M(a);return b.map(function(a,c){return{target:a,id:c,total:b.length}})}function aa(a,b){var d=A(b);if(g.arr(a)){var c=a.length;2!==c||g.obj(a[0])?g.fnc(b.duration)||(d.duration=b.duration/c):a={value:a}}return w(a).map(function(a,c){c=c?0:b.delay;
+a=g.obj(a)&&!D(a)?a:{value:a};g.und(a.delay)&&(a.delay=c);return a}).map(function(a){return B(a,d)})}function ba(a,b){var d={},c;for(c in a){var e=H(a[c],b);g.arr(e)&&(e=e.map(function(a){return H(a,b)}),1===e.length&&(e=e[0]));d[c]=e}d.duration=parseFloat(d.duration);d.delay=parseFloat(d.delay);return d}function ca(a){return g.arr(a)?y.apply(this,a):N[a]}function da(a,b){var d;return a.tweens.map(function(c){c=ba(c,b);var e=c.value,l=J(b.target,a.name),h=d?d.to.original:l,h=g.arr(e)?e[0]:h,m=K(g.arr(e)?
+e[1]:e,h),l=x(m)||x(h)||x(l);c.isPath=D(e);c.from=L(h,l);c.to=L(m,l);c.start=d?d.end:a.offset;c.end=c.start+c.delay+c.duration;c.easing=ca(c.easing);c.elasticity=(1E3-Math.min(Math.max(c.elasticity,1),999))/1E3;g.col(c.from.original)&&(c.round=1);return d=c})}function ea(a,b){return p(a.map(function(a){return b.map(function(b){var c=I(a.target,b.name);if(c){var d=da(b,a);b={type:c,property:b.name,animatable:a,tweens:d,duration:d[d.length-1].end,delay:d[0].delay}}else b=void 0;return b})})).filter(function(a){return!g.und(a)})}
+function O(a,b,d){var c="delay"===a?Math.min:Math.max;return b.length?c.apply(Math,b.map(function(b){return b[a]})):d[a]}function fa(a){var b=G(ga,a),d=G(ha,a),c=Z(a.targets),e=[],g=B(b,d),h;for(h in a)g.hasOwnProperty(h)||"targets"===h||e.push({name:h,offset:g.offset,tweens:aa(a[h],d)});a=ea(c,e);return B(b,{children:[],animatables:c,animations:a,duration:O("duration",a,d),delay:O("delay",a,d)})}function n(a){function b(){return window.Promise&&new Promise(function(a){return Q=a})}function d(a){return f.reversed?
+f.duration-a:a}function c(a){for(var b=0,c={},d=f.animations,e={};b<d.length;){var g=d[b],h=g.animatable,m=g.tweens;e.tween=m.filter(function(b){return a<b.end})[0]||m[m.length-1];e.isPath$1=e.tween.isPath;e.round=e.tween.round;e.eased=e.tween.easing(Math.min(Math.max(a-e.tween.start-e.tween.delay,0),e.tween.duration)/e.tween.duration,e.tween.elasticity);m=Y(e.tween.to.numbers.map(function(a){return function(b,c){c=a.isPath$1?0:a.tween.from.numbers[c];b=c+a.eased*(b-c);a.isPath$1&&(b=X(a.tween.value,
+b));a.round&&(b=Math.round(b*a.round)/a.round);return b}}(e)),e.tween.to.strings);ia[g.type](h.target,g.property,m,c,h.id);g.currentValue=m;b++;e={isPath$1:e.isPath$1,tween:e.tween,eased:e.eased,round:e.round}}if(c)for(var k in c)E||(E=C(document.body,"transform")?"transform":"-webkit-transform"),f.animatables[k].target.style[E]=c[k].join(" ");f.currentTime=a;f.progress=a/f.duration*100}function e(a){if(f[a])f[a](f)}function g(){f.remaining&&!0!==f.remaining&&f.remaining--}function h(a){var h=f.duration,
+l=f.offset,n=f.delay,P=f.currentTime,q=f.reversed,r=d(a),r=Math.min(Math.max(r,0),h);if(f.children){var p=f.children;if(r>=f.currentTime)for(var u=0;u<p.length;u++)p[u].seek(r);else for(u=p.length;u--;)p[u].seek(r)}r>l&&r<h?(c(r),!f.began&&r>=n&&(f.began=!0,e("begin")),e("run")):(r<=l&&0!==P&&(c(0),q&&g()),r>=h&&P!==h&&(c(h),q||g()));a>=h&&(f.remaining?(t=m,"alternate"===f.direction&&(f.reversed=!f.reversed)):(f.pause(),"Promise"in window&&(Q(),R=b()),f.completed||(f.completed=!0,e("complete"))),
+k=0);e("update")}a=void 0===a?{}:a;var m,t,k=0,Q=null,R=b(),f=fa(a);f.reset=function(){var a=f.direction,b=f.loop;f.currentTime=0;f.progress=0;f.paused=!0;f.began=!1;f.completed=!1;f.reversed="reverse"===a;f.remaining="alternate"===a&&1===b?2:b;for(a=f.children.length;a--;)b=f.children[a],b.seek(b.offset),b.reset()};f.tick=function(a){m=a;t||(t=m);h((k+m-t)*n.speed)};f.seek=function(a){h(d(a))};f.pause=function(){var a=q.indexOf(f);-1<a&&q.splice(a,1);f.paused=!0};f.play=function(){f.paused&&(f.paused=
+!1,t=0,k=d(f.currentTime),q.push(f),z||ja())};f.reverse=function(){f.reversed=!f.reversed;t=0;k=d(f.currentTime)};f.restart=function(){f.pause();f.reset();f.play()};f.finished=R;f.reset();f.autoplay&&f.play();return f}var ga={update:void 0,begin:void 0,run:void 0,complete:void 0,loop:1,direction:"normal",autoplay:!0,offset:0},ha={duration:1E3,delay:0,easing:"easeOutElastic",elasticity:500,round:0},V="translateX translateY translateZ rotate rotateX rotateY rotateZ scale scaleX scaleY scaleZ skewX skewY".split(" "),
+E,g={arr:function(a){return Array.isArray(a)},obj:function(a){return-1<Object.prototype.toString.call(a).indexOf("Object")},svg:function(a){return a instanceof SVGElement},dom:function(a){return a.nodeType||g.svg(a)},str:function(a){return"string"===typeof a},fnc:function(a){return"function"===typeof a},und:function(a){return"undefined"===typeof a},hex:function(a){return/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a)},rgb:function(a){return/^rgb/.test(a)},hsl:function(a){return/^hsl/.test(a)},col:function(a){return g.hex(a)||
+g.rgb(a)||g.hsl(a)}},y=function(){function a(a,d,c){return(((1-3*c+3*d)*a+(3*c-6*d))*a+3*d)*a}return function(b,d,c,e){if(0<=b&&1>=b&&0<=c&&1>=c){var g=new Float32Array(11);if(b!==d||c!==e)for(var h=0;11>h;++h)g[h]=a(.1*h,b,c);return function(h){if(b===d&&c===e)return h;if(0===h)return 0;if(1===h)return 1;for(var m=0,k=1;10!==k&&g[k]<=h;++k)m+=.1;--k;var k=m+(h-g[k])/(g[k+1]-g[k])*.1,l=3*(1-3*c+3*b)*k*k+2*(3*c-6*b)*k+3*b;if(.001<=l){for(m=0;4>m;++m){l=3*(1-3*c+3*b)*k*k+2*(3*c-6*b)*k+3*b;if(0===l)break;
+var n=a(k,b,c)-h,k=k-n/l}h=k}else if(0===l)h=k;else{var k=m,m=m+.1,f=0;do n=k+(m-k)/2,l=a(n,b,c)-h,0<l?m=n:k=n;while(1e-7<Math.abs(l)&&10>++f);h=n}return a(h,d,e)}}}}(),N=function(){function a(a,b){return 0===a||1===a?a:-Math.pow(2,10*(a-1))*Math.sin(2*(a-1-b/(2*Math.PI)*Math.asin(1))*Math.PI/b)}var b="Quad Cubic Quart Quint Sine Expo Circ Back Elastic".split(" "),d={In:[[.55,.085,.68,.53],[.55,.055,.675,.19],[.895,.03,.685,.22],[.755,.05,.855,.06],[.47,0,.745,.715],[.95,.05,.795,.035],[.6,.04,.98,
+.335],[.6,-.28,.735,.045],a],Out:[[.25,.46,.45,.94],[.215,.61,.355,1],[.165,.84,.44,1],[.23,1,.32,1],[.39,.575,.565,1],[.19,1,.22,1],[.075,.82,.165,1],[.175,.885,.32,1.275],function(b,c){return 1-a(1-b,c)}],InOut:[[.455,.03,.515,.955],[.645,.045,.355,1],[.77,0,.175,1],[.86,0,.07,1],[.445,.05,.55,.95],[1,0,0,1],[.785,.135,.15,.86],[.68,-.55,.265,1.55],function(b,c){return.5>b?a(2*b,c)/2:1-a(-2*b+2,c)/2}]},c={linear:y(.25,.25,.75,.75)},e={},l;for(l in d)e.type=l,d[e.type].forEach(function(a){return function(d,
+e){c["ease"+a.type+b[e]]=g.fnc(d)?d:y.apply($jscomp$this,d)}}(e)),e={type:e.type};return c}(),ia={css:function(a,b,d){return a.style[b]=d},attribute:function(a,b,d){return a.setAttribute(b,d)},object:function(a,b,d){return a[b]=d},transform:function(a,b,d,c,e){c[e]||(c[e]=[]);c[e].push(b+"("+d+")")}},q=[],z=0,ja=function(){function a(){z=requestAnimationFrame(b)}function b(b){var c=q.length;if(c){for(var d=0;d<c;)q[d]&&q[d].tick(b),d++;a()}else cancelAnimationFrame(z),z=0}return a}();n.version="2.0.2";
+n.speed=1;n.running=q;n.remove=function(a){a=M(a);for(var b=q.length;b--;)for(var d=q[b],c=d.animations,e=c.length;e--;)F(a,c[e].animatable.target)&&(c.splice(e,1),c.length||d.pause())};n.getValue=J;n.path=function(a,b){var d=g.str(a)?v(a)[0]:a,c=b||100;return function(a){return{el:d,property:a,totalLength:d.getTotalLength()*(c/100)}}};n.setDashoffset=function(a){var b=a.getTotalLength();a.setAttribute("stroke-dasharray",b);return b};n.bezier=y;n.easings=N;n.timeline=function(a){var b=n(a);b.pause();
+b.duration=0;b.add=function(a){b.children.forEach(function(a){a.began=!0;a.completed=!0});w(a).forEach(function(a){var c=b.duration,d=a.offset;a.autoplay=!1;a.offset=g.und(d)?c:K(d,c);b.seek(a.offset);a=n(a);a.duration>c&&(b.duration=a.duration);a.began=!0;b.children.push(a)});b.reset();b.seek(0);b.autoplay&&b.restart();return b};return b};n.random=function(a,b){return Math.floor(Math.random()*(b-a+1))+a};return n});
+},{}],11:[function(require,module,exports){
 (function (process,global){
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -6293,429 +6321,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":17}],8:[function(require,module,exports){
-
-/**
- * Expose `Emitter`.
- */
-
-if (typeof module !== 'undefined') {
-  module.exports = Emitter;
-}
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
-
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
-
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
-      break;
-    }
-  }
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
-
-},{}],9:[function(require,module,exports){
-function one(selector, el) {
-  return el.querySelector(selector);
-}
-
-exports = module.exports = function(selector, el){
-  el = el || document;
-  return one(selector, el);
-};
-
-exports.all = function(selector, el){
-  el = el || document;
-  return el.querySelectorAll(selector);
-};
-
-exports.engine = function(obj){
-  if (!obj.one) throw new Error('.one callback required');
-  if (!obj.all) throw new Error('.all callback required');
-  one = obj.one;
-  exports.all = obj.all;
-  return exports;
-};
-
-},{}],10:[function(require,module,exports){
-
-/**
- * CSS Easing functions
- */
-
-module.exports = {
-    'in':                'ease-in'
-  , 'out':               'ease-out'
-  , 'in-out':            'ease-in-out'
-  , 'snap':              'cubic-bezier(0,1,.5,1)'
-  , 'linear':            'cubic-bezier(0.250, 0.250, 0.750, 0.750)'
-  , 'ease-in-quad':      'cubic-bezier(0.550, 0.085, 0.680, 0.530)'
-  , 'ease-in-cubic':     'cubic-bezier(0.550, 0.055, 0.675, 0.190)'
-  , 'ease-in-quart':     'cubic-bezier(0.895, 0.030, 0.685, 0.220)'
-  , 'ease-in-quint':     'cubic-bezier(0.755, 0.050, 0.855, 0.060)'
-  , 'ease-in-sine':      'cubic-bezier(0.470, 0.000, 0.745, 0.715)'
-  , 'ease-in-expo':      'cubic-bezier(0.950, 0.050, 0.795, 0.035)'
-  , 'ease-in-circ':      'cubic-bezier(0.600, 0.040, 0.980, 0.335)'
-  , 'ease-in-back':      'cubic-bezier(0.600, -0.280, 0.735, 0.045)'
-  , 'ease-out-quad':     'cubic-bezier(0.250, 0.460, 0.450, 0.940)'
-  , 'ease-out-cubic':    'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
-  , 'ease-out-quart':    'cubic-bezier(0.165, 0.840, 0.440, 1.000)'
-  , 'ease-out-quint':    'cubic-bezier(0.230, 1.000, 0.320, 1.000)'
-  , 'ease-out-sine':     'cubic-bezier(0.390, 0.575, 0.565, 1.000)'
-  , 'ease-out-expo':     'cubic-bezier(0.190, 1.000, 0.220, 1.000)'
-  , 'ease-out-circ':     'cubic-bezier(0.075, 0.820, 0.165, 1.000)'
-  , 'ease-out-back':     'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
-  , 'ease-out-quad':     'cubic-bezier(0.455, 0.030, 0.515, 0.955)'
-  , 'ease-out-cubic':    'cubic-bezier(0.645, 0.045, 0.355, 1.000)'
-  , 'ease-in-out-quart': 'cubic-bezier(0.770, 0.000, 0.175, 1.000)'
-  , 'ease-in-out-quint': 'cubic-bezier(0.860, 0.000, 0.070, 1.000)'
-  , 'ease-in-out-sine':  'cubic-bezier(0.445, 0.050, 0.550, 0.950)'
-  , 'ease-in-out-expo':  'cubic-bezier(1.000, 0.000, 0.000, 1.000)'
-  , 'ease-in-out-circ':  'cubic-bezier(0.785, 0.135, 0.150, 0.860)'
-  , 'ease-in-out-back':  'cubic-bezier(0.680, -0.550, 0.265, 1.550)'
-};
-
-},{}],11:[function(require,module,exports){
-/**
- * Module Dependencies
- */
-
-var events = require('event');
-
-// CSS events
-
-var watch = [
-  'transitionend'
-, 'webkitTransitionEnd'
-, 'oTransitionEnd'
-, 'MSTransitionEnd'
-, 'animationend'
-, 'webkitAnimationEnd'
-, 'oAnimationEnd'
-, 'MSAnimationEnd'
-];
-
-/**
- * Expose `CSSnext`
- */
-
-module.exports = CssEmitter;
-
-/**
- * Initialize a new `CssEmitter`
- *
- */
-
-function CssEmitter(element){
-  if (!(this instanceof CssEmitter)) return new CssEmitter(element);
-  this.el = element;
-}
-
-/**
- * Bind CSS events.
- *
- * @api public
- */
-
-CssEmitter.prototype.bind = function(fn){
-  for (var i=0; i < watch.length; i++) {
-    events.bind(this.el, watch[i], fn);
-  }
-  return this;
-};
-
-/**
- * Unbind CSS events
- * 
- * @api public
- */
-
-CssEmitter.prototype.unbind = function(fn){
-  for (var i=0; i < watch.length; i++) {
-    events.unbind(this.el, watch[i], fn);
-  }
-  return this;
-};
-
-/**
- * Fire callback only once
- * 
- * @api public
- */
-
-CssEmitter.prototype.once = function(fn){
-  var self = this;
-  function on(){
-    self.unbind(on);
-    fn.apply(self.el, arguments);
-  }
-  self.bind(on);
-  return this;
-};
-
-
-},{"event":12}],12:[function(require,module,exports){
-
-/**
- * Bind `el` event `type` to `fn`.
- *
- * @param {Element} el
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @return {Function}
- * @api public
- */
-
-exports.bind = function(el, type, fn, capture){
-  if (el.addEventListener) {
-    el.addEventListener(type, fn, capture);
-  } else {
-    el.attachEvent('on' + type, fn);
-  }
-  return fn;
-};
-
-/**
- * Unbind `el` event `type`'s callback `fn`.
- *
- * @param {Element} el
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @return {Function}
- * @api public
- */
-
-exports.unbind = function(el, type, fn, capture){
-  if (el.removeEventListener) {
-    el.removeEventListener(type, fn, capture);
-  } else {
-    el.detachEvent('on' + type, fn);
-  }
-  return fn;
-};
-
-},{}],13:[function(require,module,exports){
-/**
- * This will store the property that the current
- * browser uses for transitionDuration
- */
-var property;
-
-/**
- * The properties we'll check on an element
- * to determine if it actually has transitions
- * We use duration as this is the only property
- * needed to technically have transitions
- * @type {Array}
- */
-var types = [
-  "transitionDuration",
-  "MozTransitionDuration",
-  "webkitTransitionDuration"
-];
-
-/**
- * Determine the correct property for this browser
- * just once so we done need to check every time
- */
-while(types.length) {
-  var type = types.shift();
-  if(type in document.body.style) {
-    property = type;
-  }
-}
-
-/**
- * Determine if the browser supports transitions or
- * if an element has transitions at all.
- * @param  {Element}  el Optional. Returns browser support if not included
- * @return {Boolean}
- */
-function hasTransitions(el){
-  if(!property) {
-    return false; // No browser support for transitions
-  }
-  if(!el) {
-    return property != null; // We just want to know if browsers support it
-  }
-  var duration = getComputedStyle(el)[property];
-  return duration !== "" && parseFloat(duration) !== 0; // Does this element have transitions?
-}
-
-module.exports = hasTransitions;
-},{}],14:[function(require,module,exports){
-
-var prop = require('transform-property');
-
-// IE <=8 doesn't have `getComputedStyle`
-if (!prop || !window.getComputedStyle) {
-  module.exports = false;
-
-} else {
-  var map = {
-    webkitTransform: '-webkit-transform',
-    OTransform: '-o-transform',
-    msTransform: '-ms-transform',
-    MozTransform: '-moz-transform',
-    transform: 'transform'
-  };
-
-  // from: https://gist.github.com/lorenzopolidori/3794226
-  var el = document.createElement('div');
-  el.style[prop] = 'translate3d(1px,1px,1px)';
-  document.body.insertBefore(el, null);
-  var val = getComputedStyle(el).getPropertyValue(map[prop]);
-  document.body.removeChild(el);
-  module.exports = null != val && val.length && 'none' != val;
-}
-
-},{"transform-property":19}],15:[function(require,module,exports){
+},{"_process":14}],12:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -16970,607 +16576,40 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],16:[function(require,module,exports){
-// Patch IE9 and below
-try {
-  document.createElement('DIV').style.setProperty('opacity', 0, '');
-} catch (error) {
-  CSSStyleDeclaration.prototype.getProperty = function(a) {
-    return this.getAttribute(a);
-  };
-  
-  CSSStyleDeclaration.prototype.setProperty = function(a,b) {
-    return this.setAttribute(a, b + '');
-  };
+},{}],13:[function(require,module,exports){
+(function (global){
+/*jshint -W054 */
+(function (exports) {
+  'use strict';
 
-  CSSStyleDeclaration.prototype.removeProperty = function(a) {
-    return this.removeAttribute(a);
-  };
-}
+  // http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  function shuffle(array) {
+    var currentIndex = array.length
+      , temporaryValue
+      , randomIndex
+      ;
 
-/**
- * Module Dependencies.
- */
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
-var Emitter = require('component-emitter');
-var query = require('component-query');
-var after = require('after-transition');
-var has3d = require('has-translate3d');
-var ease = require('css-ease');
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-/**
- * CSS Translate
- */
-
-var translate = has3d
-  ? ['translate3d(', ', 0)']
-  : ['translate(', ')'];
-
-
-/**
- * Export `Move`
- */
-
-module.exports = Move;
-
-/**
- * Get computed style.
- */
-
-var style = window.getComputedStyle
-  || window.currentStyle;
-
-/**
- * Library version.
- */
-
-Move.version = '0.5.0';
-
-/**
- * Export `ease`
- */
-
-Move.ease = ease;
-
-/**
- * Defaults.
- *
- *   `duration` - default duration of 500ms
- *
- */
-
-Move.defaults = {
-  duration: 500
-};
-
-/**
- * Default element selection utilized by `move(selector)`.
- *
- * Override to implement your own selection, for example
- * with jQuery one might write:
- *
- *     move.select = function(selector) {
- *       return jQuery(selector).get(0);
- *     };
- *
- * @param {Object|String} selector
- * @return {Element}
- * @api public
- */
-
-Move.select = function(selector){
-  if ('string' != typeof selector) return selector;
-  return query(selector);
-};
-
-/**
- * Initialize a new `Move` with the given `el`.
- *
- * @param {Element} el
- * @api public
- */
-
-function Move(el) {
-  if (!(this instanceof Move)) return new Move(el);
-  if ('string' == typeof el) el = query(el);
-  if (!el) throw new TypeError('Move must be initialized with element or selector');
-  this.el = el;
-  this._props = {};
-  this._rotate = 0;
-  this._transitionProps = [];
-  this._transforms = [];
-  this.duration(Move.defaults.duration)
-};
-
-
-/**
- * Inherit from `EventEmitter.prototype`.
- */
-
-Emitter(Move.prototype);
-
-/**
- * Buffer `transform`.
- *
- * @param {String} transform
- * @return {Move} for chaining
- * @api private
- */
-
-Move.prototype.transform = function(transform){
-  this._transforms.push(transform);
-  return this;
-};
-
-/**
- * Skew `x` and `y`.
- *
- * @param {Number} x
- * @param {Number} y
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.skew = function(x, y){
-  return this.transform('skew('
-    + x + 'deg, '
-    + (y || 0)
-    + 'deg)');
-};
-
-/**
- * Skew x by `n`.
- *
- * @param {Number} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.skewX = function(n){
-  return this.transform('skewX(' + n + 'deg)');
-};
-
-/**
- * Skew y by `n`.
- *
- * @param {Number} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.skewY = function(n){
-  return this.transform('skewY(' + n + 'deg)');
-};
-
-/**
- * Translate `x` and `y` axis.
- *
- * @param {Number|String} x
- * @param {Number|String} y
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.translate =
-Move.prototype.to = function(x, y){
-  return this.transform(translate.join(''
-    + fixUnits(x) + ', '
-    + fixUnits(y || 0)));
-};
-
-/**
- * Translate on the x axis to `n`.
- *
- * @param {Number|String} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.translateX =
-Move.prototype.x = function(n){
-  return this.transform('translateX(' + fixUnits(n) + ')');
-};
-
-/**
- * Translate on the y axis to `n`.
- *
- * @param {Number|String} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.translateY =
-Move.prototype.y = function(n){
-  return this.transform('translateY(' + fixUnits(n) + ')');
-};
-
-/**
- * Scale the x and y axis by `x`, or
- * individually scale `x` and `y`.
- *
- * @param {Number} x
- * @param {Number} y
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.scale = function(x, y){
-  return this.transform('scale('
-    + x + ', '
-    + (y || x)
-    + ')');
-};
-
-/**
- * Scale x axis by `n`.
- *
- * @param {Number} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.scaleX = function(n){
-  return this.transform('scaleX(' + n + ')')
-};
-
-/**
- * Apply a matrix transformation
- *
- * @param {Number} m11 A matrix coefficient
- * @param {Number} m12 A matrix coefficient
- * @param {Number} m21 A matrix coefficient
- * @param {Number} m22 A matrix coefficient
- * @param {Number} m31 A matrix coefficient
- * @param {Number} m32 A matrix coefficient
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.matrix = function(m11, m12, m21, m22, m31, m32){
-  return this.transform('matrix(' + [m11,m12,m21,m22,m31,m32].join(',') + ')');
-};
-
-/**
- * Scale y axis by `n`.
- *
- * @param {Number} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.scaleY = function(n){
-  return this.transform('scaleY(' + n + ')')
-};
-
-/**
- * Rotate `n` degrees.
- *
- * @param {Number} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.rotate = function(n){
-  return this.transform('rotate(' + n + 'deg)');
-};
-
-/**
- * Set transition easing function to to `fn` string.
- *
- * When:
- *
- *   - null "ease" is used
- *   - "in" "ease-in" is used
- *   - "out" "ease-out" is used
- *   - "in-out" "ease-in-out" is used
- *
- * @param {String} fn
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.ease = function(fn){
-  fn = ease[fn] || fn || 'ease';
-  return this.setVendorProperty('transition-timing-function', fn);
-};
-
-/**
- * Set animation properties
- *
- * @param {String} name
- * @param {Object} props
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.animate = function(name, props){
-  for (var i in props){
-    if (props.hasOwnProperty(i)){
-      this.setVendorProperty('animation-' + i, props[i])
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
-  }
-  return this.setVendorProperty('animation-name', name);
-}
 
-/**
- * Set duration to `n`.
- *
- * @param {Number|String} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.duration = function(n){
-  n = this._duration = 'string' == typeof n
-    ? parseFloat(n) * 1000
-    : n;
-  return this.setVendorProperty('transition-duration', n + 'ms');
-};
-
-/**
- * Delay the animation by `n`.
- *
- * @param {Number|String} n
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.delay = function(n){
-  n = 'string' == typeof n
-    ? parseFloat(n) * 1000
-    : n;
-  return this.setVendorProperty('transition-delay', n + 'ms');
-};
-
-/**
- * Set `prop` to `val`, deferred until `.end()` is invoked.
- *
- * @param {String} prop
- * @param {String} val
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.setProperty = function(prop, val){
-  this._props[prop] = val;
-  return this;
-};
-
-/**
- * Set a vendor prefixed `prop` with the given `val`.
- *
- * @param {String} prop
- * @param {String} val
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.setVendorProperty = function(prop, val){
-  this.setProperty('-webkit-' + prop, val);
-  this.setProperty('-moz-' + prop, val);
-  this.setProperty('-ms-' + prop, val);
-  this.setProperty('-o-' + prop, val);
-  return this;
-};
-
-/**
- * Set `prop` to `value`, deferred until `.end()` is invoked
- * and adds the property to the list of transition props.
- *
- * @param {String} prop
- * @param {String} val
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.set = function(prop, val){
-  this.transition(prop);
-  this._props[prop] = val;
-  return this;
-};
-
-/**
- * Increment `prop` by `val`, deferred until `.end()` is invoked
- * and adds the property to the list of transition props.
- *
- * @param {String} prop
- * @param {Number} val
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.add = function(prop, val){
-  if (!style) return;
-  var self = this;
-  return this.on('start', function(){
-    var curr = parseInt(self.current(prop), 10);
-    self.set(prop, curr + val + 'px');
-  });
-};
-
-/**
- * Decrement `prop` by `val`, deferred until `.end()` is invoked
- * and adds the property to the list of transition props.
- *
- * @param {String} prop
- * @param {Number} val
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.sub = function(prop, val){
-  if (!style) return;
-  var self = this;
-  return this.on('start', function(){
-    var curr = parseInt(self.current(prop), 10);
-    self.set(prop, curr - val + 'px');
-  });
-};
-
-/**
- * Get computed or "current" value of `prop`.
- *
- * @param {String} prop
- * @return {String}
- * @api public
- */
-
-Move.prototype.current = function(prop){
-  return style(this.el).getPropertyValue(prop);
-};
-
-/**
- * Add `prop` to the list of internal transition properties.
- *
- * @param {String} prop
- * @return {Move} for chaining
- * @api private
- */
-
-Move.prototype.transition = function(prop){
-  if (!this._transitionProps.indexOf(prop)) return this;
-  this._transitionProps.push(prop);
-  return this;
-};
-
-/**
- * Commit style properties, aka apply them to `el.style`.
- *
- * @return {Move} for chaining
- * @see Move#end()
- * @api private
- */
-
-Move.prototype.applyProperties = function(){
-  for (var prop in this._props) {
-    this.el.style.setProperty(prop, this._props[prop], '');
-  }
-  return this;
-};
-
-/**
- * Re-select element via `selector`, replacing
- * the current element.
- *
- * @param {String} selector
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.move =
-Move.prototype.select = function(selector){
-  this.el = Move.select(selector);
-  return this;
-};
-
-/**
- * Defer the given `fn` until the animation
- * is complete. `fn` may be one of the following:
- *
- *   - a function to invoke
- *   - an instanceof `Move` to call `.end()`
- *   - nothing, to return a clone of this `Move` instance for chaining
- *
- * @param {Function|Move} fn
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.then = function(fn){
-  // invoke .end()
-  if (fn instanceof Move) {
-    this.on('end', function(){
-      fn.end();
-    });
-  // callback
-  } else if ('function' == typeof fn) {
-    this.on('end', fn);
-  // chain
-  } else {
-    var clone = new Move(this.el);
-    clone._transforms = this._transforms.slice(0);
-    this.then(clone);
-    clone.parent = this;
-    return clone;
+    return array;
   }
 
-  return this;
-};
+  exports.knuthShuffle = shuffle;
+}('undefined' !== typeof exports && exports || 'undefined' !== typeof window && window || global));
 
-/**
- * Pop the move context.
- *
- * @return {Move} parent Move
- * @api public
- */
-
-Move.prototype.pop = function(){
-  return this.parent;
-};
-
-/**
- * Reset duration.
- *
- * @return {Move}
- * @api public
- */
-
-Move.prototype.reset = function(){
-  this.el.style.webkitTransitionDuration =
-  this.el.style.mozTransitionDuration =
-  this.el.style.msTransitionDuration =
-  this.el.style.oTransitionDuration = '';
-  return this;
-};
-
-/**
- * Start animation, optionally calling `fn` when complete.
- *
- * @param {Function} fn
- * @return {Move} for chaining
- * @api public
- */
-
-Move.prototype.end = function(fn){
-  var self = this;
-
-  // emit "start" event
-  this.emit('start');
-
-  // transforms
-  if (this._transforms.length) {
-    this.setVendorProperty('transform', this._transforms.join(' '));
-  }
-
-  // transition properties
-  this.setVendorProperty('transition-properties', this._transitionProps.join(', '));
-  this.applyProperties();
-
-  // callback given
-  if (fn) this.then(fn);
-
-  // emit "end" when complete
-  after.once(this.el, function(){
-    self.reset();
-    self.emit('end');
-  });
-
-  return this;
-};
-
-/**
- * Fix value units
- *
- * @param {Number|String} val
- * @return {String}
- * @api private
- */
-
-function fixUnits(val) {
-  return 'string' === typeof val && isNaN(+val) ? val : val + 'px';
-}
-
-},{"after-transition":6,"component-emitter":8,"component-query":9,"css-ease":10,"has-translate3d":14}],17:[function(require,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],14:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -17756,355 +16795,148 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
-/*!
- * @preserve
- * jquery.scrolldepth.js | v1.0
- * Copyright (c) 2016 Rob Flaherty (@robflaherty)
- * Licensed under the MIT and GPL licenses.
+},{}],15:[function(require,module,exports){
+/* eslint-disable no-undefined */
+
+var throttle = require('./throttle');
+
+/**
+ * Debounce execution of a function. Debouncing, unlike throttling,
+ * guarantees that a function is only executed a single time, either at the
+ * very beginning of a series of calls, or at the very end.
+ *
+ * @param  {Number}   delay         A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}  atBegin       Optional, defaults to false. If atBegin is false or unspecified, callback will only be executed `delay` milliseconds
+ *                                  after the last debounced-function call. If atBegin is true, callback will be executed only at the first debounced-function call.
+ *                                  (After the throttled-function has not been called for `delay` milliseconds, the internal counter is reset).
+ * @param  {Function} callback      A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                  to `callback` when the debounced-function is executed.
+ *
+ * @return {Function} A new, debounced function.
  */
-
-/* Universal module definition */
-
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD
-    define(['jquery'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS
-    module.exports = factory(require('jquery'));
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
-}(function($) {
-
-/* Scroll Depth */
-
-    "use strict";
-
-    var defaults = {
-      minHeight: 0,
-      elements: [],
-      percentage: true,
-      userTiming: true,
-      pixelDepth: true,
-      nonInteraction: true,
-      gaGlobal: false,
-      gtmOverride: false,
-      trackerName: false,
-      dataLayer: 'dataLayer'
-    };
-
-    var $window = $(window),
-      cache = [],
-      scrollEventBound = false,
-      lastPixelDepth = 0,
-      universalGA,
-      classicGA,
-      gaGlobal,
-      standardEventHandler;
-
-    /*
-     * Plugin
-     */
-
-    $.scrollDepth = function(options) {
-
-      var startTime = +new Date;
-
-      options = $.extend({}, defaults, options);
-
-      // Return early if document height is too small
-      if ( $(document).height() < options.minHeight ) {
-        return;
-      }
-
-      /*
-       * Determine which version of GA is being used
-       * "ga", "__gaTracker", _gaq", and "dataLayer" are the possible globals
-       */
-
-      if (options.gaGlobal) {
-        universalGA = true;
-        gaGlobal = options.gaGlobal;
-      } else if (typeof ga === "function") {
-        universalGA = true;
-        gaGlobal = 'ga';
-      } else if (typeof __gaTracker === "function") {
-        universalGA = true;
-        gaGlobal = '__gaTracker';
-      }
-
-      if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
-        classicGA = true;
-      }
-
-      if (typeof options.eventHandler === "function") {
-        standardEventHandler = options.eventHandler;
-      } else if (typeof window[options.dataLayer] !== "undefined" && typeof window[options.dataLayer].push === "function" && !options.gtmOverride) {
-
-        standardEventHandler = function(data) {
-          window[options.dataLayer].push(data);
-        };
-      }
-
-      /*
-       * Functions
-       */
-
-      function sendEvent(action, label, scrollDistance, timing) {
-
-        var command = options.trackerName ? (options.trackerName + '.send') : 'send';
-
-        if (standardEventHandler) {
-
-          standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
-
-          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
-            lastPixelDepth = scrollDistance;
-            standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
-          }
-
-          if (options.userTiming && arguments.length > 3) {
-            standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
-          }
-
-        } else {
-
-          if (universalGA) {
-
-            window[gaGlobal](command, 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
-
-            if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
-              lastPixelDepth = scrollDistance;
-              window[gaGlobal](command, 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
-            }
-
-            if (options.userTiming && arguments.length > 3) {
-              window[gaGlobal](command, 'timing', 'Scroll Depth', action, timing, label);
-            }
-
-          }
-
-          if (classicGA) {
-
-            _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, options.nonInteraction]);
-
-            if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
-              lastPixelDepth = scrollDistance;
-              _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, options.nonInteraction]);
-            }
-
-            if (options.userTiming && arguments.length > 3) {
-              _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
-            }
-
-          }
-
-        }
-
-      }
-
-      function calculateMarks(docHeight) {
-        return {
-          '25%' : parseInt(docHeight * 0.25, 10),
-          '50%' : parseInt(docHeight * 0.50, 10),
-          '75%' : parseInt(docHeight * 0.75, 10),
-          // Cushion to trigger 100% event in iOS
-          '100%': docHeight - 5
-        };
-      }
-
-      function checkMarks(marks, scrollDistance, timing) {
-        // Check each active mark
-        $.each(marks, function(key, val) {
-          if ( $.inArray(key, cache) === -1 && scrollDistance >= val ) {
-            sendEvent('Percentage', key, scrollDistance, timing);
-            cache.push(key);
-          }
-        });
-      }
-
-      function checkElements(elements, scrollDistance, timing) {
-        $.each(elements, function(index, elem) {
-          if ( $.inArray(elem, cache) === -1 && $(elem).length ) {
-            if ( scrollDistance >= $(elem).offset().top ) {
-              sendEvent('Elements', elem, scrollDistance, timing);
-              cache.push(elem);
-            }
-          }
-        });
-      }
-
-      function rounded(scrollDistance) {
-        // Returns String
-        return (Math.floor(scrollDistance/250) * 250).toString();
-      }
-
-      function init() {
-        bindScrollDepth();
-      }
-
-      /*
-       * Public Methods
-       */
-
-      // Reset Scroll Depth with the originally initialized options
-      $.scrollDepth.reset = function() {
-        cache = [];
-        lastPixelDepth = 0;
-        $window.off('scroll.scrollDepth');
-        bindScrollDepth();
-      };
-
-      // Add DOM elements to be tracked
-      $.scrollDepth.addElements = function(elems) {
-
-        if (typeof elems == "undefined" || !$.isArray(elems)) {
-          return;
-        }
-
-        $.merge(options.elements, elems);
-
-        // If scroll event has been unbound from window, rebind
-        if (!scrollEventBound) {
-          bindScrollDepth();
-        }
-
-      };
-
-      // Remove DOM elements currently tracked
-      $.scrollDepth.removeElements = function(elems) {
-
-        if (typeof elems == "undefined" || !$.isArray(elems)) {
-          return;
-        }
-
-        $.each(elems, function(index, elem) {
-
-          var inElementsArray = $.inArray(elem, options.elements);
-          var inCacheArray = $.inArray(elem, cache);
-
-          if (inElementsArray != -1) {
-            options.elements.splice(inElementsArray, 1);
-          }
-
-          if (inCacheArray != -1) {
-            cache.splice(inCacheArray, 1);
-          }
-
-        });
-
-      };
-
-      /*
-       * Throttle function borrowed from:
-       * Underscore.js 1.5.2
-       * http://underscorejs.org
-       * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-       * Underscore may be freely distributed under the MIT license.
-       */
-
-      function throttle(func, wait) {
-        var context, args, result;
-        var timeout = null;
-        var previous = 0;
-        var later = function() {
-          previous = new Date;
-          timeout = null;
-          result = func.apply(context, args);
-        };
-        return function() {
-          var now = new Date;
-          if (!previous) previous = now;
-          var remaining = wait - (now - previous);
-          context = this;
-          args = arguments;
-          if (remaining <= 0) {
-            clearTimeout(timeout);
-            timeout = null;
-            previous = now;
-            result = func.apply(context, args);
-          } else if (!timeout) {
-            timeout = setTimeout(later, remaining);
-          }
-          return result;
-        };
-      }
-
-      /*
-       * Scroll Event
-       */
-
-      function bindScrollDepth() {
-
-        scrollEventBound = true;
-
-        $window.on('scroll.scrollDepth', throttle(function() {
-          /*
-           * We calculate document and window height on each scroll event to
-           * account for dynamic DOM changes.
-           */
-
-          var docHeight = $(document).height(),
-            winHeight = window.innerHeight ? window.innerHeight : $window.height(),
-            scrollDistance = $window.scrollTop() + winHeight,
-
-            // Recalculate percentage marks
-            marks = calculateMarks(docHeight),
-
-            // Timing
-            timing = +new Date - startTime;
-
-          // If all marks already hit, unbind scroll event
-          if (cache.length >= options.elements.length + (options.percentage ? 4:0)) {
-            $window.off('scroll.scrollDepth');
-            scrollEventBound = false;
-            return;
-          }
-
-          // Check specified DOM elements
-          if (options.elements) {
-            checkElements(options.elements, scrollDistance, timing);
-          }
-
-          // Check standard marks
-          if (options.percentage) {
-            checkMarks(marks, scrollDistance, timing);
-          }
-        }, 500));
-
-      }
-
-      init();
-
-    };
-
-    // UMD export
-    return $.scrollDepth;
-
-}));
-
-},{"jquery":15}],19:[function(require,module,exports){
-
-var styles = [
-  'webkitTransform',
-  'MozTransform',
-  'msTransform',
-  'OTransform',
-  'transform'
-];
-
-var el = document.createElement('p');
-var style;
-
-for (var i = 0; i < styles.length; i++) {
-  style = styles[i];
-  if (null != el.style[style]) {
-    module.exports = style;
-    break;
-  }
-}
+module.exports = function ( delay, atBegin, callback ) {
+	return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
+};
+
+},{"./throttle":17}],16:[function(require,module,exports){
+var throttle = require('./throttle');
+var debounce = require('./debounce');
+
+module.exports = {
+	throttle: throttle,
+	debounce: debounce
+};
+
+},{"./debounce":15,"./throttle":17}],17:[function(require,module,exports){
+/* eslint-disable no-undefined,no-param-reassign,no-shadow */
+
+/**
+ * Throttle execution of a function. Especially useful for rate limiting
+ * execution of handlers on events like resize and scroll.
+ *
+ * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}   noTrailing     Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
+ *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
+ *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
+ *                                    the internal counter is reset)
+ * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                    to `callback` when the throttled-function is executed.
+ * @param  {Boolean}   debounceMode   If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
+ *                                    schedule `callback` to execute after `delay` ms.
+ *
+ * @return {Function}  A new, throttled, function.
+ */
+module.exports = function ( delay, noTrailing, callback, debounceMode ) {
+
+	// After wrapper has stopped being called, this timeout ensures that
+	// `callback` is executed at the proper times in `throttle` and `end`
+	// debounce modes.
+	var timeoutID;
+
+	// Keep track of the last time `callback` was executed.
+	var lastExec = 0;
+
+	// `noTrailing` defaults to falsy.
+	if ( typeof noTrailing !== 'boolean' ) {
+		debounceMode = callback;
+		callback = noTrailing;
+		noTrailing = undefined;
+	}
+
+	// The `wrapper` function encapsulates all of the throttling / debouncing
+	// functionality and when executed will limit the rate at which `callback`
+	// is executed.
+	function wrapper () {
+
+		var self = this;
+		var elapsed = Number(new Date()) - lastExec;
+		var args = arguments;
+
+		// Execute `callback` and update the `lastExec` timestamp.
+		function exec () {
+			lastExec = Number(new Date());
+			callback.apply(self, args);
+		}
+
+		// If `debounceMode` is true (at begin) this is used to clear the flag
+		// to allow future `callback` executions.
+		function clear () {
+			timeoutID = undefined;
+		}
+
+		if ( debounceMode && !timeoutID ) {
+			// Since `wrapper` is being called for the first time and
+			// `debounceMode` is true (at begin), execute `callback`.
+			exec();
+		}
+
+		// Clear any existing timeout.
+		if ( timeoutID ) {
+			clearTimeout(timeoutID);
+		}
+
+		if ( debounceMode === undefined && elapsed > delay ) {
+			// In throttle mode, if `delay` time has been exceeded, execute
+			// `callback`.
+			exec();
+
+		} else if ( noTrailing !== true ) {
+			// In trailing throttle mode, since `delay` time has not been
+			// exceeded, schedule `callback` to execute `delay` ms after most
+			// recent execution.
+			//
+			// If `debounceMode` is true (at begin), schedule `clear` to execute
+			// after `delay` ms.
+			//
+			// If `debounceMode` is false (at end), schedule `callback` to
+			// execute after `delay` ms.
+			timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+		}
+
+	}
+
+	// Return the wrapper function.
+	return wrapper;
+
+};
+
+},{}],18:[function(require,module,exports){
+/* Web Font Loader v1.6.28 - (c) Adobe Systems, Google. License: Apache 2.0 */(function(){function aa(a,b,c){return a.call.apply(a.bind,arguments)}function ba(a,b,c){if(!a)throw Error();if(2<arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}}function p(a,b,c){p=Function.prototype.bind&&-1!=Function.prototype.bind.toString().indexOf("native code")?aa:ba;return p.apply(null,arguments)}var q=Date.now||function(){return+new Date};function ca(a,b){this.a=a;this.o=b||a;this.c=this.o.document}var da=!!window.FontFace;function t(a,b,c,d){b=a.c.createElement(b);if(c)for(var e in c)c.hasOwnProperty(e)&&("style"==e?b.style.cssText=c[e]:b.setAttribute(e,c[e]));d&&b.appendChild(a.c.createTextNode(d));return b}function u(a,b,c){a=a.c.getElementsByTagName(b)[0];a||(a=document.documentElement);a.insertBefore(c,a.lastChild)}function v(a){a.parentNode&&a.parentNode.removeChild(a)}
+function w(a,b,c){b=b||[];c=c||[];for(var d=a.className.split(/\s+/),e=0;e<b.length;e+=1){for(var f=!1,g=0;g<d.length;g+=1)if(b[e]===d[g]){f=!0;break}f||d.push(b[e])}b=[];for(e=0;e<d.length;e+=1){f=!1;for(g=0;g<c.length;g+=1)if(d[e]===c[g]){f=!0;break}f||b.push(d[e])}a.className=b.join(" ").replace(/\s+/g," ").replace(/^\s+|\s+$/,"")}function y(a,b){for(var c=a.className.split(/\s+/),d=0,e=c.length;d<e;d++)if(c[d]==b)return!0;return!1}
+function ea(a){return a.o.location.hostname||a.a.location.hostname}function z(a,b,c){function d(){m&&e&&f&&(m(g),m=null)}b=t(a,"link",{rel:"stylesheet",href:b,media:"all"});var e=!1,f=!0,g=null,m=c||null;da?(b.onload=function(){e=!0;d()},b.onerror=function(){e=!0;g=Error("Stylesheet failed to load");d()}):setTimeout(function(){e=!0;d()},0);u(a,"head",b)}
+function A(a,b,c,d){var e=a.c.getElementsByTagName("head")[0];if(e){var f=t(a,"script",{src:b}),g=!1;f.onload=f.onreadystatechange=function(){g||this.readyState&&"loaded"!=this.readyState&&"complete"!=this.readyState||(g=!0,c&&c(null),f.onload=f.onreadystatechange=null,"HEAD"==f.parentNode.tagName&&e.removeChild(f))};e.appendChild(f);setTimeout(function(){g||(g=!0,c&&c(Error("Script load timeout")))},d||5E3);return f}return null};function B(){this.a=0;this.c=null}function C(a){a.a++;return function(){a.a--;D(a)}}function E(a,b){a.c=b;D(a)}function D(a){0==a.a&&a.c&&(a.c(),a.c=null)};function F(a){this.a=a||"-"}F.prototype.c=function(a){for(var b=[],c=0;c<arguments.length;c++)b.push(arguments[c].replace(/[\W_]+/g,"").toLowerCase());return b.join(this.a)};function G(a,b){this.c=a;this.f=4;this.a="n";var c=(b||"n4").match(/^([nio])([1-9])$/i);c&&(this.a=c[1],this.f=parseInt(c[2],10))}function fa(a){return H(a)+" "+(a.f+"00")+" 300px "+I(a.c)}function I(a){var b=[];a=a.split(/,\s*/);for(var c=0;c<a.length;c++){var d=a[c].replace(/['"]/g,"");-1!=d.indexOf(" ")||/^\d/.test(d)?b.push("'"+d+"'"):b.push(d)}return b.join(",")}function J(a){return a.a+a.f}function H(a){var b="normal";"o"===a.a?b="oblique":"i"===a.a&&(b="italic");return b}
+function ga(a){var b=4,c="n",d=null;a&&((d=a.match(/(normal|oblique|italic)/i))&&d[1]&&(c=d[1].substr(0,1).toLowerCase()),(d=a.match(/([1-9]00|normal|bold)/i))&&d[1]&&(/bold/i.test(d[1])?b=7:/[1-9]00/.test(d[1])&&(b=parseInt(d[1].substr(0,1),10))));return c+b};function ha(a,b){this.c=a;this.f=a.o.document.documentElement;this.h=b;this.a=new F("-");this.j=!1!==b.events;this.g=!1!==b.classes}function ia(a){a.g&&w(a.f,[a.a.c("wf","loading")]);K(a,"loading")}function L(a){if(a.g){var b=y(a.f,a.a.c("wf","active")),c=[],d=[a.a.c("wf","loading")];b||c.push(a.a.c("wf","inactive"));w(a.f,c,d)}K(a,"inactive")}function K(a,b,c){if(a.j&&a.h[b])if(c)a.h[b](c.c,J(c));else a.h[b]()};function ja(){this.c={}}function ka(a,b,c){var d=[],e;for(e in b)if(b.hasOwnProperty(e)){var f=a.c[e];f&&d.push(f(b[e],c))}return d};function M(a,b){this.c=a;this.f=b;this.a=t(this.c,"span",{"aria-hidden":"true"},this.f)}function N(a){u(a.c,"body",a.a)}function O(a){return"display:block;position:absolute;top:-9999px;left:-9999px;font-size:300px;width:auto;height:auto;line-height:normal;margin:0;padding:0;font-variant:normal;white-space:nowrap;font-family:"+I(a.c)+";"+("font-style:"+H(a)+";font-weight:"+(a.f+"00")+";")};function P(a,b,c,d,e,f){this.g=a;this.j=b;this.a=d;this.c=c;this.f=e||3E3;this.h=f||void 0}P.prototype.start=function(){var a=this.c.o.document,b=this,c=q(),d=new Promise(function(d,e){function f(){q()-c>=b.f?e():a.fonts.load(fa(b.a),b.h).then(function(a){1<=a.length?d():setTimeout(f,25)},function(){e()})}f()}),e=null,f=new Promise(function(a,d){e=setTimeout(d,b.f)});Promise.race([f,d]).then(function(){e&&(clearTimeout(e),e=null);b.g(b.a)},function(){b.j(b.a)})};function Q(a,b,c,d,e,f,g){this.v=a;this.B=b;this.c=c;this.a=d;this.s=g||"BESbswy";this.f={};this.w=e||3E3;this.u=f||null;this.m=this.j=this.h=this.g=null;this.g=new M(this.c,this.s);this.h=new M(this.c,this.s);this.j=new M(this.c,this.s);this.m=new M(this.c,this.s);a=new G(this.a.c+",serif",J(this.a));a=O(a);this.g.a.style.cssText=a;a=new G(this.a.c+",sans-serif",J(this.a));a=O(a);this.h.a.style.cssText=a;a=new G("serif",J(this.a));a=O(a);this.j.a.style.cssText=a;a=new G("sans-serif",J(this.a));a=
+O(a);this.m.a.style.cssText=a;N(this.g);N(this.h);N(this.j);N(this.m)}var R={D:"serif",C:"sans-serif"},S=null;function T(){if(null===S){var a=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent);S=!!a&&(536>parseInt(a[1],10)||536===parseInt(a[1],10)&&11>=parseInt(a[2],10))}return S}Q.prototype.start=function(){this.f.serif=this.j.a.offsetWidth;this.f["sans-serif"]=this.m.a.offsetWidth;this.A=q();U(this)};
+function la(a,b,c){for(var d in R)if(R.hasOwnProperty(d)&&b===a.f[R[d]]&&c===a.f[R[d]])return!0;return!1}function U(a){var b=a.g.a.offsetWidth,c=a.h.a.offsetWidth,d;(d=b===a.f.serif&&c===a.f["sans-serif"])||(d=T()&&la(a,b,c));d?q()-a.A>=a.w?T()&&la(a,b,c)&&(null===a.u||a.u.hasOwnProperty(a.a.c))?V(a,a.v):V(a,a.B):ma(a):V(a,a.v)}function ma(a){setTimeout(p(function(){U(this)},a),50)}function V(a,b){setTimeout(p(function(){v(this.g.a);v(this.h.a);v(this.j.a);v(this.m.a);b(this.a)},a),0)};function W(a,b,c){this.c=a;this.a=b;this.f=0;this.m=this.j=!1;this.s=c}var X=null;W.prototype.g=function(a){var b=this.a;b.g&&w(b.f,[b.a.c("wf",a.c,J(a).toString(),"active")],[b.a.c("wf",a.c,J(a).toString(),"loading"),b.a.c("wf",a.c,J(a).toString(),"inactive")]);K(b,"fontactive",a);this.m=!0;na(this)};
+W.prototype.h=function(a){var b=this.a;if(b.g){var c=y(b.f,b.a.c("wf",a.c,J(a).toString(),"active")),d=[],e=[b.a.c("wf",a.c,J(a).toString(),"loading")];c||d.push(b.a.c("wf",a.c,J(a).toString(),"inactive"));w(b.f,d,e)}K(b,"fontinactive",a);na(this)};function na(a){0==--a.f&&a.j&&(a.m?(a=a.a,a.g&&w(a.f,[a.a.c("wf","active")],[a.a.c("wf","loading"),a.a.c("wf","inactive")]),K(a,"active")):L(a.a))};function oa(a){this.j=a;this.a=new ja;this.h=0;this.f=this.g=!0}oa.prototype.load=function(a){this.c=new ca(this.j,a.context||this.j);this.g=!1!==a.events;this.f=!1!==a.classes;pa(this,new ha(this.c,a),a)};
+function qa(a,b,c,d,e){var f=0==--a.h;(a.f||a.g)&&setTimeout(function(){var a=e||null,m=d||null||{};if(0===c.length&&f)L(b.a);else{b.f+=c.length;f&&(b.j=f);var h,l=[];for(h=0;h<c.length;h++){var k=c[h],n=m[k.c],r=b.a,x=k;r.g&&w(r.f,[r.a.c("wf",x.c,J(x).toString(),"loading")]);K(r,"fontloading",x);r=null;if(null===X)if(window.FontFace){var x=/Gecko.*Firefox\/(\d+)/.exec(window.navigator.userAgent),xa=/OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent)&&/Apple/.exec(window.navigator.vendor);
+X=x?42<parseInt(x[1],10):xa?!1:!0}else X=!1;X?r=new P(p(b.g,b),p(b.h,b),b.c,k,b.s,n):r=new Q(p(b.g,b),p(b.h,b),b.c,k,b.s,a,n);l.push(r)}for(h=0;h<l.length;h++)l[h].start()}},0)}function pa(a,b,c){var d=[],e=c.timeout;ia(b);var d=ka(a.a,c,a.c),f=new W(a.c,b,e);a.h=d.length;b=0;for(c=d.length;b<c;b++)d[b].load(function(b,d,c){qa(a,f,b,d,c)})};function ra(a,b){this.c=a;this.a=b}
+ra.prototype.load=function(a){function b(){if(f["__mti_fntLst"+d]){var c=f["__mti_fntLst"+d](),e=[],h;if(c)for(var l=0;l<c.length;l++){var k=c[l].fontfamily;void 0!=c[l].fontStyle&&void 0!=c[l].fontWeight?(h=c[l].fontStyle+c[l].fontWeight,e.push(new G(k,h))):e.push(new G(k))}a(e)}else setTimeout(function(){b()},50)}var c=this,d=c.a.projectId,e=c.a.version;if(d){var f=c.c.o;A(this.c,(c.a.api||"https://fast.fonts.net/jsapi")+"/"+d+".js"+(e?"?v="+e:""),function(e){e?a([]):(f["__MonotypeConfiguration__"+
+d]=function(){return c.a},b())}).id="__MonotypeAPIScript__"+d}else a([])};function sa(a,b){this.c=a;this.a=b}sa.prototype.load=function(a){var b,c,d=this.a.urls||[],e=this.a.families||[],f=this.a.testStrings||{},g=new B;b=0;for(c=d.length;b<c;b++)z(this.c,d[b],C(g));var m=[];b=0;for(c=e.length;b<c;b++)if(d=e[b].split(":"),d[1])for(var h=d[1].split(","),l=0;l<h.length;l+=1)m.push(new G(d[0],h[l]));else m.push(new G(d[0]));E(g,function(){a(m,f)})};function ta(a,b){a?this.c=a:this.c=ua;this.a=[];this.f=[];this.g=b||""}var ua="https://fonts.googleapis.com/css";function va(a,b){for(var c=b.length,d=0;d<c;d++){var e=b[d].split(":");3==e.length&&a.f.push(e.pop());var f="";2==e.length&&""!=e[1]&&(f=":");a.a.push(e.join(f))}}
+function wa(a){if(0==a.a.length)throw Error("No fonts to load!");if(-1!=a.c.indexOf("kit="))return a.c;for(var b=a.a.length,c=[],d=0;d<b;d++)c.push(a.a[d].replace(/ /g,"+"));b=a.c+"?family="+c.join("%7C");0<a.f.length&&(b+="&subset="+a.f.join(","));0<a.g.length&&(b+="&text="+encodeURIComponent(a.g));return b};function ya(a){this.f=a;this.a=[];this.c={}}
+var za={latin:"BESbswy","latin-ext":"\u00e7\u00f6\u00fc\u011f\u015f",cyrillic:"\u0439\u044f\u0416",greek:"\u03b1\u03b2\u03a3",khmer:"\u1780\u1781\u1782",Hanuman:"\u1780\u1781\u1782"},Aa={thin:"1",extralight:"2","extra-light":"2",ultralight:"2","ultra-light":"2",light:"3",regular:"4",book:"4",medium:"5","semi-bold":"6",semibold:"6","demi-bold":"6",demibold:"6",bold:"7","extra-bold":"8",extrabold:"8","ultra-bold":"8",ultrabold:"8",black:"9",heavy:"9",l:"3",r:"4",b:"7"},Ba={i:"i",italic:"i",n:"n",normal:"n"},
+Ca=/^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra|ultra)-?)?bold|black|heavy|l|r|b|[1-9]00)?(n|i|normal|italic)?$/;
+function Da(a){for(var b=a.f.length,c=0;c<b;c++){var d=a.f[c].split(":"),e=d[0].replace(/\+/g," "),f=["n4"];if(2<=d.length){var g;var m=d[1];g=[];if(m)for(var m=m.split(","),h=m.length,l=0;l<h;l++){var k;k=m[l];if(k.match(/^[\w-]+$/)){var n=Ca.exec(k.toLowerCase());if(null==n)k="";else{k=n[2];k=null==k||""==k?"n":Ba[k];n=n[1];if(null==n||""==n)n="4";else var r=Aa[n],n=r?r:isNaN(n)?"4":n.substr(0,1);k=[k,n].join("")}}else k="";k&&g.push(k)}0<g.length&&(f=g);3==d.length&&(d=d[2],g=[],d=d?d.split(","):
+g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<f.length;d+=1)a.a.push(new G(e,f[d]))}};function Ea(a,b){this.c=a;this.a=b}var Fa={Arimo:!0,Cousine:!0,Tinos:!0};Ea.prototype.load=function(a){var b=new B,c=this.c,d=new ta(this.a.api,this.a.text),e=this.a.families;va(d,e);var f=new ya(e);Da(f);z(c,wa(d),C(b));E(b,function(){a(f.a,f.c,Fa)})};function Ga(a,b){this.c=a;this.a=b}Ga.prototype.load=function(a){var b=this.a.id,c=this.c.o;b?A(this.c,(this.a.api||"https://use.typekit.net")+"/"+b+".js",function(b){if(b)a([]);else if(c.Typekit&&c.Typekit.config&&c.Typekit.config.fn){b=c.Typekit.config.fn;for(var e=[],f=0;f<b.length;f+=2)for(var g=b[f],m=b[f+1],h=0;h<m.length;h++)e.push(new G(g,m[h]));try{c.Typekit.load({events:!1,classes:!1,async:!0})}catch(l){}a(e)}},2E3):a([])};function Ha(a,b){this.c=a;this.f=b;this.a=[]}Ha.prototype.load=function(a){var b=this.f.id,c=this.c.o,d=this;b?(c.__webfontfontdeckmodule__||(c.__webfontfontdeckmodule__={}),c.__webfontfontdeckmodule__[b]=function(b,c){for(var g=0,m=c.fonts.length;g<m;++g){var h=c.fonts[g];d.a.push(new G(h.name,ga("font-weight:"+h.weight+";font-style:"+h.style)))}a(d.a)},A(this.c,(this.f.api||"https://f.fontdeck.com/s/css/js/")+ea(this.c)+"/"+b+".js",function(b){b&&a([])})):a([])};var Y=new oa(window);Y.a.c.custom=function(a,b){return new sa(b,a)};Y.a.c.fontdeck=function(a,b){return new Ha(b,a)};Y.a.c.monotype=function(a,b){return new ra(b,a)};Y.a.c.typekit=function(a,b){return new Ga(b,a)};Y.a.c.google=function(a,b){return new Ea(b,a)};var Z={load:p(Y.load,Y)};"function"===typeof define&&define.amd?define(function(){return Z}):"undefined"!==typeof module&&module.exports?module.exports=Z:(window.WebFont=Z,window.WebFontConfig&&Y.load(window.WebFontConfig));}());
 
 },{}]},{},[2]);

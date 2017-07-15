@@ -1,0 +1,378 @@
+#scene6 {
+
+  $start: $scene_06_begin;
+  $photostart: $start + 1500;
+
+  //background-color: #2BACB5;
+
+  .scene-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+    pointer-events: none;
+    -skrollr-animation-name: a_scene6_content;
+  }
+
+  @-skrollr-keyframes a_scene6_content {
+
+    #{$start - 300} {
+      display: block;
+      opacity: 0;
+    }
+
+    #{$start + 0} {
+      opacity: 1;
+    }
+
+  }
+
+  #skills_container {
+    padding: 128px;
+    width: 100%;
+    height: 100%;
+    -skrollr-animation-name: a_scene6_skillsContainer;
+  }
+
+  @-skrollr-keyframes a_scene6_skillsContainer {
+    #{$start + 1200} {
+      opacity: 1;
+      display: block;
+    }
+
+    #{$start + 1250} {
+      opacity: 0.5;
+      display: block;
+    }
+
+    #{$start + 1260} {
+      display: none;
+    }
+
+  }
+
+  .word {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    white-space: nowrap;
+    transform-origin: 0 0;
+    color: #f5f5f5;
+    font-weight: 100;
+  }
+
+  .polaroid {
+    width: 36vh;
+    height: 36vh;
+    background: #1e1c18;
+    border: 2vh solid #f5f5f5;
+    border-bottom: 8vh solid #f5f5f5;
+    box-shadow: 0 0 1vh -0.1vh #000;
+    overflow: hidden;
+  }
+
+  .caption {
+    width: 36vh;
+    margin-top: -9vh;
+    margin-left: 2vh;
+  }
+
+  #photo_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .photo1 {
+    position: absolute;
+    left: 0;
+    -skrollr-animation-name: a_scene6_photo1;
+  }
+
+  @-skrollr-keyframes a_scene6_photo1 {
+    #{$photostart} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 50} {
+      transform: translate(0vh, 0vh) rotate(-5deg);
+    }
+  }
+
+  .photo2 {
+    position: absolute;
+    left: 3vh;
+    -skrollr-animation-name: a_scene6_photo2;
+  }
+
+  @-skrollr-keyframes a_scene6_photo2 {
+    #{$photostart + 100} {
+      transform: translate(-50vh, 0vh) rotate(-5deg);
+    }
+
+    #{$photostart + 150} {
+      transform: translate(0vh, 0vh) rotate(0deg);
+    }
+  }
+
+  .photo3 {
+    position: absolute;
+    left: 0vh;
+    -skrollr-animation-name: a_scene6_photo3;
+  }
+
+  @-skrollr-keyframes a_scene6_photo3 {
+    #{$photostart + 200} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 250} {
+      transform: translate(0vh, 0vh) rotate(5deg);
+    }
+  }
+
+  .photo4 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo4;
+  }
+
+  @-skrollr-keyframes a_scene6_photo4 {
+    #{$photostart + 300} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 350} {
+      transform: translate(0vh, 0vh) rotate(-4deg);
+    }
+  }
+
+  .photo5 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo5;
+  }
+
+  @-skrollr-keyframes a_scene6_photo5 {
+    #{$photostart + 400} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 450} {
+      transform: translate(0vh, 0vh) rotate(3deg);
+    }
+  }
+
+  .photo6 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo6;
+  }
+
+  @-skrollr-keyframes a_scene6_photo6 {
+    #{$photostart + 500} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 550} {
+      transform: translate(0vh, 0vh) rotate(2deg);
+    }
+  }
+
+  .photo7 {
+    position: absolute;
+    left: 4vh;
+    -skrollr-animation-name: a_scene6_photo7;
+  }
+
+  @-skrollr-keyframes a_scene6_photo7 {
+    #{$photostart + 600} {
+      transform: translate(-50vh, 0vh) rotate(0deg);
+    }
+
+    #{$photostart + 650} {
+      transform: translate(0vh, 0vh) rotate(4deg);
+    }
+  }
+
+  #email, #linkedin, #instagram, #contactresume, #githubsite, #medium {
+    cursor: pointer;
+    transition-duration: 500ms;
+  }
+
+  #email:hover text, #linkedin:hover text, #instagram:hover text, #contactresume:hover text, #githubsite:hover text, #medium:hover text {
+    fill: rgba(44, 62, 80, 0.99);
+  }
+
+  #contacts {
+    -skrollr-animation-name: contacts;
+  }
+
+  @-skrollr-keyframes contacts {
+
+    #{$start + 1400} {
+      transform: translate(0, 100px);
+      opacity: 0;
+    }
+
+    #{$start + 1450} {
+      transform: translate(0, 1px);
+      opacity: 1;
+    }
+
+  }
+
+  #sc6title {
+    -skrollr-animation-name: a_sc6_title;
+  }
+
+  @-skrollr-keyframes a_sc6_title {
+    #{$start - 200} {
+      opacity: 0;
+    }
+
+    #{$start - 150} {
+      opacity: 1;
+    }
+
+    #{$start + 1200} {
+      opacity: 1;
+    }
+
+    #{$start + 1250} {
+      opacity: 0;
+    }
+
+  }
+
+  #graph1 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: graph1;
+  }
+
+  @-skrollr-keyframes graph1 {
+
+    #{$start - 150} {
+      stroke-dashoffset: 3000;
+    }
+
+    #{$start + 600} {
+      stroke-dashoffset: 0;
+    }
+
+  }
+
+  #graph2 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+    -skrollr-animation-name: graph2;
+  }
+
+  @-skrollr-keyframes graph2 {
+
+    #{$start - 100} {
+      stroke-dashoffset: 3000;
+    }
+
+    #{$start + 400} {
+      stroke-dashoffset: 0;
+    }
+
+  }
+  #skills {
+
+    -skrollr-animation-name: a_skills;
+  }
+
+  @-skrollr-keyframes a_skills {
+
+    #{$start + 1350} {
+      opacity: 1;
+    }
+
+    #{$start + 1400} {
+      opacity: 0;
+    }
+
+  }
+  #skillpath {
+
+    -skrollr-animation-name: a_skillpath;
+  }
+
+  @-skrollr-keyframes a_skillpath {
+
+    #{$start } {
+      opacity: 0;
+    }
+
+    #{$start + 50} {
+      opacity: 1;
+    }
+
+  }
+
+  #skillnames {
+
+    -skrollr-animation-name: a_skillnames;
+  }
+
+  @-skrollr-keyframes a_skillnames {
+
+    #{$start } {
+      opacity: 0;
+    }
+
+    #{$start + 100} {
+      opacity: 1;
+    }
+
+  }
+
+  #invincible {
+
+    -skrollr-animation-name: a_invincible;
+  }
+
+  @-skrollr-keyframes a_invincible {
+
+    #{$start + 950} {
+      opacity: 0;
+    }
+
+    #{$start + 1000} {
+      opacity: 1;
+    }
+
+    #{$start + 1300} {
+      opacity: 1;
+    }
+
+    #{$start + 1320} {
+      opacity: 0;
+      display: block;
+    }
+
+    #{$start + 1350} {
+      display: none;
+    }
+
+  }
+
+
+  .clip-svg {
+    clip-path: url('#myClip');
+  }
+
+}

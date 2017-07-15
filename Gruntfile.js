@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         watch: {
 
             js: {
-                files: ['src/{,*/}*.js'],
+                files: ['src/**/*.js'],
                 tasks: ['babel', 'browserify'],
                 options: {
                     livereload: true
@@ -66,11 +66,25 @@ module.exports = function (grunt) {
             },
             svg: {
                 files: 'src/svg/*/*.svg',
-                tasks: ['replace']
+                tasks: ['replace'],
+                options: {
+                    livereload: true
+                }
+            },
+            json: {
+                files: 'src/svg/*.json',
+                tasks: ['copy:dist']
             },
             sass: {
                 files: ['src/svg/*/*.scss', 'src/*/*.scss'],
-                tasks: ['concat:css', 'sass:dev', 'sass:styles']
+                tasks: ['concat:css', 'sass:dev', 'sass:styles'],
+                options: {
+                    livereload: true
+                }
+            },
+            html: {
+                files: 'src/svg/*/*.html',
+                tasks: ['copy:html']
             },
             livereload: {
                 options: {
@@ -166,7 +180,6 @@ module.exports = function (grunt) {
                     src: [
                         '<%= config.dist %>/scripts/lib.js',
                         '<%= config.dist %>/styles/main.css',
-                        '<%= config.dist %>/images/*.*',
                         '<%= config.dist %>/styles/fonts/{,*/}*.*',
                         '<%= config.dist %>/*.{ico,png}'
                     ]
@@ -300,7 +313,7 @@ module.exports = function (grunt) {
                 dest: 'tmp/animation.scss'
             },
             skrollr: {
-                src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js', '<%= config.app %>/bower_components/skrollr-ie/dis/skrollr.ie.min.js', 'src/libs/skrollr.helpers.js'],
+                src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
                 dest: '<%= config.app %>/scripts/skrollr.js'
             }
         },
@@ -324,30 +337,23 @@ module.exports = function (grunt) {
         // Copies remaining files to places other tasks can use
         copy: {
             dist: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: '<%= config.app %>',
-                    dest: '<%= config.dist %>',
-                    src: [
-                        '*.{ico,png,txt}',
-                        '.htaccess',
-                        'images/{,*/}*.webp',
-                        'scripts/*.js',
-                        '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
-                    ]
-                }, {
-                    src: 'src/svg/timing.json',
-                    dest: '<%= config.app %>/svg/timing.json',
-                    flatten: true,
-                    filter: 'isFile'
-                }, {
-                    src: 'src/svg/timing.json',
-                    dest: '<%= config.dist %>/svg/timing.json',
-                    flatten: true,
-                    filter: 'isFile'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= config.app %>',
+                        dest: '<%= config.dist %>',
+                        src: [
+                            '*.{ico,png,jpg,txt}',
+                            '.htaccess',
+                            'images/{,*/}*.webp',
+                            'images/**/*.svg',
+                            'svg/{,*/}*.html',
+                            'scripts/*.js',
+                            '{,*/}*.html',
+                            'styles/fonts/{,*/}*.*'
+                        ]
+                    }]
             },
             styles: {
                 expand: true,
@@ -355,6 +361,14 @@ module.exports = function (grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+
+            html: {
+                expand: true,
+                dot: true,
+                cwd: 'src/svg',
+                dest: '<%= config.app %>/svg/',
+                src: '{,*/}*.html'
             }
         },
 
@@ -452,6 +466,29 @@ module.exports = function (grunt) {
                 }]
             },
             svgfonts6: {
+                src: ['src/svg/scene6/scene.svg'],
+                dest: '<%= config.app %>/svg/scene6/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }, {
+                    from: '../../../app/images/invincible.jpg',
+                    to: 'images/invincible.jpg'
+                }, {
+                    from: '../../../app/images/157evxw_th.gif',
+                    to: 'images/157evxw_th.gif'
+                }]
+            },
+            svgfonts7: {
                 src: ['src/svg/menu/scene.svg'],
                 dest: '<%= config.app %>/svg/menu/',
                 replacements: [{
@@ -564,7 +601,8 @@ module.exports = function (grunt) {
         'concat',
         'sass',
         'copy:dist',
-        'modernizr',
+        'copy:html',
+        //'modernizr',
         'uglify',
         'rev',
         'usemin',
