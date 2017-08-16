@@ -10,7 +10,7 @@ export const waitForWebfonts = function (fonts, callback) {
     });
 };
 
-export const ajax = function (url, onSuccess, onFailure) {
+export const get = function (url, onSuccess, onFailure) {
     const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/`;
 
     fetch(baseUrl + url)

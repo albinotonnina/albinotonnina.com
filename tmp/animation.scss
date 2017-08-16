@@ -2138,10 +2138,10 @@ $start: $scene_05_begin;
 
 
 #videoPlayer {
-    -skrollr-animation-name: videoPlayer;
+    -skrollr-animation-name: a_videoPlayer;
 }
 
-@-skrollr-keyframes videoPlayer {
+@-skrollr-keyframes a_videoPlayer {
 
     #{$start + 1350} {
         opacity: 0;
@@ -2942,24 +2942,6 @@ $start: $scene_05_begin;
     fill: rgba(44, 62, 80, 0.99);
   }
 
-  //#contacts {
-  //  -skrollr-animation-name: contacts;
-  //}
-  //
-  //@-skrollr-keyframes contacts {
-  //
-  //  #{$start + 1400} {
-  //    transform: translate(0, 100px);
-  //    opacity: 0;
-  //  }
-  //
-  //  #{$start + 1450} {
-  //    transform: translate(0, 1px);
-  //    opacity: 1;
-  //  }
-  //
-  //}
-
   #sc6title {
     -skrollr-animation-name: a_sc6_title;
   }
@@ -3141,6 +3123,25 @@ $start: $scene_05_begin;
     }
 
   }
+
+  #bgright {
+    -skrollr-animation-name: a_bgright;
+  }
+
+  @-skrollr-keyframes a_bgright {
+
+    #{$start + 1450} {
+      transform: translate(800px, 0);
+      opacity: 0;
+    }
+
+    #{$start + 1500} {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+
+  }
+
 
   .clip-svg {
     clip-path: url('#myClip');

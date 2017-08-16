@@ -1,6 +1,7 @@
 import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
+import * as utils from '../../scripts/utilities';
 import {createElementWithAttrs} from '../../scripts/utilities';
 
 export default {
@@ -42,6 +43,10 @@ export default {
     skills: knuthShuffle(keyword_ordered.slice(0)),
 
     init(site) {
+        this.initClickEvents(site);
+    },
+
+    initClickEvents(site) {
 
         document.querySelector('#email').addEventListener('click', () => {
             window.open('mailto:albinotonnina@gmail.com');
@@ -66,8 +71,9 @@ export default {
         document.querySelector('#contactresume').addEventListener('click', () => {
             site.destroy();
         });
-
     },
+
+
 
     get newskills() {
         return knuthShuffle(keyword_ordered.slice(0));
@@ -98,8 +104,6 @@ export default {
     },
 
     render: function (pos, obj) {
-
-        console.log('obj.curTop', obj.curTop);
 
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {
             if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {

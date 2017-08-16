@@ -13,13 +13,31 @@ export default {
     maxY: 5800,
     newq: [0, 0],
 
+    init(site) {
+        this.addVideoPlayer(site);
+    },
+
+    addVideoPlayer(site) {
+
+        const videoPlayerDiv = utils.createElementWithAttrs('div', {
+            id: 'videoPlayer'
+        });
+
+        const videoPlayerIframe = utils.createElementWithAttrs('iframe', {
+            id: 'vimeoPlayer',
+            src: '//player.vimeo.com/video/88016428',
+            width: '100%',
+            height: '100%',
+            frameborder: '0',
+            allowfullscreen: true
+        });
+
+        videoPlayerDiv.appendChild(videoPlayerIframe);
+        site.siteRoot.appendChild(videoPlayerDiv);
+    },
+
     render: function (pos, obj) {
-
         if (obj.curTop > 5550 && obj.curTop < 5900) {
-
-            if (!document.getElementById('vimeoPlayer')) {
-                Site.addVideoPlayer();
-            }
 
             const rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
 

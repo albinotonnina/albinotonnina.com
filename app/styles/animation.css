@@ -1374,9 +1374,9 @@ nav #barright {
     transform: translate(0px, 0px); } }
 
 #videoPlayer {
-  -skrollr-animation-name: videoPlayer; }
+  -skrollr-animation-name: a_videoPlayer; }
 
-@-skrollr-keyframes videoPlayer {
+@-skrollr-keyframes a_videoPlayer {
   5450 {
     opacity: 0;
     display: none; }
@@ -2046,6 +2046,17 @@ nav #barright {
     transform: translate(0, 800px); }
   #scene6 8500 {
     transform: translate(0, -860px); } }
+
+#scene6 #bgright {
+  -skrollr-animation-name: a_bgright; }
+
+@-skrollr-keyframes a_bgright {
+  #scene6 7650 {
+    transform: translate(800px, 0);
+    opacity: 0; }
+  #scene6 7700 {
+    transform: translate(0, 0);
+    opacity: 1; } }
 
 #scene6 .clip-svg {
   clip-path: url("#myClip"); }

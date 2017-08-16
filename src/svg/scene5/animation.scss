@@ -4,10 +4,10 @@ $start: $scene_05_begin;
 
 
 #videoPlayer {
-    -skrollr-animation-name: videoPlayer;
+    -skrollr-animation-name: a_videoPlayer;
 }
 
-@-skrollr-keyframes videoPlayer {
+@-skrollr-keyframes a_videoPlayer {
 
     #{$start + 1350} {
         opacity: 0;

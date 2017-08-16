@@ -51,8 +51,8 @@ var _class = function () {
 
         this.scenes = {
             scene1: _animation2.default,
-            scene5: _animation6.default,
             scene4: _animation4.default,
+            scene5: _animation6.default,
             scene6: _animation8.default
         };
 
@@ -63,97 +63,108 @@ var _class = function () {
             smoothScrolling: true
         };
 
-        this.siteRoot = utils.createElementWithAttrs('figure', {
-            role: 'site'
-        });
-
-        document.body.appendChild(this.siteRoot);
-
-        this.loader = utils.createElementWithAttrs('figure', {
-            id: 'loader'
-        });
-
-        document.body.appendChild(this.loader);
-
-        document.body.setAttribute('data-display', 'divertissement');
-
-        this.calculateTiming();
+        this.timing = _timing2.default.scenes;
 
         this.buildScenes();
-
-        this.addVideoPlayer();
     }
 
     _createClass(_class, [{
-        key: 'initSkrollr',
-        value: function initSkrollr() {
+        key: 'buildScenes',
+        value: function buildScenes() {
+            var vignette = utils.createElementWithAttrs('div', { id: 'vignette' });
+            var nav = utils.createElementWithAttrs('nav', {
+                id: 'menu'
+            });
+
+            this.siteRoot = utils.createElementWithAttrs('figure', { role: 'site' });
+            this.siteRoot.appendChild(vignette);
+            this.siteRoot.appendChild(nav);
+
+            utils.get('svg/menu/scene.svg', function (data) {
+                nav.innerHTML = data;
+            });
+
+            this.loader = utils.createElementWithAttrs('figure', { id: 'loader' });
+
+            document.body.setAttribute('data-display', 'divertissement');
+            document.body.appendChild(this.siteRoot);
+            document.body.appendChild(this.loader);
+
+            _async2.default.each(this.timing, this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+        }
+    }, {
+        key: 'onLoadedScenes',
+        value: function onLoadedScenes() {
+            this.injectDependencies({
+                onComplete: this.initDivertissement.bind(this)
+            });
+        }
+    }, {
+        key: 'loadScene',
+        value: function loadScene(scene, callback) {
             var _this = this;
 
-            if (!skrollr.get()) {
+            var sceneEl = utils.createElementWithAttrs('div', {
+                'data-scene': scene.name,
+                id: scene.name
+            });
 
-                var onRender = function onRender(obj) {
-                    for (var name in _this.scenes) {
+            this.siteRoot.appendChild(sceneEl);
 
-                        if (typeof _this.scenes[name].render === 'function') {
-                            var pos = _this.time(obj, _this.timing[name] || {
-                                begin: 0,
-                                end: 1
-                            });
-                            _this.scenes[name].render(pos, obj);
-                        }
+            this.loadHtml(sceneEl, scene.name, function () {
+                _this.loadSvg(sceneEl, scene.name, function () {
+
+                    var sceneScripts = _this.scenes[scene.name];
+
+                    if (sceneScripts && typeof sceneScripts.init === 'function') {
+                        sceneScripts.init(_this);
                     }
-                };
 
-                var options = Object.assign(this.defaults, {
-                    render: onRender
+                    callback();
                 });
+            });
+        }
+    }, {
+        key: 'loadHtml',
+        value: function loadHtml(sceneEl, sceneName, callback) {
+            utils.get('svg/' + sceneName + '/scene.html', function (data) {
+                sceneEl.innerHTML = data;
+                callback();
+            });
+        }
+    }, {
+        key: 'loadSvg',
+        value: function loadSvg(sceneEl, sceneName, callback) {
+            utils.get('svg/' + sceneName + '/scene.svg', function (data) {
+                sceneEl.querySelector('.svg').innerHTML = data;
+                callback();
+            });
+        }
+    }, {
+        key: 'injectDependencies',
+        value: function injectDependencies(_ref) {
+            var onComplete = _ref.onComplete;
 
-                this.skrollr = skrollr.init(options);
+            document.head.appendChild(utils.createElementWithAttrs('link', {
+                'data-skrollr-stylesheet': true,
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'styles/animation.css'
+            }));
 
-                for (var name in this.scenes) {
-                    if (typeof this.scenes[name].init === 'function') {
-                        this.scenes[name].init(this);
-                    }
-                }
-
-                skrollr.menu.init(this.skrollr, {
-                    animate: true,
-                    easing: 'swing',
-                    scenes: this.timing,
-                    scale: 1,
-                    duration: function duration(currentTop, targetTop) {
-                        return Math.abs(currentTop - targetTop) * 0.5;
-                    }
-                });
-            } else {
-
-                this.skrollr.refresh();
-            }
+            utils.addScript('scripts/skrollr.js', onComplete);
+        }
+    }, {
+        key: 'initDivertissement',
+        value: function initDivertissement() {
+            this.removeLoader();
+            this.resize();
+            this.activateCvLink();
         }
     }, {
         key: 'removeLoader',
         value: function removeLoader() {
             document.body.removeChild(this.loader);
-        }
-    }, {
-        key: 'addVideoPlayer',
-        value: function addVideoPlayer() {
-
-            var videoPlayerDiv = utils.createElementWithAttrs('div', {
-                id: 'videoPlayer'
-            });
-
-            var videoPlayerIframe = utils.createElementWithAttrs('iframe', {
-                id: 'vimeoPlayer',
-                src: '//player.vimeo.com/video/88016428',
-                width: '100%',
-                height: '100%',
-                frameborder: '0',
-                allowfullscreen: true
-            });
-
-            videoPlayerDiv.appendChild(videoPlayerIframe);
-            this.siteRoot.appendChild(videoPlayerDiv);
         }
     }, {
         key: 'resizeScenes',
@@ -205,101 +216,6 @@ var _class = function () {
             }
         }
     }, {
-        key: 'calculateTiming',
-        value: function calculateTiming() {
-            var begin = 0;
-
-            for (var scene in _timing2.default) {
-                begin += _timing2.default[scene].offset;
-                _timing2.default[scene].begin = begin;
-                _timing2.default[scene].end = begin + _timing2.default[scene].duration;
-                begin += _timing2.default[scene].duration;
-            }
-
-            this.timing = _timing2.default;
-        }
-    }, {
-        key: 'buildScenes',
-        value: function buildScenes() {
-
-            var nav = utils.createElementWithAttrs('nav', {
-                id: 'menu'
-            });
-
-            this.siteRoot.appendChild(nav);
-
-            utils.ajax('svg/menu/scene.svg', function (data) {
-                nav.innerHTML = data;
-            });
-
-            this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
-                id: 'vignette'
-            }));
-
-            for (var key in this.timing) {
-                this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
-                    'data-scene': key,
-                    id: key
-                }));
-            }
-
-            _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadAllScenes.bind(this));
-        }
-    }, {
-        key: 'loadScene',
-        value: function loadScene(element, callback) {
-            var _this3 = this;
-
-            this.loadHtml(element, function () {
-                _this3.loadSvg(element, callback);
-            });
-        }
-    }, {
-        key: 'loadHtml',
-        value: function loadHtml(element, callback) {
-
-            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.html', function (data) {
-
-                element.innerHTML = data;
-
-                callback();
-            });
-        }
-    }, {
-        key: 'loadSvg',
-        value: function loadSvg(element, callback) {
-
-            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.svg', function (data) {
-
-                element.querySelector('.svg').innerHTML = data;
-
-                callback();
-            });
-        }
-    }, {
-        key: 'onLoadAllScenes',
-        value: function onLoadAllScenes() {
-
-            document.head.appendChild(utils.createElementWithAttrs('link', {
-                'data-skrollr-stylesheet': true,
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'styles/animation.css'
-            }));
-
-            utils.addScript('scripts/skrollr.js', this.initDivertissement.bind(this));
-        }
-    }, {
-        key: 'initDivertissement',
-        value: function initDivertissement() {
-            this.removeLoader();
-
-            this.show();
-            this.resize();
-
-            this.activateCvLink();
-        }
-    }, {
         key: 'time',
         value: function time(obj, timing) {
             if (obj.curTop <= timing.begin * this.defaults.scale) {
@@ -316,6 +232,47 @@ var _class = function () {
         value: function activateCvLink() {
             (0, _animejs2.default)({ targets: '#scrolldown', opacity: 1, delay: 1000 });
             (0, _animejs2.default)({ targets: '#viewresume', opacity: 1, delay: 2000 });
+        }
+    }, {
+        key: 'initSkrollr',
+        value: function initSkrollr() {
+
+            if (!skrollr.get()) {
+                this.skrollr = skrollr.init(Object.assign(this.defaults, {
+                    render: this.skrollrOnRender.bind(this)
+                }));
+
+                this.skrollrInitMenu();
+            } else {
+                this.skrollr.refresh();
+            }
+        }
+    }, {
+        key: 'skrollrOnRender',
+        value: function skrollrOnRender(obj) {
+            for (var name in this.scenes) {
+
+                if (typeof this.scenes[name].render === 'function') {
+                    var pos = this.time(obj, this.timing[name] || {
+                        begin: 0,
+                        end: 1
+                    });
+                    this.scenes[name].render(pos, obj);
+                }
+            }
+        }
+    }, {
+        key: 'skrollrInitMenu',
+        value: function skrollrInitMenu() {
+            skrollr.menu.init(this.skrollr, {
+                animate: true,
+                easing: 'swing',
+                scenes: this.timing,
+                scale: 1,
+                duration: function duration(currentTop, targetTop) {
+                    return Math.abs(currentTop - targetTop) * 0.5;
+                }
+            });
         }
     }, {
         key: 'show',
@@ -391,7 +348,7 @@ window.onload = (0, _utilities.waitForWebfonts)(['Roboto:400,100,300,700,900'], 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = {
+var sceneTimes = {
     scene1: {
         offset: 0,
         duration: 900,
@@ -426,6 +383,24 @@ exports.default = {
     }
 };
 
+exports.default = {
+
+    get scenes() {
+
+        var begin = 0;
+
+        for (var scene in sceneTimes) {
+            begin += sceneTimes[scene].offset;
+            sceneTimes[scene].name = scene;
+            sceneTimes[scene].begin = begin;
+            sceneTimes[scene].end = begin + sceneTimes[scene].duration;
+            begin += sceneTimes[scene].duration;
+        }
+
+        return sceneTimes;
+    }
+};
+
 
 },{}],4:[function(require,module,exports){
 'use strict';
@@ -433,7 +408,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.addScript = exports.createElementWithAttrs = exports.setAttributes = exports.isIE = exports.isMobile = exports.ajax = exports.waitForWebfonts = undefined;
+exports.addScript = exports.createElementWithAttrs = exports.setAttributes = exports.isIE = exports.isMobile = exports.get = exports.waitForWebfonts = undefined;
 
 var _webfontloader = require('webfontloader');
 
@@ -454,7 +429,7 @@ var waitForWebfonts = exports.waitForWebfonts = function waitForWebfonts(fonts, 
     });
 };
 
-var ajax = exports.ajax = function ajax(url, onSuccess, onFailure) {
+var get = exports.get = function get(url, onSuccess, onFailure) {
     var baseUrl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/';
 
     (0, _nodeFetch2.default)(baseUrl + url).then(function (res) {
@@ -601,13 +576,31 @@ exports.default = {
     maxY: 5800,
     newq: [0, 0],
 
+    init: function init(site) {
+        this.addVideoPlayer(site);
+    },
+    addVideoPlayer: function addVideoPlayer(site) {
+
+        var videoPlayerDiv = utils.createElementWithAttrs('div', {
+            id: 'videoPlayer'
+        });
+
+        var videoPlayerIframe = utils.createElementWithAttrs('iframe', {
+            id: 'vimeoPlayer',
+            src: '//player.vimeo.com/video/88016428',
+            width: '100%',
+            height: '100%',
+            frameborder: '0',
+            allowfullscreen: true
+        });
+
+        videoPlayerDiv.appendChild(videoPlayerIframe);
+        site.siteRoot.appendChild(videoPlayerDiv);
+    },
+
+
     render: function render(pos, obj) {
-
         if (obj.curTop > 5550 && obj.curTop < 5900) {
-
-            if (!document.getElementById('vimeoPlayer')) {
-                Site.addVideoPlayer();
-            }
 
             var rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
 
@@ -665,6 +658,10 @@ var _knuthShuffle = require('knuth-shuffle');
 
 var _utilities = require('../../scripts/utilities');
 
+var utils = _interopRequireWildcard(_utilities);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -690,6 +687,9 @@ exports.default = {
     skills: (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0)),
 
     init: function init(site) {
+        this.initClickEvents(site);
+    },
+    initClickEvents: function initClickEvents(site) {
 
         document.querySelector('#email').addEventListener('click', function () {
             window.open('mailto:albinotonnina@gmail.com');
@@ -750,8 +750,6 @@ exports.default = {
 
 
     render: function render(pos, obj) {
-
-        console.log('obj.curTop', obj.curTop);
 
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {
             if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
