@@ -1865,7 +1865,7 @@ nav #barright {
   #scene6 7700 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 7750 {
-    transform: translate(0vh, 0vh) rotate(-5deg); } }
+    transform: translate(9vh, 5vh) rotate(-5deg); } }
 
 #scene6 .photo2 {
   position: absolute;
@@ -1876,7 +1876,7 @@ nav #barright {
   #scene6 7800 {
     transform: translate(-60vh, 0vh) rotate(-5deg); }
   #scene6 7850 {
-    transform: translate(0vh, 0vh) rotate(0deg); } }
+    transform: translate(10vh, 8vh) rotate(0deg); } }
 
 #scene6 .photo3 {
   position: absolute;
@@ -1887,7 +1887,7 @@ nav #barright {
   #scene6 7900 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 7950 {
-    transform: translate(0vh, 0vh) rotate(5deg); } }
+    transform: translate(3vh, 12vh) rotate(5deg); } }
 
 #scene6 .photo4 {
   position: absolute;
@@ -1898,7 +1898,7 @@ nav #barright {
   #scene6 8000 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8050 {
-    transform: translate(0vh, 0vh) rotate(-4deg); } }
+    transform: translate(8vh, 7vh) rotate(-4deg); } }
 
 #scene6 .photo5 {
   position: absolute;
@@ -1909,7 +1909,7 @@ nav #barright {
   #scene6 8100 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8150 {
-    transform: translate(0vh, 0vh) rotate(3deg); } }
+    transform: translate(11vh, 8vh) rotate(3deg); } }
 
 #scene6 .photo6 {
   position: absolute;
@@ -1920,7 +1920,7 @@ nav #barright {
   #scene6 8200 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8250 {
-    transform: translate(0vh, 0vh) rotate(2deg); } }
+    transform: translate(6vh, 11vh) rotate(2deg); } }
 
 #scene6 .photo7 {
   position: absolute;
@@ -1931,7 +1931,7 @@ nav #barright {
   #scene6 8300 {
     transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8350 {
-    transform: translate(0vh, 0vh) rotate(4deg); } }
+    transform: translate(4vh, 16vh) rotate(4deg); } }
 
 #scene6 #email, #scene6 #linkedin, #scene6 #instagram, #scene6 #contactresume, #scene6 #githubsite, #scene6 #medium {
   cursor: pointer;
@@ -1939,17 +1939,6 @@ nav #barright {
 
 #scene6 #email:hover text, #scene6 #linkedin:hover text, #scene6 #instagram:hover text, #scene6 #contactresume:hover text, #scene6 #githubsite:hover text, #scene6 #medium:hover text {
   fill: rgba(44, 62, 80, 0.99); }
-
-#scene6 #contacts {
-  -skrollr-animation-name: contacts; }
-
-@-skrollr-keyframes contacts {
-  #scene6 7600 {
-    transform: translate(0, 100px);
-    opacity: 0; }
-  #scene6 7650 {
-    transform: translate(0, 1px);
-    opacity: 1; } }
 
 #scene6 #sc6title {
   -skrollr-animation-name: a_sc6_title; }
@@ -2038,6 +2027,25 @@ nav #barright {
     display: block; }
   #scene6 7550 {
     display: none; } }
+
+#scene6 #hellobye {
+  opacity: 0;
+  -skrollr-animation-name: a_hellobye; }
+
+@-skrollr-keyframes a_hellobye {
+  #scene6 7800 {
+    opacity: 0; }
+  #scene6 7850 {
+    opacity: 1; } }
+
+#scene6 #endtitles {
+  -skrollr-animation-name: a_endtitles; }
+
+@-skrollr-keyframes a_endtitles {
+  #scene6 7700 {
+    transform: translate(0, 800px); }
+  #scene6 8500 {
+    transform: translate(0, -860px); } }
 
 #scene6 .clip-svg {
   clip-path: url("#myClip"); }

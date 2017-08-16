@@ -22,14 +22,12 @@ export default {
             }
 
             const rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
-            console.log(rect);
-            utils.setAttributes(document.querySelector('#videoPlayer'), {
-                left: rect.left + 'px',
-                top: rect.top + 'px',
-                width: rect.width + 'px',
-                height: rect.height + 'px'
-            });
 
+            const videoPlayerIframe = document.querySelector('#videoPlayer');
+            videoPlayerIframe.style.left = `${rect.left}px`;
+            videoPlayerIframe.style.top = `${rect.top}px`;
+            videoPlayerIframe.style.width = `${rect.width}px`;
+            videoPlayerIframe.style.height = `${rect.height}px`;
         }
 
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {

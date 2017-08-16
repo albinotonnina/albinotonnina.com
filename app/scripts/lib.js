@@ -610,13 +610,12 @@ exports.default = {
             }
 
             var rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
-            console.log(rect);
-            utils.setAttributes(document.querySelector('#videoPlayer'), {
-                left: rect.left + 'px',
-                top: rect.top + 'px',
-                width: rect.width + 'px',
-                height: rect.height + 'px'
-            });
+
+            var videoPlayerIframe = document.querySelector('#videoPlayer');
+            videoPlayerIframe.style.left = rect.left + 'px';
+            videoPlayerIframe.style.top = rect.top + 'px';
+            videoPlayerIframe.style.width = rect.width + 'px';
+            videoPlayerIframe.style.height = rect.height + 'px';
         }
 
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {
@@ -751,6 +750,8 @@ exports.default = {
 
 
     render: function render(pos, obj) {
+
+        console.log('obj.curTop', obj.curTop);
 
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {
             if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {

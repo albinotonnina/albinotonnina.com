@@ -95,7 +95,7 @@
     }
 
     #{$photostart + 50} {
-      transform: translate(0vh, 0vh) rotate(-5deg);
+      transform: translate(9vh, 5vh) rotate(-5deg);
     }
   }
 
@@ -111,7 +111,7 @@
     }
 
     #{$photostart + 150} {
-      transform: translate(0vh, 0vh) rotate(0deg);
+      transform: translate(10vh, 8vh) rotate(0deg);
     }
   }
 
@@ -127,7 +127,7 @@
     }
 
     #{$photostart + 250} {
-      transform: translate(0vh, 0vh) rotate(5deg);
+      transform: translate(3vh, 12vh) rotate(5deg);
     }
   }
 
@@ -143,7 +143,7 @@
     }
 
     #{$photostart + 350} {
-      transform: translate(0vh, 0vh) rotate(-4deg);
+      transform: translate(8vh, 7vh) rotate(-4deg);
     }
   }
 
@@ -159,7 +159,7 @@
     }
 
     #{$photostart + 450} {
-      transform: translate(0vh, 0vh) rotate(3deg);
+      transform: translate(11vh, 8vh) rotate(3deg);
     }
   }
 
@@ -175,7 +175,7 @@
     }
 
     #{$photostart + 550} {
-      transform: translate(0vh, 0vh) rotate(2deg);
+      transform: translate(6vh, 11vh) rotate(2deg);
     }
   }
 
@@ -191,7 +191,7 @@
     }
 
     #{$photostart + 650} {
-      transform: translate(0vh, 0vh) rotate(4deg);
+      transform: translate(4vh, 16vh) rotate(4deg);
     }
   }
 
@@ -204,23 +204,23 @@
     fill: rgba(44, 62, 80, 0.99);
   }
 
-  #contacts {
-    -skrollr-animation-name: contacts;
-  }
-
-  @-skrollr-keyframes contacts {
-
-    #{$start + 1400} {
-      transform: translate(0, 100px);
-      opacity: 0;
-    }
-
-    #{$start + 1450} {
-      transform: translate(0, 1px);
-      opacity: 1;
-    }
-
-  }
+  //#contacts {
+  //  -skrollr-animation-name: contacts;
+  //}
+  //
+  //@-skrollr-keyframes contacts {
+  //
+  //  #{$start + 1400} {
+  //    transform: translate(0, 100px);
+  //    opacity: 0;
+  //  }
+  //
+  //  #{$start + 1450} {
+  //    transform: translate(0, 1px);
+  //    opacity: 1;
+  //  }
+  //
+  //}
 
   #sc6title {
     -skrollr-animation-name: a_sc6_title;
@@ -370,6 +370,39 @@
 
   }
 
+  #hellobye {
+    opacity: 0;
+    -skrollr-animation-name: a_hellobye;
+  }
+
+  @-skrollr-keyframes a_hellobye {
+
+    #{$start + 1600} {
+      opacity: 0;
+    }
+
+    #{$start + 1650} {
+      opacity: 1;
+    }
+
+  }
+
+  #endtitles {
+
+    -skrollr-animation-name: a_endtitles;
+  }
+
+  @-skrollr-keyframes a_endtitles {
+
+    #{$start + 1500} {
+      transform: translate(0, 800px);
+    }
+
+    #{$start + 2300} {
+      transform: translate(0, -860px);
+    }
+
+  }
 
   .clip-svg {
     clip-path: url('#myClip');

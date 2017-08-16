@@ -4,7 +4,7 @@ import {knuthShuffle} from 'knuth-shuffle';
 import {createElementWithAttrs} from '../../scripts/utilities';
 
 export default {
-    skillShape:{
+    skillShape: {
         pos: [6000, 6400, 6500, 6700, 6900, 7100, 7400],
         points: [
             '1011.3,-124.6 1048.4,78.7 957.3,96.1',
@@ -99,6 +99,8 @@ export default {
 
     render: function (pos, obj) {
 
+        console.log('obj.curTop', obj.curTop);
+
         if (obj.curTop > this.minY && obj.curTop < this.maxY) {
             if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
 
@@ -140,13 +142,11 @@ export default {
             }
         }
 
-
         for (let i = 0; i < this.bg.colors.length; i++) {
             if (obj.curTop > this.bg.pos[i] && obj.curTop < this.bg.pos[i + 1] && this.bg.repeat !== i + 1) {
                 this.animateBg(this.bg.colors, i + 1);
             }
         }
-
 
     }
 };
