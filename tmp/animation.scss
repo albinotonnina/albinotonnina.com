@@ -2841,7 +2841,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo1 {
     #{$photostart} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 50} {
@@ -2857,7 +2857,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo2 {
     #{$photostart + 100} {
-      transform: translate(-50vh, 0vh) rotate(-5deg);
+      transform: translate(-60vh, 0vh) rotate(-5deg);
     }
 
     #{$photostart + 150} {
@@ -2873,7 +2873,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo3 {
     #{$photostart + 200} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 250} {
@@ -2889,7 +2889,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo4 {
     #{$photostart + 300} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 350} {
@@ -2905,7 +2905,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo5 {
     #{$photostart + 400} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 450} {
@@ -2921,7 +2921,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo6 {
     #{$photostart + 500} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 550} {
@@ -2937,7 +2937,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes a_scene6_photo7 {
     #{$photostart + 600} {
-      transform: translate(-50vh, 0vh) rotate(0deg);
+      transform: translate(-60vh, 0vh) rotate(0deg);
     }
 
     #{$photostart + 650} {
@@ -3031,7 +3031,7 @@ $start: $scene_05_begin;
 
   @-skrollr-keyframes graph2 {
 
-    #{$start - 100} {
+    #{$start - 50} {
       stroke-dashoffset: 3000;
     }
 

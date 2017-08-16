@@ -1866,7 +1866,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo1 {
   #scene6 7700 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 7750 {
     transform: translate(0vh, 0vh) rotate(-5deg); } }
 
@@ -1877,7 +1877,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo2 {
   #scene6 7800 {
-    transform: translate(-50vh, 0vh) rotate(-5deg); }
+    transform: translate(-60vh, 0vh) rotate(-5deg); }
   #scene6 7850 {
     transform: translate(0vh, 0vh) rotate(0deg); } }
 
@@ -1888,7 +1888,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo3 {
   #scene6 7900 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 7950 {
     transform: translate(0vh, 0vh) rotate(5deg); } }
 
@@ -1899,7 +1899,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo4 {
   #scene6 8000 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8050 {
     transform: translate(0vh, 0vh) rotate(-4deg); } }
 
@@ -1910,7 +1910,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo5 {
   #scene6 8100 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8150 {
     transform: translate(0vh, 0vh) rotate(3deg); } }
 
@@ -1921,7 +1921,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo6 {
   #scene6 8200 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8250 {
     transform: translate(0vh, 0vh) rotate(2deg); } }
 
@@ -1932,7 +1932,7 @@ nav #barright {
 
 @-skrollr-keyframes a_scene6_photo7 {
   #scene6 8300 {
-    transform: translate(-50vh, 0vh) rotate(0deg); }
+    transform: translate(-60vh, 0vh) rotate(0deg); }
   #scene6 8350 {
     transform: translate(0vh, 0vh) rotate(4deg); } }
 
@@ -1994,7 +1994,7 @@ nav #barright {
   -skrollr-animation-name: graph2; }
 
 @-skrollr-keyframes graph2 {
-  #scene6 6100 {
+  #scene6 6150 {
     stroke-dashoffset: 3000; }
   #scene6 6600 {
     stroke-dashoffset: 0; } }

@@ -1,4 +1,3 @@
-// import $ from 'jquery';
 import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
@@ -118,7 +117,7 @@ export default {
 
                 anime({
                     targets: wordTag,
-                    opacity: 1,
+                    opacity: 0.6,
                     scale: 1.4,
                     direction: 'alternate',
                     easing: 'easeInOutQuart'
