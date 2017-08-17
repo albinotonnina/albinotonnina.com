@@ -69,94 +69,31 @@ var _class = function () {
     }
 
     _createClass(_class, [{
-        key: 'buildScenes',
-        value: function buildScenes() {
-            var vignette = utils.createElementWithAttrs('div', { id: 'vignette' });
-            var nav = utils.createElementWithAttrs('nav', {
-                id: 'menu'
+        key: 'skrollrInitMenu',
+        value: function skrollrInitMenu() {
+            skrollr.menu.init(this.skrollr, {
+                animate: true,
+                easing: 'swing',
+                scenes: this.timing,
+                scale: 1,
+                duration: function duration(currentTop, targetTop) {
+                    return Math.abs(currentTop - targetTop) * 0.5;
+                }
             });
-
-            this.siteRoot = utils.createElementWithAttrs('figure', { role: 'site' });
-            this.siteRoot.appendChild(vignette);
-            this.siteRoot.appendChild(nav);
-
-            utils.get('svg/menu/scene.svg', function (data) {
-                nav.innerHTML = data;
-            });
-
-            this.loader = utils.createElementWithAttrs('figure', { id: 'loader' });
-
-            for (var key in this.timing) {
-                this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
-                    'data-scene': key,
-                    id: key
-                }));
-            }
-
-            document.body.setAttribute('data-display', 'divertissement');
-            document.body.appendChild(this.siteRoot);
-            document.body.appendChild(this.loader);
-
-            _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
         }
     }, {
-        key: 'onLoadedScenes',
-        value: function onLoadedScenes() {
+        key: 'skrollrOnRender',
+        value: function skrollrOnRender(obj) {
             for (var name in this.scenes) {
-                if (typeof this.scenes[name].init === 'function') {
-                    this.scenes[name].init(this);
+
+                if (typeof this.scenes[name].render === 'function') {
+                    var pos = this.time(obj, this.timing[name] || {
+                        begin: 0,
+                        end: 1
+                    });
+                    this.scenes[name].render(pos, obj);
                 }
             }
-
-            this.injectDependencies({
-                onComplete: this.initDivertissement.bind(this)
-            });
-        }
-    }, {
-        key: 'loadScene',
-        value: function loadScene(element, callback) {
-            var _this = this;
-
-            this.loadHtml(element, function () {
-                _this.loadSvg(element, callback);
-            });
-        }
-    }, {
-        key: 'loadHtml',
-        value: function loadHtml(element, callback) {
-            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', function (data) {
-                element.innerHTML = data;
-                callback();
-            });
-        }
-    }, {
-        key: 'loadSvg',
-        value: function loadSvg(element, callback) {
-            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', function (data) {
-                element.querySelector('.svg').innerHTML = data;
-                callback();
-            });
-        }
-    }, {
-        key: 'injectDependencies',
-        value: function injectDependencies(_ref) {
-            var onComplete = _ref.onComplete;
-
-            document.head.appendChild(utils.createElementWithAttrs('link', {
-                'data-skrollr-stylesheet': true,
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'styles/animation.css'
-            }));
-
-            utils.addScript('scripts/skrollr.js', onComplete);
-        }
-    }, {
-        key: 'initDivertissement',
-        value: function initDivertissement() {
-            this.removeLoader();
-            this.resize();
-            this.activateCvLink();
         }
     }, {
         key: 'removeLoader',
@@ -196,7 +133,7 @@ var _class = function () {
     }, {
         key: 'resize',
         value: function resize() {
-            var _this2 = this;
+            var _this = this;
 
             var maxHeight = 768 / 1024 * window.innerWidth;
             var shouldShowResume = document.documentElement.clientHeight > maxHeight;
@@ -208,9 +145,110 @@ var _class = function () {
                 this.resizeScenes();
 
                 setTimeout(function () {
-                    _this2.show();
+                    _this.show();
                 }, 500);
             }
+        }
+    }, {
+        key: 'buildScenes',
+        value: function buildScenes() {
+
+            this.siteRoot = utils.createElementWithAttrs('figure', {
+                role: 'site'
+            });
+
+            this.loader = utils.createElementWithAttrs('figure', {
+                id: 'loader'
+            });
+
+            var vignette = utils.createElementWithAttrs('div', {
+                id: 'vignette'
+            });
+
+            var nav = utils.createElementWithAttrs('nav', {
+                id: 'menu'
+            });
+
+            this.siteRoot.appendChild(vignette);
+            this.siteRoot.appendChild(nav);
+
+            utils.get('svg/menu/scene.svg', function (data) {
+                nav.innerHTML = data;
+            });
+
+            for (var key in this.timing) {
+                this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
+                    'data-scene': key,
+                    id: key
+                }));
+            }
+
+            document.body.setAttribute('data-display', 'divertissement');
+            document.body.appendChild(this.siteRoot);
+            document.body.appendChild(this.loader);
+
+            _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+        }
+    }, {
+        key: 'onLoadedScenes',
+        value: function onLoadedScenes() {
+            for (var name in this.scenes) {
+                if (typeof this.scenes[name].init === 'function') {
+                    this.scenes[name].init(this);
+                }
+            }
+
+            this.injectDependencies({
+                onComplete: this.initDivertissement.bind(this)
+            });
+        }
+    }, {
+        key: 'loadScene',
+        value: function loadScene(element, callback) {
+            var _this2 = this;
+
+            this.loadHtml(element, function () {
+                _this2.loadSvg(element, callback);
+            });
+        }
+    }, {
+        key: 'loadHtml',
+        value: function loadHtml(element, callback) {
+            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', function (data) {
+                element.innerHTML = data;
+                callback();
+            });
+        }
+    }, {
+        key: 'loadSvg',
+        value: function loadSvg(element, callback) {
+            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', function (data) {
+                element.querySelector('.svg').innerHTML = data;
+                callback();
+            });
+        }
+    }, {
+        key: 'injectDependencies',
+        value: function injectDependencies(_ref) {
+            var onComplete = _ref.onComplete;
+
+            document.head.appendChild(utils.createElementWithAttrs('link', {
+                'data-skrollr-stylesheet': true,
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'styles/animation.css'
+            }));
+
+            utils.addScript('scripts/skrollr.js', onComplete);
+        }
+    }, {
+        key: 'initDivertissement',
+        value: function initDivertissement() {
+            this.removeLoader();
+
+            this.resize();
+
+            this.activateCvLink();
         }
     }, {
         key: 'time',
@@ -243,33 +281,6 @@ var _class = function () {
             } else {
                 this.skrollr.refresh();
             }
-        }
-    }, {
-        key: 'skrollrOnRender',
-        value: function skrollrOnRender(obj) {
-            for (var name in this.scenes) {
-
-                if (typeof this.scenes[name].render === 'function') {
-                    var pos = this.time(obj, this.timing[name] || {
-                        begin: 0,
-                        end: 1
-                    });
-                    this.scenes[name].render(pos, obj);
-                }
-            }
-        }
-    }, {
-        key: 'skrollrInitMenu',
-        value: function skrollrInitMenu() {
-            skrollr.menu.init(this.skrollr, {
-                animate: true,
-                easing: 'swing',
-                scenes: this.timing,
-                scale: 1,
-                duration: function duration(currentTop, targetTop) {
-                    return Math.abs(currentTop - targetTop) * 0.5;
-                }
-            });
         }
     }, {
         key: 'show',

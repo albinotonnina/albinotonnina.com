@@ -30,21 +30,108 @@ export default class {
         this.buildScenes();
     }
 
+
+
+    skrollrInitMenu() {
+        skrollr.menu.init(this.skrollr, {
+            animate: true,
+            easing: 'swing',
+            scenes: this.timing,
+            scale: 1,
+            duration(currentTop, targetTop) {
+                return Math.abs(currentTop - targetTop) * 0.5;
+            }
+        });
+    }
+
+    skrollrOnRender(obj) {
+        for (let name in this.scenes) {
+
+            if (typeof this.scenes[name].render === 'function') {
+                const pos = this.time(obj, this.timing[name] || {
+                    begin: 0,
+                    end: 1
+                });
+                this.scenes[name].render(pos, obj);
+            }
+        }
+    }
+
+    removeLoader() {
+        document.body.removeChild(this.loader);
+    }
+
+    resizeScenes() {
+
+        let svgWidth, svgHeight;
+        svgWidth = window.innerWidth;
+        svgHeight = document.documentElement.clientHeight;
+
+        const scenes = document.querySelectorAll('[data-scene] svg');
+
+        [].forEach.call(scenes, function (scene) {
+            utils.setAttributes(scene, {
+                width: svgWidth,
+                height: svgHeight
+            })
+        });
+    }
+
+    resizeMenu() {
+
+        utils.setAttributes(document.querySelector('#menu svg'), {
+            width: window.innerWidth,
+            height: (document.documentElement.clientHeight * 60) / 768
+        });
+
+        document.querySelector('#menu').style.width = `${window.innerWidth}px`;
+        document.querySelector('#menu').style.height = `${(document.documentElement.clientHeight * 60) / 768}px`;
+
+    }
+
+    resize() {
+
+        const maxHeight = 768 / 1024 * window.innerWidth;
+        const shouldShowResume = document.documentElement.clientHeight > maxHeight;
+
+        if (shouldShowResume) {
+            this.destroy();
+        } else {
+            this.resizeMenu();
+            this.resizeScenes();
+
+            setTimeout(() => {
+                this.show();
+            }, 500)
+
+        }
+
+    }
+
     buildScenes() {
-        const vignette = utils.createElementWithAttrs('div', {id: 'vignette'});
+
+        this.siteRoot = utils.createElementWithAttrs('figure', {
+            role: 'site'
+        });
+
+        this.loader = utils.createElementWithAttrs('figure', {
+            id: 'loader'
+        });
+
+        const vignette = utils.createElementWithAttrs('div', {
+            id: 'vignette'
+        });
+
         const nav = utils.createElementWithAttrs('nav', {
             id: 'menu'
         });
 
-        this.siteRoot = utils.createElementWithAttrs('figure', {role: 'site'});
         this.siteRoot.appendChild(vignette);
         this.siteRoot.appendChild(nav);
 
         utils.get('svg/menu/scene.svg', (data) => {
             nav.innerHTML = data;
         });
-
-        this.loader = utils.createElementWithAttrs('figure', {id: 'loader'});
 
         for (let key in this.timing) {
             this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
@@ -57,11 +144,10 @@ export default class {
         document.body.appendChild(this.siteRoot);
         document.body.appendChild(this.loader);
 
-
         async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
     }
 
-    onLoadedScenes() {
+    onLoadedScenes(){
         for (let name in this.scenes) {
             if (typeof this.scenes[name].init === 'function') {
                 this.scenes[name].init(this);
@@ -106,56 +192,10 @@ export default class {
 
     initDivertissement() {
         this.removeLoader();
+
         this.resize();
+
         this.activateCvLink();
-    }
-
-    removeLoader() {
-        document.body.removeChild(this.loader);
-    }
-
-    resizeScenes() {
-
-        let svgWidth, svgHeight;
-        svgWidth = window.innerWidth;
-        svgHeight = document.documentElement.clientHeight;
-
-        const scenes = document.querySelectorAll('[data-scene] svg');
-
-        [].forEach.call(scenes, function (scene) {
-            utils.setAttributes(scene, {
-                width: svgWidth,
-                height: svgHeight
-            })
-        });
-    }
-
-    resizeMenu() {
-
-        utils.setAttributes(document.querySelector('#menu svg'), {
-            width: window.innerWidth,
-            height: (document.documentElement.clientHeight * 60) / 768
-        });
-
-        document.querySelector('#menu').style.width = `${window.innerWidth}px`;
-        document.querySelector('#menu').style.height = `${(document.documentElement.clientHeight * 60) / 768}px`;
-
-    }
-
-    resize() {
-        const maxHeight = 768 / 1024 * window.innerWidth;
-        const shouldShowResume = document.documentElement.clientHeight > maxHeight;
-
-        if (shouldShowResume) {
-            this.destroy();
-        } else {
-            this.resizeMenu();
-            this.resizeScenes();
-
-            setTimeout(() => {
-                this.show();
-            }, 500)
-        }
     }
 
     time(obj, timing) {
@@ -186,31 +226,6 @@ export default class {
         } else {
             this.skrollr.refresh();
         }
-    }
-
-    skrollrOnRender(obj) {
-        for (let name in this.scenes) {
-
-            if (typeof this.scenes[name].render === 'function') {
-                const pos = this.time(obj, this.timing[name] || {
-                    begin: 0,
-                    end: 1
-                });
-                this.scenes[name].render(pos, obj);
-            }
-        }
-    }
-
-    skrollrInitMenu() {
-        skrollr.menu.init(this.skrollr, {
-            animate: true,
-            easing: 'swing',
-            scenes: this.timing,
-            scale: 1,
-            duration(currentTop, targetTop) {
-                return Math.abs(currentTop - targetTop) * 0.5;
-            }
-        });
     }
 
     show() {
