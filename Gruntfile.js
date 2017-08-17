@@ -605,11 +605,9 @@ module.exports = function (grunt) {
         'copy:dist',
         'copy:html',
         'modernizr',
-
         'rev',
         'usemin',
         'cssmin',
-        //'htmlmin',
         'usebanner'
 
     ]);
