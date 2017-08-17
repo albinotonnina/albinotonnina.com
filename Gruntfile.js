@@ -603,7 +603,7 @@ module.exports = function (grunt) {
         'copy:dist',
         'copy:html',
         //'modernizr',
-        'uglify',
+        // 'uglify',
         'rev',
         'usemin',
         'cssmin',

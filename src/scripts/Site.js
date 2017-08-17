@@ -184,7 +184,6 @@ export default class {
             }));
 
             this.skrollrInitMenu();
-
         } else {
             this.skrollr.refresh();
         }
