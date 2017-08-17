@@ -13,8 +13,8 @@ export default class {
 
         this.scenes = {
             scene1: animation1,
-            scene4: animation4,
             scene5: animation5,
+            scene4: animation4,
             scene6: animation6
         };
 
@@ -40,57 +40,64 @@ export default class {
         this.siteRoot.appendChild(vignette);
         this.siteRoot.appendChild(nav);
 
-        utils.get('svg/menu/scene.svg', data => {
+        utils.get('svg/menu/scene.svg', (data) => {
             nav.innerHTML = data;
         });
 
         this.loader = utils.createElementWithAttrs('figure', {id: 'loader'});
 
+        for (let key in this.timing) {
+            this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
+                'data-scene': key,
+                id: key
+            }));
+        }
+
         document.body.setAttribute('data-display', 'divertissement');
         document.body.appendChild(this.siteRoot);
         document.body.appendChild(this.loader);
 
-        async.each(this.timing, this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+        console.log('this.timing', this.timing);
+
+
+        async.each(this.timing, (el, callback)=>{
+
+            console.log('el', el);
+
+            callback();
+        });
+
+        async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
     }
 
     onLoadedScenes() {
+        for (let name in this.scenes) {
+            if (typeof this.scenes[name].init === 'function') {
+                this.scenes[name].init(this);
+            }
+        }
+
         this.injectDependencies({
             onComplete: this.initDivertissement.bind(this)
         });
     }
 
-    loadScene(scene, acallback) {
-        const sceneEl = utils.createElementWithAttrs('div', {
-            'data-scene': scene.name,
-            id: scene.name
-        });
-
-        this.siteRoot.appendChild(sceneEl);
-
-        this.loadHtml(sceneEl, scene.name, () => {
-            this.loadSvg(sceneEl, scene.name, () => {
-
-                // const sceneScripts = this.scenes[scene.name];
-                //
-                // if (sceneScripts && typeof sceneScripts.init === 'function') {
-                //     sceneScripts.init(this);
-                // }
-
-                acallback();
-            });
+    loadScene(element, callback) {
+        this.loadHtml(element, () => {
+            this.loadSvg(element, callback);
         });
     }
 
-    loadHtml(sceneEl, sceneName, callback) {
-        utils.get('svg/' + sceneName + '/scene.html', (data) => {
-            sceneEl.innerHTML = data;
+    loadHtml(element, callback) {
+        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', (data) => {
+            element.innerHTML = data;
             callback();
         });
     }
 
-    loadSvg(sceneEl, sceneName, callback) {
-        utils.get('svg/' + sceneName + '/scene.svg', (data) => {
-            sceneEl.querySelector('.svg').innerHTML = data;
+    loadSvg(element, callback) {
+        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', (data) => {
+            element.querySelector('.svg').innerHTML = data;
             callback();
         });
     }
@@ -184,6 +191,7 @@ export default class {
             }));
 
             this.skrollrInitMenu();
+
         } else {
             this.skrollr.refresh();
         }

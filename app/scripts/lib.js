@@ -51,8 +51,8 @@ var _class = function () {
 
         this.scenes = {
             scene1: _animation2.default,
-            scene4: _animation4.default,
             scene5: _animation6.default,
+            scene4: _animation4.default,
             scene6: _animation8.default
         };
 
@@ -86,57 +86,63 @@ var _class = function () {
 
             this.loader = utils.createElementWithAttrs('figure', { id: 'loader' });
 
+            for (var key in this.timing) {
+                this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
+                    'data-scene': key,
+                    id: key
+                }));
+            }
+
             document.body.setAttribute('data-display', 'divertissement');
             document.body.appendChild(this.siteRoot);
             document.body.appendChild(this.loader);
 
-            _async2.default.each(this.timing, this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+            console.log('this.timing', this.timing);
+
+            _async2.default.each(this.timing, function (el, callback) {
+
+                console.log('el', el);
+
+                callback();
+            });
+
+            _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
         }
     }, {
         key: 'onLoadedScenes',
         value: function onLoadedScenes() {
+            for (var name in this.scenes) {
+                if (typeof this.scenes[name].init === 'function') {
+                    this.scenes[name].init(this);
+                }
+            }
+
             this.injectDependencies({
                 onComplete: this.initDivertissement.bind(this)
             });
         }
     }, {
         key: 'loadScene',
-        value: function loadScene(scene, acallback) {
+        value: function loadScene(element, callback) {
             var _this = this;
 
-            var sceneEl = utils.createElementWithAttrs('div', {
-                'data-scene': scene.name,
-                id: scene.name
-            });
-
-            this.siteRoot.appendChild(sceneEl);
-
-            this.loadHtml(sceneEl, scene.name, function () {
-                _this.loadSvg(sceneEl, scene.name, function () {
-
-                    // const sceneScripts = this.scenes[scene.name];
-                    //
-                    // if (sceneScripts && typeof sceneScripts.init === 'function') {
-                    //     sceneScripts.init(this);
-                    // }
-
-                    acallback();
-                });
+            this.loadHtml(element, function () {
+                _this.loadSvg(element, callback);
             });
         }
     }, {
         key: 'loadHtml',
-        value: function loadHtml(sceneEl, sceneName, callback) {
-            utils.get('svg/' + sceneName + '/scene.html', function (data) {
-                sceneEl.innerHTML = data;
+        value: function loadHtml(element, callback) {
+            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', function (data) {
+                element.innerHTML = data;
                 callback();
             });
         }
     }, {
         key: 'loadSvg',
-        value: function loadSvg(sceneEl, sceneName, callback) {
-            utils.get('svg/' + sceneName + '/scene.svg', function (data) {
-                sceneEl.querySelector('.svg').innerHTML = data;
+        value: function loadSvg(element, callback) {
+            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', function (data) {
+                element.querySelector('.svg').innerHTML = data;
                 callback();
             });
         }
