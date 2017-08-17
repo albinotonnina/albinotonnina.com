@@ -605,6 +605,7 @@ module.exports = function (grunt) {
         'copy:dist',
         'copy:html',
         'modernizr',
+        'uglify',
         'rev',
         'usemin',
         'cssmin',
