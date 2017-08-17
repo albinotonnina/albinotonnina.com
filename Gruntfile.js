@@ -90,7 +90,7 @@ module.exports = function (grunt) {
                 port: 3000,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
+                hostname: '0.0.0.0'
             },
             livereload: {
                 options: {
@@ -208,27 +208,6 @@ module.exports = function (grunt) {
             }
         },
 
-        htmlmin: {
-            dist: {
-                options: {
-                    collapseBooleanAttributes: true,
-                    collapseWhitespace: true,
-                    removeAttributeQuotes: true,
-                    removeCommentsFromCDATA: true,
-                    removeEmptyAttributes: true,
-                    removeOptionalTags: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.dist %>',
-                    src: '{,*/}*.html',
-                    dest: '<%= config.dist %>'
-                }]
-            }
-        },
-
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
@@ -260,7 +239,7 @@ module.exports = function (grunt) {
         concat: {
             css: {
                 src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
-                dest: 'tmp/animation.scss'
+                dest: '.tmp/animation.scss'
             },
             skrollr: {
                 src: ['node_modules/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', 'node_modules/skrollr/dist/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
@@ -271,12 +250,12 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 files: {
-                    '<%= config.dist %>/styles/animation.css': 'tmp/animation.scss'
+                    '<%= config.dist %>/styles/animation.css': '.tmp/animation.scss'
                 }
             },
             dev: {
                 files: {
-                    '<%= config.app %>/styles/animation.css': 'tmp/animation.scss'
+                    '<%= config.app %>/styles/animation.css': '.tmp/animation.scss'
                 }
             },
             styles: {
@@ -285,7 +264,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // Copies remaining files to places other tasks can use
+
         copy: {
             dist: {
                 files: [

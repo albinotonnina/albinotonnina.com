@@ -4,15 +4,7 @@ var logfmt = require("logfmt");
 var app = express();
 
 app.use(logfmt.requestLogger());
-
 app.use(express.compress());
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'dist'))); 
-
-var port = Number(process.env.PORT || 5000);
-
-
-// app.listen(80, 'current_local_ip');
-
-app.listen(port);
+app.listen(Number(process.env.PORT || 5000));
