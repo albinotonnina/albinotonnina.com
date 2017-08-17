@@ -172,7 +172,7 @@ var _class = function () {
             this.siteRoot.appendChild(vignette);
             this.siteRoot.appendChild(nav);
 
-            utils.get('svg/menu/scene.svg', function (data) {
+            utils.ajax('svg/menu/scene.svg', {}, 'html', function (data) {
                 nav.innerHTML = data;
             });
 
@@ -214,16 +214,22 @@ var _class = function () {
     }, {
         key: 'loadHtml',
         value: function loadHtml(element, callback) {
-            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', function (data) {
+
+            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.html', {}, 'html', function (data) {
+
                 element.innerHTML = data;
+
                 callback();
             });
         }
     }, {
         key: 'loadSvg',
         value: function loadSvg(element, callback) {
-            utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', function (data) {
+
+            utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.svg', {}, 'html', function (data) {
+
                 element.querySelector('.svg').innerHTML = data;
+
                 callback();
             });
         }
