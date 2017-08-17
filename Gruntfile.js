@@ -263,7 +263,7 @@ module.exports = function (grunt) {
                 dest: 'tmp/animation.scss'
             },
             skrollr: {
-                src: ['./node_modules/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', './node_modules/skrollr/dist/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
+                src: ['node_modules/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', 'node_modules/skrollr/dist/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
                 dest: '<%= config.app %>/scripts/skrollr.js'
             }
         },
