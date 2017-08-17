@@ -1,4 +1,5 @@
-import $ from "jquery";
+
+import 'whatwg-fetch';
 import WebFont from 'webfontloader';
 
 export const waitForWebfonts = function (fonts, callback) {
@@ -10,19 +11,24 @@ export const waitForWebfonts = function (fonts, callback) {
     });
 };
 
-export const ajax = function (url, data, datatype, onSuccess, onFailure) {
-    $.ajax({
-        type: 'get',
-        url: url,
-        data: data,
-        dataType: datatype,
-        success: function (data) {
-            onSuccess(data);
-        },
-        error: function (request, status, error) {
-            onFailure(request, status, error);
-        }
-    });
+export const get = function (url, onSuccess, onFailure) {
+    const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/`;
+
+    fetch(baseUrl + url)
+        .then(function (res) {
+            return res.text();
+        })
+        .then(function (body) {
+            if (typeof onSuccess === 'function') {
+                onSuccess(body);
+            }
+        })
+        .catch(function (err) {
+            if (typeof onFailure === 'function') {
+                onFailure(err)
+            }
+        });
+
 };
 
 export const isMobile = function () {

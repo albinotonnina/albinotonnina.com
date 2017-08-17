@@ -129,7 +129,7 @@ export default class {
         this.siteRoot.appendChild(vignette);
         this.siteRoot.appendChild(nav);
 
-        utils.ajax('svg/menu/scene.svg', {}, 'html', (data) => {
+        utils.get('svg/menu/scene.svg', (data) => {
             nav.innerHTML = data;
         });
 
@@ -166,24 +166,16 @@ export default class {
     }
 
     loadHtml(element, callback) {
-
-        utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.html', {}, 'html', (data) => {
-
+        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', (data) => {
             element.innerHTML = data;
-
             callback();
-
         });
     }
 
     loadSvg(element, callback) {
-
-        utils.ajax('svg/' + element.getAttribute('data-scene') + '/scene.svg', {}, 'html', (data) => {
-
+        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', (data) => {
             element.querySelector('.svg').innerHTML = data;
-
             callback();
-
         });
     }
 

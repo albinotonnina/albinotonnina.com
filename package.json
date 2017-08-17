@@ -14,12 +14,12 @@
     "fs": "0.0.1-security",
     "knuth-shuffle": "^1.0.1",
     "logfmt": "^1.0.0",
-    "node-fetch": "^1.7.2",
     "skrollr": "^0.6.26",
     "skrollr-menu": "^1.0.3",
     "skrollr-stylesheets": "^1.0.0",
     "throttle-debounce": "^1.0.1",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "whatwg-fetch": "^2.0.3"
   },
   "repository": {
     "type": "git",
