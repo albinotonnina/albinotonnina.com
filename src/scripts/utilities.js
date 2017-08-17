@@ -1,5 +1,5 @@
+import $ from "jquery";
 import WebFont from 'webfontloader';
-import fetch from 'node-fetch';
 
 export const waitForWebfonts = function (fonts, callback) {
     WebFont.load({
@@ -10,24 +10,19 @@ export const waitForWebfonts = function (fonts, callback) {
     });
 };
 
-export const get = function (url, onSuccess, onFailure) {
-    const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/`;
-
-    fetch(baseUrl + url)
-        .then(function (res) {
-            return res.text();
-        })
-        .then(function (body) {
-            if (typeof onSuccess === 'function') {
-                onSuccess(body);
-            }
-        })
-        .catch(function (err) {
-            if (typeof onFailure === 'function') {
-                onFailure(err)
-            }
-        });
-
+export const ajax = function (url, data, datatype, onSuccess, onFailure) {
+    $.ajax({
+        type: 'get',
+        url: url,
+        data: data,
+        dataType: datatype,
+        success: function (data) {
+            onSuccess(data);
+        },
+        error: function (request, status, error) {
+            onFailure(request, status, error);
+        }
+    });
 };
 
 export const isMobile = function () {
@@ -54,7 +49,7 @@ export const createElementWithAttrs = (tagName, attrs) => {
 export const addScript = (filepath, callback) => {
     if (filepath) {
 
-        const fileref = createElementWithAttrs('script', {
+        const fileref = createElementWithAttrs('script',{
             type: 'text/javascript',
             src: filepath
         });
@@ -63,7 +58,7 @@ export const addScript = (filepath, callback) => {
 
         let done = false;
 
-        fileref.onload = fileref.onreadystatechange = (ev) => {
+        fileref.onload = fileref.onreadystatechange =  (ev) => {
             if (!done && (!ev.readyState || ev.readyState === 'loaded' || ev.readyState === 'complete')) {
                 done = true;
 
@@ -76,6 +71,8 @@ export const addScript = (filepath, callback) => {
                 }
             }
         };
+
+
 
         head.appendChild(fileref);
     }
