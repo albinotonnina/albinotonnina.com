@@ -29,12 +29,11 @@
 				<stop  offset="0.7955" style="stop-color:#3498DB;stop-opacity:5.650000e-02"/>
 				<stop  offset="0.9095" style="stop-color:#3498DB;stop-opacity:0"/>
 			</radialGradient>
-			<polygon id="mbplight" display="none" fill="url(#mbplight_1_)" points="1456.4,-40 1121.7,-190.5 1165.8,-230.3 1464.9,-93.9 
-							"/>
+			<polygon id="mbplight" fill="url(#mbplight_1_)" points="1456.4,-40 1121.7,-190.5 1165.8,-230.3 1464.9,-93.9 			"/>
 			<path fill="#CCD1D9" d="M1464-74.8l-342.2-155.9c0,0-8.2-3.7-4.5-11.9s11.9-4.5,11.9-4.5l342.3,155.9c0,0,8.2,3.7,4.5,11.9
 				C1472.2-71.1,1464-74.8,1464-74.8z"/>
 			
-				<rect x="1173.4" y="-16.6" transform="matrix(-0.91 -0.4145 0.4145 -0.91 2327.3486 517.8984)" display="none" fill="#F5F7FA" stroke="#CCD1D9" stroke-miterlimit="10" width="92.9" height="46"/>
+				<rect x="1173.4" y="-16.6" transform="matrix(-0.91 -0.4145 0.4145 -0.91 2327.3486 517.8984)" fill="#F5F7FA" stroke="#CCD1D9" stroke-miterlimit="10" width="92.9" height="46"/>
 			<g>
 				
 					<rect x="1167.6" y="-168.9" transform="matrix(-0.9101 -0.4145 0.4145 -0.9101 2314.9368 176.6098)" fill="#3B3B3B" stroke="#C1C1C1" stroke-miterlimit="10" width="18" height="12"/>
