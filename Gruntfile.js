@@ -1,25 +1,15 @@
-// Generated on 2014-03-22 using generator-webapp 0.4.8
 'use strict';
-
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
 
-    // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
-    // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
-    // Define the configuration for all the tasks
     grunt.initConfig({
 
-        // pkg: grunt.file.read('package.json'),
         pkg: grunt.file.readJSON('package.json'),
+
         banner: '/*! <%= pkg.name %> by <%= pkg.author.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '* http://<%= pkg.homepage %>/\n' +
@@ -35,7 +25,6 @@ module.exports = function (grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
         '<%= pkg.author.name %>; Licensed MIT \n-->',
 
-        // Project settings
         config: {
             // Configurable paths
             app: 'app',
@@ -43,9 +32,7 @@ module.exports = function (grunt) {
             tmp: '.tmp'
         },
 
-        // Watches files for changes and runs tasks based on the changed files
         watch: {
-
             js: {
                 files: ['src/**/*.js'],
                 tasks: ['babel', 'browserify'],
@@ -98,7 +85,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // The actual grunt server settings
         connect: {
             options: {
                 port: 5000,
@@ -115,16 +101,6 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            test: {
-                options: {
-                    port: 9001,
-                    base: [
-                        '.tmp',
-                        'test',
-                        '<%= config.app %>'
-                    ]
-                }
-            },
             dist: {
                 options: {
                     open: true,
@@ -134,7 +110,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // Empties folders to start fresh
         clean: {
             dist: {
                 files: [{
@@ -149,31 +124,6 @@ module.exports = function (grunt) {
             server: '.tmp'
         },
 
-        // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= config.app %>/scripts/{,*/}*.js',
-                '!<%= config.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
-        },
-
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-                }
-            }
-        },
-
-        // Renames files for browser caching purposes
         rev: {
             dist: {
                 files: {
@@ -187,9 +137,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // Reads HTML for usemin blocks to enable smart builds that automatically
-        // concat, minify and revision files. Creates configurations in memory so
-        // additional tasks can operate on them
         useminPrepare: {
             options: {
                 dest: '<%= config.dist %>'
@@ -197,7 +144,6 @@ module.exports = function (grunt) {
             html: '<%= config.app %>/index.html'
         },
 
-        // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
             options: {
                 assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
@@ -206,7 +152,6 @@ module.exports = function (grunt) {
             css: ['<%= config.dist %>/styles/{,*/}*.css']
         },
 
-        // The following *-min tasks produce minified files in the dist folder
         imagemin: {
             dist: {
                 files: [{
@@ -217,6 +162,7 @@ module.exports = function (grunt) {
                 }]
             }
         },
+
         svgmin: {
             options: {
                 plugins: [{
@@ -240,6 +186,7 @@ module.exports = function (grunt) {
                 }]
             }
         },
+
         usebanner: {
             html: {
                 options: {
@@ -260,6 +207,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         htmlmin: {
             dist: {
                 options: {
@@ -294,6 +242,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         uglify: {
             dist: {
                 files: [{
@@ -307,16 +256,18 @@ module.exports = function (grunt) {
                 }]
             }
         },
+
         concat: {
             css: {
                 src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
                 dest: 'tmp/animation.scss'
             },
             skrollr: {
-                src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
+                src: ['./node_modules/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', './node_modules/skrollr/dist/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
                 dest: '<%= config.app %>/scripts/skrollr.js'
             }
         },
+
         sass: {
             dist: {
                 files: {
@@ -345,8 +296,6 @@ module.exports = function (grunt) {
                         dest: '<%= config.dist %>',
                         src: [
                             '*.{ico,png,jpg,txt}',
-                            '.htaccess',
-                            'images/{,*/}*.webp',
                             'images/**/*.svg',
                             'svg/{,*/}*.html',
                             'scripts/*.js',
@@ -362,7 +311,6 @@ module.exports = function (grunt) {
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
             },
-
             html: {
                 expand: true,
                 dot: true,
@@ -507,15 +455,11 @@ module.exports = function (grunt) {
             }
         },
 
-        // Generates a custom Modernizr build that includes only the tests you
-        // reference in your app
         modernizr: {
             dist: {
                 cache: true,
-                // Path to the build you're using for development.
                 devFile : false,
-                dest: '<%= config.dist %>/scripts/vendor/modernizr.js',
-
+                dest: '<%= config.app %>/scripts/vendor/modernizr.js',
                 tests: [
                     'svgclippaths',
                     'inlinesvg'
@@ -524,20 +468,6 @@ module.exports = function (grunt) {
                 uglify: false
             }
 
-        },
-
-        // Run some tasks in parallel to speed up build process
-        concurrent: {
-            server: [
-                'copy:styles'
-            ],
-            test: [
-                'copy:styles'
-            ],
-            dist: [
-                'copy:styles',
-                'svgmin'
-            ]
         },
 
         babel: {
@@ -572,23 +502,9 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'concurrent:server',
+            'copy:styles',
             'connect:livereload',
             'watch'
-        ]);
-    });
-
-    grunt.registerTask('test', function (target) {
-        if (target !== 'watch') {
-            grunt.task.run([
-                'clean:server',
-                'concurrent:test'
-            ]);
-        }
-
-        grunt.task.run([
-            'connect:test',
-            'mocha'
         ]);
     });
 
@@ -596,26 +512,21 @@ module.exports = function (grunt) {
         'clean:dist',
         'replace',
         'useminPrepare',
-        'concurrent:dist',
+        'copy:styles',
+        'svgmin',
         'imagemin',
         'babel',
         'browserify',
         'concat',
         'sass',
+        'modernizr',
         'copy:dist',
         'copy:html',
-        'modernizr',
         'uglify',
         'rev',
         'usemin',
         'cssmin',
         'usebanner'
-
     ]);
 
-    grunt.registerTask('default', [
-        //'newer:jshint',
-        'test',
-        'build'
-    ]);
 };
