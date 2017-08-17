@@ -315,7 +315,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var onLoad = function onLoad() {
 
-    if (Modernizr.inlinesvg || Modernizr.svg || Modernizr.svgclippaths) {
+    if (Modernizr.inlinesvg || Modernizr.svgclippaths) {
 
         var SiteInstance = new _Site2.default();
 

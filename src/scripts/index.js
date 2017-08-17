@@ -6,7 +6,7 @@ import Site from './Site';
 
 const onLoad = () => {
 
-    if (Modernizr.inlinesvg || Modernizr.svg || Modernizr.svgclippaths) {
+    if (Modernizr.inlinesvg || Modernizr.svgclippaths) {
 
         const SiteInstance = new Site();
 

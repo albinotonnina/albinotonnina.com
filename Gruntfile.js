@@ -510,18 +510,20 @@ module.exports = function (grunt) {
         // Generates a custom Modernizr build that includes only the tests you
         // reference in your app
         modernizr: {
-            devFile: '<%= config.app %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-            files: {
-                src: [
-                    '<%= config.dist %>/scripts/{,*/}*.js',
-                    '<%= config.dist %>/styles/{,*/}*.css',
-                    '!<%= config.dist %>/scripts/vendor/*'
-                ]
-            },
-            cache: true,
-            crawl: false,
-            uglify: true
+            dist: {
+                cache: true,
+                // Path to the build you're using for development.
+                devFile : false,
+                dest: '<%= config.dist %>/scripts/vendor/modernizr.js',
+
+                tests: [
+                    'svgclippaths',
+                    'inlinesvg'
+                ],
+                crawl: false,
+                uglify: false
+            }
+
         },
 
         // Run some tasks in parallel to speed up build process
@@ -602,8 +604,8 @@ module.exports = function (grunt) {
         'sass',
         'copy:dist',
         'copy:html',
-        //'modernizr',
-        // 'uglify',
+        'modernizr',
+
         'rev',
         'usemin',
         'cssmin',
