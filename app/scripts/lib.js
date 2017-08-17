@@ -101,7 +101,7 @@ var _class = function () {
         }
     }, {
         key: 'loadScene',
-        value: function loadScene(scene, callback) {
+        value: function loadScene(scene, acallback) {
             var _this = this;
 
             var sceneEl = utils.createElementWithAttrs('div', {
@@ -114,13 +114,13 @@ var _class = function () {
             this.loadHtml(sceneEl, scene.name, function () {
                 _this.loadSvg(sceneEl, scene.name, function () {
 
-                    var sceneScripts = _this.scenes[scene.name];
+                    // const sceneScripts = this.scenes[scene.name];
+                    //
+                    // if (sceneScripts && typeof sceneScripts.init === 'function') {
+                    //     sceneScripts.init(this);
+                    // }
 
-                    if (sceneScripts && typeof sceneScripts.init === 'function') {
-                        sceneScripts.init(_this);
-                    }
-
-                    callback();
+                    acallback();
                 });
             });
         }

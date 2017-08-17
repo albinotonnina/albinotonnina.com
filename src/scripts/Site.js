@@ -59,7 +59,7 @@ export default class {
         });
     }
 
-    loadScene(scene, callback) {
+    loadScene(scene, acallback) {
         const sceneEl = utils.createElementWithAttrs('div', {
             'data-scene': scene.name,
             id: scene.name
@@ -70,13 +70,13 @@ export default class {
         this.loadHtml(sceneEl, scene.name, () => {
             this.loadSvg(sceneEl, scene.name, () => {
 
-                const sceneScripts = this.scenes[scene.name];
+                // const sceneScripts = this.scenes[scene.name];
+                //
+                // if (sceneScripts && typeof sceneScripts.init === 'function') {
+                //     sceneScripts.init(this);
+                // }
 
-                if (sceneScripts && typeof sceneScripts.init === 'function') {
-                    sceneScripts.init(this);
-                }
-
-                callback();
+                acallback();
             });
         });
     }
