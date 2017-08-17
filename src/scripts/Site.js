@@ -57,15 +57,6 @@ export default class {
         document.body.appendChild(this.siteRoot);
         document.body.appendChild(this.loader);
 
-        console.log('this.timing', this.timing);
-
-
-        async.each(this.timing, (el, callback)=>{
-
-            console.log('el', el);
-
-            callback();
-        });
 
         async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
     }

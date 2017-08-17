@@ -97,15 +97,6 @@ var _class = function () {
             document.body.appendChild(this.siteRoot);
             document.body.appendChild(this.loader);
 
-            console.log('this.timing', this.timing);
-
-            _async2.default.each(this.timing, function (el, callback) {
-
-                console.log('el', el);
-
-                callback();
-            });
-
             _async2.default.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
         }
     }, {
