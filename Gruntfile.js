@@ -1,53 +1,41 @@
-// Generated on 2014-03-22 using generator-webapp 0.4.8
 'use strict';
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
+module.exports = function (grunt) {
 
-module.exports = function(grunt) {
-
-    // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
-    // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
-    // Define the configuration for all the tasks
     grunt.initConfig({
 
-        // pkg: grunt.file.read('package.json'),
         pkg: grunt.file.readJSON('package.json'),
+
         banner: '/*! <%= pkg.name %> by <%= pkg.author.name %> - v<%= pkg.version %> - ' +
-            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* http://<%= pkg.homepage %>/\n' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-            '<%= pkg.author.name %>; Licensed MIT */',
+        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '* http://<%= pkg.homepage %>/\n' +
+        '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+        '<%= pkg.author.name %>; Licensed MIT */',
 
         htmlbanner: '<!-- \nHello, interested visitor!\n' +
-            'Why don\'t you check the source code of this site on GitHub?\n' +
-            'I used several great tools like Yeoman, Bower and Grunt.\n' +
-            'Hope you like it :)\n' +
-            '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* <%= pkg.homepage %>\n' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-            '<%= pkg.author.name %>; Licensed MIT \n-->',
+        'Why don\'t you check the source code of this site on GitHub?\n' +
+        'I used several great tools like Yeoman, Bower and Grunt.\n' +
+        'Hope you like it :)\n' +
+        '<%= pkg.name %> by <%= pkg.author.name %>. v<%= pkg.version %> - built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '* <%= pkg.homepage %>\n' +
+        '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+        '<%= pkg.author.name %>; Licensed MIT \n-->',
 
-        // Project settings
         config: {
             // Configurable paths
             app: 'app',
-            dist: 'dist'
+            dist: 'dist',
+            tmp: '.tmp'
         },
 
-        // Watches files for changes and runs tasks based on the changed files
         watch: {
-
             js: {
-                files: ['src/{,*/}*.js'],
-                tasks: ['concat:js'],
+                files: ['src/**/*.js'],
+                tasks: ['babel', 'browserify'],
                 options: {
                     livereload: true
                 }
@@ -65,12 +53,26 @@ module.exports = function(grunt) {
             },
             svg: {
                 files: 'src/svg/*/*.svg',
-                tasks: ['replace']
+                tasks: ['replace'],
+                options: {
+                    livereload: true
+                }
+            },
+            json: {
+                files: 'src/svg/*.json',
+                tasks: ['copy:dist']
             },
             sass: {
-                files: ['src/svg/*/*.scss','src/*/*.scss'],
-                tasks: ['concat:css','sass:dev','sass:styles']
-            },            
+                files: ['src/svg/*/*.scss', 'src/*/*.scss'],
+                tasks: ['concat:css', 'sass:dev', 'sass:styles'],
+                options: {
+                    livereload: true
+                }
+            },
+            html: {
+                files: 'src/svg/*/*.html',
+                tasks: ['copy:html']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -83,10 +85,9 @@ module.exports = function(grunt) {
             }
         },
 
-        // The actual grunt server settings
         connect: {
             options: {
-                port: 9000,
+                port: 3000,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
@@ -100,16 +101,6 @@ module.exports = function(grunt) {
                     ]
                 }
             },
-            test: {
-                options: {
-                    port: 9001,
-                    base: [
-                        '.tmp',
-                        'test',
-                        '<%= config.app %>'
-                    ]
-                }
-            },
             dist: {
                 options: {
                     open: true,
@@ -119,7 +110,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // Empties folders to start fresh
         clean: {
             dist: {
                 files: [{
@@ -134,40 +124,12 @@ module.exports = function(grunt) {
             server: '.tmp'
         },
 
-        // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= config.app %>/scripts/{,*/}*.js',
-                '!<%= config.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
-        },
-
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-                }
-            }
-        },
-
-
-
-        // Renames files for browser caching purposes
         rev: {
             dist: {
                 files: {
                     src: [
                         '<%= config.dist %>/scripts/lib.js',
                         '<%= config.dist %>/styles/main.css',
-                        '<%= config.dist %>/images/*.*',
                         '<%= config.dist %>/styles/fonts/{,*/}*.*',
                         '<%= config.dist %>/*.{ico,png}'
                     ]
@@ -175,9 +137,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // Reads HTML for usemin blocks to enable smart builds that automatically
-        // concat, minify and revision files. Creates configurations in memory so
-        // additional tasks can operate on them
         useminPrepare: {
             options: {
                 dest: '<%= config.dist %>'
@@ -185,7 +144,6 @@ module.exports = function(grunt) {
             html: '<%= config.app %>/index.html'
         },
 
-        // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
             options: {
                 assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
@@ -194,7 +152,6 @@ module.exports = function(grunt) {
             css: ['<%= config.dist %>/styles/{,*/}*.css']
         },
 
-        // The following *-min tasks produce minified files in the dist folder
         imagemin: {
             dist: {
                 files: [{
@@ -205,6 +162,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
         svgmin: {
             options: {
                 plugins: [{
@@ -228,6 +186,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
         usebanner: {
             html: {
                 options: {
@@ -248,6 +207,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         htmlmin: {
             dist: {
                 options: {
@@ -282,6 +242,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         uglify: {
             dist: {
                 files: [{
@@ -295,20 +256,18 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
         concat: {
             css: {
                 src: ['src/svg/animation.scss', 'src/svg/*/animation.scss'],
                 dest: 'tmp/animation.scss'
             },
-            js: {
-                src: ['<%= config.app %>/bower_components/jquery/dist/jquery.js', 'src/libs/jquery.scrolldepth.min.js', '<%= config.app %>/bower_components/async/lib/async.js', '<%= config.app %>/bower_components/move.js/move.min.js', 'src/site.js', 'src/svg/*/animation.js'],
-                dest: '<%= config.app %>/scripts/lib.js'
-            },
             skrollr: {
-                src: ['<%= config.app %>/bower_components/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', '<%= config.app %>/bower_components/bower-skrollr/skrollr.min.js', 'src/libs/skrollr.menu.min.js', '<%= config.app %>/bower_components/skrollr-ie/dis/skrollr.ie.min.js', 'src/libs/skrollr.helpers.js'],
+                src: ['node_modules/skrollr-stylesheets/dist/skrollr.stylesheets.min.js', 'node_modules/skrollr/dist/skrollr.min.js', 'src/libs/skrollr.menu.min.js'],
                 dest: '<%= config.app %>/scripts/skrollr.js'
             }
         },
+
         sass: {
             dist: {
                 files: {
@@ -329,30 +288,21 @@ module.exports = function(grunt) {
         // Copies remaining files to places other tasks can use
         copy: {
             dist: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: '<%= config.app %>',
-                    dest: '<%= config.dist %>',
-                    src: [
-                        '*.{ico,png,txt}',
-                        '.htaccess',
-                        'images/{,*/}*.webp',
-                        'scripts/*.js',
-                        '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
-                    ]
-                }, {
-                    src: 'src/svg/timing.json',
-                    dest: '<%= config.app %>/svg/timing.json',
-                    flatten: true,
-                    filter: 'isFile'
-                }, {
-                    src: 'src/svg/timing.json',
-                    dest: '<%= config.dist %>/svg/timing.json',
-                    flatten: true,
-                    filter: 'isFile'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= config.app %>',
+                        dest: '<%= config.dist %>',
+                        src: [
+                            '*.{ico,png,jpg,txt}',
+                            'images/**/*.svg',
+                            'svg/{,*/}*.html',
+                            'scripts/*.js',
+                            '{,*/}*.html',
+                            'styles/fonts/{,*/}*.*'
+                        ]
+                    }]
             },
             styles: {
                 expand: true,
@@ -360,9 +310,15 @@ module.exports = function(grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            html: {
+                expand: true,
+                dot: true,
+                cwd: 'src/svg',
+                dest: '<%= config.app %>/svg/',
+                src: '{,*/}*.html'
             }
         },
-
 
         replace: {
 
@@ -458,6 +414,29 @@ module.exports = function(grunt) {
                 }]
             },
             svgfonts6: {
+                src: ['src/svg/scene6/scene.svg'],
+                dest: '<%= config.app %>/svg/scene6/',
+                replacements: [{
+                    from: 'font-family="\'Roboto-Thin\'"',
+                    to: 'font-weight="100"'
+                }, {
+                    from: 'font-family="\'Roboto-Light\'"',
+                    to: 'font-weight="300"'
+                }, {
+                    from: 'font-family="\'Roboto-Black\'"',
+                    to: 'font-weight="900"'
+                }, {
+                    from: 'font-family="\'Roboto-Regular\'"',
+                    to: 'font-weight="400"'
+                }, {
+                    from: '../../../app/images/invincible.jpg',
+                    to: 'images/invincible.jpg'
+                }, {
+                    from: '../../../app/images/157evxw_th.gif',
+                    to: 'images/157evxw_th.gif'
+                }]
+            },
+            svgfonts7: {
                 src: ['src/svg/menu/scene.svg'],
                 dest: '<%= config.app %>/svg/menu/',
                 replacements: [{
@@ -476,67 +455,56 @@ module.exports = function(grunt) {
             }
         },
 
-
-
-        // Generates a custom Modernizr build that includes only the tests you
-        // reference in your app
         modernizr: {
-            devFile: '<%= config.app %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-            files: [
-                '<%= config.dist %>/scripts/{,*/}*.js',
-                '<%= config.dist %>/styles/{,*/}*.css',
-                '!<%= config.dist %>/scripts/vendor/*'
-            ],
-            uglify: true
+            dist: {
+                cache: true,
+                devFile : false,
+                dest: '<%= config.app %>/scripts/vendor/modernizr.js',
+                tests: [
+                    'svgclippaths',
+                    'inlinesvg'
+                ],
+                crawl: false,
+                uglify: false
+            }
+
         },
 
-        // Run some tasks in parallel to speed up build process
-        concurrent: {
-            server: [
-                'copy:styles'
-            ],
-            test: [
-                'copy:styles'
-            ],
-            dist: [
-                'copy:styles',
-                'svgmin'
-            ]
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/',
+                        src: '**/*.js',
+                        dest: '.tmp/'
+                    }
+                ]
+            }
+        },
+
+        browserify: {
+            dist: {
+                src: ['.tmp/scripts/index.js'],
+                dest: '<%= config.app %>/scripts/lib.js'
+            }
         }
     });
 
-
-    grunt.registerTask('serve', function(target) {
+    grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
 
         grunt.task.run([
             'clean:server',
-            'concurrent:server',
-
+            'copy:styles',
             'connect:livereload',
             'watch'
-        ]);
-    });
-
-    grunt.registerTask('server', function(target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run([target ? ('serve:' + target) : 'serve']);
-    });
-
-    grunt.registerTask('test', function(target) {
-        if (target !== 'watch') {
-            grunt.task.run([
-                'clean:server',
-                'concurrent:test'
-            ]);
-        }
-
-        grunt.task.run([
-            'connect:test',
-            'mocha'
         ]);
     });
 
@@ -544,25 +512,21 @@ module.exports = function(grunt) {
         'clean:dist',
         'replace',
         'useminPrepare',
-        'concurrent:dist',
+        'copy:styles',
+        'svgmin',
         'imagemin',
+        'babel',
+        'browserify',
         'concat',
         'sass',
-        'copy:dist',
         'modernizr',
+        'copy:dist',
+        'copy:html',
         'uglify',
         'rev',
         'usemin',
         'cssmin',
-        //'htmlmin',
         'usebanner'
-
     ]);
 
-    grunt.registerTask('default', [
-
-        //'newer:jshint',
-        'test',
-        'build'
-    ]);
 };
