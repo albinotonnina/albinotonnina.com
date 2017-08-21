@@ -1,4 +1,3 @@
-import anime from 'animejs';
 import * as utils from './utilities';
 import async from 'async';
 import animation1 from '../svg/scene1/animation';
@@ -20,7 +19,6 @@ export default class {
 
         this.defaults = {
             mobileDeceleration: 0.001,
-            scale: 1,
             smoothScrollingDuration: 200,
             smoothScrolling: true
         };
@@ -29,8 +27,6 @@ export default class {
 
         this.buildScenes();
     }
-
-
 
     skrollrInitMenu() {
         skrollr.menu.init(this.skrollr, {
@@ -42,19 +38,6 @@ export default class {
                 return Math.abs(currentTop - targetTop) * 0.5;
             }
         });
-    }
-
-    skrollrOnRender(obj) {
-        for (let name in this.scenes) {
-
-            if (typeof this.scenes[name].render === 'function') {
-                const pos = this.time(obj, this.timing[name] || {
-                    begin: 0,
-                    end: 1
-                });
-                this.scenes[name].render(pos, obj);
-            }
-        }
     }
 
     removeLoader() {
@@ -147,7 +130,7 @@ export default class {
         async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
     }
 
-    onLoadedScenes(){
+    onLoadedScenes() {
         for (let name in this.scenes) {
             if (typeof this.scenes[name].init === 'function') {
                 this.scenes[name].init(this);
@@ -180,49 +163,39 @@ export default class {
     }
 
     injectDependencies({onComplete}) {
-        document.head.appendChild(utils.createElementWithAttrs('link', {
-            'data-skrollr-stylesheet': true,
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: 'styles/animation.css'
-        }));
-
         utils.addScript('scripts/skrollr.js', onComplete);
     }
 
     initDivertissement() {
         this.removeLoader();
-
         this.resize();
-
-        this.activateCvLink();
     }
 
-    time(obj, timing) {
-        if (obj.curTop <= timing.begin * this.defaults.scale) {
-            return 0;
-        }
-        if (obj.curTop >= timing.end * this.defaults.scale) {
-            return 1;
-        }
+    getSkrollrConfiguration() {
+        return {
+            render: data => {
+                for (let name in this.scenes) {
+                    if (typeof this.scenes[name].render === 'function') {
+                        this.scenes[name].render(data);
+                    }
+                }
 
-        return (obj.curTop - timing.begin * this.defaults.scale) / timing.duration * this.defaults.scale;
-    }
-
-    activateCvLink() {
-        anime({targets: '#scrolldown', opacity: 1, delay: 1000});
-        anime({targets: '#viewresume', opacity: 1, delay: 2000});
+            },
+            beforerender: data => {
+                for (let name in this.scenes) {
+                    if (typeof this.scenes[name].beforerender === 'function') {
+                        this.scenes[name].beforerender(data);
+                    }
+                }
+            }
+        }
     }
 
     initSkrollr() {
 
         if (!skrollr.get()) {
-            this.skrollr = skrollr.init(Object.assign(this.defaults, {
-                render: this.skrollrOnRender.bind(this)
-            }));
-
+            this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             this.skrollrInitMenu();
-
         } else {
             this.skrollr.refresh();
         }

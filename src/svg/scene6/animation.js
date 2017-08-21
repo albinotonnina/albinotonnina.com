@@ -1,49 +1,59 @@
 import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
-import * as utils from '../../scripts/utilities';
+// import * as utils from '../../scripts/utilities';
 import {createElementWithAttrs} from '../../scripts/utilities';
+
+//TODO: exclude area in renderSkills
+//TODO: add sense of time passing in skill path
+//TODO: find an idea for invincible state
 
 export default {
     skillShape: {
-        pos: [6000, 6400, 6500, 6700, 6900, 7100, 7400],
+        pos: [6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400],
         points: [
-            '1011.3,-124.6 1048.4,78.7 957.3,96.1',
-            '1011.3,-124.6 1121,146.4 911.7,137',
-            '1011.3,-150.7 1143.5,167.3 897.2,150.6',
-            '1011.3,-176.7 1112,138 846.5,197.8',
-            '1011.3,-222.7 1196.5,216.7 831.7,211.6',
-            '1011.3,-241.8 1218,236.8 804.7,236.8'
+            '729.6,-147.8 748.5,-69.4 709.5,-69.4',
+            '729.6,-147.8 765.8,-53.3 709.5,-69.4',
+            '729.6,-164.2 765.8,-53.3 693.4,-53.3',
+            '729.6,-167 783.6,-36.7 693.4,-53.3',
+            '729.6,-203 783.6,-36.7 664,-25.9',
+            '729.6,-203 819.4,-3.3 625.9,9.6',
+            '729.6,-230.5 833.3,9.6 625.9,9.6'
         ],
         repeat: 0
     },
 
-    bg: {
-        colors: [
-            '#F40B0B',
-            '#F20CEC',
-            '#0F0FEF',
-            '#11EDED',
-            '#13EA23',
-            '#E3E815',
-            '#E51717',
-            '#2bacb5'
-        ],
-        pos: [7200, 7260, 7300],
-        repeat: 0
-    },
-
-    minY: 6000,
-    maxY: 7300,
-    keyfreq: 30,
-    iskey: 0,
+    lastKeyPercentage: 0,
 
     repeat: 0,
 
-    skills: knuthShuffle(keyword_ordered.slice(0)),
+    get newskills() {
+        return knuthShuffle(keyword_ordered.slice(0));
+    },
 
     init(site) {
         this.initClickEvents(site);
+        this.skills = this.newskills;
+        this.sceneTiming = site.timing.scene6;
+    },
+
+    beforerender: function (data) {
+        return this.getScrolledPercentage(data, this.sceneTiming) > 0;
+    },
+
+    getScrolledPercentage(data, timing) {
+        return data.curTop >= timing.begin ? Math.abs(((data.curTop - timing.begin) / timing.duration) * 100).toFixed(3) : 0;
+    },
+
+    render: function (data) {
+
+        this.renderSkills(data);
+
+        for (let i = 0; i < this.skillShape.points.length; i++) {
+            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
+                this.animateSkills(this.skillShape.points[i], i + 1);
+            }
+        }
     },
 
     initClickEvents(site) {
@@ -73,12 +83,6 @@ export default {
         });
     },
 
-
-
-    get newskills() {
-        return knuthShuffle(keyword_ordered.slice(0));
-    },
-
     animateSkills(points, animationNum) {
         anime({
             targets: '#skillpath',
@@ -91,32 +95,35 @@ export default {
         });
     },
 
-    animateBg(colors, animationNum) {
-        anime({
-            targets: '#svg6 #bg',
-            fill: colors,
-            easing: 'linear',
-            duration: 2000,
-            begin: () => {
-                this.bg.repeat = animationNum;
-            }
-        });
+    gen(minX, maxX, minY, maxY) {
+        return {
+            top: Math.floor(Math.random() * (maxX - minX + 1) + minX),
+            left: Math.floor(Math.random() * (maxY - minY + 1) + minY)
+        }
     },
 
-    render: function (pos, obj) {
+    renderSkills(data) {
+        const keyFreqPercentage = 2;
+        const scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
-        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-            if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
+        if (scrolledPercentage > 2 && scrolledPercentage < 98) {
+            const shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
 
-                const fontRandom = Math.abs((Math.random() * 2).toFixed(3)) + 1,
-                    topRandom = Math.floor(Math.random() * window.innerHeight - 164),
-                    leftRandom = Math.floor(Math.random() * window.innerWidth - 64);
 
-                const word = this.skills.pop(),
-                    wordTag = createElementWithAttrs('div', {
-                        class: 'word',
-                        style: `font-size: ${fontRandom}rem; top: ${topRandom}px; left: ${leftRandom}px`
-                    });
+            if (shouldExecute) {
+                const word = this.skills.pop();
+                const fontSize = Math.abs((Math.random() * 32)) + 16;
+                const minX = (window.innerWidth / 2);
+                const maxX = window.innerWidth - (word.length * fontSize);
+                const top = Math.floor((Math.random() * (window.innerHeight)) + 1);
+                const left = Math.floor(Math.random() * (maxX - minX + 1) + minX);
+
+                console.log('left', left);
+
+                const wordTag = createElementWithAttrs('div', {
+                    class: 'word',
+                    style: `font-size: ${fontSize}px; top: ${top}px; left: ${left}px`
+                });
 
                 wordTag.innerHTML = word;
                 document.querySelector('#skills_container').appendChild(wordTag);
@@ -133,24 +140,12 @@ export default {
                     this.skills = this.newskills;
                 }
 
-                this.iskey = obj.curTop;
-
+                this.lastKeyPercentage = scrolledPercentage;
             }
+
         } else {
             document.querySelector('#skills_container').innerHTML = '';
         }
-
-        for (let i = 0; i < this.skillShape.points.length; i++) {
-            if (obj.curTop > this.skillShape.pos[i] && obj.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
-                this.animateSkills(this.skillShape.points[i], i + 1);
-            }
-        }
-
-        for (let i = 0; i < this.bg.colors.length; i++) {
-            if (obj.curTop > this.bg.pos[i] && obj.curTop < this.bg.pos[i + 1] && this.bg.repeat !== i + 1) {
-                this.animateBg(this.bg.colors, i + 1);
-            }
-        }
-
     }
+
 };

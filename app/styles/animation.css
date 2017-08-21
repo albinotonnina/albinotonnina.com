@@ -1813,9 +1813,6 @@ nav #barright {
     opacity: 1; } }
 
 #scene6 #skills_container {
-  padding: 128px;
-  width: 100%;
-  height: 100%;
   -skrollr-animation-name: a_scene6_skillsContainer; }
 
 @-skrollr-keyframes a_scene6_skillsContainer {
@@ -1834,7 +1831,7 @@ nav #barright {
   width: 100%;
   white-space: nowrap;
   transform-origin: 0 0;
-  color: #f5f5f5;
+  color: #f5ecd9;
   font-weight: 100; }
 
 #scene6 .polaroid {
@@ -1998,9 +1995,9 @@ nav #barright {
   -skrollr-animation-name: a_skillpath; }
 
 @-skrollr-keyframes a_skillpath {
-  #scene6 6200 {
+  #scene6 6150 {
     opacity: 0; }
-  #scene6 6250 {
+  #scene6 6200 {
     opacity: 1; } }
 
 #scene6 #skillnames {
@@ -2016,9 +2013,9 @@ nav #barright {
   -skrollr-animation-name: a_invincible; }
 
 @-skrollr-keyframes a_invincible {
-  #scene6 7150 {
+  #scene6 7250 {
     opacity: 0; }
-  #scene6 7200 {
+  #scene6 7300 {
     opacity: 1; }
   #scene6 7500 {
     opacity: 1; }

@@ -7,43 +7,34 @@
 	<g id="skillnames">
 		<g id="title">
 			
-				<text id="texttitle" transform="matrix(1 0 0 1 1053.2657 -208.6235)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="48px">Front end</text>
+				<text id="texttitle" transform="matrix(1 0 0 1 750.637 -213.826)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="24.0762px">Front end</text>
 		</g>
 		<g id="title_1_">
 			
-				<text id="texttitle_1_" transform="matrix(1 0 0 1 1229.8761 236.7853)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="48px">UX</text>
+				<text id="texttitle_1_" transform="matrix(1 0 0 1 839.2229 9.5861)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="24.0762px">UX</text>
 		</g>
 		<g id="title_2_">
 			
-				<text id="texttitle_2_" transform="matrix(1 0 0 1 587.9985 236.7855)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="48px">Graphics</text>
+				<text id="texttitle_2_" transform="matrix(1 0 0 1 517.2649 9.5861)" fill="#F5ECD9" font-family="'Roboto-Light'" font-size="24.0762px">Graphics</text>
 		</g>
 	</g>
-	<polyline id="graph1" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" points="1011.3,-241.8 1011.3,44.2 
-		1218,236.8 	"/>
+	<polyline id="graph1" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" points="729.6,-230.5 729.6,-87 
+		833.3,9.6 	"/>
 	
-		<line id="graph2" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" x1="1011.3" y1="44.2" x2="804.7" y2="236.8"/>
-	<polygon id="skillpath" fill="#FFFFFF" points="1011.3,31.3 1021.3,53.5 998.5,56.1 	"/>
+		<line id="graph2" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" x1="729.6" y1="-87" x2="625.9" y2="9.6"/>
+	<polygon id="skillpath" fill="#FFFFFF" points="729.6,-147.8 748.5,-69.4 709.5,-69.4 	"/>
 </g>
 <g id="sc6title">
-	<text transform="matrix(1 0 0 1 508.9991 -319.3797)" fill="#F5ECD9" font-family="'Roboto-Thin'" font-size="49.2156px">As for the future:</text>
+	<text transform="matrix(1 0 0 1 527.9698 -314.6172)" fill="#F5ECD9" font-family="'Roboto-Thin'" font-size="49.2156px">As for the future:</text>
 </g>
 <g id="invincible">
 	<defs>
-		<polygon id="clippingimage" points="1011.3,-241.8 1218,236.8 804.7,236.8 		"/>
+		<polygon id="clippingimage" points="729.6,-232.3 833.3,9.6 625.9,9.6 		"/>
 	</defs>
 	<clipPath id="clippingimage_1_">
 		<use xlink:href="#clippingimage"  overflow="visible"/>
 	</clipPath>
-	<g clip-path="url(#clippingimage_1_)">
-		
-			<image overflow="visible" width="280" height="210" xlink:href="../../../app/images/157evxw_th.gif"  transform="matrix(2.2781 0 0 2.2781 721.2655 -241.7003)">
-		</image>
-	</g>
-	<g clip-path="url(#clippingimage_1_)">
-		
-			<image overflow="visible" width="350" height="406" xlink:href="../../../app/images/invincible.jpg"  transform="matrix(0.9668 0 0 0.9668 848.8033 -155.8835)">
-		</image>
-	</g>
+	<rect x="612.4" y="-247.7" clip-path="url(#clippingimage_1_)" fill="#E3E815" width="237.2" height="278.2"/>
 </g>
 <rect id="bgright" x="1031.3" y="-1872.5" fill="#F5ECD9" width="2340.6" height="3810.5"/>
 <g id="endtitles">
@@ -72,7 +63,7 @@
 			c-1.2-1.2-1.8-2.6-1.8-4.3v-20.2c0-1.7,0.6-3.1,1.8-4.3c1.2-1.2,2.6-1.8,4.3-1.8h20.2c1.7,0,3.1,0.6,4.3,1.8
 			C1117,179.6,1117.6,181,1117.6,182.7L1117.6,182.7z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 1131.6167 202.1562)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">has a public repository on GitHub.</text>
+			<text transform="matrix(1 0 0 1 1131.6166 202.1562)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">has a public repository on GitHub.</text>
 		</g>
 	</g>
 	<g id="node">
@@ -134,9 +125,9 @@
 		</g>
 		<text transform="matrix(1 0 0 1 1085.4595 145.1913)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">is hosted on:</text>
 	</g>
-	<text transform="matrix(1 0 0 1 1085.4604 42.7616)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="47.7304px">This website:</text>
+	<text transform="matrix(1 0 0 1 1085.4603 42.7616)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="47.7304px">This website:</text>
 	<g id="medium">
-		<text transform="matrix(1 0 0 1 1132.8276 -114.3644)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">Medium</text>
+		<text transform="matrix(1 0 0 1 1132.8278 -114.3644)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">Medium</text>
 		<g>
 			<path fill="#2BACB5" d="M1119.1-131.6C1119.1-131.6,1119.1-131.6,1119.1-131.6L1119.1-131.6l-9.2-4.6c-0.1,0-0.1-0.1-0.2-0.1
 				c-0.1,0-0.2,0-0.3,0c-0.4,0-0.7,0.2-0.9,0.5l-5.3,8.6l6.6,10.8l9.2-15C1119.2-131.5,1119.1-131.6,1119.1-131.6z"/>
@@ -157,7 +148,7 @@
 			c1.3,0,2.4,0.4,3.3,1.3S1114.9-229,1114.9-227.7z"/>
 	</g>
 	<g id="instagram">
-		<text transform="matrix(1 0 0 1 1132.2524 -61.0253)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">Instagram</text>
+		<text transform="matrix(1 0 0 1 1132.2526 -61.0253)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">Instagram</text>
 		<path fill="#2BACB5" d="M1102.8-80.6c3.4,0,3.8,0,5.2,0.1c1.2,0.1,1.9,0.3,2.4,0.4c0.6,0.2,1,0.5,1.5,1c0.4,0.4,0.7,0.9,1,1.5
 			c0.2,0.5,0.4,1.1,0.4,2.4c0.1,1.3,0.1,1.8,0.1,5.2s0,3.8-0.1,5.2c-0.1,1.2-0.3,1.9-0.4,2.4c-0.2,0.6-0.5,1-1,1.5
 			c-0.4,0.4-0.9,0.7-1.5,1c-0.5,0.2-1.1,0.4-2.4,0.4c-1.3,0.1-1.8,0.1-5.2,0.1c-3.4,0-3.8,0-5.2-0.1c-1.2-0.1-1.9-0.3-2.4-0.4
@@ -185,11 +176,11 @@
 			v-24.3c0-0.5,0.1-0.9,0.5-1.2c0.4-0.4,0.8-0.5,1.2-0.5h11.5c0.5,0,1.1,0.1,1.6,0.4c0.5,0.3,1.1,0.5,1.3,0.9l5.6,5.6
 			c0.4,0.4,0.7,0.8,0.9,1.3C1113-179.1,1113.1-178.6,1113.1-178.2L1113.1-178.2z"/>
 		<g>
-			<text transform="matrix(1 0 0 1 1134.8813 -163.0322)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">View resume</text>
+			<text transform="matrix(1 0 0 1 1134.8812 -163.0322)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">View resume</text>
 		</g>
 	</g>
 	<g id="email">
-		<text transform="matrix(1 0 0 1 1135.9321 -260.895)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">albinotonnina@gmail.com</text>
+		<text transform="matrix(1 0 0 1 1135.932 -260.895)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="23.8652px">albinotonnina@gmail.com</text>
 		<path fill="#2BACB5" d="M1111.7-259.9v-9.9c-0.3,0.3-0.5,0.5-0.9,0.8c-2.3,1.7-4.1,3.2-5.4,4.4c-0.4,0.4-0.8,0.7-1.1,0.8
 			c-0.3,0.3-0.7,0.4-1.1,0.7c-0.5,0.3-0.9,0.3-1.3,0.3l0,0c-0.4,0-0.8-0.1-1.3-0.3c-0.5-0.3-0.8-0.4-1.1-0.7
 			c-0.3-0.3-0.7-0.5-1.1-0.8c-1.3-1.2-3.2-2.5-5.4-4.4c-0.3-0.3-0.7-0.5-0.9-0.8v9.9c0,0.1,0,0.3,0.1,0.3c0.1,0.1,0.1,0.1,0.3,0.1
@@ -202,7 +193,8 @@
 			c-0.5,0-1.1-0.1-1.5-0.7c-0.4-0.4-0.7-0.9-0.7-1.5v-13.9c0-0.5,0.3-1.1,0.7-1.5c0.4-0.4,0.9-0.7,1.5-0.7h19c0.5,0,1.1,0.3,1.5,0.7
 			C1113.1-274.9,1113.3-274.5,1113.3-273.8z"/>
 	</g>
-	<text transform="matrix(1 0 0 1 1085.4604 -318.587)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="47.7304px">To stay connected:</text>
+	<text transform="matrix(1 0 0 1 1085.4603 -318.587)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="47.7304px">To stay connected:</text>
 	<text transform="matrix(1 0 0 1 1085.46 835)" fill="#2BACB5" font-family="'Roboto-Thin'" font-size="65.2522px">Bye!</text>
 </g>
+<rect id="noskillwordshere" x="517.3" y="-368" fill="none" width="366.9" height="410.8"/>
 </svg>

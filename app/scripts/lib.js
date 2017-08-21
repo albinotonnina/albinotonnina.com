@@ -7,10 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _animejs = require('animejs');
-
-var _animejs2 = _interopRequireDefault(_animejs);
-
 var _utilities = require('./utilities');
 
 var utils = _interopRequireWildcard(_utilities);
@@ -39,9 +35,9 @@ var _timing = require('./timing');
 
 var _timing2 = _interopRequireDefault(_timing);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -58,7 +54,6 @@ var _class = function () {
 
         this.defaults = {
             mobileDeceleration: 0.001,
-            scale: 1,
             smoothScrollingDuration: 200,
             smoothScrolling: true
         };
@@ -80,20 +75,6 @@ var _class = function () {
                     return Math.abs(currentTop - targetTop) * 0.5;
                 }
             });
-        }
-    }, {
-        key: 'skrollrOnRender',
-        value: function skrollrOnRender(obj) {
-            for (var name in this.scenes) {
-
-                if (typeof this.scenes[name].render === 'function') {
-                    var pos = this.time(obj, this.timing[name] || {
-                        begin: 0,
-                        end: 1
-                    });
-                    this.scenes[name].render(pos, obj);
-                }
-            }
         }
     }, {
         key: 'removeLoader',
@@ -232,51 +213,42 @@ var _class = function () {
         value: function injectDependencies(_ref) {
             var onComplete = _ref.onComplete;
 
-            document.head.appendChild(utils.createElementWithAttrs('link', {
-                'data-skrollr-stylesheet': true,
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'styles/animation.css'
-            }));
-
             utils.addScript('scripts/skrollr.js', onComplete);
         }
     }, {
         key: 'initDivertissement',
         value: function initDivertissement() {
             this.removeLoader();
-
             this.resize();
-
-            this.activateCvLink();
         }
     }, {
-        key: 'time',
-        value: function time(obj, timing) {
-            if (obj.curTop <= timing.begin * this.defaults.scale) {
-                return 0;
-            }
-            if (obj.curTop >= timing.end * this.defaults.scale) {
-                return 1;
-            }
+        key: 'getSkrollrConfiguration',
+        value: function getSkrollrConfiguration() {
+            var _this3 = this;
 
-            return (obj.curTop - timing.begin * this.defaults.scale) / timing.duration * this.defaults.scale;
-        }
-    }, {
-        key: 'activateCvLink',
-        value: function activateCvLink() {
-            (0, _animejs2.default)({ targets: '#scrolldown', opacity: 1, delay: 1000 });
-            (0, _animejs2.default)({ targets: '#viewresume', opacity: 1, delay: 2000 });
+            return {
+                render: function render(data) {
+                    for (var name in _this3.scenes) {
+                        if (typeof _this3.scenes[name].render === 'function') {
+                            _this3.scenes[name].render(data);
+                        }
+                    }
+                },
+                beforerender: function beforerender(data) {
+                    for (var name in _this3.scenes) {
+                        if (typeof _this3.scenes[name].beforerender === 'function') {
+                            _this3.scenes[name].beforerender(data);
+                        }
+                    }
+                }
+            };
         }
     }, {
         key: 'initSkrollr',
         value: function initSkrollr() {
 
             if (!skrollr.get()) {
-                this.skrollr = skrollr.init(Object.assign(this.defaults, {
-                    render: this.skrollrOnRender.bind(this)
-                }));
-
+                this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
                 this.skrollrInitMenu();
             } else {
                 this.skrollr.refresh();
@@ -308,7 +280,7 @@ exports.default = _class;
 ;
 
 
-},{"../svg/scene1/animation":5,"../svg/scene4/animation":6,"../svg/scene5/animation":7,"../svg/scene6/animation":8,"./timing":3,"./utilities":4,"animejs":10,"async":11}],2:[function(require,module,exports){
+},{"../svg/scene1/animation":5,"../svg/scene4/animation":6,"../svg/scene5/animation":7,"../svg/scene6/animation":8,"./timing":3,"./utilities":4,"async":11}],2:[function(require,module,exports){
 'use strict';
 
 var _throttleDebounce = require('throttle-debounce');
@@ -508,40 +480,87 @@ var addScript = exports.addScript = function addScript(filepath, callback) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
+
+var _animejs = require('animejs');
+
+var _animejs2 = _interopRequireDefault(_animejs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
-	lightfreq: Math.floor(Math.random() * (10 - 5 + 1)) + 5,
-	lightlast: 'none',
-	islight: 0,
-	minY: 400,
-	maxY: 700,
+    lightlast: 'none',
+    lastKeyPercentage: 0,
+    minY: 400,
+    maxY: 700,
+    isOnscreen: false,
 
-	init: function init(site) {
-		document.querySelector('#intro2').addEventListener('click', function () {
-			window.open('http://www.workshare.com', '_blank');
-		});
+    init: function init(site) {
+        document.querySelector('#intro2').addEventListener('click', function () {
+            window.open('http://www.workshare.com', '_blank');
+        });
 
-		document.querySelector('#viewresume').addEventListener('click', function () {
-			site.destroy();
-		});
-	},
+        document.querySelector('#viewresume').addEventListener('click', function () {
+            site.destroy();
+        });
+
+        this.activateCvLink();
+
+        this.sceneTiming = site.timing.scene1;
+    },
 
 
-	render: function render(pos, obj) {
-		if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-			if (obj.curTop - this.islight > this.lightfreq && obj.direction == "down" || this.islight - obj.curTop > this.lightfreq && obj.direction == "up") {
-				this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
-				document.querySelector('#mbplight').style.display = this.lightlast;
+    beforerender: function beforerender(data) {
+        var scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
-				this.islight = obj.curTop;
-			}
-		}
-	}
+        this.isOnscreen = scrolledPercentage > 0 && scrolledPercentage <= 100;
+    },
+
+    getScrolledPercentage: function getScrolledPercentage(data, timing) {
+
+        if (data.curTop <= timing.begin || data.curTop >= timing.end) {
+            return 0;
+        }
+
+        return Math.abs((data.curTop - timing.begin) / timing.duration * 100).toFixed(3);
+    },
+
+
+    render: function render(data) {
+
+        if (!this.isOnscreen) {
+            return;
+        }
+
+        this.renderMbpLight(data);
+    },
+
+    renderMbpLight: function renderMbpLight(data) {
+
+        var scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
+        var keyFreqPercentage = Math.floor(Math.random() * 6) + 5;
+
+        if (scrolledPercentage > 0 && scrolledPercentage < 100) {
+
+            var shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
+
+            if (shouldExecute) {
+                this.lightlast = this.lightlast === 'none' ? 'inline' : 'none';
+                document.querySelector('#mbplight').style.display = this.lightlast;
+
+                this.lastKeyPercentage = scrolledPercentage;
+            }
+        }
+    },
+    activateCvLink: function activateCvLink() {
+        (0, _animejs2.default)({ targets: '#scrolldown', opacity: 1, delay: 1500 });
+        (0, _animejs2.default)({ targets: '#viewresume', opacity: 1, delay: 2500 });
+    }
 };
 
 
-},{}],6:[function(require,module,exports){
+},{"animejs":10}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -605,8 +624,8 @@ exports.default = {
     },
 
 
-    render: function render(pos, obj) {
-        if (obj.curTop > 5550 && obj.curTop < 5900) {
+    render: function render(data) {
+        if (data.curTop > 5550 && data.curTop < 5900) {
 
             var rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
 
@@ -617,8 +636,8 @@ exports.default = {
             videoPlayerIframe.style.height = rect.height + 'px';
         }
 
-        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-            if (obj.curTop - this.iskey > this.keyfreq && obj.direction === 'down' || this.iskey - obj.curTop > this.keyfreq && obj.direction === 'up') {
+        if (data.curTop > this.minY && data.curTop < this.maxY) {
+            if (data.curTop - this.iskey > this.keyfreq && data.direction === 'down' || this.iskey - data.curTop > this.keyfreq && data.direction === 'up') {
 
                 var keys1 = document.querySelectorAll('#keyboard rect'),
                     keys2 = document.querySelectorAll('#keyboard2 rect'),
@@ -632,13 +651,13 @@ exports.default = {
                 keys2[randomKey2].style.fill = '#f7f9f8';
                 keys3[randomKey3].style.fill = '#f7f9f8';
 
-                this.iskey = obj.curTop;
+                this.iskey = data.curTop;
             }
 
-            if (obj.curTop - this.islight > this.lightfreq && obj.direction === 'down' || this.islight - obj.curTop > this.lightfreq && obj.direction === 'up') {
+            if (data.curTop - this.islight > this.lightfreq && data.direction === 'down' || this.islight - data.curTop > this.lightfreq && data.direction === 'up') {
                 this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
                 document.querySelector('#imaclight').style.display = this.lightlast;
-                this.islight = obj.curTop;
+                this.islight = data.curTop;
             }
         }
     }
@@ -664,37 +683,54 @@ var _knuthShuffle = require('knuth-shuffle');
 
 var _utilities = require('../../scripts/utilities');
 
-var utils = _interopRequireWildcard(_utilities);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//TODO: exclude area in renderSkills
+//TODO: add sense of time passing in skill path
+//TODO: find an idea for invincible state
 
 exports.default = {
     skillShape: {
-        pos: [6000, 6400, 6500, 6700, 6900, 7100, 7400],
-        points: ['1011.3,-124.6 1048.4,78.7 957.3,96.1', '1011.3,-124.6 1121,146.4 911.7,137', '1011.3,-150.7 1143.5,167.3 897.2,150.6', '1011.3,-176.7 1112,138 846.5,197.8', '1011.3,-222.7 1196.5,216.7 831.7,211.6', '1011.3,-241.8 1218,236.8 804.7,236.8'],
+        pos: [6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400],
+        points: ['729.6,-147.8 748.5,-69.4 709.5,-69.4', '729.6,-147.8 765.8,-53.3 709.5,-69.4', '729.6,-164.2 765.8,-53.3 693.4,-53.3', '729.6,-167 783.6,-36.7 693.4,-53.3', '729.6,-203 783.6,-36.7 664,-25.9', '729.6,-203 819.4,-3.3 625.9,9.6', '729.6,-230.5 833.3,9.6 625.9,9.6'],
         repeat: 0
     },
 
-    bg: {
-        colors: ['#F40B0B', '#F20CEC', '#0F0FEF', '#11EDED', '#13EA23', '#E3E815', '#E51717', '#2bacb5'],
-        pos: [7200, 7260, 7300],
-        repeat: 0
-    },
-
-    minY: 6000,
-    maxY: 7300,
-    keyfreq: 30,
-    iskey: 0,
+    lastKeyPercentage: 0,
 
     repeat: 0,
 
-    skills: (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0)),
+    get newskills() {
+        return (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0));
+    },
 
     init: function init(site) {
         this.initClickEvents(site);
+        this.skills = this.newskills;
+        this.sceneTiming = site.timing.scene6;
     },
+
+
+    beforerender: function beforerender(data) {
+        return this.getScrolledPercentage(data, this.sceneTiming) > 0;
+    },
+
+    getScrolledPercentage: function getScrolledPercentage(data, timing) {
+        return data.curTop >= timing.begin ? Math.abs((data.curTop - timing.begin) / timing.duration * 100).toFixed(3) : 0;
+    },
+
+
+    render: function render(data) {
+
+        this.renderSkills(data);
+
+        for (var i = 0; i < this.skillShape.points.length; i++) {
+            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
+                this.animateSkills(this.skillShape.points[i], i + 1);
+            }
+        }
+    },
+
     initClickEvents: function initClickEvents(site) {
 
         document.querySelector('#email').addEventListener('click', function () {
@@ -721,12 +757,6 @@ exports.default = {
             site.destroy();
         });
     },
-
-
-    get newskills() {
-        return (0, _knuthShuffle.knuthShuffle)(_keywords2.default.slice(0));
-    },
-
     animateSkills: function animateSkills(points, animationNum) {
         var _this = this;
 
@@ -740,34 +770,32 @@ exports.default = {
             }
         });
     },
-    animateBg: function animateBg(colors, animationNum) {
-        var _this2 = this;
-
-        (0, _animejs2.default)({
-            targets: '#svg6 #bg',
-            fill: colors,
-            easing: 'linear',
-            duration: 2000,
-            begin: function begin() {
-                _this2.bg.repeat = animationNum;
-            }
-        });
+    gen: function gen(minX, maxX, minY, maxY) {
+        return {
+            top: Math.floor(Math.random() * (maxX - minX + 1) + minX),
+            left: Math.floor(Math.random() * (maxY - minY + 1) + minY)
+        };
     },
+    renderSkills: function renderSkills(data) {
+        var keyFreqPercentage = 2;
+        var scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
+        if (scrolledPercentage > 2 && scrolledPercentage < 98) {
+            var shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
 
-    render: function render(pos, obj) {
+            if (shouldExecute) {
+                var word = this.skills.pop();
+                var fontSize = Math.abs(Math.random() * 32) + 16;
+                var minX = window.innerWidth / 2;
+                var maxX = window.innerWidth - word.length * fontSize;
+                var top = Math.floor(Math.random() * window.innerHeight + 1);
+                var left = Math.floor(Math.random() * (maxX - minX + 1) + minX);
 
-        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-            if (obj.curTop - this.iskey > this.keyfreq && obj.direction == "down" || this.iskey - obj.curTop > this.keyfreq && obj.direction == "up") {
+                console.log('left', left);
 
-                var fontRandom = Math.abs((Math.random() * 2).toFixed(3)) + 1,
-                    topRandom = Math.floor(Math.random() * window.innerHeight - 164),
-                    leftRandom = Math.floor(Math.random() * window.innerWidth - 64);
-
-                var word = this.skills.pop(),
-                    wordTag = (0, _utilities.createElementWithAttrs)('div', {
+                var wordTag = (0, _utilities.createElementWithAttrs)('div', {
                     class: 'word',
-                    style: 'font-size: ' + fontRandom + 'rem; top: ' + topRandom + 'px; left: ' + leftRandom + 'px'
+                    style: 'font-size: ' + fontSize + 'px; top: ' + top + 'px; left: ' + left + 'px'
                 });
 
                 wordTag.innerHTML = word;
@@ -785,25 +813,14 @@ exports.default = {
                     this.skills = this.newskills;
                 }
 
-                this.iskey = obj.curTop;
+                this.lastKeyPercentage = scrolledPercentage;
             }
         } else {
             document.querySelector('#skills_container').innerHTML = '';
         }
-
-        for (var i = 0; i < this.skillShape.points.length; i++) {
-            if (obj.curTop > this.skillShape.pos[i] && obj.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
-                this.animateSkills(this.skillShape.points[i], i + 1);
-            }
-        }
-
-        for (var _i = 0; _i < this.bg.colors.length; _i++) {
-            if (obj.curTop > this.bg.pos[_i] && obj.curTop < this.bg.pos[_i + 1] && this.bg.repeat !== _i + 1) {
-                this.animateBg(this.bg.colors, _i + 1);
-            }
-        }
     }
 };
+// import * as utils from '../../scripts/utilities';
 
 
 },{"../../scripts/utilities":4,"./keywords":9,"animejs":10,"knuth-shuffle":12}],9:[function(require,module,exports){

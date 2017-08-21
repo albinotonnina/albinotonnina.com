@@ -36,8 +36,8 @@ export default {
         site.siteRoot.appendChild(videoPlayerDiv);
     },
 
-    render: function (pos, obj) {
-        if (obj.curTop > 5550 && obj.curTop < 5900) {
+    render: function (data) {
+        if (data.curTop > 5550 && data.curTop < 5900) {
 
             const rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
 
@@ -48,8 +48,8 @@ export default {
             videoPlayerIframe.style.height = `${rect.height}px`;
         }
 
-        if (obj.curTop > this.minY && obj.curTop < this.maxY) {
-            if (obj.curTop - this.iskey > this.keyfreq && obj.direction === 'down' || this.iskey - obj.curTop > this.keyfreq && obj.direction === 'up') {
+        if (data.curTop > this.minY && data.curTop < this.maxY) {
+            if (data.curTop - this.iskey > this.keyfreq && data.direction === 'down' || this.iskey - data.curTop > this.keyfreq && data.direction === 'up') {
 
                 const keys1 = document.querySelectorAll('#keyboard rect'),
                     keys2 = document.querySelectorAll('#keyboard2 rect'),
@@ -63,13 +63,13 @@ export default {
                 keys2[randomKey2].style.fill = '#f7f9f8';
                 keys3[randomKey3].style.fill = '#f7f9f8';
 
-                this.iskey = obj.curTop;
+                this.iskey = data.curTop;
             }
 
-            if (obj.curTop - this.islight > this.lightfreq && obj.direction === 'down' || this.islight - obj.curTop > this.lightfreq && obj.direction === 'up') {
+            if (data.curTop - this.islight > this.lightfreq && data.direction === 'down' || this.islight - data.curTop > this.lightfreq && data.direction === 'up') {
                 this.lightlast = this.lightlast == 'none' ? 'inline' : 'none';
                 document.querySelector('#imaclight').style.display = this.lightlast;
-                this.islight = obj.curTop;
+                this.islight = data.curTop;
             }
         }
     }
