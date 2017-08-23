@@ -1425,9 +1425,6 @@ nav #barright {
 
 #scene5 #scene {
   -skrollr-animation-name: scene4r; }
-  #scene5 #scene #iphone05 {
-    -webkit-transition: transform 2s linear;
-    transition: transform 2s linear; }
 
 @-skrollr-keyframes scene4r {
   #scene5 5250 {

@@ -74,10 +74,7 @@ $start: $scene_05_begin;
 
     #scene {
         -skrollr-animation-name: scene4r;
-        #iphone05 {
-            -webkit-transition: transform 2s linear;
-            transition: transform 2s linear;
-        }
+
     }
     @-skrollr-keyframes scene4r {
         #{$start + 1150} {

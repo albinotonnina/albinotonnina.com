@@ -15,6 +15,23 @@ export default {
 
     init(site) {
         this.addVideoPlayer(site);
+
+        this.getPhoneDimensionsInAHackyWayCauseFirefoxDoesNotWork();
+    },
+
+    getPhoneDimensionsInAHackyWayCauseFirefoxDoesNotWork() {
+        const rectt = document.querySelector('#iphone5positionpath');
+        const newrect = rectt.cloneNode(true);
+        newrect.setAttribute('id', 'dear_firefox_come_on');
+        newrect.setAttribute('fill', 'transparent');
+        newrect.setAttribute('transform', 'rotate(90) translate(-6930, -530) scale(8)');
+
+        //  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        //document.body.appendChild(svg);
+
+        const svg = document.querySelector('#svg5');
+
+        svg.appendChild(newrect);
     },
 
     addVideoPlayer(site) {
@@ -38,14 +55,15 @@ export default {
 
     render: function (data) {
         if (data.curTop > 5550 && data.curTop < 5900) {
+            // console.log('resizing');
 
-            const rect = document.querySelector('#iphone5positionpath').getBoundingClientRect();
+            const rect = document.querySelector('#dear_firefox_come_on').getBoundingClientRect();
 
             const videoPlayerIframe = document.querySelector('#videoPlayer');
-            videoPlayerIframe.style.left = `${rect.left}px`;
-            videoPlayerIframe.style.top = `${rect.top}px`;
-            videoPlayerIframe.style.width = `${rect.width}px`;
-            videoPlayerIframe.style.height = `${rect.height}px`;
+            videoPlayerIframe.style.left = `${Math.floor(rect.left)}px`;
+            videoPlayerIframe.style.top = `${Math.floor(rect.top)}px`;
+            videoPlayerIframe.style.width = `${Math.floor(rect.width)}px`;
+            videoPlayerIframe.style.height = `${Math.floor(rect.height)}px`;
         }
 
         if (data.curTop > this.minY && data.curTop < this.maxY) {
