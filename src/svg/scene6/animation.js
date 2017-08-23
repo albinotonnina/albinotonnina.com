@@ -2,6 +2,7 @@ import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
 // import * as utils from '../../scripts/utilities';
+import {debounce} from 'throttle-debounce';
 import {createElementWithAttrs} from '../../scripts/utilities';
 
 //TODO: exclude area in renderSkills
@@ -23,6 +24,11 @@ export default {
         repeat: 0
     },
 
+    me: {
+        pos: [7300, 7340],
+        repeat: 0
+    },
+
     lastKeyPercentage: 0,
 
     repeat: 0,
@@ -35,6 +41,8 @@ export default {
         this.initClickEvents(site);
         this.skills = this.newskills;
         this.sceneTiming = site.timing.scene6;
+
+        this.animateMe = debounce(10000, true, this.animateMe);
     },
 
     beforerender: function (data) {
@@ -54,6 +62,13 @@ export default {
                 this.animateSkills(this.skillShape.points[i], i + 1);
             }
         }
+
+        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
+            this.animateMe();
+        }
+
+
+
     },
 
     initClickEvents(site) {
@@ -95,6 +110,19 @@ export default {
         });
     },
 
+    animateMe() {
+        console.log('animation');
+        anime({
+            targets: '#invincible #me',
+            translateY: '-30px',
+            easing: 'easeInOutQuad',
+            duration: 1000,
+            loop: 12,
+            direction: 'alternate'
+        });
+
+    },
+
     gen(minX, maxX, minY, maxY) {
         return {
             top: Math.floor(Math.random() * (maxX - minX + 1) + minX),
@@ -102,14 +130,42 @@ export default {
         }
     },
 
+    // generate({maxX, maxY, excludeX1, excludeX2, excludeY1, excludeY2}) {
+    //
+    //     const diffx = excludeX2 - excludeX1;
+    //
+    //     const diffy = excludeY2 - excludeY1;
+    //
+    //     let xcoordRed = Math.floor((Math.random() * (maxX - diffx)) + 1);
+    //
+    //     let ycoordRed = Math.floor((Math.random() * (maxY - diffy)) + 1);
+    //
+    //
+    //
+    //     if (xcoordRed >= excludeX1 && ycoordRed >= excludeY1){
+    //         xcoordRed += diffx;
+    //         ycoordRed += diffy;
+    //     }
+    //
+    //
+    //
+    //
+    //
+    //     return {
+    //         x: xcoordRed,
+    //         y: ycoordRed
+    //     }
+    // },
+
     renderSkills(data) {
         const keyFreqPercentage = 2;
         const scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
-        if (scrolledPercentage > 2 && scrolledPercentage < 98) {
+         if (scrolledPercentage > 2 && scrolledPercentage < 45) {
             const shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
 
 
+            
             if (shouldExecute) {
                 const word = this.skills.pop();
                 const fontSize = Math.abs((Math.random() * 32)) + 16;
@@ -117,8 +173,6 @@ export default {
                 const maxX = window.innerWidth - (word.length * fontSize);
                 const top = Math.floor((Math.random() * (window.innerHeight)) + 1);
                 const left = Math.floor(Math.random() * (maxX - minX + 1) + minX);
-
-                console.log('left', left);
 
                 const wordTag = createElementWithAttrs('div', {
                     class: 'word',
@@ -143,7 +197,7 @@ export default {
                 this.lastKeyPercentage = scrolledPercentage;
             }
 
-        } else {
+        } else if(scrolledPercentage) {
             document.querySelector('#skills_container').innerHTML = '';
         }
     }

@@ -1,4 +1,4 @@
-/*! albinotonnina by Albino Tonnina - v1.3.0 - 2017-08-17
+/*! albinotonnina by Albino Tonnina - v1.3.0 - 2017-08-23
 * http://https://github.com/albinotonnina/albinotonnina.com/
 * Copyright (c) 2017 Albino Tonnina; Licensed MIT */
 #scene1 {
@@ -1816,9 +1816,6 @@ nav #barright {
     opacity: 1; } }
 
 #scene6 #skills_container {
-  padding: 128px;
-  width: 100%;
-  height: 100%;
   -skrollr-animation-name: a_scene6_skillsContainer; }
 
 @-skrollr-keyframes a_scene6_skillsContainer {
@@ -1837,7 +1834,7 @@ nav #barright {
   width: 100%;
   white-space: nowrap;
   transform-origin: 0 0;
-  color: #f5f5f5;
+  color: #f5ecd9;
   font-weight: 100; }
 
 #scene6 .polaroid {
@@ -1992,18 +1989,22 @@ nav #barright {
   -skrollr-animation-name: a_skills; }
 
 @-skrollr-keyframes a_skills {
-  #scene6 7550 {
+  #scene6 7280 {
+    transform: scale(1) translate(0px, 0px); }
+  #scene6 7330 {
+    transform: scale(2) translate(-240px, 100px); }
+  #scene6 7520 {
     opacity: 1; }
-  #scene6 7600 {
+  #scene6 7550 {
     opacity: 0; } }
 
 #scene6 #skillpath {
   -skrollr-animation-name: a_skillpath; }
 
 @-skrollr-keyframes a_skillpath {
-  #scene6 6200 {
+  #scene6 6150 {
     opacity: 0; }
-  #scene6 6250 {
+  #scene6 6200 {
     opacity: 1; } }
 
 #scene6 #skillnames {
@@ -2019,17 +2020,10 @@ nav #barright {
   -skrollr-animation-name: a_invincible; }
 
 @-skrollr-keyframes a_invincible {
-  #scene6 7150 {
+  #scene6 7280 {
     opacity: 0; }
-  #scene6 7200 {
-    opacity: 1; }
-  #scene6 7500 {
-    opacity: 1; }
-  #scene6 7520 {
-    opacity: 0;
-    display: block; }
-  #scene6 7550 {
-    display: none; } }
+  #scene6 7320 {
+    opacity: 1; } }
 
 #scene6 #hellobye {
   opacity: 0;

@@ -83,9 +83,7 @@ export default class {
             this.resizeMenu();
             this.resizeScenes();
 
-            setTimeout(() => {
-                this.show();
-            }, 500)
+            setTimeout(this.show.bind(this), 500)
 
         }
 
@@ -168,7 +166,10 @@ export default class {
 
     initDivertissement() {
         this.removeLoader();
-        this.resize();
+        this.initSkrollr();
+        this.resizeMenu();
+        this.resizeScenes();
+        this.show();
     }
 
     getSkrollrConfiguration() {
@@ -192,7 +193,6 @@ export default class {
     }
 
     initSkrollr() {
-
         if (!skrollr.get()) {
             this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             this.skrollrInitMenu();

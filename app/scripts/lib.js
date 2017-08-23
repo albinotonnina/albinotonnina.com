@@ -114,7 +114,6 @@ var _class = function () {
     }, {
         key: 'resize',
         value: function resize() {
-            var _this = this;
 
             var maxHeight = 768 / 1024 * window.innerWidth;
             var shouldShowResume = document.documentElement.clientHeight > maxHeight;
@@ -125,9 +124,7 @@ var _class = function () {
                 this.resizeMenu();
                 this.resizeScenes();
 
-                setTimeout(function () {
-                    _this.show();
-                }, 500);
+                setTimeout(this.show.bind(this), 500);
             }
         }
     }, {
@@ -186,10 +183,10 @@ var _class = function () {
     }, {
         key: 'loadScene',
         value: function loadScene(element, callback) {
-            var _this2 = this;
+            var _this = this;
 
             this.loadHtml(element, function () {
-                _this2.loadSvg(element, callback);
+                _this.loadSvg(element, callback);
             });
         }
     }, {
@@ -219,25 +216,28 @@ var _class = function () {
         key: 'initDivertissement',
         value: function initDivertissement() {
             this.removeLoader();
-            this.resize();
+            this.initSkrollr();
+            this.resizeMenu();
+            this.resizeScenes();
+            this.show();
         }
     }, {
         key: 'getSkrollrConfiguration',
         value: function getSkrollrConfiguration() {
-            var _this3 = this;
+            var _this2 = this;
 
             return {
                 render: function render(data) {
-                    for (var name in _this3.scenes) {
-                        if (typeof _this3.scenes[name].render === 'function') {
-                            _this3.scenes[name].render(data);
+                    for (var name in _this2.scenes) {
+                        if (typeof _this2.scenes[name].render === 'function') {
+                            _this2.scenes[name].render(data);
                         }
                     }
                 },
                 beforerender: function beforerender(data) {
-                    for (var name in _this3.scenes) {
-                        if (typeof _this3.scenes[name].beforerender === 'function') {
-                            _this3.scenes[name].beforerender(data);
+                    for (var name in _this2.scenes) {
+                        if (typeof _this2.scenes[name].beforerender === 'function') {
+                            _this2.scenes[name].beforerender(data);
                         }
                     }
                 }
@@ -246,7 +246,6 @@ var _class = function () {
     }, {
         key: 'initSkrollr',
         value: function initSkrollr() {
-
             if (!skrollr.get()) {
                 this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
                 this.skrollrInitMenu();
@@ -681,6 +680,8 @@ var _keywords2 = _interopRequireDefault(_keywords);
 
 var _knuthShuffle = require('knuth-shuffle');
 
+var _throttleDebounce = require('throttle-debounce');
+
 var _utilities = require('../../scripts/utilities');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -689,10 +690,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //TODO: add sense of time passing in skill path
 //TODO: find an idea for invincible state
 
+// import * as utils from '../../scripts/utilities';
 exports.default = {
     skillShape: {
         pos: [6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400],
         points: ['729.6,-147.8 748.5,-69.4 709.5,-69.4', '729.6,-147.8 765.8,-53.3 709.5,-69.4', '729.6,-164.2 765.8,-53.3 693.4,-53.3', '729.6,-167 783.6,-36.7 693.4,-53.3', '729.6,-203 783.6,-36.7 664,-25.9', '729.6,-203 819.4,-3.3 625.9,9.6', '729.6,-230.5 833.3,9.6 625.9,9.6'],
+        repeat: 0
+    },
+
+    me: {
+        pos: [7300, 7340],
         repeat: 0
     },
 
@@ -708,6 +715,8 @@ exports.default = {
         this.initClickEvents(site);
         this.skills = this.newskills;
         this.sceneTiming = site.timing.scene6;
+
+        this.animateMe = (0, _throttleDebounce.debounce)(10000, true, this.animateMe);
     },
 
 
@@ -728,6 +737,10 @@ exports.default = {
             if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
                 this.animateSkills(this.skillShape.points[i], i + 1);
             }
+        }
+
+        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
+            this.animateMe();
         }
     },
 
@@ -770,17 +783,57 @@ exports.default = {
             }
         });
     },
+    animateMe: function animateMe() {
+        console.log('animation');
+        (0, _animejs2.default)({
+            targets: '#invincible #me',
+            translateY: '-30px',
+            easing: 'easeInOutQuad',
+            duration: 1000,
+            loop: 12,
+            direction: 'alternate'
+        });
+    },
     gen: function gen(minX, maxX, minY, maxY) {
         return {
             top: Math.floor(Math.random() * (maxX - minX + 1) + minX),
             left: Math.floor(Math.random() * (maxY - minY + 1) + minY)
         };
     },
+
+
+    // generate({maxX, maxY, excludeX1, excludeX2, excludeY1, excludeY2}) {
+    //
+    //     const diffx = excludeX2 - excludeX1;
+    //
+    //     const diffy = excludeY2 - excludeY1;
+    //
+    //     let xcoordRed = Math.floor((Math.random() * (maxX - diffx)) + 1);
+    //
+    //     let ycoordRed = Math.floor((Math.random() * (maxY - diffy)) + 1);
+    //
+    //
+    //
+    //     if (xcoordRed >= excludeX1 && ycoordRed >= excludeY1){
+    //         xcoordRed += diffx;
+    //         ycoordRed += diffy;
+    //     }
+    //
+    //
+    //
+    //
+    //
+    //     return {
+    //         x: xcoordRed,
+    //         y: ycoordRed
+    //     }
+    // },
+
     renderSkills: function renderSkills(data) {
         var keyFreqPercentage = 2;
         var scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
-        if (scrolledPercentage > 2 && scrolledPercentage < 98) {
+        if (scrolledPercentage > 2 && scrolledPercentage < 45) {
             var shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
 
             if (shouldExecute) {
@@ -790,8 +843,6 @@ exports.default = {
                 var maxX = window.innerWidth - word.length * fontSize;
                 var top = Math.floor(Math.random() * window.innerHeight + 1);
                 var left = Math.floor(Math.random() * (maxX - minX + 1) + minX);
-
-                console.log('left', left);
 
                 var wordTag = (0, _utilities.createElementWithAttrs)('div', {
                     class: 'word',
@@ -815,15 +866,14 @@ exports.default = {
 
                 this.lastKeyPercentage = scrolledPercentage;
             }
-        } else {
+        } else if (scrolledPercentage) {
             document.querySelector('#skills_container').innerHTML = '';
         }
     }
 };
-// import * as utils from '../../scripts/utilities';
 
 
-},{"../../scripts/utilities":4,"./keywords":9,"animejs":10,"knuth-shuffle":12}],9:[function(require,module,exports){
+},{"../../scripts/utilities":4,"./keywords":9,"animejs":10,"knuth-shuffle":12,"throttle-debounce":15}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

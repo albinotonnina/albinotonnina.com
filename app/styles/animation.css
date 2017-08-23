@@ -1986,9 +1986,13 @@ nav #barright {
   -skrollr-animation-name: a_skills; }
 
 @-skrollr-keyframes a_skills {
-  #scene6 7550 {
+  #scene6 7280 {
+    transform: scale(1) translate(0px, 0px); }
+  #scene6 7330 {
+    transform: scale(2) translate(-240px, 100px); }
+  #scene6 7520 {
     opacity: 1; }
-  #scene6 7600 {
+  #scene6 7550 {
     opacity: 0; } }
 
 #scene6 #skillpath {
@@ -2013,17 +2017,10 @@ nav #barright {
   -skrollr-animation-name: a_invincible; }
 
 @-skrollr-keyframes a_invincible {
-  #scene6 7250 {
+  #scene6 7280 {
     opacity: 0; }
-  #scene6 7300 {
-    opacity: 1; }
-  #scene6 7500 {
-    opacity: 1; }
-  #scene6 7520 {
-    opacity: 0;
-    display: block; }
-  #scene6 7550 {
-    display: none; } }
+  #scene6 7320 {
+    opacity: 1; } }
 
 #scene6 #hellobye {
   opacity: 0;

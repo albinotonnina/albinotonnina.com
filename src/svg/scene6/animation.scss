@@ -276,11 +276,20 @@
 
   @-skrollr-keyframes a_skills {
 
-    #{$start + 1350} {
+
+    #{$start + 1080} {
+      transform: scale(1) translate(0px,0px);
+    }
+
+    #{$start + 1130} {
+      transform: scale(2) translate(-240px,100px);
+    }
+
+    #{$start + 1320} {
       opacity: 1;
     }
 
-    #{$start + 1400} {
+    #{$start + 1350} {
       opacity: 0;
     }
 
@@ -326,26 +335,15 @@
 
   @-skrollr-keyframes a_invincible {
 
-    #{$start + 1050} {
+    #{$start + 1080} {
       opacity: 0;
     }
 
-    #{$start + 1100} {
+    #{$start + 1120} {
       opacity: 1;
     }
 
-    #{$start + 1300} {
-      opacity: 1;
-    }
 
-    #{$start + 1320} {
-      opacity: 0;
-      display: block;
-    }
-
-    #{$start + 1350} {
-      display: none;
-    }
 
   }
 
