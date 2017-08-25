@@ -1983,13 +1983,13 @@ nav #barright {
   -skrollr-animation-name: a_skills; }
 
 @-skrollr-keyframes a_skills {
-  #scene6 7280 {
-    transform: scale(1) translate(0px, 0px); }
-  #scene6 7330 {
-    transform: scale(2) translate(-240px, 100px); }
-  #scene6 7520 {
+  #scene6 7340 {
+    transform: scale(1) translate(0px, 100px); }
+  #scene6 7380 {
+    transform: scale(1.6) translate(-120px, 100px); }
+  #scene6 7630 {
     opacity: 1; }
-  #scene6 7550 {
+  #scene6 7680 {
     opacity: 0; } }
 
 #scene6 #skillpath {

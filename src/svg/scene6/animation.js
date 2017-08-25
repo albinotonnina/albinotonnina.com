@@ -2,12 +2,8 @@ import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
 // import * as utils from '../../scripts/utilities';
-import {debounce} from 'throttle-debounce';
+import {debounce, throttle} from 'throttle-debounce';
 import {createElementWithAttrs} from '../../scripts/utilities';
-
-//TODO: exclude area in renderSkills
-//TODO: add sense of time passing in skill path
-//TODO: find an idea for invincible state
 
 export default {
     skillShape: {
@@ -43,32 +39,22 @@ export default {
         this.sceneTiming = site.timing.scene6;
 
         this.animateMe = debounce(10000, true, this.animateMe);
+        this.resizeSkills = throttle(250, true, this.resizeSkills);
     },
 
     beforerender: function (data) {
         return this.getScrolledPercentage(data, this.sceneTiming) > 0;
     },
 
-    getScrolledPercentage(data, timing) {
-        return data.curTop >= timing.begin ? Math.abs(((data.curTop - timing.begin) / timing.duration) * 100).toFixed(3) : 0;
+    render: function (data) {
+        this.renderSkillWords(data);
+        this.resizeSkills();
+        this.renderSkills(data);
+        this.renderMe(data);
     },
 
-    render: function (data) {
-
-        this.renderSkills(data);
-
-        for (let i = 0; i < this.skillShape.points.length; i++) {
-            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
-                this.animateSkills(this.skillShape.points[i], i + 1);
-            }
-        }
-
-        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
-            this.animateMe();
-        }
-
-
-
+    getScrolledPercentage(data, timing) {
+        return data.curTop >= timing.begin ? Math.abs(((data.curTop - timing.begin) / timing.duration) * 100).toFixed(3) : 0;
     },
 
     initClickEvents(site) {
@@ -111,7 +97,6 @@ export default {
     },
 
     animateMe() {
-        console.log('animation');
         anime({
             targets: '#invincible #me',
             translateY: '-30px',
@@ -130,42 +115,27 @@ export default {
         }
     },
 
-    // generate({maxX, maxY, excludeX1, excludeX2, excludeY1, excludeY2}) {
-    //
-    //     const diffx = excludeX2 - excludeX1;
-    //
-    //     const diffy = excludeY2 - excludeY1;
-    //
-    //     let xcoordRed = Math.floor((Math.random() * (maxX - diffx)) + 1);
-    //
-    //     let ycoordRed = Math.floor((Math.random() * (maxY - diffy)) + 1);
-    //
-    //
-    //
-    //     if (xcoordRed >= excludeX1 && ycoordRed >= excludeY1){
-    //         xcoordRed += diffx;
-    //         ycoordRed += diffy;
-    //     }
-    //
-    //
-    //
-    //
-    //
-    //     return {
-    //         x: xcoordRed,
-    //         y: ycoordRed
-    //     }
-    // },
-
     renderSkills(data) {
+        for (let i = 0; i < this.skillShape.points.length; i++) {
+            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
+                this.animateSkills(this.skillShape.points[i], i + 1);
+            }
+        }
+    },
+
+    renderMe(data) {
+        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
+            this.animateMe();
+        }
+    },
+
+    renderSkillWords(data) {
         const keyFreqPercentage = 2;
         const scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
-         if (scrolledPercentage > 2 && scrolledPercentage < 45) {
+        if (scrolledPercentage > 2 && scrolledPercentage < 45) {
             const shouldExecute = Math.abs(scrolledPercentage - this.lastKeyPercentage) > keyFreqPercentage;
 
-
-            
             if (shouldExecute) {
                 const word = this.skills.pop();
                 const fontSize = Math.abs((Math.random() * 32)) + 16;
@@ -197,9 +167,12 @@ export default {
                 this.lastKeyPercentage = scrolledPercentage;
             }
 
-        } else if(scrolledPercentage) {
+        } else if (scrolledPercentage) {
             document.querySelector('#skills_container').innerHTML = '';
         }
-    }
+    },
 
+    resizeSkills() {
+        console.log('document.querySelector(\'#skills\')', document.querySelector('#skills'));
+    }
 };

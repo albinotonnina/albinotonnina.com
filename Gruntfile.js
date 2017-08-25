@@ -452,7 +452,14 @@ module.exports = function (grunt) {
         babel: {
             options: {
                 sourceMap: true,
-                presets: ['es2015']
+                presets: [[
+                    'env', {
+                        debug: true,
+                        targets: {
+                            browsers: ['last 2 versions', 'safari >= 7']
+                        }
+                    }
+                ]]
             },
             dist: {
                 files: [

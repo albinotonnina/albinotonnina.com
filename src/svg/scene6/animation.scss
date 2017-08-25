@@ -277,19 +277,19 @@
   @-skrollr-keyframes a_skills {
 
 
-    #{$start + 1080} {
-      transform: scale(1) translate(0px,0px);
+    #{$start + 1140} {
+      transform: scale(1) translate(0px,100px);
     }
 
-    #{$start + 1130} {
-      transform: scale(2) translate(-240px,100px);
+    #{$start + 1180} {
+      transform: scale(1.6) translate(-120px, 100px);
     }
 
-    #{$start + 1320} {
+    #{$start + 1430} {
       opacity: 1;
     }
 
-    #{$start + 1350} {
+    #{$start + 1480} {
       opacity: 0;
     }
 

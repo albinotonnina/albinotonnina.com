@@ -2,20 +2,20 @@
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="svg6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="496 -368 1024 768" enable-background="new 496 -368 1024 768" xml:space="preserve">
-<rect id="bg" x="-7122.6" y="-7472" fill="#2BACB5" stroke="#000000" stroke-miterlimit="10" width="15687.9" height="14889"/>
+<rect id="bg" x="-7122.6" y="-7472" fill="#2BACB5" width="15687.9" height="14889"/>
 <g id="skills">
 	<g id="skillnames">
 		<g id="title">
 			
-				<text id="texttitle" transform="matrix(1 0 0 1 750.637 -213.826)" fill="#F5ECD9" font-weight="300" font-size="24.0762px">Front end</text>
+				<text id="texttitle" transform="matrix(1 0 0 1 627.7734 -243.826)" fill="#F5ECD9" font-weight="100" font-size="24.0762px">front end engineering</text>
 		</g>
 		<g id="title_1_">
 			
-				<text id="texttitle_1_" transform="matrix(1 0 0 1 839.2229 9.5861)" fill="#F5ECD9" font-weight="300" font-size="24.0762px">UX</text>
+				<text id="texttitle_1_" transform="matrix(1 0 0 1 771.556 46.0006)" fill="#F5ECD9" font-weight="100" font-size="24.0762px">user experience design</text>
 		</g>
 		<g id="title_2_">
 			
-				<text id="texttitle_2_" transform="matrix(1 0 0 1 517.2649 9.5861)" fill="#F5ECD9" font-weight="300" font-size="24.0762px">Graphics</text>
+				<text id="texttitle_2_" transform="matrix(1 0 0 1 506.9998 46.0002)" fill="#F5ECD9" font-weight="100" font-size="24.0762px">interface design</text>
 		</g>
 	</g>
 	<polyline id="graph1" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" points="729.6,-230.5 729.6,-87 
@@ -76,16 +76,20 @@
 			</g>
 			<g id="me">
 				<rect x="705.1" y="-96.3" fill="#FFFFFF" width="41.9" height="41.9"/>
-				<polygon fill="#F7D3AE" points="706.1,-129 706.1,-115.8 706.1,-96.3 746.1,-96.3 746.1,-115.4 746.1,-129 				"/>
-				<polygon fill="#E8E7E7" points="729.3,-93.2 729.8,-84.4 741.8,-96.3 729.3,-96.3 729.3,-93.2 				"/>
-				<polygon fill="#E8E7E7" points="722.7,-96.3 710.1,-96.3 722.2,-84.4 722.7,-93.2 				"/>
-				<polygon fill="#CA5580" points="726,-93.2 729.3,-93.2 729.3,-96.3 722.7,-96.3 722.7,-93.2 				"/>
-				<polygon fill="#EF6592" points="730.5,-71.6 729.3,-93.2 729.3,-93.2 726,-93.2 722.7,-93.2 721.5,-71.5 726.1,-66.9 				"/>
-				<polygon fill="#FFFFFF" points="726,-96.3 717.1,-89.6 711.3,-96.3 				"/>
-				<polygon fill="#FFFFFF" points="726,-96.3 735,-89.6 740.7,-96.3 				"/>
+				<polygon fill="#F7D3AE" points="707,-127.5 706.1,-115.8 707,-96.3 744.8,-96.3 746.1,-115.4 745.4,-128.6 				"/>
+				<polygon fill="#E8E7E7" points="727.2,-94.4 735,-88.8 741.8,-96.3 729.3,-96.3 726.1,-96.3 				"/>
+				<polygon fill="#E8E7E7" points="722.7,-96.3 710.1,-96.3 717.4,-88.1 726.2,-95.8 				"/>
+				<polygon fill="#FFFFFF" points="726.1,-96.3 717.1,-89.6 711.3,-96.3 				"/>
+				<polygon fill="#FFFFFF" points="726.1,-96.3 735,-89.6 740.7,-96.3 				"/>
+				<path fill="#E8E7E7" d="M725.9-87L725.9-87c-0.4,0-0.8-0.3-0.8-0.8l0,0c0-0.4,0.3-0.8,0.8-0.8l0,0c0.4,0,0.8,0.3,0.8,0.8l0,0
+					C726.6-87.4,726.3-87,725.9-87z"/>
+				<path fill="#E8E7E7" d="M725.9-79L725.9-79c-0.4,0-0.8-0.3-0.8-0.8l0,0c0-0.4,0.3-0.8,0.8-0.8l0,0c0.4,0,0.8,0.3,0.8,0.8l0,0
+					C726.6-79.4,726.3-79,725.9-79z"/>
+				<path fill="#E8E7E7" d="M725.9-72L725.9-72c-0.4,0-0.8-0.3-0.8-0.8l0,0c0-0.4,0.3-0.8,0.8-0.8l0,0c0.4,0,0.8,0.3,0.8,0.8l0,0
+					C726.6-72.4,726.3-72,725.9-72z"/>
 				<polygon fill="#1B1C1C" points="747,-51.1 705.2,-51.2 705.2,-61.4 747,-61.4 				"/>
-				<polygon fill="#544B43" points="706.1,-116.3 697.7,-132.6 721.5,-143.8 722.7,-139.6 738.7,-149.6 733.4,-139.2 744,-144.1 
-					738.7,-137 744,-137.7 740.9,-132.9 750.1,-131 746.1,-116.3 744,-126.2 709.6,-124.5 				"/>
+				<polygon fill="#544B43" points="706.1,-116.3 707,-127.5 713.8,-132 721.3,-135 729,-135.4 734.4,-134.9 737.6,-134.2 
+					739.6,-133.9 739.6,-133.9 742.5,-131 745.4,-128.6 746.1,-116.3 744,-126.2 709.6,-124.5 				"/>
 				<path fill="#1B1C1C" d="M728-45.9"/>
 				<path fill="#1B1C1C" d="M755.2-63.9c-6.1-4.8-29.1,0-29.1,0s-11.9-2.5-20.8-2.1c-3.5,0.1-6.6,0.7-8.3,2.1
 					c-6.1,4.8,2.7,17.3,29.1,15.4C752.5-46.6,761.3-59.1,755.2-63.9z"/>

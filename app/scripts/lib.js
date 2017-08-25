@@ -570,6 +570,12 @@ exports.default = {
         document.querySelector('#lalineag').addEventListener('click', function () {
             window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
         });
+        document.querySelector('#book1').addEventListener('click', function () {
+            window.open('https://youtu.be/9BdtGjoIN4E?t=10s');
+        });
+        document.querySelector('#book2').addEventListener('click', function () {
+            window.open('https://www.youtube.com/watch?v=p0O1VVqRSK0');
+        });
     }
 };
 
@@ -703,10 +709,6 @@ var _utilities = require('../../scripts/utilities');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//TODO: exclude area in renderSkills
-//TODO: add sense of time passing in skill path
-//TODO: find an idea for invincible state
-
 // import * as utils from '../../scripts/utilities';
 exports.default = {
     skillShape: {
@@ -734,6 +736,7 @@ exports.default = {
         this.sceneTiming = site.timing.scene6;
 
         this.animateMe = (0, _throttleDebounce.debounce)(10000, true, this.animateMe);
+        this.resizeSkills = (0, _throttleDebounce.throttle)(250, true, this.resizeSkills);
     },
 
 
@@ -741,26 +744,16 @@ exports.default = {
         return this.getScrolledPercentage(data, this.sceneTiming) > 0;
     },
 
+    render: function render(data) {
+        this.renderSkillWords(data);
+        this.resizeSkills();
+        this.renderSkills(data);
+        this.renderMe(data);
+    },
+
     getScrolledPercentage: function getScrolledPercentage(data, timing) {
         return data.curTop >= timing.begin ? Math.abs((data.curTop - timing.begin) / timing.duration * 100).toFixed(3) : 0;
     },
-
-
-    render: function render(data) {
-
-        this.renderSkills(data);
-
-        for (var i = 0; i < this.skillShape.points.length; i++) {
-            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
-                this.animateSkills(this.skillShape.points[i], i + 1);
-            }
-        }
-
-        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
-            this.animateMe();
-        }
-    },
-
     initClickEvents: function initClickEvents(site) {
 
         document.querySelector('#email').addEventListener('click', function () {
@@ -801,7 +794,6 @@ exports.default = {
         });
     },
     animateMe: function animateMe() {
-        console.log('animation');
         (0, _animejs2.default)({
             targets: '#invincible #me',
             translateY: '-30px',
@@ -817,36 +809,19 @@ exports.default = {
             left: Math.floor(Math.random() * (maxY - minY + 1) + minY)
         };
     },
-
-
-    // generate({maxX, maxY, excludeX1, excludeX2, excludeY1, excludeY2}) {
-    //
-    //     const diffx = excludeX2 - excludeX1;
-    //
-    //     const diffy = excludeY2 - excludeY1;
-    //
-    //     let xcoordRed = Math.floor((Math.random() * (maxX - diffx)) + 1);
-    //
-    //     let ycoordRed = Math.floor((Math.random() * (maxY - diffy)) + 1);
-    //
-    //
-    //
-    //     if (xcoordRed >= excludeX1 && ycoordRed >= excludeY1){
-    //         xcoordRed += diffx;
-    //         ycoordRed += diffy;
-    //     }
-    //
-    //
-    //
-    //
-    //
-    //     return {
-    //         x: xcoordRed,
-    //         y: ycoordRed
-    //     }
-    // },
-
     renderSkills: function renderSkills(data) {
+        for (var i = 0; i < this.skillShape.points.length; i++) {
+            if (data.curTop > this.skillShape.pos[i] && data.curTop < this.skillShape.pos[i + 1] && this.skillShape.repeat !== i + 1) {
+                this.animateSkills(this.skillShape.points[i], i + 1);
+            }
+        }
+    },
+    renderMe: function renderMe(data) {
+        if (data.curTop > this.me.pos[0] && data.curTop < this.me.pos[1]) {
+            this.animateMe();
+        }
+    },
+    renderSkillWords: function renderSkillWords(data) {
         var keyFreqPercentage = 2;
         var scrolledPercentage = this.getScrolledPercentage(data, this.sceneTiming);
 
@@ -886,6 +861,9 @@ exports.default = {
         } else if (scrolledPercentage) {
             document.querySelector('#skills_container').innerHTML = '';
         }
+    },
+    resizeSkills: function resizeSkills() {
+        console.log('document.querySelector(\'#skills\')', document.querySelector('#skills'));
     }
 };
 
