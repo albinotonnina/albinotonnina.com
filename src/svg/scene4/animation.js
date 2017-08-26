@@ -10,6 +10,9 @@ init(){
     document.querySelector('#book2').addEventListener('click', () => {
         window.open('https://www.youtube.com/watch?v=p0O1VVqRSK0');
     });
+    document.querySelector('#book3').addEventListener('click', () => {
+        window.open('https://addyosmani.com/resources/essentialjsdesignpatterns/book/');
+    });
 }
 
 };

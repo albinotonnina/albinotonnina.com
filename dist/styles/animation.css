@@ -1,4 +1,4 @@
-/*! albinotonnina by Albino Tonnina - v1.3.0 - 2017-08-25
+/*! albinotonnina by Albino Tonnina - v1.3.0 - 2017-08-26
 * http://https://github.com/albinotonnina/albinotonnina.com/
 * Copyright (c) 2017 Albino Tonnina; Licensed MIT */
 #scene1 {
@@ -1311,6 +1311,7 @@ nav #barright {
     opacity: 0; } }
 
 #scene4 #book1 {
+  cursor: pointer;
   -skrollr-animation-name: book1; }
 
 @-skrollr-keyframes book1 {
@@ -1322,6 +1323,7 @@ nav #barright {
     transform: translate(0px, 0px); } }
 
 #scene4 #book3 {
+  cursor: pointer;
   -skrollr-animation-name: book3; }
 
 @-skrollr-keyframes book3 {
@@ -1344,6 +1346,7 @@ nav #barright {
     transform: translate(0px, 0px); } }
 
 #scene4 #book2 {
+  cursor: pointer;
   -skrollr-animation-name: book2; }
 
 @-skrollr-keyframes book2 {

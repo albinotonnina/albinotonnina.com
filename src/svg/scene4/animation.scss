@@ -97,6 +97,7 @@
 
 
     #book1 {
+        cursor: pointer;
         -skrollr-animation-name: book1;
     }
     @-skrollr-keyframes book1 {
@@ -112,6 +113,7 @@
 
 
     #book3 {
+        cursor: pointer;
         -skrollr-animation-name: book3;
     }
     @-skrollr-keyframes book3 {
@@ -140,12 +142,8 @@
         }
     }
 
-
-
-
-
-
     #book2 {
+        cursor: pointer;
         -skrollr-animation-name: book2;
     }
     @-skrollr-keyframes book2 {
