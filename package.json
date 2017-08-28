@@ -9,43 +9,42 @@
   },
   "main": "web.js",
   "scripts": {
-    "postinstall": "webpack",
-    "dev": "webpack-dev-server --progress --colors",
-    "build": "webpack"
+    "postinstall": "npm run build",
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "build": "webpack --env.production"
   },
   "dependencies": {
-    "async": "^2.3.0",
-    "express": "^3.5.0",
-    "fs": "0.0.1-security",
-    "knuth-shuffle": "^1.0.1",
-    "logfmt": "^1.0.0",
-    "skrollr": "^0.6.26",
-    "skrollr-menu": "^1.0.3",
-    "skrollr-stylesheets": "^1.0.0",
-    "throttle-debounce": "^1.0.1",
-    "webfontloader": "^1.6.28",
-    "whatwg-fetch": "^2.0.3",
     "animejs": "^2.0.2",
+    "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
-    "ejs-render-loader": "^1.0.0",
+    "express": "^3.5.0",
     "extract-text-webpack-plugin": "^3.0.0",
+    "fs": "0.0.1-security",
     "handlebars": "^4.0.10",
     "handlebars-loader": "^1.5.0",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.3.1",
+    "knuth-shuffle": "^1.0.1",
+    "logfmt": "^1.0.0",
     "modernizr-webpack-plugin": "^1.0.6",
     "node-sass": "^4.5.3",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
+    "skrollr": "^0.6.26",
+    "skrollr-menu": "^1.0.3",
+    "skrollr-stylesheets": "^1.0.0",
     "string-replace-webpack-plugin": "^0.1.3",
     "svg-inline-loader": "^0.8.0",
-    "time-grunt": "~0.2.0",
+    "throttle-debounce": "^1.0.1",
     "url-loader": "^0.5.9",
+    "webfontloader": "^1.6.28",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.18.2"
+    "webpack-hot-middleware": "^2.18.2",
+    "whatwg-fetch": "^2.0.3",
+    "clean-webpack-plugin": "^0.1.16"
   },
   "repository": {
     "type": "git",
@@ -54,6 +53,7 @@
   "description": "",
   "devDependencies": {
 
+    "webpack-dev-server": "^2.7.1"
   },
   "engines": {
     "node": ">=0.8.0"
