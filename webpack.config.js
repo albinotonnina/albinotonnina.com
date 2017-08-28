@@ -38,7 +38,7 @@ module.exports = function (env = {}) {
 
     return {
         devtool: 'source-map',
-        entry: './src/scripts/index.js',
+        entry: './src/index.js',
         output: {
             path: path.resolve(__dirname, 'build'),
             filename: 'bundle.js'

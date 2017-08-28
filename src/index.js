@@ -1,6 +1,6 @@
 import {debounce} from 'throttle-debounce';
-import {waitForWebfonts} from './utilities';
-import Site from './Site';
+import {waitForWebfonts} from './scripts/utilities';
+import Site from './scripts/Site';
 
 document.querySelector('[rel="stylesheet"]').setAttribute('data-skrollr-stylesheet',true);
 

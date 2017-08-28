@@ -7,7 +7,7 @@ import animation4 from '../svg/scene4/animation';
 import animation5 from '../svg/scene5/animation';
 import animation6 from '../svg/scene6/animation';
 
-import skrollrscripts from './skrollr.scripts';
+import skrollrscripts from '../libs/skrollr.scripts';
 
 import timing from './timing';
 import '../styles/main.scss';
