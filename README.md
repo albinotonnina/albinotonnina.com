@@ -8,8 +8,8 @@ Project files for <http://www.albinotonnina.com>
 ## Instructions
 
 	$ npm install
-	$ grunt serve
+	$ npm run dev
 	
 ### For distribution
 	
-	$ grunt serve:dist
+	$ npm run build
