@@ -17,3 +17,5 @@ Project files for <http://www.albinotonnina.com>
 ### Bundle analysis
 
 	$ npm run stats
+
+	[online report](https://www.albinotonnina.com/report.html)
