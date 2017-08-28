@@ -1,6 +1,12 @@
+import scene_svg from './scene.svg';
+import scene_html from './scene.html';
 
 export default {
 init(){
+
+    document.querySelector('[data-scene="scene4"]').innerHTML = scene_html;
+    document.querySelector('[data-scene="scene4"] .svg').innerHTML = scene_svg;
+
     document.querySelector('#lalineag').addEventListener('click', () => {
         window.open('http://en.wikipedia.org/wiki/La_Linea_(TV_series)');
     });

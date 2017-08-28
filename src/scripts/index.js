@@ -2,11 +2,11 @@ import {debounce} from 'throttle-debounce';
 import {waitForWebfonts} from './utilities';
 import Site from './Site';
 
-
+document.querySelector('[rel="stylesheet"]').setAttribute('data-skrollr-stylesheet',true);
 
 const onLoad = () => {
 
-    if (Modernizr.inlinesvg || Modernizr.svgclippaths) {
+    // if (Modernizr.inlinesvg || Modernizr.svgclippaths) {
 
         const SiteInstance = new Site();
 
@@ -27,7 +27,7 @@ const onLoad = () => {
             SiteInstance.show();
             ev.preventDefault();
         });
-    }
+    // }
 
 };
 

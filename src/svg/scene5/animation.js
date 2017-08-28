@@ -1,3 +1,5 @@
+import scene_svg from './scene.svg';
+import scene_html from './scene.html';
 import * as utils from '../../scripts/utilities';
 
 export default {
@@ -14,6 +16,9 @@ export default {
     newq: [0, 0],
 
     init(site) {
+        document.querySelector('[data-scene="scene5"]').innerHTML = scene_html;
+        document.querySelector('[data-scene="scene5"] .svg').innerHTML = scene_svg;
+
         this.addVideoPlayer(site);
 
         this.getPhoneDimensionsInAHackyWayCauseFirefoxDoesNotWork();
