@@ -20,6 +20,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "clean-webpack-plugin": "^0.1.16",
     "express": "^3.5.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "fs": "0.0.1-security",
@@ -27,7 +28,8 @@
     "handlebars-loader": "^1.5.0",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
-    "image-webpack-loader": "^3.3.1",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-webpack-plugin": "^1.5.0-beta.0",
     "knuth-shuffle": "^1.0.1",
     "logfmt": "^1.0.0",
     "modernizr-webpack-plugin": "^1.0.6",
@@ -44,9 +46,7 @@
     "webfontloader": "^1.6.28",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.18.2",
-    "whatwg-fetch": "^2.0.3",
-    "clean-webpack-plugin": "^0.1.16"
+    "webpack-hot-middleware": "^2.18.2"
   },
   "repository": {
     "type": "git",
@@ -54,7 +54,6 @@
   },
   "description": "",
   "devDependencies": {
-
     "webpack-dev-server": "^2.7.1"
   },
   "engines": {

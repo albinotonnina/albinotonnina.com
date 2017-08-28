@@ -4,7 +4,10 @@ const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 const StringReplacePlugin = require("string-replace-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
 
 module.exports = function (env = {}) {
 
@@ -24,7 +27,16 @@ module.exports = function (env = {}) {
                     'svg'
                 ]
             }),
-            new StringReplacePlugin()
+            new StringReplacePlugin(),
+            new ImageminPlugin({
+                //disable: !env.production,
+                plugins: [
+                    imageminMozjpeg({
+                        quality: 40,
+                        progressive: true
+                    })
+                ]
+            })
         ];
 
         if (env.production) {
