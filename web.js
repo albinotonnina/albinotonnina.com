@@ -5,6 +5,6 @@ var app = express();
 
 app.use(logfmt.requestLogger());
 app.use(express.compress());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.listen(Number(process.env.PORT || 5000));

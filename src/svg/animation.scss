@@ -1,3 +1,7 @@
+
+
+
+
 $scene_01_begin: 0;
 $scene_01_duration: 900;
 $scene_01_end: $scene_01_begin + $scene_01_duration;
@@ -21,6 +25,15 @@ $scene_05_end: $scene_05_begin + $scene_05_duration;
 $scene_06_begin: $scene_05_end;
 $scene_06_duration: 2500;
 $scene_06_end: $scene_06_begin + $scene_06_duration;
+
+@import 'menu/animation';
+@import 'scene1/animation';
+@import 'scene2/animation';
+@import 'scene3/animation';
+@import 'scene4/animation';
+@import 'scene5/animation';
+@import 'scene6/animation';
+
 
 
 #scene1 { -skrollr-animation-name: scene1; }

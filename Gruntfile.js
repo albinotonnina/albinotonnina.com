@@ -407,12 +407,6 @@ module.exports = function (grunt) {
                 }, {
                     from: 'font-family="\'Roboto-Regular\'"',
                     to: 'font-weight="400"'
-                }, {
-                    from: '../../../app/images/invincible.jpg',
-                    to: 'images/invincible.jpg'
-                }, {
-                    from: '../../../app/images/157evxw_th.gif',
-                    to: 'images/157evxw_th.gif'
                 }]
             },
             svgfonts7: {

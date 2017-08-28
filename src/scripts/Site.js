@@ -1,10 +1,19 @@
 import * as utils from './utilities';
-import async from 'async';
+import menu from '../svg/menu/animation';
 import animation1 from '../svg/scene1/animation';
+import animation2 from '../svg/scene2/animation';
+import animation3 from '../svg/scene3/animation';
 import animation4 from '../svg/scene4/animation';
 import animation5 from '../svg/scene5/animation';
 import animation6 from '../svg/scene6/animation';
+
+import skrollrscripts from './skrollr.scripts';
+
 import timing from './timing';
+import '../styles/main.scss';
+import '../svg/animation.scss';
+
+const skrollr = skrollrscripts();
 
 export default class {
 
@@ -12,6 +21,8 @@ export default class {
 
         this.scenes = {
             scene1: animation1,
+            scene2: animation2,
+            scene3: animation3,
             scene5: animation5,
             scene4: animation4,
             scene6: animation6
@@ -26,18 +37,6 @@ export default class {
         this.timing = timing.scenes;
 
         this.buildScenes();
-    }
-
-    skrollrInitMenu() {
-        skrollr.menu.init(this.skrollr, {
-            animate: true,
-            easing: 'swing',
-            scenes: this.timing,
-            scale: 1,
-            duration(currentTop, targetTop) {
-                return Math.abs(currentTop - targetTop) * 0.5;
-            }
-        });
     }
 
     removeLoader() {
@@ -110,9 +109,6 @@ export default class {
         this.siteRoot.appendChild(vignette);
         this.siteRoot.appendChild(nav);
 
-        utils.get('svg/menu/scene.svg', (data) => {
-            nav.innerHTML = data;
-        });
 
         for (let key in this.timing) {
             this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
@@ -125,43 +121,21 @@ export default class {
         document.body.appendChild(this.siteRoot);
         document.body.appendChild(this.loader);
 
-        async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+
+
+        // async.each(document.querySelectorAll('[data-scene]'), this.loadScene.bind(this), this.onLoadedScenes.bind(this));
+
+        this._loadScenes();
     }
 
-    onLoadedScenes() {
+    _loadScenes() {
         for (let name in this.scenes) {
-            if (typeof this.scenes[name].init === 'function') {
-                this.scenes[name].init(this);
-            }
+            this.scenes[name].init(this);
         }
 
-        this.injectDependencies({
-            onComplete: this.initDivertissement.bind(this)
-        });
-    }
+        menu.init(this);
 
-    loadScene(element, callback) {
-        this.loadHtml(element, () => {
-            this.loadSvg(element, callback);
-        });
-    }
-
-    loadHtml(element, callback) {
-        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.html', (data) => {
-            element.innerHTML = data;
-            callback();
-        });
-    }
-
-    loadSvg(element, callback) {
-        utils.get('svg/' + element.getAttribute('data-scene') + '/scene.svg', (data) => {
-            element.querySelector('.svg').innerHTML = data;
-            callback();
-        });
-    }
-
-    injectDependencies({onComplete}) {
-        utils.addScript('scripts/skrollr.js', onComplete);
+        this.initDivertissement();
     }
 
     initDivertissement() {
@@ -193,12 +167,29 @@ export default class {
     }
 
     initSkrollr() {
+
         if (!skrollr.get()) {
+
             this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             this.skrollrInitMenu();
         } else {
             this.skrollr.refresh();
         }
+    }
+
+    skrollrInitMenu() {
+
+        skrollr.stylesheets.init();
+
+        skrollr.menu.init(this.skrollr, {
+            animate: true,
+            easing: 'swing',
+            scenes: this.timing,
+            scale: 1,
+            duration(currentTop, targetTop) {
+                return Math.abs(currentTop - targetTop) * 0.5;
+            }
+        });
     }
 
     show() {

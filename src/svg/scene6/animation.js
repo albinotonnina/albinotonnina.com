@@ -1,3 +1,5 @@
+import scene_svg from './scene.svg';
+import scene_html from './scene.html';
 import anime from 'animejs';
 import keyword_ordered from './keywords';
 import {knuthShuffle} from 'knuth-shuffle';
@@ -34,6 +36,9 @@ export default {
     },
 
     init(site) {
+        document.querySelector('[data-scene="scene6"]').innerHTML = scene_html;
+        document.querySelector('[data-scene="scene6"] .svg').innerHTML = scene_svg;
+
         this.initClickEvents(site);
         this.skills = this.newskills;
         this.sceneTiming = site.timing.scene6;
@@ -173,6 +178,6 @@ export default {
     },
 
     resizeSkills() {
-        console.log('document.querySelector(\'#skills\')', document.querySelector('#skills'));
+        //console.log('document.querySelector(\'#skills\')', document.querySelector('#skills'));
     }
 };

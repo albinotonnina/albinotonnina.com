@@ -1,4 +1,7 @@
 import anime from 'animejs';
+import scene_svg from './scene.svg';
+import scene_html from './scene.html';
+
 
 export default {
     lightlast: 'none',
@@ -8,6 +11,10 @@ export default {
     isOnscreen: false,
 
     init(site) {
+
+        document.querySelector('[data-scene="scene1"]').innerHTML = scene_html;
+        document.querySelector('[data-scene="scene1"] .svg').innerHTML = scene_svg;
+
         document.querySelector('#intro2').addEventListener('click', () => {
             window.open('http://www.workshare.com', '_blank');
         });
