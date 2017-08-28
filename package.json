@@ -13,7 +13,8 @@
     "start": "node web.js",
     "postinstall": "npm run build",
     "dev": "node_modules/.bin/webpack-dev-server",
-    "build": "webpack --env.production"
+    "build": "webpack --env.production",
+    "stats": "webpack --env.production.stats"
   },
   "dependencies": {
     "animejs": "^2.0.2",
@@ -54,6 +55,7 @@
   },
   "description": "",
   "devDependencies": {
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1"
   },
   "engines": {

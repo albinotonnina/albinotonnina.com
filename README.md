@@ -13,3 +13,7 @@ Project files for <http://www.albinotonnina.com>
 ### For distribution
 	
 	$ npm run build
+
+### Bundle analysis
+
+	$ npm run stats

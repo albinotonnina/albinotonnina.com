@@ -5,9 +5,9 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 const StringReplacePlugin = require("string-replace-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = function (env = {}) {
 
@@ -42,7 +42,12 @@ module.exports = function (env = {}) {
         if (env.production) {
             pluginsArray.push(new webpack.optimize.UglifyJsPlugin());
 
+            if(env.production.stats){
+                pluginsArray.push(new BundleAnalyzerPlugin());
+            }
         }
+
+
 
         return pluginsArray;
 
