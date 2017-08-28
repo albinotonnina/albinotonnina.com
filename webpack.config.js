@@ -43,7 +43,9 @@ module.exports = function (env = {}) {
             pluginsArray.push(new webpack.optimize.UglifyJsPlugin());
 
             if(env.production.stats){
-                pluginsArray.push(new BundleAnalyzerPlugin());
+                pluginsArray.push(new BundleAnalyzerPlugin({
+                    analyzerMode:'static'
+                }));
             }
         }
 

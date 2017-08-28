@@ -13,7 +13,7 @@
     "start": "node web.js",
     "postinstall": "npm run build",
     "dev": "node_modules/.bin/webpack-dev-server",
-    "build": "webpack --env.production",
+    "build": "webpack --env.production.stats",
     "stats": "webpack --env.production.stats"
   },
   "dependencies": {
@@ -47,7 +47,8 @@
     "webfontloader": "^1.6.28",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.18.2"
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "repository": {
     "type": "git",
@@ -55,7 +56,6 @@
   },
   "description": "",
   "devDependencies": {
-    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1"
   },
   "engines": {
