@@ -9,6 +9,8 @@
   },
   "main": "web.js",
   "scripts": {
+    "prestart": "npm run build",
+    "start": "node web.js",
     "postinstall": "npm run build",
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack --env.production"

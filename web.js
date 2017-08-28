@@ -1,7 +1,7 @@
-var path = require('path');
-var express = require("express");
-var logfmt = require("logfmt");
-var app = express();
+const path = require('path');
+const express = require("express");
+const logfmt = require("logfmt");
+const app = express();
 
 app.use(logfmt.requestLogger());
 app.use(express.compress());
