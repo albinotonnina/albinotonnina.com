@@ -6,11 +6,11 @@ document.querySelector('[rel="stylesheet"]').setAttribute('data-skrollr-styleshe
 
 const onLoad = () => {
 
-    // if (Modernizr.inlinesvg || Modernizr.svgclippaths) {
+    if (Modernizr.svg) {
 
         const SiteInstance = new Site();
 
-        window.onresize =  debounce(100, false, SiteInstance.resize.bind(SiteInstance));
+        window.onresize =  debounce(100, false, SiteInstance._initDivertissement.bind(SiteInstance));
 
         window.onbeforeprint = SiteInstance.destroy.bind(SiteInstance);
 
@@ -27,7 +27,7 @@ const onLoad = () => {
             SiteInstance.show();
             ev.preventDefault();
         });
-    // }
+    }
 
 };
 

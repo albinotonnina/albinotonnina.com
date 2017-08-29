@@ -47,7 +47,7 @@ export default class {
 
     resizeScenes() {
         const innerWidth = window.innerWidth;
-        const clientHeight = document.documentElement.clientHeight;
+        const clientHeight = skrollr.isMobile ? document.documentElement.clientHeight : window.innerHeight;
 
         [].forEach.call(document.querySelectorAll('[data-scene] svg'), scene => {
             utils.setAttributes(scene, {
@@ -65,32 +65,16 @@ export default class {
         document.querySelector('#menu').style.height = `${(clientHeight * 60) / 768}px`;
     }
 
-    resize() {
-        if (utils.shouldFallbackToBoringCV()) {
-            this.destroy();
-        } else {
-            this.resizeScenes();
-
-            setTimeout(this.show.bind(this), 500)
-        }
-
-    }
-
     _buildDOMElements() {
         this.siteRoot = utils.createElementWithAttrs('figure', {role: 'site'});
-
-
         const nav = utils.createElementWithAttrs('nav', {id: 'menu'});
-
         this.siteRoot.appendChild(nav);
-
         for (let key in this.timing) {
             this.siteRoot.appendChild(utils.createElementWithAttrs('div', {
                 'data-scene': key,
                 id: key
             }));
         }
-
         document.body.appendChild(this.siteRoot);
     }
 
@@ -103,10 +87,11 @@ export default class {
     }
 
     _initDivertissement() {
-
-        if (!utils.shouldFallbackToBoringCV()) {
-            this.initSkrollr();
+        if (utils.shouldFallbackToBoringCV()) {
+            this.destroy();
+        } else {
             this.resizeScenes();
+
             this.show();
         }
     }
@@ -134,7 +119,6 @@ export default class {
     initSkrollr() {
 
         if (!skrollr.get()) {
-
             this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             skrollr.stylesheets.init();
 
@@ -147,9 +131,9 @@ export default class {
                     return Math.abs(currentTop - targetTop) * 0.5;
                 }
             });
-        } else {
-            this.skrollr.refresh();
         }
+
+        this.skrollr.refresh();
     }
 
     show() {
