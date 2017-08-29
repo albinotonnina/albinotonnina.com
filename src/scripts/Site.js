@@ -38,10 +38,11 @@ export default class {
         this._buildDOMElements();
         this._initScenes();
         this._initDivertissement();
+        this._hideLoader();
     }
 
-    removeLoader() {
-        document.body.removeChild(document.querySelector('#loader'));
+    _hideLoader() {
+        document.querySelector('#loader').setAttribute('uiState', 'hidden');
     }
 
     resizeScenes() {
@@ -78,9 +79,9 @@ export default class {
     _buildDOMElements() {
         this.siteRoot = utils.createElementWithAttrs('figure', {role: 'site'});
 
-        const vignette = utils.createElementWithAttrs('div', {id: 'vignette'});
+
         const nav = utils.createElementWithAttrs('nav', {id: 'menu'});
-        this.siteRoot.appendChild(vignette);
+
         this.siteRoot.appendChild(nav);
 
         for (let key in this.timing) {
@@ -102,8 +103,6 @@ export default class {
     }
 
     _initDivertissement() {
-
-        this.removeLoader();
 
         if (!utils.shouldFallbackToBoringCV()) {
             this.initSkrollr();
