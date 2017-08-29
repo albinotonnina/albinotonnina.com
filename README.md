@@ -18,4 +18,4 @@ Project files for <http://www.albinotonnina.com>
 
 	$ npm run stats
 
-	[online report](https://www.albinotonnina.com/report.html)
+	[online report](http://www.albinotonnina.com/report.html)
