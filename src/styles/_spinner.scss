@@ -11,6 +11,7 @@
   opacity: 1;
   transition: opacity 500ms;
   z-index: 101;
+  pointer-events: none;
 
   &[uiState="hidden"]{
     opacity: 0;
