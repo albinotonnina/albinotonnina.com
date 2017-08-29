@@ -47,7 +47,7 @@ export default class {
 
     resizeScenes() {
         const innerWidth = window.innerWidth;
-        const clientHeight = skrollr.isMobile ? document.documentElement.clientHeight : window.innerHeight;
+        const clientHeight = utils.isMobile() ? document.documentElement.clientHeight : window.innerHeight;
 
         [].forEach.call(document.querySelectorAll('[data-scene] svg'), scene => {
             utils.setAttributes(scene, {
@@ -91,7 +91,6 @@ export default class {
             this.destroy();
         } else {
             this.resizeScenes();
-
             this.show();
         }
     }
@@ -138,6 +137,7 @@ export default class {
 
     show() {
         document.body.setAttribute('data-display', 'divertissement');
+        document.querySelector('#vignette').setAttribute('uiState', 'show');
         this.siteRoot.setAttribute('uiState', 'show');
         this.initSkrollr();
     }
@@ -145,6 +145,7 @@ export default class {
     destroy() {
         document.body.removeAttribute('style');
         document.body.removeAttribute('data-display');
+        document.querySelector('#vignette').setAttribute('uiState', 'hidden');
         this.siteRoot.setAttribute('uiState', 'hidden');
         if (skrollr.get()) {
             this.skrollr.destroy();
