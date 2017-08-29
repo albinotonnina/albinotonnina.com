@@ -14,13 +14,14 @@
     "postinstall": "npm run build",
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack --env.production.stats",
-    "stats": "webpack --env.production.stats"
+    "stats": "webpack --env.production.stats",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "animejs": "^2.0.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
     "express": "^3.5.0",
     "extract-text-webpack-plugin": "^3.0.0",
@@ -56,9 +57,28 @@
   },
   "description": "",
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.6.0",
+    "jest": "^20.0.4",
     "webpack-dev-server": "^2.7.1"
   },
   "engines": {
     "node": ">=0.8.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "moduleFileExtensions": [
+        "js"
+      ],
+      "moduleDirectories": [
+        "node_modules"
+      ],
+      "\\.(jpg|png|gif|svg|ttf|woff|woff2)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tests/__mocks__/styleMock.js"
+    },
+    "collectCoverageFrom":["src/**/*.{js}", "!src/libs/**"]
   }
 }

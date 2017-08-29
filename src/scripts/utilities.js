@@ -27,5 +27,5 @@ export const createElementWithAttrs = (tagName, attrs) => {
 
 export const shouldFallbackToBoringCV = () => {
     const maxHeight = 768 / 1024 * window.innerWidth;
-    return document.documentElement.clientHeight > maxHeight;
+    return window.innerHeight > maxHeight;
 };
