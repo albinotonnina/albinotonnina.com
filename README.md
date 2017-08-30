@@ -6,6 +6,10 @@
 
 Project files for [www.albinotonnina.com](http://www.albinotonnina.com)
 
+## To do
+
+Make this a react app?
+
 ## Instructions
 
 	$ npm install

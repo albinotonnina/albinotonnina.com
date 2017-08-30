@@ -133,7 +133,7 @@ export default class {
 
     initSkrollr() {
 
-        if (!this.skrollr) {
+        if (!skrollr.get()) {
             this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             skrollr.stylesheets.init();
 
