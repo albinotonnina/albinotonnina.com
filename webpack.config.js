@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = function (env = {}) {
 
@@ -30,6 +31,10 @@ module.exports = function (env = {}) {
                         progressive: true
                     })
                 ]
+            }),
+            new FaviconsWebpackPlugin({
+                logo: './src/images/logo.png',
+                title: 'albinotonnina.com'
             })
         ];
 
