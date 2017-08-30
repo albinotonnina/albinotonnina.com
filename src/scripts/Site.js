@@ -7,7 +7,7 @@ import scene4 from '../svg/scene4/animation';
 import scene5 from '../svg/scene5/animation';
 import scene6 from '../svg/scene6/animation';
 import skrollrscripts from '../libs/skrollr.scripts';
-
+import {debounce} from 'throttle-debounce';
 import timing from './timing';
 import '../styles/main.scss';
 import '../svg/animation.scss';
@@ -35,10 +35,26 @@ export default class {
 
         this.timing = timing.scenes;
 
+        this._initEvents();
+        this._addEventToReopenBtn();
         this._buildDOMElements();
         this._initScenes();
         this._initDivertissement();
         this._hideLoader();
+    }
+
+    _addEventToReopenBtn(){
+        if (document.querySelector('#reopen')) {
+            document.querySelector('#reopen').addEventListener('click', ev => {
+                ev.preventDefault();
+                this.show();
+            });
+        }
+    }
+
+    _initEvents() {
+        window.onresize = debounce(100, false, this._initDivertissement.bind(this));
+        utils.onBeforePrint(this.destroy.bind(this));
     }
 
     _hideLoader() {
@@ -117,7 +133,7 @@ export default class {
 
     initSkrollr() {
 
-        if (!skrollr.get()) {
+        if (!this.skrollr) {
             this.skrollr = skrollr.init(Object.assign(this.defaults, this.getSkrollrConfiguration()));
             skrollr.stylesheets.init();
 
@@ -143,6 +159,7 @@ export default class {
     }
 
     destroy() {
+
         document.body.removeAttribute('style');
         document.body.removeAttribute('data-display');
         document.querySelector('#vignette').setAttribute('uiState', 'hidden');

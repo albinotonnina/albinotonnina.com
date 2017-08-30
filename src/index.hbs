@@ -327,15 +327,9 @@
     </main>
 </div>
 
-<figure id="loader" ></figure>
+<figure id="loader"></figure>
 <div id="vignette"></div>
 
-<!--<figure id="awwwards" class="left white">-->
-<!--<a href="http://www.awwwards.com" target="_blank">best websites of the world</a>-->
-<!--</figure>-->
-<!--<figure class="opl">-->
-<!--<a href="http://onepagelove.com/albino-tonnina" target="_blank">Your Site Name featured on One Page Love</a>-->
-<!--</figure>-->
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -350,9 +344,12 @@
     ga('create', 'UA-265680-29', 'albinotonnina.com');
     ga('send', 'pageview'); </script>
 
-<script src="./modernizr-bundle.js"></script>
 
-
+<script>
+    if(document.querySelector('[href="styles.css"]')){
+        document.querySelector('[href="styles.css"]').setAttribute('data-skrollr-stylesheet',true);
+    }
+</script>
 
 </body>
 </html>

@@ -13,6 +13,7 @@ export default {
     init(site) {
 
         document.querySelector('[data-scene="scene1"]').innerHTML = scene_html;
+
         document.querySelector('[data-scene="scene1"] .svg').innerHTML = scene_svg;
 
         document.querySelector('#intro2').addEventListener('click', () => {

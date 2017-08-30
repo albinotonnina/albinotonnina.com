@@ -7,13 +7,13 @@
 	<rect id="barleft" x="-1087" y="271" fill="#229098" width="1200" height="60"/>
 	<rect id="bar" x="112" y="271" fill="#229098" width="1024" height="60"/>
 	<g id="testi">
-		
+
 			<text id="sc-menu1" transform="matrix(1 0 0 1 208.0068 309.2969)" fill="#F5ECD9" font-family="'Roboto-Regular'" font-size="24px">ABOUT ME</text>
-		
+
 			<text id="sc-menu3" transform="matrix(1 0 0 1 464.3423 309.2969)" fill="#F5ECD9" font-family="'Roboto-Regular'" font-size="24px">SKILLS</text>
-		
+
 			<text id="sc-menu5" transform="matrix(1 0 0 1 699.4268 309.2969)" fill="#F5ECD9" font-family="'Roboto-Regular'" font-size="24px">WORK</text>
-		
+
 			<text id="sc-menu6" transform="matrix(1 0 0 1 909.9951 309.2969)" fill="#F5ECD9" font-family="'Roboto-Regular'" font-size="24px">CONNECT</text>
 	</g>
 </g>

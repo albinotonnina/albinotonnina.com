@@ -29,3 +29,17 @@ export const shouldFallbackToBoringCV = () => {
     const maxHeight = 768 / 1024 * window.innerWidth;
     return window.innerHeight > maxHeight;
 };
+
+export const onBeforePrint = (callback) => {
+    if ('matchMedia' in window) {
+        // Chrome, Firefox, and IE 10 support mediaMatch listeners
+        window.matchMedia('print').addListener((media) => {
+            if (media.matches) {
+                callback;
+            }
+        });
+    } else {
+        // IE and Firefox fire before/after events
+        window.onbeforeprint = callback;
+    }
+};

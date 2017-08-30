@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 const StringReplacePlugin = require("string-replace-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
@@ -22,11 +21,6 @@ module.exports = function (env = {}) {
 
             new CleanWebpackPlugin('build'),
             new HtmlWebpackPlugin({template: './src/index.hbs'}),
-            new ModernizrWebpackPlugin({
-                'feature-detects': [
-                    'svg'
-                ]
-            }),
             new StringReplacePlugin(),
             new ImageminPlugin({
                 //disable: !env.production,

@@ -34,7 +34,6 @@
     "imagemin-webpack-plugin": "^1.5.0-beta.0",
     "knuth-shuffle": "^1.0.1",
     "logfmt": "^1.0.0",
-    "modernizr-webpack-plugin": "^1.0.6",
     "node-sass": "^4.5.3",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
@@ -58,6 +57,7 @@
   "description": "",
   "devDependencies": {
     "babel-jest": "^20.0.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "jest": "^20.0.4",
     "webpack-dev-server": "^2.7.1"
@@ -67,18 +67,28 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.js?$": "babel-jest"
+      "^.+\\.js?$": "babel-jest",
+      "^.+\\.html$": "<rootDir>/tests/__mocks__/htmlMock.js",
+      "^.+\\.svg$": "<rootDir>/tests/__mocks__/svgMock.js"
     },
     "moduleNameMapper": {
       "moduleFileExtensions": [
-        "js"
+        "js","html","svg"
       ],
       "moduleDirectories": [
         "node_modules"
       ],
-      "\\.(jpg|png|gif|svg|ttf|woff|woff2)$": "<rootDir>/tests/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/tests/__mocks__/styleMock.js"
+      "\\.(jpg|png|gif|ttf|woff|woff2)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/tests/__mocks__/styleMock.js"
     },
-    "collectCoverageFrom":["src/**/*.{js}", "!src/libs/**"]
+    "collectCoverageFrom": [
+      "src/**/*.{js}",
+      "!src/libs/**"
+    ],
+    "globals": {
+      "Modernizr": {
+        "svg": true
+      }
+    }
   }
 }
