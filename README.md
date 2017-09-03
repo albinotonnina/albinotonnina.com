@@ -26,5 +26,5 @@ Project files for [www.albinotonnina.com](http://www.albinotonnina.com)
 
 	$ npm run stats
 
-[check the online report](http://www.albinotonnina.com/report.html)
+[check the online report](http://www.albinotonnina.com/report.html) (bundle size: 150kb gzipped, including svgs)
 
