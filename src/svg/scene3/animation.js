@@ -1,10 +1,10 @@
-import scene_svg from './scene.svg';
-import scene_html from './scene.html';
+import sceneSvg from './scene.svg'
+import sceneHtml from './scene.html'
 
 export default {
 
-    init() {
-        document.querySelector('[data-scene="scene3"]').innerHTML = scene_html;
-        document.querySelector('[data-scene="scene3"] .svg').innerHTML = scene_svg;
-    }
-};
+  init () {
+    document.querySelector('[data-scene="scene3"]').innerHTML = sceneHtml
+    document.querySelector('[data-scene="scene3"] .svg').innerHTML = sceneSvg
+  }
+}

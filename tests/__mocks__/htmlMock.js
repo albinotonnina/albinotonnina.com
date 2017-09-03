@@ -1,7 +1,7 @@
-const htmlLoader = require('html-loader');
+const htmlLoader = require('html-loader')
 
 module.exports = {
-    process(src, filename, config, options) {
-        return htmlLoader(src);
-    }
+  process (src, filename, config, options) {
+    return htmlLoader(src)
+  }
 }

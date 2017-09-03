@@ -1,13 +1,11 @@
-import skrollr from 'skrollr';
-import skrollrmenu from '../libs/skrollr.menu';
-import skrollrstylesheets from '../libs/skrollr.stylesheets';
+import skrollr from 'skrollr'
+import skrollrmenu from '../libs/skrollr.menu'
+import skrollrstylesheets from '../libs/skrollr.stylesheets'
 
 export default function () {
+  skrollrstylesheets(skrollr)
 
-    skrollrstylesheets(skrollr);
+  skrollrmenu(skrollr)
 
-    skrollrmenu(skrollr);
-
-    return skrollr;
-
+  return skrollr
 }

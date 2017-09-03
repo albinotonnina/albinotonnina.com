@@ -1,36 +1,34 @@
-import Site from '../src/scripts/Site';
+/* global describe, it, expect, jest, beforeAll */
 
-jest.mock('animejs', () => (jest.fn));
+import Site from '../src/scripts/Site'
+
+jest.mock('animejs', () => (jest.fn))
 
 describe('Site', () => {
+  let site
 
-    let site;
-
-    beforeAll(() => {
-        document.body.innerHTML = `
+  beforeAll(() => {
+    document.body.innerHTML = `
             <div id="vignette"></div>
             <div id="reopen"></div>
             <div id="loader"></div>
-        `;
+        `
 
-        jest.mock('skrollr', () => ({
-            init: jest.fn,
-            refresh: jest.fn,
-            addEvent: jest.fn,
-            get: () => false
-        }));
+    jest.mock('skrollr', () => ({
+      init: jest.fn,
+      refresh: jest.fn,
+      addEvent: jest.fn,
+      get: () => false
+    }))
+  })
 
-        site = new Site();
-    });
+  it('init skrollr', () => {
+    site = new Site()
+    site.initDivertissement()
+    expect(site.skrollr).toBeTruthy()
+  })
 
-    it('init skrollr', () => {
-
-        expect(site.skrollr).toBeTruthy();
-    });
-
-    it('hide loader', () => {
-
-        expect(document.querySelector('#loader').getAttribute('uiState')).toEqual('hidden');
-    });
-
-});
+  it('hide loader', () => {
+    expect(document.querySelector('#loader').getAttribute('uiState')).toEqual('hidden')
+  })
+})

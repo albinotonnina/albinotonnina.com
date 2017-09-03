@@ -4,26 +4,25 @@
 
 ## Overview
 
-Project files for [www.albinotonnina.com](http://www.albinotonnina.com)
+Src files for [www.albinotonnina.com](http://www.albinotonnina.com)
 
-## Instructions
-
+## Install
 	$ npm install
-	$ npm run dev
 
-### For distribution
+## Dev
+    $ npm run dev
 
+## Build
 	$ npm run build
 
-### Testing
-
+## Test
 	$ npm test
+ ([standard](https://standardjs.com) && jest)
 
-#### Test Coverage
+### Test Coverage
     $ npm run coverage
 
 ### Bundle analysis
-
 	$ npm run stats
 
 [check the online report](http://www.albinotonnina.com/report.html) (bundle size: 150kb gzipped, including svgs)
