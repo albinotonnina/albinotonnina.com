@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/albinotonnina/albinotonnina.com.svg?branch=master)](https://travis-ci.org/albinotonnina/albinotonnina.com)
+[![Dependency Status](https://www.versioneye.com/user/projects/59ad2212368b08003311bb22/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59ad2212368b08003311bb22)
 
 # albinotonnina.com
 
