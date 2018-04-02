@@ -67,7 +67,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "engines": {
-    "node": "8.7.0"
+    "node": ">= 8.7.0"
   },
   "jest": {
     "transform": {
