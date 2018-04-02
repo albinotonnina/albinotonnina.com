@@ -82,6 +82,10 @@ export default {
     document.querySelector('#instagram').addEventListener('click', () => {
       window.open('http://www.instagram.com/albino_tonnina', '_blank')
     })
+    
+    document.querySelector('#twitter').addEventListener('click', () => {
+      window.open('https://twitter.com/albinotonnina', '_blank')
+    })
 
     document.querySelector('#contactresume').addEventListener('click', () => {
       site.destroy()

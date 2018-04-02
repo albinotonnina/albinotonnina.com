@@ -192,12 +192,12 @@
     }
   }
 
-  #email, #linkedin, #instagram, #contactresume, #githubsite, #medium {
+  #email, #linkedin, #instagram, #contactresume, #githubsite, #medium, #twitter {
     cursor: pointer;
     transition-duration: 500ms;
   }
 
-  #email:hover text, #linkedin:hover text, #instagram:hover text, #contactresume:hover text, #githubsite:hover text, #medium:hover text {
+  #email:hover text, #linkedin:hover text, #instagram:hover text, #contactresume:hover text, #githubsite:hover text, #medium:hover text, #twitter:hover text {
     fill: rgba(44, 62, 80, 0.99);
   }
 
