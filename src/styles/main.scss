@@ -54,7 +54,7 @@ body {
 
   #printfriendly {
     font-weight: 100;
-    font-size: small;
+    font-size: 2rem;
   }
 
 }
@@ -124,6 +124,10 @@ body {
     border-bottom: 1px solid #151D29;
     font-size: small;
     margin-left: 1em;
+
+    &:last-child{
+      border: none;
+    }
   }
 
   p {

@@ -54,10 +54,17 @@ Print styles
     content: ": " attr(href) " ";
   }
   a[href] {
-    font-weight: bold;
+
     text-decoration: none;
     color: #06c;
     border: none;
+  }
+
+  h3{
+    font-weight: bold !important;
+    a{
+      font-weight: bold !important;
+    }
   }
   /* Don't show link destinations for JavaScript or internal links */
 

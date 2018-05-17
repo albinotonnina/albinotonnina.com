@@ -212,10 +212,13 @@ Print styles
   a[href]:after {
     content: ": " attr(href) " "; }
   a[href] {
-    font-weight: bold;
     text-decoration: none;
     color: #06c;
     border: none; }
+  h3 {
+    font-weight: bold !important; }
+    h3 a {
+      font-weight: bold !important; }
   /* Don't show link destinations for JavaScript or internal links */
   a[href^="javascript:"]:after, a[href^="#"]:after, a.plain[href]:after {
     content: ""; }
@@ -269,7 +272,7 @@ body {
     display: none; }
   #sidebar #printfriendly {
     font-weight: 100;
-    font-size: small; }
+    font-size: 2rem; }
 
 .portrait-mode {
   display: none; }
@@ -311,6 +314,8 @@ body {
   border-bottom: 1px solid #151D29;
   font-size: small;
   margin-left: 1em; }
+  .list section:last-child {
+    border: none; }
 
 .list p {
   margin-top: 0;
