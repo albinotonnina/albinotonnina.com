@@ -22,7 +22,6 @@
     "animejs": "^2.0.2",
     "express": "^3.5.0",
     "knuth-shuffle": "^1.0.1",
-    "logfmt": "^1.0.0",
     "skrollr": "^0.6.26",
     "skrollr-menu": "^1.0.3",
     "skrollr-stylesheets": "^1.0.0",
