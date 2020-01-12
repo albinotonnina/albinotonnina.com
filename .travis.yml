@@ -1,3 +1,18 @@
 language: node_js
+
 node_js:
-  - "6"
+  - 12.14.1
+
+cahce: npm
+
+script:
+  - npm clean
+
+install:
+  - npm install
+
+script:
+  - npm test
+  - npm run coverage
+  - npm run build
+  - npm run stats
