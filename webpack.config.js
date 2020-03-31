@@ -1,28 +1,27 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const StringReplacePlugin = require('string-replace-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default
 const imageminMozjpeg = require('imagemin-mozjpeg')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
-module.exports = function (env = {}) {
-  const extractSass = new ExtractTextPlugin({
-    filename: 'styles.css'
-  })
-
-  const plugins = (() => {
-    const pluginsArray = [
-      extractSass,
-
-      new CleanWebpackPlugin('build'),
-      new HtmlWebpackPlugin({template: './src/index.hbs'}),
+module.exports =  ()=> {
+  return {
+    devtool: 'source-map',
+    entry: './src/index.js',
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename: 'bundle.js'
+    },
+    plugins:[
+      new MiniCssExtractPlugin({
+        filename: 'styles.css'
+      }),
+      new HtmlWebpackPlugin({template: './src/index.html'}),
       new StringReplacePlugin(),
       new ImageminPlugin({
-                // disable: !env.production,
         plugins: [
           imageminMozjpeg({
             quality: 40,
@@ -34,68 +33,29 @@ module.exports = function (env = {}) {
         logo: './src/images/logo.png',
         title: 'albinotonnina.com'
       })
-    ]
-
-    if (env.production) {
-      pluginsArray.push(new webpack.optimize.UglifyJsPlugin())
-
-      if (env.production.stats) {
-        pluginsArray.push(new BundleAnalyzerPlugin({
-          analyzerMode: 'static'
-        }))
-      }
-    }
-
-    return pluginsArray
-  })()
-
-  return {
-    devtool: 'source-map',
-    entry: './src/index.js',
-    output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js'
-    },
-    plugins,
-    devServer: {
-      contentBase: path.join(__dirname, 'build'),
-      compress: true,
-      port: 4000,
-      host: '0.0.0.0',
-      open: true,
-      inline: true
-    },
+    ],
     module: {
       rules: [
-        {
-          test: /\.hbs$/,
-          loader: 'handlebars-loader',
-          query: {
-            partialDirs: [
-              path.join(__dirname, 'src')
-            ],
-            inlineRequires: '/images/'
-          }
-        },
         {
           test: /\.js$/,
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              cacheDirectory: true
-            }
+
           }
         },
         {
-          test: /\.scss$/,
-          use: extractSass.extract({
-            use: [{
-              loader: 'raw-loader'
-            }, {
-              loader: 'sass-loader'
-            }]
-          })
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: process.env.NODE_ENV === 'development',
+              },
+            },
+            'css-loader',
+            'sass-loader',
+          ],
         },
 
         {
