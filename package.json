@@ -22,9 +22,6 @@
     "animejs": "^2.0.2",
     "express": "^3.5.0",
     "knuth-shuffle": "^1.0.1",
-    "skrollr": "^0.6.26",
-    "skrollr-menu": "^1.0.3",
-    "skrollr-stylesheets": "^1.0.0",
     "throttle-debounce": "^1.0.1"
   },
   "repository": {
@@ -61,6 +58,7 @@
     "webfontloader": "^1.6.28",
     "webpack": "^3.5.5",
     "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^3.2.1",
     "webpack-hot-middleware": "^2.18.2"

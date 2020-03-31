@@ -1261,8 +1261,8 @@ module.exports = function ( delay, atBegin, callback ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_skrollr__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_skrollr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_skrollr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__skrollr__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__skrollr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__skrollr__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_skrollr_menu__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_skrollr_menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__libs_skrollr_menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_skrollr_stylesheets__ = __webpack_require__(47);
@@ -1272,20 +1272,1827 @@ module.exports = function ( delay, atBegin, callback ) {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
-  __WEBPACK_IMPORTED_MODULE_2__libs_skrollr_stylesheets___default()(__WEBPACK_IMPORTED_MODULE_0_skrollr___default.a);
+  __WEBPACK_IMPORTED_MODULE_2__libs_skrollr_stylesheets___default()(__WEBPACK_IMPORTED_MODULE_0__skrollr___default.a);
 
-  __WEBPACK_IMPORTED_MODULE_1__libs_skrollr_menu___default()(__WEBPACK_IMPORTED_MODULE_0_skrollr___default.a);
+  __WEBPACK_IMPORTED_MODULE_1__libs_skrollr_menu___default()(__WEBPACK_IMPORTED_MODULE_0__skrollr___default.a);
 
-  return __WEBPACK_IMPORTED_MODULE_0_skrollr___default.a;
+  return __WEBPACK_IMPORTED_MODULE_0__skrollr___default.a;
 });
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_RESULT__;/*! skrollr 0.6.26 (2014-06-08) | Alexander Prinzhorn - https://github.com/Prinzhorn/skrollr | Free to use under terms of MIT license */
-(function(e,t,r){"use strict";function n(r){if(o=t.documentElement,a=t.body,K(),it=this,r=r||{},ut=r.constants||{},r.easing)for(var n in r.easing)U[n]=r.easing[n];yt=r.edgeStrategy||"set",ct={beforerender:r.beforerender,render:r.render,keyframe:r.keyframe},ft=r.forceHeight!==!1,ft&&(Vt=r.scale||1),mt=r.mobileDeceleration||x,dt=r.smoothScrolling!==!1,gt=r.smoothScrollingDuration||E,vt={targetTop:it.getScrollTop()},Gt=(r.mobileCheck||function(){return/Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent||navigator.vendor||e.opera)})(),Gt?(st=t.getElementById("skrollr-body"),st&&at(),X(),Dt(o,[y,S],[T])):Dt(o,[y,b],[T]),it.refresh(),St(e,"resize orientationchange",function(){var e=o.clientWidth,t=o.clientHeight;(t!==$t||e!==Mt)&&($t=t,Mt=e,_t=!0)});var i=Y();return function l(){Z(),bt=i(l)}(),it}var o,a,i={get:function(){return it},init:function(e){return it||new n(e)},VERSION:"0.6.26"},l=Object.prototype.hasOwnProperty,s=e.Math,c=e.getComputedStyle,f="touchstart",u="touchmove",m="touchcancel",p="touchend",d="skrollable",g=d+"-before",v=d+"-between",h=d+"-after",y="skrollr",T="no-"+y,b=y+"-desktop",S=y+"-mobile",k="linear",w=1e3,x=.004,E=200,A="start",F="end",C="center",D="bottom",H="___skrollable_id",I=/^(?:input|textarea|button|select)$/i,P=/^\s+|\s+$/g,N=/^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?$/,O=/\s*(@?[\w\-\[\]]+)\s*:\s*(.+?)\s*(?:;|$)/gi,V=/^(@?[a-z\-]+)\[(\w+)\]$/,z=/-([a-z0-9_])/g,q=function(e,t){return t.toUpperCase()},L=/[\-+]?[\d]*\.?[\d]+/g,M=/\{\?\}/g,$=/rgba?\(\s*-?\d+\s*,\s*-?\d+\s*,\s*-?\d+/g,_=/[a-z\-]+-gradient/g,B="",G="",K=function(){var e=/^(?:O|Moz|webkit|ms)|(?:-(?:o|moz|webkit|ms)-)/;if(c){var t=c(a,null);for(var n in t)if(B=n.match(e)||+n==n&&t[n].match(e))break;if(!B)return B=G="",r;B=B[0],"-"===B.slice(0,1)?(G=B,B={"-webkit-":"webkit","-moz-":"Moz","-ms-":"ms","-o-":"O"}[B]):G="-"+B.toLowerCase()+"-"}},Y=function(){var t=e.requestAnimationFrame||e[B.toLowerCase()+"RequestAnimationFrame"],r=Pt();return(Gt||!t)&&(t=function(t){var n=Pt()-r,o=s.max(0,1e3/60-n);return e.setTimeout(function(){r=Pt(),t()},o)}),t},R=function(){var t=e.cancelAnimationFrame||e[B.toLowerCase()+"CancelAnimationFrame"];return(Gt||!t)&&(t=function(t){return e.clearTimeout(t)}),t},U={begin:function(){return 0},end:function(){return 1},linear:function(e){return e},quadratic:function(e){return e*e},cubic:function(e){return e*e*e},swing:function(e){return-s.cos(e*s.PI)/2+.5},sqrt:function(e){return s.sqrt(e)},outCubic:function(e){return s.pow(e-1,3)+1},bounce:function(e){var t;if(.5083>=e)t=3;else if(.8489>=e)t=9;else if(.96208>=e)t=27;else{if(!(.99981>=e))return 1;t=91}return 1-s.abs(3*s.cos(1.028*e*t)/t)}};n.prototype.refresh=function(e){var n,o,a=!1;for(e===r?(a=!0,lt=[],Bt=0,e=t.getElementsByTagName("*")):e.length===r&&(e=[e]),n=0,o=e.length;o>n;n++){var i=e[n],l=i,s=[],c=dt,f=yt,u=!1;if(a&&H in i&&delete i[H],i.attributes){for(var m=0,p=i.attributes.length;p>m;m++){var g=i.attributes[m];if("data-anchor-target"!==g.name)if("data-smooth-scrolling"!==g.name)if("data-edge-strategy"!==g.name)if("data-emit-events"!==g.name){var v=g.name.match(N);if(null!==v){var h={props:g.value,element:i,eventType:g.name.replace(z,q)};s.push(h);var y=v[1];y&&(h.constant=y.substr(1));var T=v[2];/p$/.test(T)?(h.isPercentage=!0,h.offset=(0|T.slice(0,-1))/100):h.offset=0|T;var b=v[3],S=v[4]||b;b&&b!==A&&b!==F?(h.mode="relative",h.anchors=[b,S]):(h.mode="absolute",b===F?h.isEnd=!0:h.isPercentage||(h.offset=h.offset*Vt))}}else u=!0;else f=g.value;else c="off"!==g.value;else if(l=t.querySelector(g.value),null===l)throw'Unable to find anchor target "'+g.value+'"'}if(s.length){var k,w,x;!a&&H in i?(x=i[H],k=lt[x].styleAttr,w=lt[x].classAttr):(x=i[H]=Bt++,k=i.style.cssText,w=Ct(i)),lt[x]={element:i,styleAttr:k,classAttr:w,anchorTarget:l,keyFrames:s,smoothScrolling:c,edgeStrategy:f,emitEvents:u,lastFrameIndex:-1},Dt(i,[d],[])}}}for(Et(),n=0,o=e.length;o>n;n++){var E=lt[e[n][H]];E!==r&&(J(E),et(E))}return it},n.prototype.relativeToAbsolute=function(e,t,r){var n=o.clientHeight,a=e.getBoundingClientRect(),i=a.top,l=a.bottom-a.top;return t===D?i-=n:t===C&&(i-=n/2),r===D?i+=l:r===C&&(i+=l/2),i+=it.getScrollTop(),0|i+.5},n.prototype.animateTo=function(e,t){t=t||{};var n=Pt(),o=it.getScrollTop();return pt={startTop:o,topDiff:e-o,targetTop:e,duration:t.duration||w,startTime:n,endTime:n+(t.duration||w),easing:U[t.easing||k],done:t.done},pt.topDiff||(pt.done&&pt.done.call(it,!1),pt=r),it},n.prototype.stopAnimateTo=function(){pt&&pt.done&&pt.done.call(it,!0),pt=r},n.prototype.isAnimatingTo=function(){return!!pt},n.prototype.isMobile=function(){return Gt},n.prototype.setScrollTop=function(t,r){return ht=r===!0,Gt?Kt=s.min(s.max(t,0),Ot):e.scrollTo(0,t),it},n.prototype.getScrollTop=function(){return Gt?Kt:e.pageYOffset||o.scrollTop||a.scrollTop||0},n.prototype.getMaxScrollTop=function(){return Ot},n.prototype.on=function(e,t){return ct[e]=t,it},n.prototype.off=function(e){return delete ct[e],it},n.prototype.destroy=function(){var e=R();e(bt),wt(),Dt(o,[T],[y,b,S]);for(var t=0,n=lt.length;n>t;t++)ot(lt[t].element);o.style.overflow=a.style.overflow="",o.style.height=a.style.height="",st&&i.setStyle(st,"transform","none"),it=r,st=r,ct=r,ft=r,Ot=0,Vt=1,ut=r,mt=r,zt="down",qt=-1,Mt=0,$t=0,_t=!1,pt=r,dt=r,gt=r,vt=r,ht=r,Bt=0,yt=r,Gt=!1,Kt=0,Tt=r};var X=function(){var n,i,l,c,d,g,v,h,y,T,b,S;St(o,[f,u,m,p].join(" "),function(e){var o=e.changedTouches[0];for(c=e.target;3===c.nodeType;)c=c.parentNode;switch(d=o.clientY,g=o.clientX,T=e.timeStamp,I.test(c.tagName)||e.preventDefault(),e.type){case f:n&&n.blur(),it.stopAnimateTo(),n=c,i=v=d,l=g,y=T;break;case u:I.test(c.tagName)&&t.activeElement!==c&&e.preventDefault(),h=d-v,S=T-b,it.setScrollTop(Kt-h,!0),v=d,b=T;break;default:case m:case p:var a=i-d,k=l-g,w=k*k+a*a;if(49>w){if(!I.test(n.tagName)){n.focus();var x=t.createEvent("MouseEvents");x.initMouseEvent("click",!0,!0,e.view,1,o.screenX,o.screenY,o.clientX,o.clientY,e.ctrlKey,e.altKey,e.shiftKey,e.metaKey,0,null),n.dispatchEvent(x)}return}n=r;var E=h/S;E=s.max(s.min(E,3),-3);var A=s.abs(E/mt),F=E*A+.5*mt*A*A,C=it.getScrollTop()-F,D=0;C>Ot?(D=(Ot-C)/F,C=Ot):0>C&&(D=-C/F,C=0),A*=1-D,it.animateTo(0|C+.5,{easing:"outCubic",duration:A})}}),e.scrollTo(0,0),o.style.overflow=a.style.overflow="hidden"},j=function(){var e,t,r,n,a,i,l,c,f,u,m,p=o.clientHeight,d=At();for(c=0,f=lt.length;f>c;c++)for(e=lt[c],t=e.element,r=e.anchorTarget,n=e.keyFrames,a=0,i=n.length;i>a;a++)l=n[a],u=l.offset,m=d[l.constant]||0,l.frame=u,l.isPercentage&&(u*=p,l.frame=u),"relative"===l.mode&&(ot(t),l.frame=it.relativeToAbsolute(r,l.anchors[0],l.anchors[1])-u,ot(t,!0)),l.frame+=m,ft&&!l.isEnd&&l.frame>Ot&&(Ot=l.frame);for(Ot=s.max(Ot,Ft()),c=0,f=lt.length;f>c;c++){for(e=lt[c],n=e.keyFrames,a=0,i=n.length;i>a;a++)l=n[a],m=d[l.constant]||0,l.isEnd&&(l.frame=Ot-l.offset+m);e.keyFrames.sort(Nt)}},W=function(e,t){for(var r=0,n=lt.length;n>r;r++){var o,a,s=lt[r],c=s.element,f=s.smoothScrolling?e:t,u=s.keyFrames,m=u.length,p=u[0],y=u[u.length-1],T=p.frame>f,b=f>y.frame,S=T?p:y,k=s.emitEvents,w=s.lastFrameIndex;if(T||b){if(T&&-1===s.edge||b&&1===s.edge)continue;switch(T?(Dt(c,[g],[h,v]),k&&w>-1&&(xt(c,p.eventType,zt),s.lastFrameIndex=-1)):(Dt(c,[h],[g,v]),k&&m>w&&(xt(c,y.eventType,zt),s.lastFrameIndex=m)),s.edge=T?-1:1,s.edgeStrategy){case"reset":ot(c);continue;case"ease":f=S.frame;break;default:case"set":var x=S.props;for(o in x)l.call(x,o)&&(a=nt(x[o].value),0===o.indexOf("@")?c.setAttribute(o.substr(1),a):i.setStyle(c,o,a));continue}}else 0!==s.edge&&(Dt(c,[d,v],[g,h]),s.edge=0);for(var E=0;m-1>E;E++)if(f>=u[E].frame&&u[E+1].frame>=f){var A=u[E],F=u[E+1];for(o in A.props)if(l.call(A.props,o)){var C=(f-A.frame)/(F.frame-A.frame);C=A.props[o].easing(C),a=rt(A.props[o].value,F.props[o].value,C),a=nt(a),0===o.indexOf("@")?c.setAttribute(o.substr(1),a):i.setStyle(c,o,a)}k&&w!==E&&("down"===zt?xt(c,A.eventType,zt):xt(c,F.eventType,zt),s.lastFrameIndex=E);break}}},Z=function(){_t&&(_t=!1,Et());var e,t,n=it.getScrollTop(),o=Pt();if(pt)o>=pt.endTime?(n=pt.targetTop,e=pt.done,pt=r):(t=pt.easing((o-pt.startTime)/pt.duration),n=0|pt.startTop+t*pt.topDiff),it.setScrollTop(n,!0);else if(!ht){var a=vt.targetTop-n;a&&(vt={startTop:qt,topDiff:n-qt,targetTop:n,startTime:Lt,endTime:Lt+gt}),vt.endTime>=o&&(t=U.sqrt((o-vt.startTime)/gt),n=0|vt.startTop+t*vt.topDiff)}if(Gt&&st&&i.setStyle(st,"transform","translate(0, "+-Kt+"px) "+Tt),ht||qt!==n){zt=n>qt?"down":qt>n?"up":zt,ht=!1;var l={curTop:n,lastTop:qt,maxTop:Ot,direction:zt},s=ct.beforerender&&ct.beforerender.call(it,l);s!==!1&&(W(n,it.getScrollTop()),qt=n,ct.render&&ct.render.call(it,l)),e&&e.call(it,!1)}Lt=o},J=function(e){for(var t=0,r=e.keyFrames.length;r>t;t++){for(var n,o,a,i,l=e.keyFrames[t],s={};null!==(i=O.exec(l.props));)a=i[1],o=i[2],n=a.match(V),null!==n?(a=n[1],n=n[2]):n=k,o=o.indexOf("!")?Q(o):[o.slice(1)],s[a]={value:o,easing:U[n]};l.props=s}},Q=function(e){var t=[];return $.lastIndex=0,e=e.replace($,function(e){return e.replace(L,function(e){return 100*(e/255)+"%"})}),G&&(_.lastIndex=0,e=e.replace(_,function(e){return G+e})),e=e.replace(L,function(e){return t.push(+e),"{?}"}),t.unshift(e),t},et=function(e){var t,r,n={};for(t=0,r=e.keyFrames.length;r>t;t++)tt(e.keyFrames[t],n);for(n={},t=e.keyFrames.length-1;t>=0;t--)tt(e.keyFrames[t],n)},tt=function(e,t){var r;for(r in t)l.call(e.props,r)||(e.props[r]=t[r]);for(r in e.props)t[r]=e.props[r]},rt=function(e,t,r){var n,o=e.length;if(o!==t.length)throw"Can't interpolate between \""+e[0]+'" and "'+t[0]+'"';var a=[e[0]];for(n=1;o>n;n++)a[n]=e[n]+(t[n]-e[n])*r;return a},nt=function(e){var t=1;return M.lastIndex=0,e[0].replace(M,function(){return e[t++]})},ot=function(e,t){e=[].concat(e);for(var r,n,o=0,a=e.length;a>o;o++)n=e[o],r=lt[n[H]],r&&(t?(n.style.cssText=r.dirtyStyleAttr,Dt(n,r.dirtyClassAttr)):(r.dirtyStyleAttr=n.style.cssText,r.dirtyClassAttr=Ct(n),n.style.cssText=r.styleAttr,Dt(n,r.classAttr)))},at=function(){Tt="translateZ(0)",i.setStyle(st,"transform",Tt);var e=c(st),t=e.getPropertyValue("transform"),r=e.getPropertyValue(G+"transform"),n=t&&"none"!==t||r&&"none"!==r;n||(Tt="")};i.setStyle=function(e,t,r){var n=e.style;if(t=t.replace(z,q).replace("-",""),"zIndex"===t)n[t]=isNaN(r)?r:""+(0|r);else if("float"===t)n.styleFloat=n.cssFloat=r;else try{B&&(n[B+t.slice(0,1).toUpperCase()+t.slice(1)]=r),n[t]=r}catch(o){}};var it,lt,st,ct,ft,ut,mt,pt,dt,gt,vt,ht,yt,Tt,bt,St=i.addEvent=function(t,r,n){var o=function(t){return t=t||e.event,t.target||(t.target=t.srcElement),t.preventDefault||(t.preventDefault=function(){t.returnValue=!1,t.defaultPrevented=!0}),n.call(this,t)};r=r.split(" ");for(var a,i=0,l=r.length;l>i;i++)a=r[i],t.addEventListener?t.addEventListener(a,n,!1):t.attachEvent("on"+a,o),Yt.push({element:t,name:a,listener:n})},kt=i.removeEvent=function(e,t,r){t=t.split(" ");for(var n=0,o=t.length;o>n;n++)e.removeEventListener?e.removeEventListener(t[n],r,!1):e.detachEvent("on"+t[n],r)},wt=function(){for(var e,t=0,r=Yt.length;r>t;t++)e=Yt[t],kt(e.element,e.name,e.listener);Yt=[]},xt=function(e,t,r){ct.keyframe&&ct.keyframe.call(it,e,t,r)},Et=function(){var e=it.getScrollTop();Ot=0,ft&&!Gt&&(a.style.height=""),j(),ft&&!Gt&&(a.style.height=Ot+o.clientHeight+"px"),Gt?it.setScrollTop(s.min(it.getScrollTop(),Ot)):it.setScrollTop(e,!0),ht=!0},At=function(){var e,t,r=o.clientHeight,n={};for(e in ut)t=ut[e],"function"==typeof t?t=t.call(it):/p$/.test(t)&&(t=t.slice(0,-1)/100*r),n[e]=t;return n},Ft=function(){var e=st&&st.offsetHeight||0,t=s.max(e,a.scrollHeight,a.offsetHeight,o.scrollHeight,o.offsetHeight,o.clientHeight);return t-o.clientHeight},Ct=function(t){var r="className";return e.SVGElement&&t instanceof e.SVGElement&&(t=t[r],r="baseVal"),t[r]},Dt=function(t,n,o){var a="className";if(e.SVGElement&&t instanceof e.SVGElement&&(t=t[a],a="baseVal"),o===r)return t[a]=n,r;for(var i=t[a],l=0,s=o.length;s>l;l++)i=It(i).replace(It(o[l])," ");i=Ht(i);for(var c=0,f=n.length;f>c;c++)-1===It(i).indexOf(It(n[c]))&&(i+=" "+n[c]);t[a]=Ht(i)},Ht=function(e){return e.replace(P,"")},It=function(e){return" "+e+" "},Pt=Date.now||function(){return+new Date},Nt=function(e,t){return e.frame-t.frame},Ot=0,Vt=1,zt="down",qt=-1,Lt=Pt(),Mt=0,$t=0,_t=!1,Bt=0,Gt=!1,Kt=0,Yt=[]; true?!(__WEBPACK_AMD_DEFINE_RESULT__ = (function(){return i}).call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"undefined"!=typeof module&&module.exports?module.exports=i:e.skrollr=i})(window,document);
+var __WEBPACK_AMD_DEFINE_RESULT__;var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/*!
+ * skrollr core
+ *
+ * Alexander Prinzhorn - https://github.com/Prinzhorn/skrollr
+ *
+ * Free to use under terms of MIT license
+ */
+(function (window, document, undefined) {
+	/*
+ * Global api.
+ */
+	var skrollr = {
+		get: function get() {
+			return _instance;
+		},
+
+		//Main entry point.
+		init: function init(options) {
+			return _instance || new Skrollr(options);
+		},
+
+		VERSION: '0.6.26'
+	};
+
+	//Minify optimization.
+	var hasProp = Object.prototype.hasOwnProperty;
+	var Math = window.Math;
+	var getStyle = window.getComputedStyle;
+
+	//They will be filled when skrollr gets initialized.
+	var documentElement = void 0;
+	var body = void 0;
+
+	var EVENT_TOUCHSTART = 'touchstart';
+	var EVENT_TOUCHMOVE = 'touchmove';
+	var EVENT_TOUCHCANCEL = 'touchcancel';
+	var EVENT_TOUCHEND = 'touchend';
+
+	var SKROLLABLE_CLASS = 'skrollable';
+	var SKROLLABLE_BEFORE_CLASS = SKROLLABLE_CLASS + '-before';
+	var SKROLLABLE_BETWEEN_CLASS = SKROLLABLE_CLASS + '-between';
+	var SKROLLABLE_AFTER_CLASS = SKROLLABLE_CLASS + '-after';
+
+	var SKROLLR_CLASS = 'skrollr';
+	var NO_SKROLLR_CLASS = 'no-' + SKROLLR_CLASS;
+	var SKROLLR_DESKTOP_CLASS = SKROLLR_CLASS + '-desktop';
+	var SKROLLR_MOBILE_CLASS = SKROLLR_CLASS + '-mobile';
+
+	var DEFAULT_EASING = 'linear';
+	var DEFAULT_DURATION = 1000; //ms
+	var DEFAULT_MOBILE_DECELERATION = 0.004; //pixel/ms²
+
+	var DEFAULT_SMOOTH_SCROLLING_DURATION = 200; //ms
+
+	var ANCHOR_START = 'start';
+	var ANCHOR_END = 'end';
+	var ANCHOR_CENTER = 'center';
+	var ANCHOR_BOTTOM = 'bottom';
+
+	//The property which will be added to the DOM element to hold the ID of the skrollable.
+	var SKROLLABLE_ID_DOM_PROPERTY = '___skrollable_id';
+
+	var rxTouchIgnoreTags = /^(?:input|textarea|button|select)$/i;
+
+	var rxTrim = /^\s+|\s+$/g;
+
+	//Find all data-attributes. data-[_constant]-[offset]-[anchor]-[anchor].
+	var rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?$/;
+
+	var rxPropValue = /\s*(@?[\w\-\[\]]+)\s*:\s*(.+?)\s*(?:;|$)/gi;
+
+	//Easing function names follow the property in square brackets.
+	var rxPropEasing = /^(@?[a-z\-]+)\[(\w+)\]$/;
+
+	var rxCamelCase = /-([a-z0-9_])/g;
+	var rxCamelCaseFn = function rxCamelCaseFn(str, letter) {
+		return letter.toUpperCase();
+	};
+
+	//Numeric values with optional sign.
+	var rxNumericValue = /[\-+]?[\d]*\.?[\d]+/g;
+
+	//Used to replace occurences of {?} with a number.
+	var rxInterpolateString = /\{\?\}/g;
+
+	//Finds rgb(a) colors, which don't use the percentage notation.
+	var rxRGBAIntegerColor = /rgba?\(\s*-?\d+\s*,\s*-?\d+\s*,\s*-?\d+/g;
+
+	//Finds all gradients.
+	var rxGradient = /[a-z\-]+-gradient/g;
+
+	//Vendor prefix. Will be set once skrollr gets initialized.
+	var theCSSPrefix = '';
+	var theDashedCSSPrefix = '';
+
+	//Will be called once (when skrollr gets initialized).
+	var detectCSSPrefix = function detectCSSPrefix() {
+		//Only relevant prefixes. May be extended.
+		//Could be dangerous if there will ever be a CSS property which actually starts with "ms". Don't hope so.
+		var rxPrefixes = /^(?:O|Moz|webkit|ms)|(?:-(?:o|moz|webkit|ms)-)/;
+
+		//Detect prefix for current browser by finding the first property using a prefix.
+		if (!getStyle) {
+			return;
+		}
+
+		var style = getStyle(body, null);
+
+		for (var k in style) {
+			//We check the key and if the key is a number, we check the value as well, because safari's getComputedStyle returns some weird array-like thingy.
+			theCSSPrefix = k.match(rxPrefixes) || +k == k && style[k].match(rxPrefixes);
+
+			if (theCSSPrefix) {
+				break;
+			}
+		}
+
+		//Did we even detect a prefix?
+		if (!theCSSPrefix) {
+			theCSSPrefix = theDashedCSSPrefix = '';
+
+			return;
+		}
+
+		theCSSPrefix = theCSSPrefix[0];
+
+		//We could have detected either a dashed prefix or this camelCaseish-inconsistent stuff.
+		if (theCSSPrefix.slice(0, 1) === '-') {
+			theDashedCSSPrefix = theCSSPrefix;
+
+			//There's no logic behind these. Need a look up.
+			theCSSPrefix = {
+				'-webkit-': 'webkit',
+				'-moz-': 'Moz',
+				'-ms-': 'ms',
+				'-o-': 'O'
+			}[theCSSPrefix];
+		} else {
+			theDashedCSSPrefix = '-' + theCSSPrefix.toLowerCase() + '-';
+		}
+	};
+
+	var polyfillRAF = function polyfillRAF() {
+		var requestAnimFrame = window.requestAnimationFrame || window[theCSSPrefix.toLowerCase() + 'RequestAnimationFrame'];
+
+		var lastTime = _now();
+
+		if (_isMobile || !requestAnimFrame) {
+			requestAnimFrame = function requestAnimFrame(callback) {
+				//How long did it take to render?
+				var deltaTime = _now() - lastTime;
+				var delay = Math.max(0, 1000 / 60 - deltaTime);
+
+				return window.setTimeout(function () {
+					lastTime = _now();
+					callback();
+				}, delay);
+			};
+		}
+
+		return requestAnimFrame;
+	};
+
+	var polyfillCAF = function polyfillCAF() {
+		var cancelAnimFrame = window.cancelAnimationFrame || window[theCSSPrefix.toLowerCase() + 'CancelAnimationFrame'];
+
+		if (_isMobile || !cancelAnimFrame) {
+			cancelAnimFrame = function cancelAnimFrame(timeout) {
+				return window.clearTimeout(timeout);
+			};
+		}
+
+		return cancelAnimFrame;
+	};
+
+	//Built-in easing functions.
+	var easings = {
+		begin: function begin() {
+			return 0;
+		},
+		end: function end() {
+			return 1;
+		},
+		linear: function linear(p) {
+			return p;
+		},
+		quadratic: function quadratic(p) {
+			return p * p;
+		},
+		cubic: function cubic(p) {
+			return p * p * p;
+		},
+		swing: function swing(p) {
+			return -Math.cos(p * Math.PI) / 2 + 0.5;
+		},
+		sqrt: function sqrt(p) {
+			return Math.sqrt(p);
+		},
+		outCubic: function outCubic(p) {
+			return Math.pow(p - 1, 3) + 1;
+		},
+
+		//see https://www.desmos.com/calculator/tbr20s8vd2 for how I did this
+		bounce: function bounce(p) {
+			var a = void 0;
+
+			if (p <= 0.5083) {
+				a = 3;
+			} else if (p <= 0.8489) {
+				a = 9;
+			} else if (p <= 0.96208) {
+				a = 27;
+			} else if (p <= 0.99981) {
+				a = 91;
+			} else {
+				return 1;
+			}
+
+			return 1 - Math.abs(3 * Math.cos(p * a * 1.028) / a);
+		}
+	};
+
+	/**
+ * Constructor.
+ */
+
+	var Skrollr = function () {
+		function Skrollr(options) {
+			_classCallCheck(this, Skrollr);
+
+			documentElement = document.documentElement;
+			body = document.body;
+
+			detectCSSPrefix();
+
+			_instance = this;
+
+			options = options || {};
+
+			_constants = options.constants || {};
+
+			//We allow defining custom easings or overwrite existing.
+			if (options.easing) {
+				for (var e in options.easing) {
+					easings[e] = options.easing[e];
+				}
+			}
+
+			_edgeStrategy = options.edgeStrategy || 'set';
+
+			_listeners = {
+				//Function to be called right before rendering.
+				beforerender: options.beforerender,
+
+				//Function to be called right after finishing rendering.
+				render: options.render,
+
+				//Function to be called whenever an element with the `data-emit-events` attribute passes a keyframe.
+				keyframe: options.keyframe
+			};
+
+			//forceHeight is true by default
+			_forceHeight = options.forceHeight !== false;
+
+			if (_forceHeight) {
+				_scale = options.scale || 1;
+			}
+
+			_mobileDeceleration = options.mobileDeceleration || DEFAULT_MOBILE_DECELERATION;
+
+			_smoothScrollingEnabled = options.smoothScrolling !== false;
+			_smoothScrollingDuration = options.smoothScrollingDuration || DEFAULT_SMOOTH_SCROLLING_DURATION;
+
+			//Dummy object. Will be overwritten in the _render method when smooth scrolling is calculated.
+			_smoothScrolling = {
+				targetTop: _instance.getScrollTop()
+			};
+
+			//A custom check function may be passed.
+			_isMobile = (options.mobileCheck || function () {
+				return (/Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent || navigator.vendor || window.opera)
+				);
+			})();
+
+			if (_isMobile) {
+				_skrollrBody = document.getElementById('skrollr-body');
+
+				//Detect 3d transform if there's a skrollr-body (only needed for #skrollr-body).
+				if (_skrollrBody) {
+					_detect3DTransforms();
+				}
+
+				_initMobile();
+				_updateClass(documentElement, [SKROLLR_CLASS, SKROLLR_MOBILE_CLASS], [NO_SKROLLR_CLASS]);
+			} else {
+				_updateClass(documentElement, [SKROLLR_CLASS, SKROLLR_DESKTOP_CLASS], [NO_SKROLLR_CLASS]);
+			}
+
+			//Triggers parsing of elements and a first reflow.
+			_instance.refresh();
+
+			_addEvent(window, 'resize orientationchange', function () {
+				var width = documentElement.clientWidth;
+				var height = documentElement.clientHeight;
+
+				//Only reflow if the size actually changed (#271).
+				if (height !== _lastViewportHeight || width !== _lastViewportWidth) {
+					_lastViewportHeight = height;
+					_lastViewportWidth = width;
+
+					_requestReflow = true;
+				}
+			});
+
+			var requestAnimFrame = polyfillRAF();
+
+			//Let's go.
+			(function animloop() {
+				_render();
+				_animFrame = requestAnimFrame(animloop);
+			})();
+
+			return _instance;
+		}
+
+		/**
+   * (Re)parses some or all elements.
+   */
+
+
+		_createClass(Skrollr, [{
+			key: 'refresh',
+			value: function refresh(elements) {
+				var elementIndex = void 0;
+				var elementsLength = void 0;
+				var ignoreID = false;
+
+				//Completely reparse anything without argument.
+				if (elements === undefined) {
+					//Ignore that some elements may already have a skrollable ID.
+					ignoreID = true;
+
+					_skrollables = [];
+					_skrollableIdCounter = 0;
+
+					elements = document.getElementsByTagName('*');
+				} else if (elements.length === undefined) {
+					//We also accept a single element as parameter.
+					elements = [elements];
+				}
+
+				elementIndex = 0;
+				elementsLength = elements.length;
+
+				for (; elementIndex < elementsLength; elementIndex++) {
+					var el = elements[elementIndex];
+					var anchorTarget = el;
+					var keyFrames = [];
+
+					//If this particular element should be smooth scrolled.
+					var smoothScrollThis = _smoothScrollingEnabled;
+
+					//The edge strategy for this particular element.
+					var edgeStrategy = _edgeStrategy;
+
+					//If this particular element should emit keyframe events.
+					var emitEvents = false;
+
+					//If we're reseting the counter, remove any old element ids that may be hanging around.
+					if (ignoreID && SKROLLABLE_ID_DOM_PROPERTY in el) {
+						delete el[SKROLLABLE_ID_DOM_PROPERTY];
+					}
+
+					if (!el.attributes) {
+						continue;
+					}
+
+					//Iterate over all attributes and search for key frame attributes.
+					var attributeIndex = 0;
+					var attributesLength = el.attributes.length;
+
+					for (; attributeIndex < attributesLength; attributeIndex++) {
+						var attr = el.attributes[attributeIndex];
+
+						if (attr.name === 'data-anchor-target') {
+							anchorTarget = document.querySelector(attr.value);
+
+							if (anchorTarget === null) {
+								throw 'Unable to find anchor target "' + attr.value + '"';
+							}
+
+							continue;
+						}
+
+						//Global smooth scrolling can be overridden by the element attribute.
+						if (attr.name === 'data-smooth-scrolling') {
+							smoothScrollThis = attr.value !== 'off';
+
+							continue;
+						}
+
+						//Global edge strategy can be overridden by the element attribute.
+						if (attr.name === 'data-edge-strategy') {
+							edgeStrategy = attr.value;
+
+							continue;
+						}
+
+						//Is this element tagged with the `data-emit-events` attribute?
+						if (attr.name === 'data-emit-events') {
+							emitEvents = true;
+
+							continue;
+						}
+
+						var match = attr.name.match(rxKeyframeAttribute);
+
+						if (match === null) {
+							continue;
+						}
+
+						var kf = {
+							props: attr.value,
+							//Point back to the element as well.
+							element: el,
+							//The name of the event which this keyframe will fire, if emitEvents is
+							eventType: attr.name.replace(rxCamelCase, rxCamelCaseFn)
+						};
+
+						keyFrames.push(kf);
+
+						var constant = match[1];
+
+						if (constant) {
+							//Strip the underscore prefix.
+							kf.constant = constant.substr(1);
+						}
+
+						//Get the key frame offset.
+						var offset = match[2];
+
+						//Is it a percentage offset?
+						if (/p$/.test(offset)) {
+							kf.isPercentage = true;
+							kf.offset = (offset.slice(0, -1) | 0) / 100;
+						} else {
+							kf.offset = offset | 0;
+						}
+
+						var anchor1 = match[3];
+
+						//If second anchor is not set, the first will be taken for both.
+						var anchor2 = match[4] || anchor1;
+
+						//"absolute" (or "classic") mode, where numbers mean absolute scroll offset.
+						if (!anchor1 || anchor1 === ANCHOR_START || anchor1 === ANCHOR_END) {
+							kf.mode = 'absolute';
+
+							//data-end needs to be calculated after all key frames are known.
+							if (anchor1 === ANCHOR_END) {
+								kf.isEnd = true;
+							} else if (!kf.isPercentage) {
+								//For data-start we can already set the key frame w/o calculations.
+								//#59: "scale" options should only affect absolute mode.
+								kf.offset = kf.offset * _scale;
+							}
+						}
+						//"relative" mode, where numbers are relative to anchors.
+						else {
+								kf.mode = 'relative';
+								kf.anchors = [anchor1, anchor2];
+							}
+					}
+
+					//Does this element have key frames?
+					if (!keyFrames.length) {
+						continue;
+					}
+
+					//Will hold the original style and class attributes before we controlled the element (see #80).
+					var styleAttr = void 0;
+
+					var classAttr = void 0;
+
+					var id = void 0;
+
+					if (!ignoreID && SKROLLABLE_ID_DOM_PROPERTY in el) {
+						//We already have this element under control. Grab the corresponding skrollable id.
+						id = el[SKROLLABLE_ID_DOM_PROPERTY];
+						styleAttr = _skrollables[id].styleAttr;
+						classAttr = _skrollables[id].classAttr;
+					} else {
+						//It's an unknown element. Asign it a new skrollable id.
+						id = el[SKROLLABLE_ID_DOM_PROPERTY] = _skrollableIdCounter++;
+						styleAttr = el.style.cssText;
+						classAttr = _getClass(el);
+					}
+
+					_skrollables[id] = {
+						element: el,
+						styleAttr: styleAttr,
+						classAttr: classAttr,
+						anchorTarget: anchorTarget,
+						keyFrames: keyFrames,
+						smoothScrolling: smoothScrollThis,
+						edgeStrategy: edgeStrategy,
+						emitEvents: emitEvents,
+						lastFrameIndex: -1
+					};
+
+					_updateClass(el, [SKROLLABLE_CLASS], []);
+				}
+
+				//Reflow for the first time.
+				_reflow();
+
+				//Now that we got all key frame numbers right, actually parse the properties.
+				elementIndex = 0;
+				elementsLength = elements.length;
+
+				for (; elementIndex < elementsLength; elementIndex++) {
+					var sk = _skrollables[elements[elementIndex][SKROLLABLE_ID_DOM_PROPERTY]];
+
+					if (sk === undefined) {
+						continue;
+					}
+
+					//Parse the property string to objects
+					_parseProps(sk);
+
+					//Fill key frames with missing properties from left and right
+					_fillProps(sk);
+				}
+
+				return _instance;
+			}
+
+			/**
+    * Transform "relative" mode to "absolute" mode.
+    * That is, calculate anchor position and offset of element.
+    */
+
+		}, {
+			key: 'relativeToAbsolute',
+			value: function relativeToAbsolute(element, viewportAnchor, elementAnchor) {
+				var viewportHeight = documentElement.clientHeight;
+				var box = element.getBoundingClientRect();
+				var absolute = box.top;
+
+				//#100: IE doesn't supply "height" with getBoundingClientRect.
+				var boxHeight = box.bottom - box.top;
+
+				if (viewportAnchor === ANCHOR_BOTTOM) {
+					absolute -= viewportHeight;
+				} else if (viewportAnchor === ANCHOR_CENTER) {
+					absolute -= viewportHeight / 2;
+				}
+
+				if (elementAnchor === ANCHOR_BOTTOM) {
+					absolute += boxHeight;
+				} else if (elementAnchor === ANCHOR_CENTER) {
+					absolute += boxHeight / 2;
+				}
+
+				//Compensate scrolling since getBoundingClientRect is relative to viewport.
+				absolute += _instance.getScrollTop();
+
+				return absolute + 0.5 | 0;
+			}
+
+			/**
+    * Animates scroll top to new position.
+    */
+
+		}, {
+			key: 'animateTo',
+			value: function animateTo(top) {
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+				var now = _now();
+				var scrollTop = _instance.getScrollTop();
+
+				//Setting this to a new value will automatically cause the current animation to stop, if any.
+				_scrollAnimation = {
+					startTop: scrollTop,
+					topDiff: top - scrollTop,
+					targetTop: top,
+					duration: options.duration || DEFAULT_DURATION,
+					startTime: now,
+					endTime: now + (options.duration || DEFAULT_DURATION),
+					easing: easings[options.easing || DEFAULT_EASING],
+					done: options.done
+				};
+
+				//Don't queue the animation if there's nothing to animate.
+				if (!_scrollAnimation.topDiff) {
+					if (_scrollAnimation.done) {
+						_scrollAnimation.done.call(_instance, false);
+					}
+
+					_scrollAnimation = undefined;
+				}
+
+				return _instance;
+			}
+
+			/**
+    * Stops animateTo animation.
+    */
+
+		}, {
+			key: 'stopAnimateTo',
+			value: function stopAnimateTo() {
+				if (_scrollAnimation && _scrollAnimation.done) {
+					_scrollAnimation.done.call(_instance, true);
+				}
+
+				_scrollAnimation = undefined;
+			}
+
+			/**
+    * Returns if an animation caused by animateTo is currently running.
+    */
+
+		}, {
+			key: 'isAnimatingTo',
+			value: function isAnimatingTo() {
+				return !!_scrollAnimation;
+			}
+		}, {
+			key: 'isMobile',
+			value: function isMobile() {
+				return _isMobile;
+			}
+		}, {
+			key: 'setScrollTop',
+			value: function setScrollTop(top, force) {
+				_forceRender = force === true;
+
+				if (_isMobile) {
+					_mobileOffset = Math.min(Math.max(top, 0), _maxKeyFrame);
+				} else {
+					window.scrollTo(0, top);
+				}
+
+				return _instance;
+			}
+		}, {
+			key: 'getScrollTop',
+			value: function getScrollTop() {
+				if (_isMobile) {
+					return _mobileOffset;
+				} else {
+					return window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0;
+				}
+			}
+		}, {
+			key: 'getMaxScrollTop',
+			value: function getMaxScrollTop() {
+				return _maxKeyFrame;
+			}
+		}, {
+			key: 'on',
+			value: function on(name, fn) {
+				_listeners[name] = fn;
+
+				return _instance;
+			}
+		}, {
+			key: 'off',
+			value: function off(name) {
+				delete _listeners[name];
+
+				return _instance;
+			}
+		}, {
+			key: 'destroy',
+			value: function destroy() {
+				var cancelAnimFrame = polyfillCAF();
+				cancelAnimFrame(_animFrame);
+				_removeAllEvents();
+
+				_updateClass(documentElement, [NO_SKROLLR_CLASS], [SKROLLR_CLASS, SKROLLR_DESKTOP_CLASS, SKROLLR_MOBILE_CLASS]);
+
+				var skrollableIndex = 0;
+				var skrollablesLength = _skrollables.length;
+
+				for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
+					_reset(_skrollables[skrollableIndex].element);
+				}
+
+				documentElement.style.overflow = body.style.overflow = '';
+				documentElement.style.height = body.style.height = '';
+
+				if (_skrollrBody) {
+					skrollr.setStyle(_skrollrBody, 'transform', 'none');
+				}
+
+				_instance = undefined;
+				_skrollrBody = undefined;
+				_listeners = undefined;
+				_forceHeight = undefined;
+				_maxKeyFrame = 0;
+				_scale = 1;
+				_constants = undefined;
+				_mobileDeceleration = undefined;
+				_direction = 'down';
+				_lastTop = -1;
+				_lastViewportWidth = 0;
+				_lastViewportHeight = 0;
+				_requestReflow = false;
+				_scrollAnimation = undefined;
+				_smoothScrollingEnabled = undefined;
+				_smoothScrollingDuration = undefined;
+				_smoothScrolling = undefined;
+				_forceRender = undefined;
+				_skrollableIdCounter = 0;
+				_edgeStrategy = undefined;
+				_isMobile = false;
+				_mobileOffset = 0;
+				_translateZ = undefined;
+			}
+		}]);
+
+		return Skrollr;
+	}();
+
+	var _initMobile = function _initMobile() {
+		var initialElement = void 0;
+		var initialTouchY = void 0;
+		var initialTouchX = void 0;
+		var currentElement = void 0;
+		var currentTouchY = void 0;
+		var currentTouchX = void 0;
+		var lastTouchY = void 0;
+		var deltaY = void 0;
+
+		var initialTouchTime = void 0;
+		var currentTouchTime = void 0;
+		var lastTouchTime = void 0;
+		var deltaTime = void 0;
+
+		_addEvent(documentElement, [EVENT_TOUCHSTART, EVENT_TOUCHMOVE, EVENT_TOUCHCANCEL, EVENT_TOUCHEND].join(' '), function (e) {
+			var touch = e.changedTouches[0];
+
+			currentElement = e.target;
+
+			//We don't want text nodes.
+			while (currentElement.nodeType === 3) {
+				currentElement = currentElement.parentNode;
+			}
+
+			currentTouchY = touch.clientY;
+			currentTouchX = touch.clientX;
+			currentTouchTime = e.timeStamp;
+
+			if (!rxTouchIgnoreTags.test(currentElement.tagName)) {
+				e.preventDefault();
+			}
+
+			switch (e.type) {
+				case EVENT_TOUCHSTART:
+					//The last element we tapped on.
+					if (initialElement) {
+						initialElement.blur();
+					}
+
+					_instance.stopAnimateTo();
+
+					initialElement = currentElement;
+
+					initialTouchY = lastTouchY = currentTouchY;
+					initialTouchX = currentTouchX;
+					initialTouchTime = currentTouchTime;
+
+					break;
+				case EVENT_TOUCHMOVE:
+					//Prevent default event on touchIgnore elements in case they don't have focus yet.
+					if (rxTouchIgnoreTags.test(currentElement.tagName) && document.activeElement !== currentElement) {
+						e.preventDefault();
+					}
+
+					deltaY = currentTouchY - lastTouchY;
+					deltaTime = currentTouchTime - lastTouchTime;
+
+					_instance.setScrollTop(_mobileOffset - deltaY, true);
+
+					lastTouchY = currentTouchY;
+					lastTouchTime = currentTouchTime;
+					break;
+				default:
+				case EVENT_TOUCHCANCEL:
+				case EVENT_TOUCHEND:
+					var distanceY = initialTouchY - currentTouchY;
+					var distanceX = initialTouchX - currentTouchX;
+					var distance2 = distanceX * distanceX + distanceY * distanceY;
+
+					//Check if it was more like a tap (moved less than 7px).
+					if (distance2 < 49) {
+						if (!rxTouchIgnoreTags.test(initialElement.tagName)) {
+							initialElement.focus();
+
+							//It was a tap, click the element.
+							var clickEvent = document.createEvent('MouseEvents');
+							clickEvent.initMouseEvent('click', true, true, e.view, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 0, null);
+							initialElement.dispatchEvent(clickEvent);
+						}
+
+						return;
+					}
+
+					initialElement = undefined;
+
+					var speed = deltaY / deltaTime;
+
+					//Cap speed at 3 pixel/ms.
+					speed = Math.max(Math.min(speed, 3), -3);
+
+					var duration = Math.abs(speed / _mobileDeceleration);
+					var targetOffset = speed * duration + 0.5 * _mobileDeceleration * duration * duration;
+					var targetTop = _instance.getScrollTop() - targetOffset;
+
+					//Relative duration change for when scrolling above bounds.
+					var targetRatio = 0;
+
+					//Change duration proportionally when scrolling would leave bounds.
+					if (targetTop > _maxKeyFrame) {
+						targetRatio = (_maxKeyFrame - targetTop) / targetOffset;
+
+						targetTop = _maxKeyFrame;
+					} else if (targetTop < 0) {
+						targetRatio = -targetTop / targetOffset;
+
+						targetTop = 0;
+					}
+
+					duration = duration * (1 - targetRatio);
+
+					_instance.animateTo(targetTop + 0.5 | 0, { easing: 'outCubic', duration: duration });
+					break;
+			}
+		});
+
+		//Just in case there has already been some native scrolling, reset it.
+		window.scrollTo(0, 0);
+		documentElement.style.overflow = body.style.overflow = 'hidden';
+	};
+
+	/**
+ * Updates key frames which depend on others / need to be updated on resize.
+ * That is "end" in "absolute" mode and all key frames in "relative" mode.
+ * Also handles constants, because they may change on resize.
+ */
+	var _updateDependentKeyFrames = function _updateDependentKeyFrames() {
+		var viewportHeight = documentElement.clientHeight;
+		var processedConstants = _processConstants();
+		var skrollable = void 0;
+		var element = void 0;
+		var anchorTarget = void 0;
+		var keyFrames = void 0;
+		var keyFrameIndex = void 0;
+		var keyFramesLength = void 0;
+		var kf = void 0;
+		var skrollableIndex = void 0;
+		var skrollablesLength = void 0;
+		var offset = void 0;
+		var constantValue = void 0;
+
+		//First process all relative-mode elements and find the max key frame.
+		skrollableIndex = 0;
+		skrollablesLength = _skrollables.length;
+
+		for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			skrollable = _skrollables[skrollableIndex];
+			element = skrollable.element;
+			anchorTarget = skrollable.anchorTarget;
+			keyFrames = skrollable.keyFrames;
+
+			keyFrameIndex = 0;
+			keyFramesLength = keyFrames.length;
+
+			for (; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+				kf = keyFrames[keyFrameIndex];
+
+				offset = kf.offset;
+				constantValue = processedConstants[kf.constant] || 0;
+
+				kf.frame = offset;
+
+				if (kf.isPercentage) {
+					//Convert the offset to percentage of the viewport height.
+					offset = offset * viewportHeight;
+
+					//Absolute + percentage mode.
+					kf.frame = offset;
+				}
+
+				if (kf.mode === 'relative') {
+					_reset(element);
+
+					kf.frame = _instance.relativeToAbsolute(anchorTarget, kf.anchors[0], kf.anchors[1]) - offset;
+
+					_reset(element, true);
+				}
+
+				kf.frame += constantValue;
+
+				//Only search for max key frame when forceHeight is enabled.
+				if (_forceHeight) {
+					//Find the max key frame, but don't use one of the data-end ones for comparison.
+					if (!kf.isEnd && kf.frame > _maxKeyFrame) {
+						_maxKeyFrame = kf.frame;
+					}
+				}
+			}
+		}
+
+		//#133: The document can be larger than the maxKeyFrame we found.
+		_maxKeyFrame = Math.max(_maxKeyFrame, _getDocumentHeight());
+
+		//Now process all data-end keyframes.
+		skrollableIndex = 0;
+		skrollablesLength = _skrollables.length;
+
+		for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			skrollable = _skrollables[skrollableIndex];
+			keyFrames = skrollable.keyFrames;
+
+			keyFrameIndex = 0;
+			keyFramesLength = keyFrames.length;
+
+			for (; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+				kf = keyFrames[keyFrameIndex];
+
+				constantValue = processedConstants[kf.constant] || 0;
+
+				if (kf.isEnd) {
+					kf.frame = _maxKeyFrame - kf.offset + constantValue;
+				}
+			}
+
+			skrollable.keyFrames.sort(_keyFrameComparator);
+		}
+	};
+
+	/**
+ * Calculates and sets the style properties for the element at the given frame.
+ * @param fakeFrame The frame to render at when smooth scrolling is enabled.
+ * @param actualFrame The actual frame we are at.
+ */
+	var _calcSteps = function _calcSteps(fakeFrame, actualFrame) {
+		//Iterate over all skrollables.
+		var skrollableIndex = 0;
+		var skrollablesLength = _skrollables.length;
+
+		for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			var skrollable = _skrollables[skrollableIndex];
+			var element = skrollable.element;
+			var frame = skrollable.smoothScrolling ? fakeFrame : actualFrame;
+			var frames = skrollable.keyFrames;
+			var framesLength = frames.length;
+			var firstFrame = frames[0];
+			var lastFrame = frames[frames.length - 1];
+			var beforeFirst = frame < firstFrame.frame;
+			var afterLast = frame > lastFrame.frame;
+			var firstOrLastFrame = beforeFirst ? firstFrame : lastFrame;
+			var emitEvents = skrollable.emitEvents;
+			var lastFrameIndex = skrollable.lastFrameIndex;
+			var key = void 0;
+			var value = void 0;
+
+			//If we are before/after the first/last frame, set the styles according to the given edge strategy.
+			if (beforeFirst || afterLast) {
+				//Check if we already handled this edge case last time.
+				//Note: using setScrollTop it's possible that we jumped from one edge to the other.
+				if (beforeFirst && skrollable.edge === -1 || afterLast && skrollable.edge === 1) {
+					continue;
+				}
+
+				//Add the skrollr-before or -after class.
+				if (beforeFirst) {
+					_updateClass(element, [SKROLLABLE_BEFORE_CLASS], [SKROLLABLE_AFTER_CLASS, SKROLLABLE_BETWEEN_CLASS]);
+
+					//This handles the special case where we exit the first keyframe.
+					if (emitEvents && lastFrameIndex > -1) {
+						_emitEvent(element, firstFrame.eventType, _direction);
+						skrollable.lastFrameIndex = -1;
+					}
+				} else {
+					_updateClass(element, [SKROLLABLE_AFTER_CLASS], [SKROLLABLE_BEFORE_CLASS, SKROLLABLE_BETWEEN_CLASS]);
+
+					//This handles the special case where we exit the last keyframe.
+					if (emitEvents && lastFrameIndex < framesLength) {
+						_emitEvent(element, lastFrame.eventType, _direction);
+						skrollable.lastFrameIndex = framesLength;
+					}
+				}
+
+				//Remember that we handled the edge case (before/after the first/last keyframe).
+				skrollable.edge = beforeFirst ? -1 : 1;
+
+				switch (skrollable.edgeStrategy) {
+					case 'reset':
+						_reset(element);
+						continue;
+					case 'ease':
+						//Handle this case like it would be exactly at first/last keyframe and just pass it on.
+						frame = firstOrLastFrame.frame;
+						break;
+					default:
+					case 'set':
+						var props = firstOrLastFrame.props;
+
+						for (key in props) {
+							if (hasProp.call(props, key)) {
+								value = _interpolateString(props[key].value);
+
+								//Set style or attribute.
+								if (key.indexOf('@') === 0) {
+									element.setAttribute(key.substr(1), value);
+								} else {
+									skrollr.setStyle(element, key, value);
+								}
+							}
+						}
+
+						continue;
+				}
+			} else {
+				//Did we handle an edge last time?
+				if (skrollable.edge !== 0) {
+					_updateClass(element, [SKROLLABLE_CLASS, SKROLLABLE_BETWEEN_CLASS], [SKROLLABLE_BEFORE_CLASS, SKROLLABLE_AFTER_CLASS]);
+					skrollable.edge = 0;
+				}
+			}
+
+			//Find out between which two key frames we are right now.
+			var keyFrameIndex = 0;
+
+			for (; keyFrameIndex < framesLength - 1; keyFrameIndex++) {
+				if (frame >= frames[keyFrameIndex].frame && frame <= frames[keyFrameIndex + 1].frame) {
+					var left = frames[keyFrameIndex];
+					var right = frames[keyFrameIndex + 1];
+
+					for (key in left.props) {
+						if (hasProp.call(left.props, key)) {
+							var progress = (frame - left.frame) / (right.frame - left.frame);
+
+							//Transform the current progress using the given easing function.
+							progress = left.props[key].easing(progress);
+
+							//Interpolate between the two values
+							value = _calcInterpolation(left.props[key].value, right.props[key].value, progress);
+
+							value = _interpolateString(value);
+
+							//Set style or attribute.
+							if (key.indexOf('@') === 0) {
+								element.setAttribute(key.substr(1), value);
+							} else {
+								skrollr.setStyle(element, key, value);
+							}
+						}
+					}
+
+					//Are events enabled on this element?
+					//This code handles the usual cases of scrolling through different keyframes.
+					//The special cases of before first and after last keyframe are handled above.
+					if (emitEvents) {
+						//Did we pass a new keyframe?
+						if (lastFrameIndex !== keyFrameIndex) {
+							if (_direction === 'down') {
+								_emitEvent(element, left.eventType, _direction);
+							} else {
+								_emitEvent(element, right.eventType, _direction);
+							}
+
+							skrollable.lastFrameIndex = keyFrameIndex;
+						}
+					}
+
+					break;
+				}
+			}
+		}
+	};
+
+	/**
+ * Renders all elements.
+ */
+	var _render = function _render() {
+		if (_requestReflow) {
+			_requestReflow = false;
+			_reflow();
+		}
+
+		//We may render something else than the actual scrollbar position.
+		var renderTop = _instance.getScrollTop();
+
+		//If there's an animation, which ends in current render call, call the callback after rendering.
+		var afterAnimationCallback = void 0;
+		var now = _now();
+		var progress = void 0;
+
+		//Before actually rendering handle the scroll animation, if any.
+		if (_scrollAnimation) {
+			//It's over
+			if (now >= _scrollAnimation.endTime) {
+				renderTop = _scrollAnimation.targetTop;
+				afterAnimationCallback = _scrollAnimation.done;
+				_scrollAnimation = undefined;
+			} else {
+				//Map the current progress to the new progress using given easing function.
+				progress = _scrollAnimation.easing((now - _scrollAnimation.startTime) / _scrollAnimation.duration);
+
+				renderTop = _scrollAnimation.startTop + progress * _scrollAnimation.topDiff | 0;
+			}
+
+			_instance.setScrollTop(renderTop, true);
+		}
+		//Smooth scrolling only if there's no animation running and if we're not forcing the rendering.
+		else if (!_forceRender) {
+				var smoothScrollingDiff = _smoothScrolling.targetTop - renderTop;
+
+				//The user scrolled, start new smooth scrolling.
+				if (smoothScrollingDiff) {
+					_smoothScrolling = {
+						startTop: _lastTop,
+						topDiff: renderTop - _lastTop,
+						targetTop: renderTop,
+						startTime: _lastRenderCall,
+						endTime: _lastRenderCall + _smoothScrollingDuration
+					};
+				}
+
+				//Interpolate the internal scroll position (not the actual scrollbar).
+				if (now <= _smoothScrolling.endTime) {
+					//Map the current progress to the new progress using easing function.
+					progress = easings.sqrt((now - _smoothScrolling.startTime) / _smoothScrollingDuration);
+
+					renderTop = _smoothScrolling.startTop + progress * _smoothScrolling.topDiff | 0;
+				}
+			}
+
+		//That's were we actually "scroll" on mobile.
+		if (_isMobile && _skrollrBody) {
+			//Set the transform ("scroll it").
+			skrollr.setStyle(_skrollrBody, 'transform', 'translate(0, ' + -_mobileOffset + 'px) ' + _translateZ);
+		}
+
+		//Did the scroll position even change?
+		if (_forceRender || _lastTop !== renderTop) {
+			//Remember in which direction are we scrolling?
+			_direction = renderTop > _lastTop ? 'down' : renderTop < _lastTop ? 'up' : _direction;
+
+			_forceRender = false;
+
+			var listenerParams = {
+				curTop: renderTop,
+				lastTop: _lastTop,
+				maxTop: _maxKeyFrame,
+				direction: _direction
+			};
+
+			//Tell the listener we are about to render.
+			var continueRendering = _listeners.beforerender && _listeners.beforerender.call(_instance, listenerParams);
+
+			//The beforerender listener function is able the cancel rendering.
+			if (continueRendering !== false) {
+				//Now actually interpolate all the styles.
+				_calcSteps(renderTop, _instance.getScrollTop());
+
+				//Remember when we last rendered.
+				_lastTop = renderTop;
+
+				if (_listeners.render) {
+					_listeners.render.call(_instance, listenerParams);
+				}
+			}
+
+			if (afterAnimationCallback) {
+				afterAnimationCallback.call(_instance, false);
+			}
+		}
+
+		_lastRenderCall = now;
+	};
+
+	/**
+ * Parses the properties for each key frame of the given skrollable.
+ */
+	var _parseProps = function _parseProps(_ref) {
+		var keyFrames = _ref.keyFrames;
+
+		//Iterate over all key frames
+		var keyFrameIndex = 0;
+		var keyFramesLength = keyFrames.length;
+
+		for (; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+			var frame = keyFrames[keyFrameIndex];
+			var easing = void 0;
+			var value = void 0;
+			var prop = void 0;
+			var props = {};
+
+			var match = void 0;
+
+			while ((match = rxPropValue.exec(frame.props)) !== null) {
+				prop = match[1];
+				value = match[2];
+
+				easing = prop.match(rxPropEasing);
+
+				//Is there an easing specified for this prop?
+				if (easing !== null) {
+					prop = easing[1];
+					easing = easing[2];
+				} else {
+					easing = DEFAULT_EASING;
+				}
+
+				//Exclamation point at first position forces the value to be taken literal.
+				value = value.indexOf('!') ? _parseProp(value) : [value.slice(1)];
+
+				//Save the prop for this key frame with his value and easing function
+				props[prop] = {
+					value: value,
+					easing: easings[easing]
+				};
+			}
+
+			frame.props = props;
+		}
+	};
+
+	/**
+ * Parses a value extracting numeric values and generating a format string
+ * for later interpolation of the new values in old string.
+ *
+ * @param val The CSS value to be parsed.
+ * @return Something like ["rgba(?%,?%, ?%,?)", 100, 50, 0, .7]
+ * where the first element is the format string later used
+ * and all following elements are the numeric value.
+ */
+	var _parseProp = function _parseProp(val) {
+		var numbers = [];
+
+		//One special case, where floats don't work.
+		//We replace all occurences of rgba colors
+		//which don't use percentage notation with the percentage notation.
+		rxRGBAIntegerColor.lastIndex = 0;
+		val = val.replace(rxRGBAIntegerColor, function (rgba) {
+			return rgba.replace(rxNumericValue, function (n) {
+				return n / 255 * 100 + '%';
+			});
+		});
+
+		//Handle prefixing of "gradient" values.
+		//For now only the prefixed value will be set. Unprefixed isn't supported anyway.
+		if (theDashedCSSPrefix) {
+			rxGradient.lastIndex = 0;
+			val = val.replace(rxGradient, function (s) {
+				return theDashedCSSPrefix + s;
+			});
+		}
+
+		//Now parse ANY number inside this string and create a format string.
+		val = val.replace(rxNumericValue, function (n) {
+			numbers.push(+n);
+			return '{?}';
+		});
+
+		//Add the formatstring as first value.
+		numbers.unshift(val);
+
+		return numbers;
+	};
+
+	/**
+ * Fills the key frames with missing left and right hand properties.
+ * If key frame 1 has property X and key frame 2 is missing X,
+ * but key frame 3 has X again, then we need to assign X to key frame 2 too.
+ *
+ * @param sk A skrollable.
+ */
+	var _fillProps = function _fillProps(_ref2) {
+		var keyFrames = _ref2.keyFrames;
+
+		//Will collect the properties key frame by key frame
+		var propList = {};
+		var keyFrameIndex = void 0;
+		var keyFramesLength = void 0;
+
+		//Iterate over all key frames from left to right
+		keyFrameIndex = 0;
+		keyFramesLength = keyFrames.length;
+
+		for (; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+			_fillPropForFrame(keyFrames[keyFrameIndex], propList);
+		}
+
+		//Now do the same from right to fill the last gaps
+
+		propList = {};
+
+		//Iterate over all key frames from right to left
+		keyFrameIndex = keyFrames.length - 1;
+
+		for (; keyFrameIndex >= 0; keyFrameIndex--) {
+			_fillPropForFrame(keyFrames[keyFrameIndex], propList);
+		}
+	};
+
+	var _fillPropForFrame = function _fillPropForFrame(_ref3, propList) {
+		var props = _ref3.props;
+
+		var key = void 0;
+
+		//For each key frame iterate over all right hand properties and assign them,
+		//but only if the current key frame doesn't have the property by itself
+		for (key in propList) {
+			//The current frame misses this property, so assign it.
+			if (!hasProp.call(props, key)) {
+				props[key] = propList[key];
+			}
+		}
+
+		//Iterate over all props of the current frame and collect them
+		for (key in props) {
+			propList[key] = props[key];
+		}
+	};
+
+	/**
+ * Calculates the new values for two given values array.
+ */
+	var _calcInterpolation = function _calcInterpolation(val1, val2, progress) {
+		var valueIndex = void 0;
+		var val1Length = val1.length;
+
+		//They both need to have the same length
+		if (val1Length !== val2.length) {
+			throw 'Can\'t interpolate between "' + val1[0] + '" and "' + val2[0] + '"';
+		}
+
+		//Add the format string as first element.
+		var interpolated = [val1[0]];
+
+		valueIndex = 1;
+
+		for (; valueIndex < val1Length; valueIndex++) {
+			//That's the line where the two numbers are actually interpolated.
+			interpolated[valueIndex] = val1[valueIndex] + (val2[valueIndex] - val1[valueIndex]) * progress;
+		}
+
+		return interpolated;
+	};
+
+	/**
+ * Interpolates the numeric values into the format string.
+ */
+	var _interpolateString = function _interpolateString(val) {
+		var valueIndex = 1;
+
+		rxInterpolateString.lastIndex = 0;
+
+		return val[0].replace(rxInterpolateString, function () {
+			return val[valueIndex++];
+		});
+	};
+
+	/**
+ * Resets the class and style attribute to what it was before skrollr manipulated the element.
+ * Also remembers the values it had before reseting, in order to undo the reset.
+ */
+	var _reset = function _reset(elements, undo) {
+		//We accept a single element or an array of elements.
+		elements = [].concat(elements);
+
+		var skrollable = void 0;
+		var element = void 0;
+		var elementsIndex = 0;
+		var elementsLength = elements.length;
+
+		for (; elementsIndex < elementsLength; elementsIndex++) {
+			element = elements[elementsIndex];
+			skrollable = _skrollables[element[SKROLLABLE_ID_DOM_PROPERTY]];
+
+			//Couldn't find the skrollable for this DOM element.
+			if (!skrollable) {
+				continue;
+			}
+
+			if (undo) {
+				//Reset class and style to the "dirty" (set by skrollr) values.
+				element.style.cssText = skrollable.dirtyStyleAttr;
+				_updateClass(element, skrollable.dirtyClassAttr);
+			} else {
+				//Remember the "dirty" (set by skrollr) class and style.
+				skrollable.dirtyStyleAttr = element.style.cssText;
+				skrollable.dirtyClassAttr = _getClass(element);
+
+				//Reset class and style to what it originally was.
+				element.style.cssText = skrollable.styleAttr;
+				_updateClass(element, skrollable.classAttr);
+			}
+		}
+	};
+
+	/**
+ * Detects support for 3d transforms by applying it to the skrollr-body.
+ */
+	var _detect3DTransforms = function _detect3DTransforms() {
+		_translateZ = 'translateZ(0)';
+		skrollr.setStyle(_skrollrBody, 'transform', _translateZ);
+
+		var computedStyle = getStyle(_skrollrBody);
+		var computedTransform = computedStyle.getPropertyValue('transform');
+		var computedTransformWithPrefix = computedStyle.getPropertyValue(theDashedCSSPrefix + 'transform');
+		var has3D = computedTransform && computedTransform !== 'none' || computedTransformWithPrefix && computedTransformWithPrefix !== 'none';
+
+		if (!has3D) {
+			_translateZ = '';
+		}
+	};
+
+	/**
+ * Set the CSS property on the given element. Sets prefixed properties as well.
+ */
+	skrollr.setStyle = function (el, prop, val) {
+		var style = el.style;
+
+		//Camel case.
+		prop = prop.replace(rxCamelCase, rxCamelCaseFn).replace('-', '');
+
+		//Make sure z-index gets a <integer>.
+		//This is the only <integer> case we need to handle.
+		if (prop === 'zIndex') {
+			if (isNaN(val)) {
+				//If it's not a number, don't touch it.
+				//It could for example be "auto" (#351).
+				style[prop] = val;
+			} else {
+				//Floor the number.
+				style[prop] = '' + (val | 0);
+			}
+		}
+		//#64: "float" can't be set across browsers. Needs to use "cssFloat" for all except IE.
+		else if (prop === 'float') {
+				style.styleFloat = style.cssFloat = val;
+			} else {
+				//Need try-catch for old IE.
+				try {
+					//Set prefixed property if there's a prefix.
+					if (theCSSPrefix) {
+						style[theCSSPrefix + prop.slice(0, 1).toUpperCase() + prop.slice(1)] = val;
+					}
+
+					//Set unprefixed.
+					style[prop] = val;
+				} catch (ignore) {}
+			}
+	};
+
+	/**
+ * Cross browser event handling.
+ */
+	var _addEvent = skrollr.addEvent = function (element, names, callback) {
+		var intermediate = function intermediate() {
+			var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.event;
+
+			if (!e.target) {
+				e.target = e.srcElement;
+			}
+
+			if (!e.preventDefault) {
+				e.preventDefault = function () {
+					e.returnValue = false;
+					e.defaultPrevented = true;
+				};
+			}
+
+			return callback.call(this, e);
+		};
+
+		names = names.split(' ');
+
+		var name = void 0;
+		var nameCounter = 0;
+		var namesLength = names.length;
+
+		for (; nameCounter < namesLength; nameCounter++) {
+			name = names[nameCounter];
+
+			if (element.addEventListener) {
+				element.addEventListener(name, callback, false);
+			} else {
+				element.attachEvent('on' + name, intermediate);
+			}
+
+			//Remember the events to be able to flush them later.
+			_registeredEvents.push({
+				element: element,
+				name: name,
+				listener: callback
+			});
+		}
+	};
+
+	var _removeEvent = skrollr.removeEvent = function (element, names, callback) {
+		names = names.split(' ');
+
+		var nameCounter = 0;
+		var namesLength = names.length;
+
+		for (; nameCounter < namesLength; nameCounter++) {
+			if (element.removeEventListener) {
+				element.removeEventListener(names[nameCounter], callback, false);
+			} else {
+				element.detachEvent('on' + names[nameCounter], callback);
+			}
+		}
+	};
+
+	var _removeAllEvents = function _removeAllEvents() {
+		var eventData = void 0;
+		var eventCounter = 0;
+		var eventsLength = _registeredEvents.length;
+
+		for (; eventCounter < eventsLength; eventCounter++) {
+			eventData = _registeredEvents[eventCounter];
+
+			_removeEvent(eventData.element, eventData.name, eventData.listener);
+		}
+
+		_registeredEvents = [];
+	};
+
+	var _emitEvent = function _emitEvent(element, name, direction) {
+		if (_listeners.keyframe) {
+			_listeners.keyframe.call(_instance, element, name, direction);
+		}
+	};
+
+	var _reflow = function _reflow() {
+		var pos = _instance.getScrollTop();
+
+		//Will be recalculated by _updateDependentKeyFrames.
+		_maxKeyFrame = 0;
+
+		if (_forceHeight && !_isMobile) {
+			//un-"force" the height to not mess with the calculations in _updateDependentKeyFrames (#216).
+			body.style.height = '';
+		}
+
+		_updateDependentKeyFrames();
+
+		if (_forceHeight && !_isMobile) {
+			//"force" the height.
+			body.style.height = _maxKeyFrame + documentElement.clientHeight + 'px';
+		}
+
+		//The scroll offset may now be larger than needed (on desktop the browser/os prevents scrolling farther than the bottom).
+		if (_isMobile) {
+			_instance.setScrollTop(Math.min(_instance.getScrollTop(), _maxKeyFrame));
+		} else {
+			//Remember and reset the scroll pos (#217).
+			_instance.setScrollTop(pos, true);
+		}
+
+		_forceRender = true;
+	};
+
+	/*
+ * Returns a copy of the constants object where all functions and strings have been evaluated.
+ */
+	var _processConstants = function _processConstants() {
+		var viewportHeight = documentElement.clientHeight;
+		var copy = {};
+		var prop = void 0;
+		var value = void 0;
+
+		for (prop in _constants) {
+			value = _constants[prop];
+
+			if (typeof value === 'function') {
+				value = value.call(_instance);
+			}
+			//Percentage offset.
+			else if (/p$/.test(value)) {
+					value = value.slice(0, -1) / 100 * viewportHeight;
+				}
+
+			copy[prop] = value;
+		}
+
+		return copy;
+	};
+
+	/*
+ * Returns the height of the document.
+ */
+	var _getDocumentHeight = function _getDocumentHeight() {
+		var skrollrBodyHeight = _skrollrBody && _skrollrBody.offsetHeight || 0;
+		var bodyHeight = Math.max(skrollrBodyHeight, body.scrollHeight, body.offsetHeight, documentElement.scrollHeight, documentElement.offsetHeight, documentElement.clientHeight);
+
+		return bodyHeight - documentElement.clientHeight;
+	};
+
+	/**
+ * Returns a string of space separated classnames for the current element.
+ * Works with SVG as well.
+ */
+	var _getClass = function _getClass(element) {
+		var prop = 'className';
+
+		//SVG support by using className.baseVal instead of just className.
+		if (window.SVGElement && element instanceof window.SVGElement) {
+			element = element[prop];
+			prop = 'baseVal';
+		}
+
+		return element[prop];
+	};
+
+	/**
+ * Adds and removes a CSS classes.
+ * Works with SVG as well.
+ * add and remove are arrays of strings,
+ * or if remove is ommited add is a string and overwrites all classes.
+ */
+	var _updateClass = function _updateClass(element, add, remove) {
+		var prop = 'className';
+
+		//SVG support by using className.baseVal instead of just className.
+		if (window.SVGElement && element instanceof window.SVGElement) {
+			element = element[prop];
+			prop = 'baseVal';
+		}
+
+		//When remove is ommited, we want to overwrite/set the classes.
+		if (remove === undefined) {
+			element[prop] = add;
+			return;
+		}
+
+		//Cache current classes. We will work on a string before passing back to DOM.
+		var val = element[prop];
+
+		//All classes to be removed.
+		var classRemoveIndex = 0;
+		var removeLength = remove.length;
+
+		for (; classRemoveIndex < removeLength; classRemoveIndex++) {
+			val = _untrim(val).replace(_untrim(remove[classRemoveIndex]), ' ');
+		}
+
+		val = _trim(val);
+
+		//All classes to be added.
+		var classAddIndex = 0;
+		var addLength = add.length;
+
+		for (; classAddIndex < addLength; classAddIndex++) {
+			//Only add if el not already has class.
+			if (!_untrim(val).includes(_untrim(add[classAddIndex]))) {
+				val += ' ' + add[classAddIndex];
+			}
+		}
+
+		element[prop] = _trim(val);
+	};
+
+	var _trim = function _trim(a) {
+		return a.replace(rxTrim, '');
+	};
+
+	/**
+ * Adds a space before and after the string.
+ */
+	var _untrim = function _untrim(a) {
+		return ' ' + a + ' ';
+	};
+
+	var _now = Date.now || function () {
+		return +new Date();
+	};
+
+	var _keyFrameComparator = function _keyFrameComparator(_ref4, _ref5) {
+		var frame = _ref4.frame;
+		var frameB = _ref5.frame;
+		return frame - frameB;
+	};
+
+	/*
+ * Private variables.
+ */
+
+	//Singleton
+	var _instance;
+
+	/*
+ A list of all elements which should be animated associated with their the metadata.
+ Exmaple skrollable with two key frames animating from 100px width to 20px:
+ 	skrollable = {
+ 	element: <the DOM element>,
+ 	styleAttr: <style attribute of the element before skrollr>,
+ 	classAttr: <class attribute of the element before skrollr>,
+ 	keyFrames: [
+ 		{
+ 			frame: 100,
+ 			props: {
+ 				width: {
+ 					value: ['{?}px', 100],
+ 					easing: <reference to easing function>
+ 				}
+ 			},
+ 			mode: "absolute"
+ 		},
+ 		{
+ 			frame: 200,
+ 			props: {
+ 				width: {
+ 					value: ['{?}px', 20],
+ 					easing: <reference to easing function>
+ 				}
+ 			},
+ 			mode: "absolute"
+ 		}
+ 	]
+ };
+ */
+	var _skrollables;
+
+	var _skrollrBody;
+
+	var _listeners;
+	var _forceHeight;
+	var _maxKeyFrame = 0;
+
+	var _scale = 1;
+	var _constants;
+
+	var _mobileDeceleration;
+
+	//Current direction (up/down).
+	var _direction = 'down';
+
+	//The last top offset value. Needed to determine direction.
+	var _lastTop = -1;
+
+	//The last time we called the render method (doesn't mean we rendered!).
+	var _lastRenderCall = _now();
+
+	//For detecting if it actually resized (#271).
+	var _lastViewportWidth = 0;
+	var _lastViewportHeight = 0;
+
+	var _requestReflow = false;
+
+	//Will contain data about a running scrollbar animation, if any.
+	var _scrollAnimation;
+
+	var _smoothScrollingEnabled;
+
+	var _smoothScrollingDuration;
+
+	//Will contain settins for smooth scrolling if enabled.
+	var _smoothScrolling;
+
+	//Can be set by any operation/event to force rendering even if the scrollbar didn't move.
+	var _forceRender;
+
+	//Each skrollable gets an unique ID incremented for each skrollable.
+	//The ID is the index in the _skrollables array.
+	var _skrollableIdCounter = 0;
+
+	var _edgeStrategy;
+
+	//Mobile specific vars. Will be stripped by UglifyJS when not in use.
+	var _isMobile = false;
+
+	//The virtual scroll offset when using mobile scrolling.
+	var _mobileOffset = 0;
+
+	//If the browser supports 3d transforms, this will be filled with 'translateZ(0)' (empty string otherwise).
+	var _translateZ;
+
+	//Will contain data about registered events by skrollr.
+	var _registeredEvents = [];
+
+	//Animation frame id returned by RequestAnimationFrame (or timeout when RAF is not supported).
+	var _animFrame;
+
+	//Expose skrollr as either a global variable or a require.js module
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return skrollr;
+		}).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = skrollr;
+	} else {
+		window.skrollr = skrollr;
+	}
+})(window, document);
 
 /***/ }),
 /* 46 */
