@@ -11,18 +11,16 @@
  *
  */
 (function (document, window) {
-  "use strict";
-
   module.exports = function (skrollr) {
-    var DEFAULT_DURATION = 500;
-    var DEFAULT_EASING = "sqrt";
-    var DEFAULT_SCALE = 1;
+    const DEFAULT_DURATION = 500;
+    const DEFAULT_EASING = "sqrt";
+    const DEFAULT_SCALE = 1;
 
-    var MENU_OFFSET_ATTR = "data-menu-offset";
+    const MENU_OFFSET_ATTR = "data-menu-offset";
 
     // var skrollr = window.skrollr;
-    var history = window.history;
-    var supportsHistory = !!history.pushState;
+    const { history } = window;
+    const supportsHistory = !!history.pushState;
 
     /*
            Since we are using event bubbling, the element that has been clicked
@@ -47,14 +45,14 @@
     /*
            Handle the click event on the document.
        */
-    var handleClick = function (e) {
+    const handleClick = function (e) {
       // Only handle left click.
 
       if (e.which !== 1 && e.button !== 0) {
         return;
       }
 
-      var link = findParentLink(e.target);
+      const link = findParentLink(e.target);
 
       // The click did not happen inside a link.
       if (!link) {
@@ -71,19 +69,19 @@
            When the fake flag is set, the link won't change the url and the position won't be animated.
        */
     var handleLink = function (link, fake) {
-      var patt = new RegExp("sc-menu[0-9]");
-      var isMenu = patt.test(link.id);
+      const patt = new RegExp("sc-menu[0-9]");
+      const isMenu = patt.test(link.id);
 
       if (!isMenu) {
         return false;
       }
       // Now get the targetTop to scroll to.
-      var targetTop;
+      let targetTop;
 
-      var menuTop;
+      let menuTop;
 
-      var scenetoLoad = link.id.replace("sc-menu", "scene");
-      var href = "#" + scenetoLoad;
+      const scenetoLoad = link.id.replace("sc-menu", "scene");
+      const href = `#${scenetoLoad}`;
       // If there's a handleLink function, it overrides the actual anchor offset.
       if (_handleLink) {
         menuTop = _handleLink(link);
@@ -101,7 +99,7 @@
           targetTop = +menuTop * _scale;
         }
       } else {
-        var scrollTarget = document.getElementById(href.substr(1));
+        const scrollTarget = document.getElementById(href.substr(1));
 
         // Ignore the click if no target is found.
         if (!scrollTarget) {
@@ -114,7 +112,7 @@
           "top"
         );
 
-        var menuOffset = scrollTarget.getAttribute(MENU_OFFSET_ATTR);
+        const menuOffset = scrollTarget.getAttribute(MENU_OFFSET_ATTR);
 
         if (menuOffset !== null) {
           targetTop += +menuOffset;
@@ -142,10 +140,10 @@
       return true;
     };
 
-    var jumpStraightToHash = function () {
+    const jumpStraightToHash = function () {
       if (window.location.hash && document.querySelector) {
-        var link = document.querySelector(
-          'a[href="' + window.location.hash + '"]'
+        const link = document.querySelector(
+          `a[href="${window.location.hash}"]`
         );
 
         if (link) {
@@ -158,16 +156,16 @@
       window.setTimeout(fn, 1);
     };
 
-    var _skrollrInstance;
+    let _skrollrInstance;
 
-    var _easing;
-    var _duration;
-    var _animate;
-    var _handleLink;
-    var _scale;
-    var _scenes;
+    let _easing;
+    let _duration;
+    let _animate;
+    let _handleLink;
+    let _scale;
+    let _scenes;
 
-    var init = function (skrollr) {
+    const init = function (skrollr) {
       /*
            Global menu function accessible through window.skrollr.menu.init.
        */
@@ -199,8 +197,8 @@
             window,
             "popstate",
             function (e) {
-              var state = e.state || {};
-              var top = state.top || 0;
+              const state = e.state || {};
+              const top = state.top || 0;
 
               defer(function () {
                 _skrollrInstance.setScrollTop(top);

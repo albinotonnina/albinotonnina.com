@@ -10,15 +10,9 @@ export const waitForWebfonts = function (fonts, callback) {
 };
 
 export const setAttributes = (el, attrs) => {
-  for (let key in attrs) {
+  for (const key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
-};
-
-export const isMobile = function () {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
 };
 
 export const createElementWithAttrs = (tagName, attrs) => {

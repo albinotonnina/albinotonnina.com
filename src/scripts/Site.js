@@ -1,3 +1,4 @@
+import { debounce } from "throttle-debounce";
 import * as utils from "./utilities";
 import menu from "../svg/menu/animation";
 import scene1 from "../svg/scene1/animation";
@@ -7,7 +8,6 @@ import scene4 from "../svg/scene4/animation";
 import scene5 from "../svg/scene5/animation";
 import scene6 from "../svg/scene6/animation";
 import skrollrscripts from "../libs/skrollr.scripts";
-import { debounce } from "throttle-debounce";
 import timing from "./timing";
 import "../styles/main.scss";
 import "../svg/animation.scss";
@@ -59,10 +59,8 @@ export default class {
   }
 
   resizeScenes() {
-    const innerWidth = window.innerWidth;
-    const clientHeight = utils.isMobile()
-      ? document.documentElement.clientHeight
-      : window.innerHeight;
+    const { innerWidth } = window;
+    const clientHeight = window.innerHeight;
 
     [].forEach.call(document.querySelectorAll("[data-scene] svg"), (scene) => {
       utils.setAttributes(scene, {
@@ -70,6 +68,13 @@ export default class {
         height: clientHeight,
       });
     });
+
+    [].forEach.call(
+      document.querySelectorAll("[data-scene-placeholder]"),
+      (placeholder) => {
+        placeholder.style.height = `${clientHeight}px`;
+      }
+    );
 
     utils.setAttributes(document.querySelector("#menu svg"), {
       width: innerWidth,
@@ -84,21 +89,32 @@ export default class {
 
   _buildDOMElements() {
     this.siteRoot = utils.createElementWithAttrs("figure", { role: "site" });
+    this.placeholdersRoot = utils.createElementWithAttrs("figure", {
+      role: "placeholder",
+    });
+
     const nav = utils.createElementWithAttrs("nav", { id: "menu" });
     this.siteRoot.appendChild(nav);
-    for (let key in this.timing) {
+    for (const key in this.timing) {
       this.siteRoot.appendChild(
         utils.createElementWithAttrs("div", {
           "data-scene": key,
           id: key,
         })
       );
+
+      const fff = utils.createElementWithAttrs("div", {
+        "data-scene-placeholder": true,
+      });
+
+      document.body.appendChild(fff);
     }
+
     document.body.appendChild(this.siteRoot);
   }
 
   _initScenes() {
-    for (let name in this.scenes) {
+    for (const name in this.scenes) {
       this.scenes[name].init(this);
     }
 
@@ -117,14 +133,14 @@ export default class {
   getSkrollrConfiguration() {
     return {
       render: (data) => {
-        for (let name in this.scenes) {
+        for (const name in this.scenes) {
           if (typeof this.scenes[name].render === "function") {
             this.scenes[name].render(data);
           }
         }
       },
       beforerender: (data) => {
-        for (let name in this.scenes) {
+        for (const name in this.scenes) {
           if (typeof this.scenes[name].beforerender === "function") {
             this.scenes[name].beforerender(data);
           }
