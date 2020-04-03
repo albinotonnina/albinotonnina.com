@@ -14,7 +14,7 @@ const rxCamelCaseFn = (str, letter) => letter.toUpperCase();
 
 const scale = 1;
 
-const refresh = (_instance, documentElement, _maxKeyFrame) => {
+const refresh = () => {
   let skrollableIdCounter = 0;
   // Ignore that some elements may already have a skrollable ID.
 
@@ -72,7 +72,7 @@ const refresh = (_instance, documentElement, _maxKeyFrame) => {
   });
 
   // Reflow for the first time.
-  reflow(_instance, skrollables, documentElement);
+  reflow(skrollables);
 
   // Now that we got all key frame numbers right, actually parse the properties.
   [...elements]

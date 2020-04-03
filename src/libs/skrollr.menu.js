@@ -68,74 +68,7 @@
            Handles the click on a link. May be called without an actual click event.
            When the fake flag is set, the link won't change the url and the position won't be animated.
        */
-    var handleLink = function (link, fake) {
-      const patt = new RegExp("sc-menu[0-9]");
-      const isMenu = patt.test(link.id);
-
-      if (!isMenu) {
-        return false;
-      }
-      // Now get the targetTop to scroll to.
-      let targetTop;
-
-      let menuTop;
-
-      const scenetoLoad = link.id.replace("sc-menu", "scene");
-      const href = `#${scenetoLoad}`;
-      // If there's a handleLink function, it overrides the actual anchor offset.
-      if (_handleLink) {
-        menuTop = _handleLink(link);
-      } else {
-        menuTop = _scenes[scenetoLoad].begin + _scenes[scenetoLoad].menuoffset;
-      }
-
-      if (menuTop !== null) {
-        // Is it a percentage offset?
-        if (/p$/.test(menuTop)) {
-          targetTop =
-            (menuTop.slice(0, -1) / 100) *
-            document.documentElement.clientHeight;
-        } else {
-          targetTop = +menuTop * _scale;
-        }
-      } else {
-        const scrollTarget = document.getElementById(href.substr(1));
-
-        // Ignore the click if no target is found.
-        if (!scrollTarget) {
-          return false;
-        }
-
-        targetTop = _skrollrInstance.relativeToAbsolute(
-          scrollTarget,
-          "top",
-          "top"
-        );
-
-        const menuOffset = scrollTarget.getAttribute(MENU_OFFSET_ATTR);
-
-        if (menuOffset !== null) {
-          targetTop += +menuOffset;
-        }
-      }
-      /*
-                     if (supportsHistory && !fake) {
-                         history.pushState({
-                             top: targetTop
-                         }, '', href);
-                     }
-            */
-      // Now finally scroll there.
-      if (_animate && !fake) {
-        alert("scroll");
-      } else {
-        defer(function () {
-          _skrollrInstance.setScrollTop(targetTop);
-        });
-      }
-
-      return true;
-    };
+    var handleLink = function (link, fake) {};
 
     const jumpStraightToHash = function () {
       if (window.location.hash && document.querySelector) {
@@ -149,7 +82,7 @@
       }
     };
 
-    var defer = function (fn) {
+    const defer = function (fn) {
       window.setTimeout(fn, 1);
     };
 
@@ -187,22 +120,21 @@
         }
 
         // Use event bubbling and attach a single listener to the document.
-        skrollr.addEvent(document, "click", handleClick);
+        // skrollr.addEvent(document, "click", handleClick);
 
         if (supportsHistory) {
-          skrollr.addEvent(
-            window,
-            "popstate",
-            function (e) {
-              const state = e.state || {};
-              const top = state.top || 0;
-
-              defer(function () {
-                _skrollrInstance.setScrollTop(top);
-              });
-            },
-            false
-          );
+          // skrollr.addEvent(
+          //   window,
+          //   "popstate",
+          //   function (e) {
+          //     const state = e.state || {};
+          //     const top = state.top || 0;
+          //     defer(function () {
+          //       window.scrollTo(0, top);
+          //     });
+          //   },
+          //   false
+          // );
         }
 
         jumpStraightToHash();

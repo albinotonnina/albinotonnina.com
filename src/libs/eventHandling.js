@@ -1,5 +1,5 @@
 // Will contain data about registered events by skrollr.
-const _registeredEvents = [];
+let _registeredEvents = [];
 
 const addEvent = (element, namesString, callback) => {
   const intermediate = (e = window.event) => {
@@ -64,7 +64,7 @@ const removeAllEvents = () => {
   for (; eventCounter < eventsLength; eventCounter++) {
     eventData = _registeredEvents[eventCounter];
 
-    _removeEvent(eventData.element, eventData.name, eventData.listener);
+    removeEvent(eventData.element, eventData.name, eventData.listener);
   }
 
   _registeredEvents = [];

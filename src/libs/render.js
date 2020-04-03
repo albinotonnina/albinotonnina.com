@@ -12,34 +12,21 @@ const getScrollTop = () => {
 /**
  * Renders all elements.
  */
-const render = (
-  _instance,
-  _skrollables,
-  _requestReflow,
-  _scrollAnimation,
-  _forceRender,
-  _maxKeyFrame,
-  _listeners
-) => {
+const render = (_instance, _skrollables, _listeners, lastTop) => {
   // Current direction (up/down).
-  let direction = "down";
 
   // The last top offset value. Needed to determine direction.
-  let _lastTop = -1;
 
   // We may render something else than the actual scrollbar position.
-  const renderTop = getScrollTop();
+  const curTop = getScrollTop();
 
   // If there's an animation, which ends in current render call, call the callback after rendering.
 
   // Remember in which direction are we scrolling?
-  direction =
-    renderTop > _lastTop ? "down" : renderTop < _lastTop ? "up" : direction;
+  const direction = curTop > lastTop ? "down" : "up";
 
   const listenerParams = {
-    curTop: renderTop,
-    lastTop: _lastTop,
-    maxTop: _maxKeyFrame,
+    curTop,
     direction,
   };
 
@@ -51,15 +38,14 @@ const render = (
   // The beforerender listener function is able the cancel rendering.
   if (continueRendering !== false) {
     // Now actually interpolate all the styles.
-    calcSteps(_instance, renderTop, _skrollables, direction);
-
-    // Remember when we last rendered.
-    _lastTop = renderTop;
+    calcSteps(curTop, _skrollables);
 
     if (_listeners.render) {
       _listeners.render.call(_instance, listenerParams);
     }
   }
+
+  return curTop;
 };
 
 export default render;

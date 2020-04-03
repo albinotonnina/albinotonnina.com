@@ -1,20 +1,28 @@
 import updateDependentKeyFrames from "./updateDependentKeyFrames";
 
-const reflow = (_instance, skrollables, documentElement) => {
-  const pos = _instance.getScrollTop();
+const setScrollTop = (top) => {
+  window.scrollTo(0, top);
+};
 
+const getScrollTop = () =>
+  window.pageYOffset ||
+  document.documentElement.scrollTop ||
+  document.body.scrollTop ||
+  0;
+
+const reflow = (skrollables) => {
   // un-"force" the height to not mess with the calculations in updateDependentKeyFrames (#216).
   document.body.style.height = "";
 
-  const maxKeyFrame = updateDependentKeyFrames(skrollables, documentElement);
+  const maxKeyFrame = updateDependentKeyFrames(skrollables);
 
   // "force" the height.
   document.body.style.height = `${
-    maxKeyFrame + documentElement.clientHeight
+    maxKeyFrame + document.documentElement.clientHeight
   }px`;
 
   // Remember and reset the scroll pos
-  _instance.setScrollTop(pos);
+  setScrollTop(getScrollTop());
 
   return maxKeyFrame;
 };
