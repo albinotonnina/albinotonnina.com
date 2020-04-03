@@ -13,9 +13,9 @@
     stroke-miterlimit: 4;
     stroke-dasharray: 6000;
     stroke-dashoffset: 0;
-    -skrollr-animation-name: wire1;
+    -st-animation-name: wire1;
   }
-  @-skrollr-keyframes wire1 {
+  @-st-keyframes wire1 {
     #{$start + 100} {
       stroke-dashoffset: 6000;
     }
@@ -33,7 +33,7 @@
     transform-origin: 50% 50%;
   }
   #scrollthing {
-    -skrollr-animation-name: scrollthing;
+    -st-animation-name: scrollthing;
   }
   #viewresume {
     cursor: pointer;
@@ -45,7 +45,7 @@
   #scrolldown {
     opacity: 0;
   }
-  @-skrollr-keyframes scrollthing {
+  @-st-keyframes scrollthing {
     #{$scene_01_begin} {
       opacity: 1;
       transition-delay: 2000ms;
@@ -66,9 +66,9 @@
   }
 
   #hellocontainer {
-    -skrollr-animation-name: hellohello;
+    -st-animation-name: hellohello;
   }
-  @-skrollr-keyframes hellohello {
+  @-st-keyframes hellohello {
     #{$start} {
       transform#{"[swing]"}: translate(355px, -30px);
     }
@@ -79,9 +79,9 @@
   }
 
   #subtitle {
-    -skrollr-animation-name: subtitle;
+    -st-animation-name: subtitle;
   }
-  @-skrollr-keyframes subtitle {
+  @-st-keyframes subtitle {
     #{$start} {
       opacity: 1;
     }
@@ -92,9 +92,9 @@
   }
 
   #intro1 {
-    -skrollr-animation-name: intro1;
+    -st-animation-name: intro1;
   }
-  @-skrollr-keyframes intro1 {
+  @-st-keyframes intro1 {
     #{$start + 100} {
       transform#{"[swing]"}: translate(0, -10px);
       opacity: 0;
@@ -107,13 +107,13 @@
   }
 
   #intro2 {
-    -skrollr-animation-name: intro2;
+    -st-animation-name: intro2;
     cursor: pointer;
   }
   #intro2:hover text {
     fill: rgba(214, 219, 220, 0.8) !important;
   }
-  @-skrollr-keyframes intro2 {
+  @-st-keyframes intro2 {
     #{$start} {
       pointer-events: none;
     }
@@ -132,10 +132,10 @@
 
 
   #intro3 {
-    -skrollr-animation-name: intro3;
+    -st-animation-name: intro3;
   }
 
-  @-skrollr-keyframes intro3 {
+  @-st-keyframes intro3 {
     #{$start + 230} {
       transform#{"[swing]"}: translate(0, -10px);
       opacity: 0;
@@ -148,9 +148,9 @@
   }
 
   #macbook {
-    -skrollr-animation-name: macbook;
+    -st-animation-name: macbook;
   }
-  @-skrollr-keyframes macbook {
+  @-st-keyframes macbook {
     #{$start + 50} {
       transform#{"[swing]"}: translate(0, -500px) rotate(-10deg);
       opacity: 0;
@@ -163,9 +163,9 @@
   }
 
   #mouse {
-    -skrollr-animation-name: mouse;
+    -st-animation-name: mouse;
   }
-  @-skrollr-keyframes mouse {
+  @-st-keyframes mouse {
     #{$start + 100} {
       transform#{"[swing]"}: translate(200px, 0px) rotate(-30deg);
       opacity: 0;
@@ -178,9 +178,9 @@
   }
 
   #schema {
-    -skrollr-animation-name: schema;
+    -st-animation-name: schema;
   }
-  @-skrollr-keyframes schema {
+  @-st-keyframes schema {
     #{$start + 100} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -193,9 +193,9 @@
   }
 
   #bevanda {
-    -skrollr-animation-name: bevanda;
+    -st-animation-name: bevanda;
   }
-  @-skrollr-keyframes bevanda {
+  @-st-keyframes bevanda {
     #{$start + 150} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -208,9 +208,9 @@
   }
 
   #matita1 {
-    -skrollr-animation-name: matita1;
+    -st-animation-name: matita1;
   }
-  @-skrollr-keyframes matita1 {
+  @-st-keyframes matita1 {
     #{$start + 25} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -223,9 +223,9 @@
   }
 
   #cancelleria1 {
-    -skrollr-animation-name: cancelleria1;
+    -st-animation-name: cancelleria1;
   }
-  @-skrollr-keyframes cancelleria1 {
+  @-st-keyframes cancelleria1 {
     #{$start + 125} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -238,9 +238,9 @@
   }
 
   #righello {
-    -skrollr-animation-name: righello;
+    -st-animation-name: righello;
   }
-  @-skrollr-keyframes righello {
+  @-st-keyframes righello {
     #{$start + 175} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -253,9 +253,9 @@
   }
 
   #gomma {
-    -skrollr-animation-name: gomma;
+    -st-animation-name: gomma;
   }
-  @-skrollr-keyframes gomma {
+  @-st-keyframes gomma {
     #{$start + 120} {
       transform#{"[swing]"}: translate(0, -200px) rotate(-10deg);
       opacity: 0;
@@ -268,9 +268,9 @@
   }
 
   #iphone {
-    -skrollr-animation-name: iphone2;
+    -st-animation-name: iphone2;
   }
-  @-skrollr-keyframes iphone2 {
+  @-st-keyframes iphone2 {
     #{$start + 150} {
       transform#{"[swing]"}: translate(-200px, 0) rotate(-10deg);
       opacity: 0;
@@ -283,9 +283,9 @@
   }
 
   #occhiali {
-    -skrollr-animation-name: occhiali;
+    -st-animation-name: occhiali;
   }
-  @-skrollr-keyframes occhiali {
+  @-st-keyframes occhiali {
     #{$start + 270} {
       transform#{"[swing]"}: translate(100px, -300px) rotate(-10deg);
       opacity: 0;
@@ -298,9 +298,9 @@
   }
 
   #foglio1 {
-    -skrollr-animation-name: foglio1;
+    -st-animation-name: foglio1;
   }
-  @-skrollr-keyframes foglio1 {
+  @-st-keyframes foglio1 {
     #{$start} {
       transform#{"[swing]"}: translate(0, -500px) rotate(-10deg);
       opacity: 0;
@@ -318,9 +318,9 @@
   }
 
   #foglio2 {
-    -skrollr-animation-name: foglio2;
+    -st-animation-name: foglio2;
   }
-  @-skrollr-keyframes foglio2 {
+  @-st-keyframes foglio2 {
     #{$start + 50} {
       transform#{"[swing]"}: translate(-200px, 0) rotate(-10deg);
       opacity: 0;
@@ -333,9 +333,9 @@
   }
 
   #calcolatrice {
-    -skrollr-animation-name: calcolatrice;
+    -st-animation-name: calcolatrice;
   }
-  @-skrollr-keyframes calcolatrice {
+  @-st-keyframes calcolatrice {
     #{$start} {
       transform#{"[swing]"}: translate(-500px, 0) rotate(-10deg);
       opacity: 0;

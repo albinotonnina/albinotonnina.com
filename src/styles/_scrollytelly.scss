@@ -75,20 +75,18 @@ background: red;
   }
 }
 
-.skrollable {
+.scrollable {
   position: fixed;
   z-index: 100;
 }
 
-.skrollr-mobile .skrollable {
+
+
+.scrollable .scrollable {
   position: absolute;
 }
 
-.skrollable .skrollable {
-  position: absolute;
-}
-
-.skrollable .skrollable .skrollable {
+.scrollable .scrollable .scrollable {
   position: static;
 }
 

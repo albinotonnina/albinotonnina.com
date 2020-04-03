@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 
-import Skrollr from "./skrollrClass";
+import ScrollyTelly from "./scrollytelly.class";
 
-const skrollrFunc = () => {
+export default () => {
   // The last time we called the render method (doesn't mean we rendered!).
 
   // Will contain data about a running scrollbar animation, if any.
@@ -20,20 +20,16 @@ const skrollrFunc = () => {
   // Singleton
   let _instance;
 
-  const skrollr = {
+  return {
     get() {
       return _instance;
     },
     // Main entry point.
     init(options) {
       // Singleton
-      _instance = _instance || new Skrollr(options);
+      _instance = _instance || new ScrollyTelly(options);
 
       return _instance;
     },
   };
-
-  return skrollr;
 };
-
-export default skrollrFunc;

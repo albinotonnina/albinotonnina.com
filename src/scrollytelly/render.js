@@ -12,7 +12,7 @@ const getScrollTop = () => {
 /**
  * Renders all elements.
  */
-const render = (_instance, _skrollables, _listeners, lastTop) => {
+const render = (_instance, scrollables, _listeners, lastTop) => {
   // Current direction (up/down).
 
   // The last top offset value. Needed to determine direction.
@@ -38,7 +38,7 @@ const render = (_instance, _skrollables, _listeners, lastTop) => {
   // The beforerender listener function is able the cancel rendering.
   if (continueRendering !== false) {
     // Now actually interpolate all the styles.
-    calcSteps(curTop, _skrollables);
+    calcSteps(curTop, scrollables);
 
     if (_listeners.render) {
       _listeners.render.call(_instance, listenerParams);

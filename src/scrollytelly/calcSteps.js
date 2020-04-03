@@ -16,11 +16,11 @@ const interpolateString = (val) => {
  * Calculates and sets the style properties for the element at the given frame.
  * @param fakeFrame The frame to render at
  */
-const calcSteps = (fakeFrame, _skrollables) =>
-  _skrollables.forEach((skrollable) => {
-    const { element } = skrollable;
+const calcSteps = (fakeFrame, scrollables) =>
+  scrollables.forEach((scrollable) => {
+    const { element } = scrollable;
     let frame = fakeFrame;
-    const frames = skrollable.keyFrames;
+    const frames = scrollable.keyFrames;
     const firstFrame = frames[0];
     const lastFrame = frames[frames.length - 1];
     const beforeFirst = frame < firstFrame.frame;

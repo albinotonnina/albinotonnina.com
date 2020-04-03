@@ -14,9 +14,9 @@
         stroke-miterlimit: 4;
         stroke-dasharray: 6000;
         stroke-dashoffset: 0;
-        -skrollr-animation-name: wire3;
+        -st-animation-name: wire3;
     }
-    @-skrollr-keyframes wire3 {
+    @-st-keyframes wire3 {
         #{$start + 195} {
             stroke-dashoffset: 6000;
         }
@@ -26,10 +26,10 @@
     }
 
     #title {
-        -skrollr-animation-name: s2-title;
+        -st-animation-name: s2-title;
     }
 
-    @-skrollr-keyframes s2-title {
+    @-st-keyframes s2-title {
         #{$start + 240} {
             opacity: 0;
             transform#{"[swing]"}: translate(0px, 0px);
@@ -41,7 +41,7 @@
     }
 
     #linecover2 {
-        -skrollr-animation-name: wheel2;
+        -st-animation-name: wheel2;
         opacity: 0;
         -ms-transform-origin: 50% 50%;
         -webkit-transform-origin: 50% 50%;
@@ -49,9 +49,9 @@
         transform-origin: 50% 50%;
     }
     #tblock1 {
-        -skrollr-animation-name: tblock1;
+        -st-animation-name: tblock1;
     }
-    @-skrollr-keyframes tblock1 {
+    @-st-keyframes tblock1 {
         #{$start + 540} {
             opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
@@ -63,9 +63,9 @@
     }
 
     #tblock2 {
-        -skrollr-animation-name: tblock2;
+        -st-animation-name: tblock2;
     }
-    @-skrollr-keyframes tblock2 {
+    @-st-keyframes tblock2 {
         #{$start + 740} {
             opacity: 0;
             transform#{"[swing]"}: translate(-30px, 0);
@@ -77,9 +77,9 @@
     }
 
     #tblock3 {
-        -skrollr-animation-name: tblock3;
+        -st-animation-name: tblock3;
     }
-    @-skrollr-keyframes tblock3 {
+    @-st-keyframes tblock3 {
         #{$start + 800} {
             opacity: 0;
             transform#{"[swing]"}: translate(-20px, 0);
@@ -91,7 +91,7 @@
     }
 
     #imac {
-        -skrollr-animation-name: imac;
+        -st-animation-name: imac;
         #grid rect {
             -ms-transform-origin: 100% 100%;
             -webkit-transform-origin: 100% 100%;
@@ -103,77 +103,77 @@
             -webkit-transform-origin: 50% 100%;
             -moz-transform-origin: 50% 100%;
             transform-origin: 50% 100%;
-            -skrollr-animation-name: gridbg;
+            -st-animation-name: gridbg;
         }
         #grid1 {
-            -skrollr-animation-name: grid1;
+            -st-animation-name: grid1;
         }
         #grid2 {
-            -skrollr-animation-name: grid2;
+            -st-animation-name: grid2;
         }
         #grid3 {
-            -skrollr-animation-name: grid3;
+            -st-animation-name: grid3;
         }
         #grid4 {
-            -skrollr-animation-name: grid4;
+            -st-animation-name: grid4;
         }
         #grid5 {
-            -skrollr-animation-name: grid5;
+            -st-animation-name: grid5;
         }
         #grid6 {
-            -skrollr-animation-name: grid6;
+            -st-animation-name: grid6;
         }
         #grid7 {
-            -skrollr-animation-name: grid7;
+            -st-animation-name: grid7;
         }
         #grid8 {
-            -skrollr-animation-name: grid8;
+            -st-animation-name: grid8;
         }
         #grid9 {
-            -skrollr-animation-name: grid9;
+            -st-animation-name: grid9;
         }
         #grid10 {
-            -skrollr-animation-name: grid10;
+            -st-animation-name: grid10;
         }
         #grid11 {
-            -skrollr-animation-name: grid11;
+            -st-animation-name: grid11;
         }
         #b1 {
-            -skrollr-animation-name: b1;
+            -st-animation-name: b1;
         }
         #b2 {
-            -skrollr-animation-name: b2;
+            -st-animation-name: b2;
         }
         #b3 {
-            -skrollr-animation-name: b3;
+            -st-animation-name: b3;
         }
         #b4 {
-            -skrollr-animation-name: b4;
+            -st-animation-name: b4;
         }
         #bg1 {
-            -skrollr-animation-name: s1-bg1;
+            -st-animation-name: s1-bg1;
         }
         #bg2 {
-            -skrollr-animation-name: s1-bg2;
+            -st-animation-name: s1-bg2;
         }
         #f1 {
-            -skrollr-animation-name: s1-f1;
+            -st-animation-name: s1-f1;
         }
         #f8 {
-            -skrollr-animation-name: s1-f8;
+            -st-animation-name: s1-f8;
         }
         #f13 {
-            -skrollr-animation-name: s1-f13;
+            -st-animation-name: s1-f13;
         }
         #f18 {
-            -skrollr-animation-name: s1-f18;
+            -st-animation-name: s1-f18;
         }
     }
     $imac_animation: $scene_03_begin + 30;
 
-    @-skrollr-keyframes imac {}
+    @-st-keyframes imac {}
 
-    @-skrollr-keyframes gridbg {
+    @-st-keyframes gridbg {
         #{$imac_animation + 120} {
             transform: scale(1, 0);
             opacity: 0;
@@ -184,7 +184,7 @@
         }
     }
 
-    @-skrollr-keyframes grid1 {
+    @-st-keyframes grid1 {
         #{$imac_animation + 10} {
             transform: scale(1, 0);
         }
@@ -193,7 +193,7 @@
         }
     }
 
-    @-skrollr-keyframes grid2 {
+    @-st-keyframes grid2 {
         #{$imac_animation + 20} {
             transform: scale(1, 0);
         }
@@ -202,7 +202,7 @@
         }
     }
 
-    @-skrollr-keyframes grid3 {
+    @-st-keyframes grid3 {
         #{$imac_animation + 30} {
             transform: scale(1, 0);
         }
@@ -211,7 +211,7 @@
         }
     }
 
-    @-skrollr-keyframes grid4 {
+    @-st-keyframes grid4 {
         #{$imac_animation + 40} {
             transform: scale(1, 0);
         }
@@ -220,7 +220,7 @@
         }
     }
 
-    @-skrollr-keyframes grid5 {
+    @-st-keyframes grid5 {
         #{$imac_animation + 50} {
             transform: scale(1, 0);
         }
@@ -229,7 +229,7 @@
         }
     }
 
-    @-skrollr-keyframes grid6 {
+    @-st-keyframes grid6 {
         #{$imac_animation + 60} {
             transform: scale(1, 0);
         }
@@ -238,7 +238,7 @@
         }
     }
 
-    @-skrollr-keyframes grid7 {
+    @-st-keyframes grid7 {
         #{$imac_animation + 70} {
             transform: scale(1, 0);
         }
@@ -247,7 +247,7 @@
         }
     }
 
-    @-skrollr-keyframes grid8 {
+    @-st-keyframes grid8 {
         #{$imac_animation + 80} {
             transform: scale(1, 0);
         }
@@ -256,7 +256,7 @@
         }
     }
 
-    @-skrollr-keyframes grid9 {
+    @-st-keyframes grid9 {
         #{$imac_animation + 90} {
             transform: scale(1, 0);
         }
@@ -265,7 +265,7 @@
         }
     }
 
-    @-skrollr-keyframes grid10 {
+    @-st-keyframes grid10 {
         #{$imac_animation + 100} {
             transform: scale(1, 0);
         }
@@ -274,7 +274,7 @@
         }
     }
 
-    @-skrollr-keyframes grid11 {
+    @-st-keyframes grid11 {
         #{$imac_animation + 110} {
             transform: scale(1, 0);
         }
@@ -283,7 +283,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-f18 {
+    @-st-keyframes s1-f18 {
         #{$imac_animation + 140} {
             display: none;
         }
@@ -292,7 +292,7 @@
         }
     }
 
-    @-skrollr-keyframes b4 {
+    @-st-keyframes b4 {
         #{$imac_animation + 150} {
             display: none;
         }
@@ -301,7 +301,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-f13 {
+    @-st-keyframes s1-f13 {
         #{$imac_animation + 160} {
             display: none;
         }
@@ -310,7 +310,7 @@
         }
     }
 
-    @-skrollr-keyframes b3 {
+    @-st-keyframes b3 {
         #{$imac_animation + 170} {
             display: none;
         }
@@ -319,7 +319,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-f8 {
+    @-st-keyframes s1-f8 {
         #{$imac_animation + 180} {
             display: none;
         }
@@ -328,7 +328,7 @@
         }
     }
 
-    @-skrollr-keyframes b2 {
+    @-st-keyframes b2 {
         #{$imac_animation + 190} {
             display: none;
         }
@@ -337,7 +337,7 @@
         }
     }
 
-    @-skrollr-keyframes b1 {
+    @-st-keyframes b1 {
         #{$imac_animation + 200} {
             display: none;
         }
@@ -346,7 +346,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-f1 {
+    @-st-keyframes s1-f1 {
         #{$imac_animation + 210} {
             display: none;
         }
@@ -355,7 +355,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-bg2 {
+    @-st-keyframes s1-bg2 {
         #{$imac_animation + 220} {
             display: none;
         }
@@ -364,7 +364,7 @@
         }
     }
 
-    @-skrollr-keyframes s1-bg1 {
+    @-st-keyframes s1-bg1 {
         #{$imac_animation + 250} {
             opacity: 0;
         }
@@ -374,52 +374,52 @@
     }
 
     #ipad {
-        -skrollr-animation-name: ipad;
+        -st-animation-name: ipad;
         #s2 {
             #s2-bg1 {
-                -skrollr-animation-name: s2-bg1;
+                -st-animation-name: s2-bg1;
             }
             #g1 {
-                -skrollr-animation-name: s2-g1;
+                -st-animation-name: s2-g1;
             }
             #g2g {
-                -skrollr-animation-name: s2-g2g;
+                -st-animation-name: s2-g2g;
             }
             #g6g {
-                -skrollr-animation-name: s2-g6g;
+                -st-animation-name: s2-g6g;
             }
             #g10 {
-                -skrollr-animation-name: s2-g10;
+                -st-animation-name: s2-g10;
             }
             #g11g {
-                -skrollr-animation-name: s2-g11g;
+                -st-animation-name: s2-g11g;
             }
             #g15 {
-                -skrollr-animation-name: s2-g15;
+                -st-animation-name: s2-g15;
             }
             #g16 {
-                -skrollr-animation-name: s2-g16;
+                -st-animation-name: s2-g16;
             }
             #g17 {
-                -skrollr-animation-name: s2-g17;
+                -st-animation-name: s2-g17;
             }
             #g18 {
-                -skrollr-animation-name: s2-g18;
+                -st-animation-name: s2-g18;
             }
             #g19 {
-                -skrollr-animation-name: s2-g19;
+                -st-animation-name: s2-g19;
             }
             #g20 {
-                -skrollr-animation-name: s2-g20;
+                -st-animation-name: s2-g20;
             }
             #g21 {
-                -skrollr-animation-name: s2-g21;
+                -st-animation-name: s2-g21;
             }
         }
     }
     $ipad_animation: $scene_03_begin + 400;
 
-    @-skrollr-keyframes ipad {
+    @-st-keyframes ipad {
         #{$ipad_animation - 30} {
             opacity: 0;
             transform#{"[swing]"}: translate(10px, 0);
@@ -430,7 +430,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-bg1 {
+    @-st-keyframes s2-bg1 {
         #{$ipad_animation} {
             display: none;
         }
@@ -439,7 +439,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g1 {
+    @-st-keyframes s2-g1 {
         #{$ipad_animation + 80} {
             display: none;
         }
@@ -448,7 +448,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g2g {
+    @-st-keyframes s2-g2g {
         #{$ipad_animation + 90} {
             display: none;
         }
@@ -457,7 +457,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g6g {
+    @-st-keyframes s2-g6g {
         #{$ipad_animation + 100} {
             display: none;
         }
@@ -466,7 +466,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g10 {
+    @-st-keyframes s2-g10 {
         #{$ipad_animation + 110} {
             display: none;
         }
@@ -475,7 +475,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g11g {
+    @-st-keyframes s2-g11g {
         #{$ipad_animation + 120} {
             display: none;
         }
@@ -484,7 +484,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g15 {
+    @-st-keyframes s2-g15 {
         #{$ipad_animation + 130} {
             display: none;
         }
@@ -493,7 +493,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g16 {
+    @-st-keyframes s2-g16 {
         #{$ipad_animation + 140} {
             display: none;
         }
@@ -502,7 +502,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g17 {
+    @-st-keyframes s2-g17 {
         #{$ipad_animation + 150} {
             display: none;
         }
@@ -511,7 +511,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g18 {
+    @-st-keyframes s2-g18 {
         #{$ipad_animation + 160} {
             display: none;
         }
@@ -520,7 +520,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g19 {
+    @-st-keyframes s2-g19 {
         #{$ipad_animation + 170} {
             display: none;
         }
@@ -529,7 +529,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g20 {
+    @-st-keyframes s2-g20 {
         #{$ipad_animation + 180} {
             display: none;
         }
@@ -538,7 +538,7 @@
         }
     }
 
-    @-skrollr-keyframes s2-g21 {
+    @-st-keyframes s2-g21 {
         #{$ipad_animation + 190} {
             display: none;
         }
@@ -548,48 +548,48 @@
     }
 
     #iphone {
-        -skrollr-animation-name: iphone;
+        -st-animation-name: iphone;
         #s3 {
             #s3-bg1 {
-                -skrollr-animation-name: s3-bg1;
+                -st-animation-name: s3-bg1;
             }
             #i1 {
-                -skrollr-animation-name: s3-i1;
+                -st-animation-name: s3-i1;
             }
             #i2 {
-                -skrollr-animation-name: s3-i2;
+                -st-animation-name: s3-i2;
             }
             #i3 {
-                -skrollr-animation-name: s3-i3;
+                -st-animation-name: s3-i3;
             }
             #i4 {
-                -skrollr-animation-name: s3-i4;
+                -st-animation-name: s3-i4;
             }
             #i5 {
-                -skrollr-animation-name: s3-i5;
+                -st-animation-name: s3-i5;
             }
             #i6 {
-                -skrollr-animation-name: s3-i6;
+                -st-animation-name: s3-i6;
             }
             #i7 {
-                -skrollr-animation-name: s3-i7;
+                -st-animation-name: s3-i7;
             }
             #i8 {
-                -skrollr-animation-name: s3-i8;
+                -st-animation-name: s3-i8;
             }
             #i9 {
-                -skrollr-animation-name: s3-i9;
+                -st-animation-name: s3-i9;
             }
             #i10 {
-                -skrollr-animation-name: s3-i10;
+                -st-animation-name: s3-i10;
             }
             #i11 {
-                -skrollr-animation-name: s3-i11;
+                -st-animation-name: s3-i11;
             }
         }
     }
     $iphone_animation: $scene_03_begin + 350;
-    @-skrollr-keyframes iphone {
+    @-st-keyframes iphone {
         #{$iphone_animation - 30} {
             transform#{"[swing]"}: translate(10px, 0);
             opacity: 0;
@@ -600,7 +600,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-bg1 {
+    @-st-keyframes s3-bg1 {
         #{$iphone_animation - 20} {
             display: none;
         }
@@ -609,7 +609,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i1 {
+    @-st-keyframes s3-i1 {
         #{$iphone_animation} {
             display: none;
         }
@@ -618,7 +618,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i2 {
+    @-st-keyframes s3-i2 {
         #{$iphone_animation + 10} {
             display: none;
         }
@@ -627,7 +627,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i3 {
+    @-st-keyframes s3-i3 {
         #{$iphone_animation + 20} {
             display: none;
         }
@@ -636,7 +636,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i4 {
+    @-st-keyframes s3-i4 {
         #{$iphone_animation + 30} {
             display: none;
         }
@@ -645,7 +645,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i5 {
+    @-st-keyframes s3-i5 {
         #{$iphone_animation + 40} {
             display: none;
         }
@@ -654,7 +654,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i6 {
+    @-st-keyframes s3-i6 {
         #{$iphone_animation + 50} {
             display: none;
         }
@@ -663,7 +663,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i7 {
+    @-st-keyframes s3-i7 {
         #{$iphone_animation + 60} {
             display: none;
         }
@@ -672,7 +672,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i8 {
+    @-st-keyframes s3-i8 {
         #{$iphone_animation + 70} {
             display: none;
         }
@@ -681,7 +681,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i9 {
+    @-st-keyframes s3-i9 {
         #{$iphone_animation + 80} {
             display: none;
         }
@@ -690,7 +690,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i10 {
+    @-st-keyframes s3-i10 {
         #{$iphone_animation + 110} {
             display: none;
         }
@@ -699,7 +699,7 @@
         }
     }
 
-    @-skrollr-keyframes s3-i11 {
+    @-st-keyframes s3-i11 {
         #{$iphone_animation + 120} {
             display: none;
         }
@@ -709,25 +709,25 @@
     }
 
     #appunti {
-        -skrollr-animation-name: appunti;
+        -st-animation-name: appunti;
         #ag1 {
-            -skrollr-animation-name: ag1;
+            -st-animation-name: ag1;
         }
         #ag2 {
-            -skrollr-animation-name: ag2;
+            -st-animation-name: ag2;
         }
         #ag3 {
-            -skrollr-animation-name: ag3;
+            -st-animation-name: ag3;
         }
         #ag4 {
-            -skrollr-animation-name: ag4;
+            -st-animation-name: ag4;
         }
         #ag5 {
-            -skrollr-animation-name: ag5;
+            -st-animation-name: ag5;
         }
     }
     $appunti_animation: 425 + $scene_03_begin;
-    @-skrollr-keyframes appunti {
+    @-st-keyframes appunti {
         #{$appunti_animation - 50} {
             transform#{"[swing]"}: translate(0, 510px);
         }
@@ -736,7 +736,7 @@
         }
     }
 
-    @-skrollr-keyframes ag1 {
+    @-st-keyframes ag1 {
         #{$appunti_animation} {
             opacity: 0;
         }
@@ -745,7 +745,7 @@
         }
     }
 
-    @-skrollr-keyframes ag2 {
+    @-st-keyframes ag2 {
         #{$appunti_animation + 20} {
             opacity: 0;
         }
@@ -754,7 +754,7 @@
         }
     }
 
-    @-skrollr-keyframes ag3 {
+    @-st-keyframes ag3 {
         #{$appunti_animation + 30} {
             opacity: 0;
         }
@@ -763,7 +763,7 @@
         }
     }
 
-    @-skrollr-keyframes ag4 {
+    @-st-keyframes ag4 {
         #{$appunti_animation + 40} {
             opacity: 0;
         }
@@ -772,7 +772,7 @@
         }
     }
 
-    @-skrollr-keyframes ag5 {
+    @-st-keyframes ag5 {
         #{$appunti_animation + 50} {
             opacity: 0;
         }
@@ -782,37 +782,37 @@
     }
 
     #diagramma1 {
-        -skrollr-animation-name: diagramma1;
+        -st-animation-name: diagramma1;
         #dg1 {
-            -skrollr-animation-name: dg1;
+            -st-animation-name: dg1;
         }
         #dg2 {
-            -skrollr-animation-name: dg2;
+            -st-animation-name: dg2;
         }
         #dg3 {
-            -skrollr-animation-name: dg3;
+            -st-animation-name: dg3;
         }
         #dg4 {
-            -skrollr-animation-name: dg4;
+            -st-animation-name: dg4;
         }
         #dg5 {
-            -skrollr-animation-name: dg5;
+            -st-animation-name: dg5;
         }
         #dg6 {
-            -skrollr-animation-name: dg6;
+            -st-animation-name: dg6;
         }
         #dg7 {
-            -skrollr-animation-name: dg7;
+            -st-animation-name: dg7;
         }
         #dg8 {
-            -skrollr-animation-name: dg8;
+            -st-animation-name: dg8;
         }
         #dg9 {
-            -skrollr-animation-name: dg9;
+            -st-animation-name: dg9;
         }
     }
     $diagramma1_animation: 570 + $scene_03_begin;
-    @-skrollr-keyframes diagramma1 {
+    @-st-keyframes diagramma1 {
         #{$diagramma1_animation - 50} {
             transform#{"[swing]"}: translate(0, 610px);
         }
@@ -821,7 +821,7 @@
         }
     }
 
-    @-skrollr-keyframes dg1 {
+    @-st-keyframes dg1 {
         #{$diagramma1_animation + 20} {
             opacity: 0;
         }
@@ -830,7 +830,7 @@
         }
     }
 
-    @-skrollr-keyframes dg2 {
+    @-st-keyframes dg2 {
         #{$diagramma1_animation + 30} {
             opacity: 0;
         }
@@ -839,7 +839,7 @@
         }
     }
 
-    @-skrollr-keyframes dg3 {
+    @-st-keyframes dg3 {
         #{$diagramma1_animation + 40} {
             opacity: 0;
         }
@@ -848,7 +848,7 @@
         }
     }
 
-    @-skrollr-keyframes dg4 {
+    @-st-keyframes dg4 {
         #{$diagramma1_animation + 50} {
             opacity: 0;
         }
@@ -857,7 +857,7 @@
         }
     }
 
-    @-skrollr-keyframes dg5 {
+    @-st-keyframes dg5 {
         #{$diagramma1_animation + 60} {
             opacity: 0;
         }
@@ -866,7 +866,7 @@
         }
     }
 
-    @-skrollr-keyframes dg6 {
+    @-st-keyframes dg6 {
         #{$diagramma1_animation + 70} {
             opacity: 0;
         }
@@ -875,7 +875,7 @@
         }
     }
 
-    @-skrollr-keyframes dg7 {
+    @-st-keyframes dg7 {
         #{$diagramma1_animation + 80} {
             opacity: 0;
         }
@@ -884,7 +884,7 @@
         }
     }
 
-    @-skrollr-keyframes dg8 {
+    @-st-keyframes dg8 {
         #{$diagramma1_animation + 90} {
             opacity: 0;
         }
@@ -893,7 +893,7 @@
         }
     }
 
-    @-skrollr-keyframes dg9 {
+    @-st-keyframes dg9 {
         #{$diagramma1_animation + 100} {
             opacity: 0;
         }

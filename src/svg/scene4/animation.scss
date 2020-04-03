@@ -7,9 +7,9 @@
         stroke-miterlimit: 4;
         stroke-dasharray: 6000;
         stroke-dashoffset: 0;
-        -skrollr-animation-name: wire4;
+        -st-animation-name: wire4;
     }
-    @-skrollr-keyframes wire4 {
+    @-st-keyframes wire4 {
         #{$start3 - 205} {
             stroke-dashoffset: 6000;
         }
@@ -19,10 +19,10 @@
     }
 
     #interested {
-        -skrollr-animation-name: interested;
+        -st-animation-name: interested;
     }
 
-    @-skrollr-keyframes interested {
+    @-st-keyframes interested {
         #{$start3 + 350} {
            opacity:0;
         }
@@ -32,9 +32,9 @@
     }
 
     #lalineag {
-        -skrollr-animation-name: lalineag;
+        -st-animation-name: lalineag;
     }
-    @-skrollr-keyframes lalineag {
+    @-st-keyframes lalineag {
         #{$start3 + 300} {
            opacity:0;
         }
@@ -44,9 +44,9 @@
     }
 
     #list {
-        -skrollr-animation-name: list;
+        -st-animation-name: list;
     }
-    @-skrollr-keyframes list {
+    @-st-keyframes list {
         #{$start3 + 100} {
             transform: translate(0px, 0px) scale(1);
         }
@@ -56,9 +56,9 @@
     }
 
     #listshadow {
-        -skrollr-animation-name: listshadow;
+        -st-animation-name: listshadow;
     }
-    @-skrollr-keyframes listshadow {
+    @-st-keyframes listshadow {
         #{$start3 + 100} {
             transform: translate(0px, 0px) scale(1);
             opacity: 1;
@@ -70,9 +70,9 @@
     }
 
     #list2 {
-        -skrollr-animation-name: list2;
+        -st-animation-name: list2;
     }
-    @-skrollr-keyframes list2 {
+    @-st-keyframes list2 {
         #{$start3 + 300} {
             transform: translate(0px, 0px) scale(1);
         }
@@ -82,9 +82,9 @@
     }
 
     #list2shadow {
-        -skrollr-animation-name: list2shadow;
+        -st-animation-name: list2shadow;
     }
-    @-skrollr-keyframes list2shadow {
+    @-st-keyframes list2shadow {
         #{$start3 + 300} {
             transform: translate(0px, 0px) scale(1);
             opacity: 1;
@@ -98,9 +98,9 @@
 
     #book1 {
         cursor: pointer;
-        -skrollr-animation-name: book1;
+        -st-animation-name: book1;
     }
-    @-skrollr-keyframes book1 {
+    @-st-keyframes book1 {
         #{$start3 - 50} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -114,9 +114,9 @@
 
     #book3 {
         cursor: pointer;
-        -skrollr-animation-name: book3;
+        -st-animation-name: book3;
     }
-    @-skrollr-keyframes book3 {
+    @-st-keyframes book3 {
         #{$start3 - 100} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -129,9 +129,9 @@
 
 
     #notebook1 {
-        -skrollr-animation-name: notebook1;
+        -st-animation-name: notebook1;
     }
-    @-skrollr-keyframes notebook1 {
+    @-st-keyframes notebook1 {
         #{$start3} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -144,9 +144,9 @@
 
     #book2 {
         cursor: pointer;
-        -skrollr-animation-name: book2;
+        -st-animation-name: book2;
     }
-    @-skrollr-keyframes book2 {
+    @-st-keyframes book2 {
         #{$start3 + 50} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -159,9 +159,9 @@
 
 
     #book4 {
-        -skrollr-animation-name: book4;
+        -st-animation-name: book4;
     }
-    @-skrollr-keyframes book4 {
+    @-st-keyframes book4 {
         #{$start3 + 100} {
             opacity: 0;
             transform: translate(-20px, -20px);
@@ -174,9 +174,9 @@
 
 
     #book5 {
-        -skrollr-animation-name: book5;
+        -st-animation-name: book5;
     }
-    @-skrollr-keyframes book5 {
+    @-st-keyframes book5 {
         #{$start3 + 250} {
             opacity: 0;
             transform: translate(-20px, -20px);

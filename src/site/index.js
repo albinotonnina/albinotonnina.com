@@ -7,7 +7,7 @@ import scene3 from "../svg/scene3/animation";
 import scene4 from "../svg/scene4/animation";
 import scene5 from "../svg/scene5/animation";
 import scene6 from "../svg/scene6/animation";
-import getScrollyTelly from "../libs";
+import getScrollyTelly from "../scrollytelly";
 import timing from "./timing";
 import "../styles/main.scss";
 import "../svg/animation.scss";

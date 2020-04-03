@@ -4,10 +4,10 @@ import reset from "./reset";
 import createThreshold from "./createThreshold";
 import render from "./render";
 
-const SKROLLR_CLASS = "skrollr";
-const NO_SKROLLR_CLASS = `no-${SKROLLR_CLASS}`;
+const SCROLLER_CLASS = "scrollyTelly";
+const NO_SCROLLER_CLASS = `no-${SCROLLER_CLASS}`;
 
-class Skrollr {
+class ScrollyTelly {
   constructor(options = {}) {
     this.listeners = {
       // Function to be called right before rendering.
@@ -22,7 +22,11 @@ class Skrollr {
 
     this.lastTop = 0;
 
-    updateClass(document.documentElement, [SKROLLR_CLASS], [NO_SKROLLR_CLASS]);
+    updateClass(
+      document.documentElement,
+      [SCROLLER_CLASS],
+      [NO_SCROLLER_CLASS]
+    );
 
     // Triggers parsing of elements and a first reflow.
     this.refresh();
@@ -64,14 +68,15 @@ class Skrollr {
   }
 
   destroy() {
-    updateClass(document.documentElement, [NO_SKROLLR_CLASS], [SKROLLR_CLASS]);
+    updateClass(
+      document.documentElement,
+      [NO_SCROLLER_CLASS],
+      [SCROLLER_CLASS]
+    );
 
-    let skrollableIndex = 0;
-    const skrollablesLength = this.scrollables.length;
-
-    for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
-      reset(this.scrollables, this.scrollables[skrollableIndex].element);
-    }
+    this.scrollables.forEach((scrollable) => {
+      reset(this.scrollables, scrollable.element);
+    });
 
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
@@ -85,4 +90,4 @@ class Skrollr {
   }
 }
 
-export default Skrollr;
+export default ScrollyTelly;

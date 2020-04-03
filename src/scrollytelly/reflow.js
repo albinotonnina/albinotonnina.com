@@ -10,11 +10,11 @@ const getScrollTop = () =>
   document.body.scrollTop ||
   0;
 
-const reflow = (skrollables) => {
+const reflow = (scrollables) => {
   // un-"force" the height to not mess with the calculations in updateDependentKeyFrames (#216).
   document.body.style.height = "";
 
-  const maxKeyFrame = updateDependentKeyFrames(skrollables);
+  const maxKeyFrame = updateDependentKeyFrames(scrollables);
 
   // "force" the height.
   document.body.style.height = `${

@@ -1,6 +1,6 @@
 import sceneSvg from "./scene.svg";
 import sceneHtml from "./scene.html";
-import * as utils from "../../scripts/utilities";
+import * as utils from "../../site/utilities";
 
 export default {
   iskey: 0,

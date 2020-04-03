@@ -1,24 +1,11 @@
-/*!
- * Plugin for skrollr.
- * This plugin makes hashlinks scroll nicely to their target position.
- *
- * Alexander Prinzhorn - https://github.com/Prinzhorn/skrollr
- *
- * Free to use under terms of MIT license
- *
- *
- * Attention, I modified this file. Albino.
- *
- */
 (function (document, window) {
-  module.exports = function (skrollr) {
+  module.exports = function (scrollyTelly) {
     const DEFAULT_DURATION = 500;
     const DEFAULT_EASING = "sqrt";
     const DEFAULT_SCALE = 1;
 
     const MENU_OFFSET_ATTR = "data-menu-offset";
 
-    // var skrollr = window.skrollr;
     const { history } = window;
     const supportsHistory = !!history.pushState;
 
@@ -86,7 +73,7 @@
       window.setTimeout(fn, 1);
     };
 
-    let _skrollrInstance;
+    let _scrollyTellyInstance;
 
     let _easing;
     let _duration;
@@ -95,13 +82,13 @@
     let _scale;
     let _scenes;
 
-    const init = function (skrollr) {
+    const init = function (scrollyTelly) {
       /*
-           Global menu function accessible through window.skrollr.menu.init.
+           Global menu function accessible through window.scrollyTelly.menu.init.
        */
-      skrollr.menu = {};
-      skrollr.menu.init = function (skrollrInstance, options) {
-        _skrollrInstance = skrollrInstance;
+      scrollyTelly.menu = {};
+      scrollyTelly.menu.init = function (scrollyTellyInstance, options) {
+        _scrollyTellyInstance = scrollyTellyInstance;
 
         options = options || {};
         _scenes = options.scenes || {};
@@ -120,10 +107,10 @@
         }
 
         // Use event bubbling and attach a single listener to the document.
-        // skrollr.addEvent(document, "click", handleClick);
+        // scrollyTelly.addEvent(document, "click", handleClick);
 
         if (supportsHistory) {
-          // skrollr.addEvent(
+          // scrollyTelly.addEvent(
           //   window,
           //   "popstate",
           //   function (e) {
@@ -140,7 +127,7 @@
         jumpStraightToHash();
       };
 
-      // Private reference to the initialized skrollr.
+      // Private reference to the initialized scrollyTelly.
 
       // In case the page was opened with a hash, prevent jumping to it.
       // http://stackoverflow.com/questions/3659072/jquery-disable-anchor-jump-when-loading-a-page
@@ -151,6 +138,6 @@
       });
     };
 
-    init(skrollr);
+    init(scrollyTelly);
   };
 })(document, window);

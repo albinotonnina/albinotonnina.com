@@ -17,7 +17,7 @@ const fillPropForFrame = ({ props }, propList) => {
  * If key frame 1 has property X and key frame 2 is missing X,
  * but key frame 3 has X again, then we need to assign X to key frame 2 too.
  *
- * @param sk A skrollable.
+ * @param sk A scrollable.
  */
 const fillProps = ({ keyFrames }) => {
   // Will collect the properties key frame by key frame

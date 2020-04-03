@@ -11,10 +11,10 @@
     overflow: hidden;
     display: none;
     pointer-events: none;
-    -skrollr-animation-name: a_scene6_content;
+    -st-animation-name: a_scene6_content;
   }
 
-  @-skrollr-keyframes a_scene6_content {
+  @-st-keyframes a_scene6_content {
 
     #{$start - 300} {
       display: block;
@@ -28,10 +28,10 @@
   }
 
   #skills_container {
-    -skrollr-animation-name: a_scene6_skillsContainer;
+    -st-animation-name: a_scene6_skillsContainer;
   }
 
-  @-skrollr-keyframes a_scene6_skillsContainer {
+  @-st-keyframes a_scene6_skillsContainer {
     #{$start + 1200} {
       opacity: 1;
       display: block;
@@ -83,10 +83,10 @@
   .photo1 {
     position: absolute;
     left: 0;
-    -skrollr-animation-name: a_scene6_photo1;
+    -st-animation-name: a_scene6_photo1;
   }
 
-  @-skrollr-keyframes a_scene6_photo1 {
+  @-st-keyframes a_scene6_photo1 {
     #{$photostart} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -99,10 +99,10 @@
   .photo2 {
     position: absolute;
     left: 3vh;
-    -skrollr-animation-name: a_scene6_photo2;
+    -st-animation-name: a_scene6_photo2;
   }
 
-  @-skrollr-keyframes a_scene6_photo2 {
+  @-st-keyframes a_scene6_photo2 {
     #{$photostart + 100} {
       transform: translate(-60vh, 0vh) rotate(-5deg);
     }
@@ -115,10 +115,10 @@
   .photo3 {
     position: absolute;
     left: 0vh;
-    -skrollr-animation-name: a_scene6_photo3;
+    -st-animation-name: a_scene6_photo3;
   }
 
-  @-skrollr-keyframes a_scene6_photo3 {
+  @-st-keyframes a_scene6_photo3 {
     #{$photostart + 200} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -131,10 +131,10 @@
   .photo4 {
     position: absolute;
     left: 4vh;
-    -skrollr-animation-name: a_scene6_photo4;
+    -st-animation-name: a_scene6_photo4;
   }
 
-  @-skrollr-keyframes a_scene6_photo4 {
+  @-st-keyframes a_scene6_photo4 {
     #{$photostart + 300} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -147,10 +147,10 @@
   .photo5 {
     position: absolute;
     left: 4vh;
-    -skrollr-animation-name: a_scene6_photo5;
+    -st-animation-name: a_scene6_photo5;
   }
 
-  @-skrollr-keyframes a_scene6_photo5 {
+  @-st-keyframes a_scene6_photo5 {
     #{$photostart + 400} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -163,10 +163,10 @@
   .photo6 {
     position: absolute;
     left: 4vh;
-    -skrollr-animation-name: a_scene6_photo6;
+    -st-animation-name: a_scene6_photo6;
   }
 
-  @-skrollr-keyframes a_scene6_photo6 {
+  @-st-keyframes a_scene6_photo6 {
     #{$photostart + 500} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -179,10 +179,10 @@
   .photo7 {
     position: absolute;
     left: 4vh;
-    -skrollr-animation-name: a_scene6_photo7;
+    -st-animation-name: a_scene6_photo7;
   }
 
-  @-skrollr-keyframes a_scene6_photo7 {
+  @-st-keyframes a_scene6_photo7 {
     #{$photostart + 600} {
       transform: translate(-60vh, 0vh) rotate(0deg);
     }
@@ -202,10 +202,10 @@
   }
 
   #sc6title {
-    -skrollr-animation-name: a_sc6_title;
+    -st-animation-name: a_sc6_title;
   }
 
-  @-skrollr-keyframes a_sc6_title {
+  @-st-keyframes a_sc6_title {
     #{$start - 200} {
       opacity: 0;
     }
@@ -232,10 +232,10 @@
     stroke-dasharray: 3000;
     stroke-dashoffset: 0;
     stroke-opacity: 0.7;
-    -skrollr-animation-name: graph1;
+    -st-animation-name: graph1;
   }
 
-  @-skrollr-keyframes graph1 {
+  @-st-keyframes graph1 {
 
     #{$start - 150} {
       stroke-dashoffset: 3000;
@@ -255,10 +255,10 @@
     stroke-dasharray: 3000;
     stroke-dashoffset: 0;
     stroke-opacity: 0.7;
-    -skrollr-animation-name: graph2;
+    -st-animation-name: graph2;
   }
 
-  @-skrollr-keyframes graph2 {
+  @-st-keyframes graph2 {
 
     #{$start - 50} {
       stroke-dashoffset: 3000;
@@ -271,10 +271,10 @@
   }
   #skills {
 
-    -skrollr-animation-name: a_skills;
+    -st-animation-name: a_skills;
   }
 
-  @-skrollr-keyframes a_skills {
+  @-st-keyframes a_skills {
 
 
     #{$start + 1140} {
@@ -296,10 +296,10 @@
   }
   #skillpath {
 
-    -skrollr-animation-name: a_skillpath;
+    -st-animation-name: a_skillpath;
   }
 
-  @-skrollr-keyframes a_skillpath {
+  @-st-keyframes a_skillpath {
 
     #{$start - 50} {
       opacity: 0;
@@ -313,10 +313,10 @@
 
   #skillnames {
 
-    -skrollr-animation-name: a_skillnames;
+    -st-animation-name: a_skillnames;
   }
 
-  @-skrollr-keyframes a_skillnames {
+  @-st-keyframes a_skillnames {
 
     #{$start } {
       opacity: 0;
@@ -330,10 +330,10 @@
 
   #invincible {
 
-    -skrollr-animation-name: a_invincible;
+    -st-animation-name: a_invincible;
   }
 
-  @-skrollr-keyframes a_invincible {
+  @-st-keyframes a_invincible {
 
     #{$start + 1080} {
       opacity: 0;
@@ -349,10 +349,10 @@
 
   #hellobye {
     opacity: 0;
-    -skrollr-animation-name: a_hellobye;
+    -st-animation-name: a_hellobye;
   }
 
-  @-skrollr-keyframes a_hellobye {
+  @-st-keyframes a_hellobye {
 
     #{$start + 1600} {
       opacity: 0;
@@ -366,10 +366,10 @@
 
   #endtitles {
 
-    -skrollr-animation-name: a_endtitles;
+    -st-animation-name: a_endtitles;
   }
 
-  @-skrollr-keyframes a_endtitles {
+  @-st-keyframes a_endtitles {
 
     #{$start + 1500} {
       transform: translate(0, 800px);
@@ -382,10 +382,10 @@
   }
 
   #bgright {
-    -skrollr-animation-name: a_bgright;
+    -st-animation-name: a_bgright;
   }
 
-  @-skrollr-keyframes a_bgright {
+  @-st-keyframes a_bgright {
 
     #{$start + 1450} {
       transform: translate(800px, 0);

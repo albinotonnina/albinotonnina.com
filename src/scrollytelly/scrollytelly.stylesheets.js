@@ -1,10 +1,10 @@
 /* global XMLHttpRequest */
 
-export default (skrollr) => {
+export default (scrollyTelly) => {
   let contents = [];
 
   // Finds the declaration of an animation block.
-  const rxAnimation = /@-skrollr-keyframes\s+([\w-]+)/g;
+  const rxAnimation = /@-st-keyframes\s+([\w-]+)/g;
 
   // Finds the block of keyframes inside an animation block.
   // http://regexpal.com/ saves your ass with stuff like this.
@@ -14,13 +14,13 @@ export default (skrollr) => {
   const rxSingleKeyframe = /([\w-]+)\s*\{([^}]+)\}/g;
 
   // Optional keyframe name prefix to work around SASS (>3.4) issues
-  const keyframeNameOptionalPrefix = "skrollr-";
+  const keyframeNameOptionalPrefix = "scrollyTelly-";
 
   // Finds usages of the animation.
-  const rxAnimationUsage = /-skrollr-animation-name\s*:\s*([\w-]+)/g;
+  const rxAnimationUsage = /-st-animation-name\s*:\s*([\w-]+)/g;
 
   // Finds usages of attribute setters.
-  // const rxAttributeSetter = /-skrollr-(anchor-target|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
+  // const rxAttributeSetter = /-st-(anchor-target|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
 
   // Finds animation declarations and puts them into the output map.
   const parseAnimationDeclarations = (input, output) => {
@@ -157,7 +157,7 @@ export default (skrollr) => {
 
     // Iterate over all stylesheets, embedded and remote.
     contents = Object.values(stylesheets)
-      .filter((sheet) => sheet.getAttribute("data-skrollr-stylesheet") !== null)
+      .filter((sheet) => sheet.getAttribute("data-st-stylesheet") !== null)
       .map((sheet) => fetchRemote(sheet.href));
 
     // We take the stylesheets in reverse order.
@@ -180,12 +180,12 @@ export default (skrollr) => {
   };
 
   const init = () => {
-    skrollr.stylesheets = {
+    scrollyTelly.stylesheets = {
       init: () => {
         kickstart(document.querySelectorAll("link, style"));
       },
     };
   };
 
-  init(skrollr);
+  init(scrollyTelly);
 };

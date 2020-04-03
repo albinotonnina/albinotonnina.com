@@ -32,9 +32,9 @@ nav {
     cursor: pointer;
   }
   #bar {
-    -skrollr-animation-name: menubar;
+    -st-animation-name: menubar;
   }
-  @-skrollr-keyframes menubar {
+  @-st-keyframes menubar {
     #{$scene_01_begin} {
       transform: scale(0, 1);
       fill: $color1-light;
@@ -102,10 +102,10 @@ nav {
   }
 
   #menu {
-    -skrollr-animation-name: menu;
+    -st-animation-name: menu;
 
   }
-  @-skrollr-keyframes menu {
+  @-st-keyframes menu {
     #{$scene_01_begin + 60} {
       transform: translate(0px, 200px);
     }
@@ -116,9 +116,9 @@ nav {
   }
 
   #barleft {
-    -skrollr-animation-name: barleft;
+    -st-animation-name: barleft;
   }
-  @-skrollr-keyframes barleft {
+  @-st-keyframes barleft {
     #{$scene_01_begin} {
       fill: $color1-light;
     }
@@ -165,9 +165,9 @@ nav {
   }
 
   #barcenter {
-    -skrollr-animation-name: barcenter;
+    -st-animation-name: barcenter;
   }
-  @-skrollr-keyframes barcenter {
+  @-st-keyframes barcenter {
     #{$scene_01_begin} {
       fill: $color1-dark;
     }
@@ -214,9 +214,9 @@ nav {
   }
 
   #barright {
-    -skrollr-animation-name: barright;
+    -st-animation-name: barright;
   }
-  @-skrollr-keyframes barright {
+  @-st-keyframes barright {
     #{$scene_01_begin} {
       fill: $color1-dark;
     }

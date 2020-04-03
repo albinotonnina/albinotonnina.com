@@ -4,8 +4,8 @@ import { debounce, throttle } from "throttle-debounce";
 import sceneSvg from "./scene.svg";
 import sceneHtml from "./scene.html";
 import keywordArray from "./keywords";
-// import * as utils from '../../scripts/utilities';
-import { createElementWithAttrs } from "../../scripts/utilities";
+
+import { createElementWithAttrs } from "../../site/utilities";
 
 export default {
   skillShape: {

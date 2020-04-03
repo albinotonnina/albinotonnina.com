@@ -21,7 +21,6 @@
     "animejs": "^3.1.0",
     "express": "^4.17.1",
     "knuth-shuffle": "^1.0.8",
-    
     "throttle-debounce": "^2.1.0"
   },
   "repository": {

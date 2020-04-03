@@ -1,5 +1,5 @@
-import { waitForWebfonts } from "./scripts/utilities";
-import Site from "./scripts/Site";
+import { waitForWebfonts } from "./site/utilities";
+import Site from "./site";
 
 const onLoad = () => {
   const site = new Site();

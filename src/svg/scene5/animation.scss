@@ -4,10 +4,10 @@ $start: $scene_05_begin;
 
 
 #videoPlayer {
-    -skrollr-animation-name: a_videoPlayer;
+    -st-animation-name: a_videoPlayer;
 }
 
-@-skrollr-keyframes a_videoPlayer {
+@-st-keyframes a_videoPlayer {
 
     #{$start + 1350} {
         opacity: 0;
@@ -38,10 +38,10 @@ $start: $scene_05_begin;
         stroke-miterlimit: 4;
         stroke-dasharray: 6000;
         stroke-dashoffset: 0;
-        -skrollr-animation-name: wire5;
+        -st-animation-name: wire5;
     }
 
-    @-skrollr-keyframes wire5 {
+    @-st-keyframes wire5 {
         #{$start - 385} {
             stroke-dashoffset: 6000;
         }
@@ -52,9 +52,9 @@ $start: $scene_05_begin;
 
 
     #bg {
-        -skrollr-animation-name: bg;
+        -st-animation-name: bg;
     }
-    @-skrollr-keyframes bg {
+    @-st-keyframes bg {
         #{$start} {
             opacity: 0;
         }
@@ -73,10 +73,10 @@ $start: $scene_05_begin;
     }
 
     #scene {
-        -skrollr-animation-name: scene4r;
+        -st-animation-name: scene4r;
 
     }
-    @-skrollr-keyframes scene4r {
+    @-st-keyframes scene4r {
         #{$start + 1150} {
             transform: rotate(0deg) translate(0px, 0px) scale(1);
         }
@@ -86,9 +86,9 @@ $start: $scene_05_begin;
     }
 
     #fg {
-        -skrollr-animation-name: fgg;
+        -st-animation-name: fgg;
     }
-    @-skrollr-keyframes fgg {
+    @-st-keyframes fgg {
         #{$start} {
             opacity: 0;
         }
@@ -110,16 +110,16 @@ $start: $scene_05_begin;
 
     #titles {
         #title1 {
-            -skrollr-animation-name: title1;
+            -st-animation-name: title1;
         }
         #title2 {
-            -skrollr-animation-name: title2;
+            -st-animation-name: title2;
         }
         #title3 {
-            -skrollr-animation-name: title3;
+            -st-animation-name: title3;
         }
     }
-    @-skrollr-keyframes title1 {
+    @-st-keyframes title1 {
         #{$start} {
             opacity: 0;
         }
@@ -134,7 +134,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes title2 {
+    @-st-keyframes title2 {
         #{$start} {
             opacity: 0;
         }
@@ -152,7 +152,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes title3 {
+    @-st-keyframes title3 {
         #{$start + 940} {
             opacity: 0;
         }
@@ -162,18 +162,18 @@ $start: $scene_05_begin;
     }
 
     #desks {
-        -skrollr-animation-name: desks;
+        -st-animation-name: desks;
         #employee {
-            -skrollr-animation-name: employee;
+            -st-animation-name: employee;
         }
         #entrepeneur {
-            -skrollr-animation-name: entrepeneur;
+            -st-animation-name: entrepeneur;
         }
         #freelance {
-            -skrollr-animation-name: freelance;
+            -st-animation-name: freelance;
         }
     }
-    @-skrollr-keyframes desks {
+    @-st-keyframes desks {
         #{$start + 400} {
             transform: translate(0px, 0px) scale(1);
         }
@@ -190,40 +190,40 @@ $start: $scene_05_begin;
 
     #clients {
         #luiss {
-            -skrollr-animation-name: luiss;
+            -st-animation-name: luiss;
         }
         #algida {
-            -skrollr-animation-name: algida;
+            -st-animation-name: algida;
         }
         #unilever {
-            -skrollr-animation-name: unilever;
+            -st-animation-name: unilever;
         }
         #alitalia {
-            -skrollr-animation-name: alitalia;
+            -st-animation-name: alitalia;
         }
         #enel {
-            -skrollr-animation-name: enel;
+            -st-animation-name: enel;
         }
         #equitalia {
-            -skrollr-animation-name: equitalia;
+            -st-animation-name: equitalia;
         }
         #infostrada {
-            -skrollr-animation-name: infostrada;
+            -st-animation-name: infostrada;
         }
         #nintendo {
-            -skrollr-animation-name: nintendo;
+            -st-animation-name: nintendo;
         }
         #peroni {
-            -skrollr-animation-name: peroni;
+            -st-animation-name: peroni;
         }
         #sapienza {
-            -skrollr-animation-name: sapienza;
+            -st-animation-name: sapienza;
         }
         #wind {
-            -skrollr-animation-name: wind;
+            -st-animation-name: wind;
         }
     }
-    @-skrollr-keyframes unilever {
+    @-st-keyframes unilever {
         #{$start + 100} {
             transform: translate(-3000px, -8000px) scale(16);
             opacity: 0;
@@ -234,7 +234,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes luiss {
+    @-st-keyframes luiss {
         #{$start + 140} {
             transform: translate(0px, 1000px);
             opacity: 0;
@@ -245,7 +245,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes algida {
+    @-st-keyframes algida {
         #{$start + 260} {
             transform: translate(-3000px, -8000px) scale(16);
             opacity: 0;
@@ -256,7 +256,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes alitalia {
+    @-st-keyframes alitalia {
         #{$start + 350} {
             transform: translate(-3000px, -8000px) scale(16);
             opacity: 0;
@@ -267,7 +267,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes enel {
+    @-st-keyframes enel {
         #{$start + 450} {
             transform: translate(-2600px, -8000px) scale(16);
             opacity: 0;
@@ -278,7 +278,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes equitalia {
+    @-st-keyframes equitalia {
         #{$start + 560} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -289,7 +289,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes infostrada {
+    @-st-keyframes infostrada {
         #{$start + 700} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -300,7 +300,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes nintendo {
+    @-st-keyframes nintendo {
         #{$start + 770} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -311,7 +311,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes peroni {
+    @-st-keyframes peroni {
         #{$start + 850} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -322,7 +322,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes sapienza {
+    @-st-keyframes sapienza {
         #{$start + 950} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -333,7 +333,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes wind {
+    @-st-keyframes wind {
         #{$start + 1050} {
             transform: translate(-4700px, -8000px) scale(16);
             opacity: 0;
@@ -345,10 +345,10 @@ $start: $scene_05_begin;
     }
 
     #mouse04 {
-        -skrollr-animation-name: mouse04;
+        -st-animation-name: mouse04;
     }
     $mousestart: $start - 200;
-    @-skrollr-keyframes mouse04 {
+    @-st-keyframes mouse04 {
         #{$mousestart} {
             transform: rotate(1deg);
         }
@@ -405,10 +405,10 @@ $start: $scene_05_begin;
 
 
    #mouse04-1 {
-        -skrollr-animation-name: mouse04-1;
+        -st-animation-name: mouse04-1;
     }
 
-    @-skrollr-keyframes mouse04-1 {
+    @-st-keyframes mouse04-1 {
         #{$mousestart} {
             transform: rotate(1deg);
         }
@@ -463,10 +463,10 @@ $start: $scene_05_begin;
     }
 
    #mouse04-2 {
-        -skrollr-animation-name: mouse04-2;
+        -st-animation-name: mouse04-2;
     }
 
-    @-skrollr-keyframes mouse04-2 {
+    @-st-keyframes mouse04-2 {
         #{$mousestart} {
             transform: rotate(1deg);
         }
@@ -521,7 +521,7 @@ $start: $scene_05_begin;
     }
 
 
-    @-skrollr-keyframes employee {
+    @-st-keyframes employee {
         #{$start + 400} {
             opacity: 0;
         }
@@ -536,7 +536,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes entrepeneur {
+    @-st-keyframes entrepeneur {
         #{$start + 900} {
             opacity: 0;
         }
@@ -545,7 +545,7 @@ $start: $scene_05_begin;
         }
     }
 
-    @-skrollr-keyframes freelance {
+    @-st-keyframes freelance {
         #{$start + 400} {
             opacity: 1;
         }
@@ -555,9 +555,9 @@ $start: $scene_05_begin;
     }
 
     #deskleft {
-        -skrollr-animation-name: deskleft;
+        -st-animation-name: deskleft;
     }
-    @-skrollr-keyframes deskleft {
+    @-st-keyframes deskleft {
         #{$start + 400} {
             opacity: 0;
             transform: translate(-500px, 0px);
@@ -577,9 +577,9 @@ $start: $scene_05_begin;
     }
 
     #deskright {
-        -skrollr-animation-name: deskright;
+        -st-animation-name: deskright;
     }
-    @-skrollr-keyframes deskright {
+    @-st-keyframes deskright {
         #{$start + 400} {
             opacity: 0;
             transform: translate(500px, 0px);

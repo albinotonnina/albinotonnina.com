@@ -36,9 +36,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene1 { -skrollr-animation-name: scene1; }
+#scene1 { -st-animation-name: scene1; }
 
-@-skrollr-keyframes scene1 {
+@-st-keyframes scene1 {
   #{$scene_01_begin} {
     top: 0%;
   }
@@ -54,9 +54,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene2 { -skrollr-animation-name: scene2; }
+#scene2 { -st-animation-name: scene2; }
 
-@-skrollr-keyframes scene2 {
+@-st-keyframes scene2 {
   #{$scene_02_begin - 500} {
     top: 100%;
   }
@@ -75,9 +75,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene3 { -skrollr-animation-name: scene3; }
+#scene3 { -st-animation-name: scene3; }
 
-@-skrollr-keyframes scene3 {
+@-st-keyframes scene3 {
   #{$scene_03_begin - 500} {
     top: 100%;
   }
@@ -99,9 +99,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene4 { -skrollr-animation-name: scene4; }
+#scene4 { -st-animation-name: scene4; }
 
-@-skrollr-keyframes scene4 {
+@-st-keyframes scene4 {
   #{$scene_04_begin - 500} {
     top: 100%;
   }
@@ -118,9 +118,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene5 { -skrollr-animation-name: scene5; }
+#scene5 { -st-animation-name: scene5; }
 
-@-skrollr-keyframes scene5 {
+@-st-keyframes scene5 {
 
   #{$scene_05_begin - 500} {
     top: 100%;
@@ -142,9 +142,9 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 
 
 
-#scene6 { -skrollr-animation-name: scene6; }
+#scene6 { -st-animation-name: scene6; }
 
-@-skrollr-keyframes scene6 {
+@-st-keyframes scene6 {
 
   #{$scene_06_begin - 500} {
     top: 100%;

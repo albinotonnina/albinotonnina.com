@@ -6,19 +6,19 @@ import fillProps from "./fillProps";
 // Find all data-attributes. data-[_constant]-[offset]-[anchor]-[anchor].
 const rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?$/;
 
-// The property which will be added to the DOM element to hold the ID of the skrollable.
-const SKROLLABLE_ID_DOM_PROPERTY = "___skrollable_id";
-const SKROLLABLE_CLASS = "skrollable";
+// The property which will be added to the DOM element to hold the ID of the scrollable.
+const SCROLLABLE_ID_DOM_PROPERTY = "___scrollable_id";
+const SCROLLABLE_CLASS = "scrollable";
 const rxCamelCase = /-([a-z0-9_])/g;
 const rxCamelCaseFn = (str, letter) => letter.toUpperCase();
 
 const scale = 1;
 
 const refresh = () => {
-  let skrollableIdCounter = 0;
-  // Ignore that some elements may already have a skrollable ID.
+  let scrollableIdCounter = 0;
+  // Ignore that some elements may already have a scrollable ID.
 
-  const skrollables = [];
+  const scrollables = [];
 
   const elements = document.getElementsByTagName("*");
 
@@ -53,13 +53,13 @@ const refresh = () => {
     // Does this element have key frames?
     if (keyFrames.length) {
       // Will hold the original style and class attributes before we controlled the element (see #80).
-      // It's an unknown element. Asign it a new skrollable id.
-      element[SKROLLABLE_ID_DOM_PROPERTY] = skrollableIdCounter++;
-      const id = element[SKROLLABLE_ID_DOM_PROPERTY];
+      // It's an unknown element. Asign it a new scrollable id.
+      element[SCROLLABLE_ID_DOM_PROPERTY] = scrollableIdCounter++;
+      const id = element[SCROLLABLE_ID_DOM_PROPERTY];
       const styleAttr = element.style.cssText;
       const classAttr = getClass(element);
 
-      skrollables[id] = {
+      scrollables[id] = {
         element,
         styleAttr,
         classAttr,
@@ -67,25 +67,25 @@ const refresh = () => {
         keyFrames,
       };
 
-      updateClass(element, [SKROLLABLE_CLASS], []);
+      updateClass(element, [SCROLLABLE_CLASS], []);
     }
   });
 
   // Reflow for the first time.
-  reflow(skrollables);
+  reflow(scrollables);
 
   // Now that we got all key frame numbers right, actually parse the properties.
   [...elements]
-    .map((element) => skrollables[element[SKROLLABLE_ID_DOM_PROPERTY]])
-    .filter((skrollable) => skrollable)
-    .forEach((skrollable) => {
+    .map((element) => scrollables[element[SCROLLABLE_ID_DOM_PROPERTY]])
+    .filter((scrollable) => scrollable)
+    .forEach((scrollable) => {
       // Parse the property string to objects
-      parseProps(skrollable);
+      parseProps(scrollable);
       // Fill key frames with missing properties from left and right
-      fillProps(skrollable);
+      fillProps(scrollable);
     });
 
-  return skrollables;
+  return scrollables;
 };
 
 export default refresh;

@@ -8,7 +8,7 @@ const rxPropEasing = /^(@?[a-z-]+)\[(\w+)\]$/;
 
 const rxPropValue = /\s*(@?[\w\-[\]]+)\s*:\s*(.+?)\s*(?:;|$)/gi;
 /**
- * Parses the properties for each key frame of the given skrollable.
+ * Parses the properties for each key frame of the given scrollable.
  */
 const parseProps = ({ keyFrames }) => {
   // Iterate over all key frames

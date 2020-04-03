@@ -3,11 +3,11 @@
  * That is "end" in "absolute" mode and all key frames in "relative" mode.
  * Also handles constants, because they may change on resize.
  */
-const updateDependentKeyFrames = (_skrollables) => {
+const updateDependentKeyFrames = (scrollables) => {
   let maxKeyFrame = 0;
 
-  _skrollables.forEach((skrollable) => {
-    skrollable.keyFrames.forEach((kf) => {
+  scrollables.forEach((scrollable) => {
+    scrollable.keyFrames.forEach((kf) => {
       kf.frame = kf.offset;
       maxKeyFrame = kf.frame;
     });
