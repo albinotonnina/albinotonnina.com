@@ -1,7 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 
-// import { addEvent } from "./eventHandling";
-
 import Skrollr from "./skrollrClass";
 
 const skrollrFunc = () => {

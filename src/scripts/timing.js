@@ -37,13 +37,13 @@ export default {
   get scenes() {
     let begin = 0;
 
-    for (let scene in sceneTimes) {
+    Object.keys(sceneTimes).forEach((scene) => {
       begin += sceneTimes[scene].offset;
       sceneTimes[scene].name = scene;
       sceneTimes[scene].begin = begin;
       sceneTimes[scene].end = begin + sceneTimes[scene].duration;
       begin += sceneTimes[scene].duration;
-    }
+    });
 
     return sceneTimes;
   },

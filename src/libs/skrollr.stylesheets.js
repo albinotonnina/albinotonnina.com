@@ -1,8 +1,7 @@
-/* global matchMedia, XMLHttpRequest, XDomainRequest */
+/* global XMLHttpRequest */
 
 export default (skrollr) => {
-  let content;
-  const contents = [];
+  let contents = [];
 
   // Finds the declaration of an animation block.
   const rxAnimation = /@-skrollr-keyframes\s+([\w-]+)/g;
@@ -21,7 +20,35 @@ export default (skrollr) => {
   const rxAnimationUsage = /-skrollr-animation-name\s*:\s*([\w-]+)/g;
 
   // Finds usages of attribute setters.
-  const rxAttributeSetter = /-skrollr-(anchor-target|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
+  // const rxAttributeSetter = /-skrollr-(anchor-target|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
+
+  // Finds animation declarations and puts them into the output map.
+  const parseAnimationDeclarations = (input, output) => {
+    rxAnimation.lastIndex = 0;
+
+    let animation;
+    let rawKeyframes;
+    let keyframe;
+    let curAnimation;
+
+    while ((animation = rxAnimation.exec(input)) !== null) {
+      // Grab the keyframes inside this animation.
+      rxKeyframes.lastIndex = rxAnimation.lastIndex;
+      rawKeyframes = rxKeyframes.exec(input);
+
+      // Grab the single keyframes with their CSS properties.
+      rxSingleKeyframe.lastIndex = 0;
+
+      // Save the animation in an object using it's name as key.
+      curAnimation = output[animation[1]] = {};
+
+      while ((keyframe = rxSingleKeyframe.exec(rawKeyframes[1])) !== null) {
+        // Put all keyframes inside the animation using the keyframe (like botttom-top, or 100) as key
+        // and the properties as value (just the raw string, newline stripped).
+        curAnimation[keyframe[1]] = keyframe[2].replace(/[\n\r\t]/g, "");
+      }
+    }
+  };
 
   // Extracts the selector of the given block by walking backwards to the start of the block.
   const extractSelector = (input, startIndex) => {
@@ -59,153 +86,79 @@ export default (skrollr) => {
     }
   };
 
-  // Finds usage of attribute setters and puts the selector and attribute data into the output array.
-  const parseAttributeSetters = (input, output) => {
-    let match;
-    let selector;
-
-    rxAttributeSetter.lastIndex = 0;
-
-    while ((match = rxAttributeSetter.exec(input)) !== null) {
-      // Extract the selector of the block we found the animation in.
-      selector = extractSelector(input, rxAttributeSetter.lastIndex);
-
-      // Associate this selector with the attribute name and value.
-      output.push([selector, match[1], match[2]]);
-    }
-  };
-
   // Applies the keyframes (as data-attributes) to the elements.
   const applyKeyframeAttributes = (animations, selectors) => {
-    let elements;
-    let keyframes;
-    let keyframeName;
-    let cleanKeyframeName;
-    let elementIndex;
-    let attributeName;
-    let attributeValue;
-    let curElement;
-
     for (
       let selectorIndex = 0;
       selectorIndex < selectors.length;
       selectorIndex++
     ) {
-      elements = document.querySelectorAll(selectors[selectorIndex][0]);
+      const elements = document.querySelectorAll(selectors[selectorIndex][0]);
 
-      if (!elements) {
-        continue;
-      }
+      if (elements) {
+        const keyframes = animations[selectors[selectorIndex][1]] || {};
+        Object.keys(keyframes).forEach((keyframeName) => {
+          let cleanKeyframeName;
+          let elementIndex;
+          let attributeName;
+          let attributeValue;
+          let curElement;
 
-      keyframes = animations[selectors[selectorIndex][1]];
-
-      for (keyframeName in keyframes) {
-        if (keyframeName.indexOf(keyframeNameOptionalPrefix) === 0) {
-          cleanKeyframeName = keyframeName.substring(
-            keyframeNameOptionalPrefix.length
-          );
-        } else {
-          cleanKeyframeName = keyframeName;
-        }
-
-        for (elementIndex = 0; elementIndex < elements.length; elementIndex++) {
-          curElement = elements[elementIndex];
-          attributeName = `data-${cleanKeyframeName}`;
-          attributeValue = keyframes[keyframeName];
-
-          // If the element already has this keyframe inline, give the inline one precedence by putting it on the right side.
-          // The inline one may actually be the result of the keyframes from another stylesheet.
-          // Since we reversed the order of the stylesheets, everything comes together correctly here.
-          if (curElement.hasAttribute(attributeName)) {
-            attributeValue += curElement.getAttribute(attributeName);
+          if (keyframeName.indexOf(keyframeNameOptionalPrefix) === 0) {
+            cleanKeyframeName = keyframeName.substring(
+              keyframeNameOptionalPrefix.length
+            );
+          } else {
+            cleanKeyframeName = keyframeName;
           }
 
-          curElement.setAttribute(attributeName, attributeValue);
-        }
+          for (
+            elementIndex = 0;
+            elementIndex < elements.length;
+            elementIndex++
+          ) {
+            curElement = elements[elementIndex];
+            attributeName = `data-${cleanKeyframeName}`;
+            attributeValue = keyframes[keyframeName];
+
+            // If the element already has this keyframe inline, give the inline one precedence by putting it on the right side.
+            // The inline one may actually be the result of the keyframes from another stylesheet.
+            // Since we reversed the order of the stylesheets, everything comes together correctly here.
+            if (curElement.hasAttribute(attributeName)) {
+              attributeValue += curElement.getAttribute(attributeName);
+            }
+
+            curElement.setAttribute(attributeName, attributeValue);
+          }
+        });
       }
     }
   };
 
   // Applies the keyframes (as data-attributes) to the elements.
-  const applyAttributeSetters = (selectors) => {
-    let curSelector;
-    let elements;
-    let attributeName;
-    let attributeValue;
-    let elementIndex;
-
-    for (
-      let selectorIndex = 0;
-      selectorIndex < selectors.length;
-      selectorIndex++
-    ) {
-      curSelector = selectors[selectorIndex];
-      elements = document.querySelectorAll(curSelector[0]);
-      attributeName = `data-${curSelector[1]}`;
-      attributeValue = curSelector[2];
-
-      if (!elements) {
-        continue;
-      }
-
-      for (elementIndex = 0; elementIndex < elements.length; elementIndex++) {
-        elements[elementIndex].setAttribute(attributeName, attributeValue);
-      }
-    }
-  };
+  const applyAttributeSetters = (selectors) =>
+    selectors.forEach(([querySelector, attributeName, attributeValue]) =>
+      document.querySelectorAll(querySelector).forEach((element) => {
+        element.setAttribute(`data-${attributeName}`, attributeValue);
+      })
+    );
 
   const fetchRemote = (url) => {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
-    /*
-     * Yes, these are SYNCHRONOUS requests.
-     * Simply because skrollr stylesheets should run while the page is loaded.
-     * Get over it.
-     */
-    try {
-      xhr.open("GET", url, false);
-      xhr.send(null);
-    } catch (e) {
-      // Fallback to XDomainRequest if available
-      if (window.XDomainRequest) {
-        xhr = new XDomainRequest();
-        xhr.open("GET", url, false);
-        xhr.send(null);
-      }
-    }
+    xhr.open("GET", url, false);
+    xhr.send(null);
 
     return xhr.responseText;
   };
 
-  // "main"
-  const kickstart = (stylesheets) => {
+  const kickstart = () => {
+    const stylesheets = document.querySelectorAll("link, style");
+
     // Iterate over all stylesheets, embedded and remote.
-    for (const sheet of stylesheets) {
-      if (sheet.tagName === "LINK") {
-        if (sheet.getAttribute("data-skrollr-stylesheet") === null) {
-          continue;
-        }
-
-        // Test media attribute if matchMedia available.
-        if (window.matchMedia) {
-          const media = sheet.getAttribute("media");
-
-          if (media && !matchMedia(media).matches) {
-            continue;
-          }
-        }
-
-        // Remote stylesheet, fetch it (synchrnonous).
-        content = fetchRemote(sheet.href);
-      } else {
-        // Embedded stylesheet, grab the node content.
-        content = sheet.textContent || sheet.innerText || sheet.innerHTML;
-      }
-
-      if (content) {
-        contents.push(content);
-      }
-    }
+    contents = Object.values(stylesheets)
+      .filter((sheet) => sheet.getAttribute("data-skrollr-stylesheet") !== null)
+      .map((sheet) => fetchRemote(sheet.href));
 
     // We take the stylesheets in reverse order.
     // This is needed to ensure correct order of stylesheets and inline styles.
@@ -216,51 +169,21 @@ export default (skrollr) => {
     const attributes = [];
 
     // Now parse all stylesheets.
-    for (let contentIndex = 0; contentIndex < contents.length; contentIndex++) {
-      content = contents[contentIndex];
-
+    contents.forEach((content) => {
       parseAnimationDeclarations(content, animations);
       parseAnimationUsage(content, selectors);
-      parseAttributeSetters(content, attributes);
-    }
+      // parseAttributeSetters(content, attributes);
+    });
 
     applyKeyframeAttributes(animations, selectors);
     applyAttributeSetters(attributes);
   };
 
-  // Finds animation declarations and puts them into the output map.
-  const parseAnimationDeclarations = (input, output) => {
-    rxAnimation.lastIndex = 0;
-
-    let animation;
-    let rawKeyframes;
-    let keyframe;
-    let curAnimation;
-
-    while ((animation = rxAnimation.exec(input)) !== null) {
-      // Grab the keyframes inside this animation.
-      rxKeyframes.lastIndex = rxAnimation.lastIndex;
-      rawKeyframes = rxKeyframes.exec(input);
-
-      // Grab the single keyframes with their CSS properties.
-      rxSingleKeyframe.lastIndex = 0;
-
-      // Save the animation in an object using it's name as key.
-      curAnimation = output[animation[1]] = {};
-
-      while ((keyframe = rxSingleKeyframe.exec(rawKeyframes[1])) !== null) {
-        // Put all keyframes inside the animation using the keyframe (like botttom-top, or 100) as key
-        // and the properties as value (just the raw string, newline stripped).
-        curAnimation[keyframe[1]] = keyframe[2].replace(/[\n\r\t]/g, "");
-      }
-    }
-  };
-
-  const init = (skrollr) => {
-    skrollr.stylesheets = {};
-
-    skrollr.stylesheets.init = () => {
-      kickstart(document.querySelectorAll("link, style"));
+  const init = () => {
+    skrollr.stylesheets = {
+      init: () => {
+        kickstart(document.querySelectorAll("link, style"));
+      },
     };
   };
 

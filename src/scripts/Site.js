@@ -7,12 +7,45 @@ import scene3 from "../svg/scene3/animation";
 import scene4 from "../svg/scene4/animation";
 import scene5 from "../svg/scene5/animation";
 import scene6 from "../svg/scene6/animation";
-import skrollrscripts from "../libs/skrollr.scripts";
+import getScrollyTelly from "../libs";
 import timing from "./timing";
 import "../styles/main.scss";
 import "../svg/animation.scss";
 
-const skrollr = skrollrscripts();
+const scrollyTelly = getScrollyTelly();
+
+const resizeScenes = () => {
+  const { innerWidth } = window;
+  const clientHeight = window.innerHeight;
+
+  [].forEach.call(document.querySelectorAll("[data-scene] svg"), (scene) => {
+    utils.setAttributes(scene, {
+      width: innerWidth,
+      height: clientHeight,
+    });
+  });
+
+  [].forEach.call(
+    document.querySelectorAll("[data-scene-placeholder]"),
+    (placeholder) => {
+      placeholder.style.height = `${clientHeight}px`;
+    }
+  );
+
+  utils.setAttributes(document.querySelector("#menu svg"), {
+    width: innerWidth,
+    height: (clientHeight * 60) / 768,
+  });
+
+  document.querySelector("#menu").style.width = `${innerWidth}px`;
+  document.querySelector("#menu").style.height = `${
+    (clientHeight * 60) / 768
+  }px`;
+};
+
+const hideLoader = () => {
+  document.querySelector("#loader").setAttribute("uiState", "hidden");
+};
 
 export default class {
   constructor() {
@@ -27,14 +60,14 @@ export default class {
 
     this.timing = timing.scenes;
 
-    this._initEvents();
-    this._addEventToReopenBtn();
-    this._buildDOMElements();
-    this._initScenes();
-    this._hideLoader();
+    this.initEvents();
+    this.addEventToReopenBtn();
+    this.buildDOMElements();
+    this.initScenes();
+    hideLoader();
   }
 
-  _addEventToReopenBtn() {
+  addEventToReopenBtn() {
     if (document.querySelector("#reopen")) {
       document.querySelector("#reopen").addEventListener("click", (ev) => {
         ev.preventDefault();
@@ -43,45 +76,12 @@ export default class {
     }
   }
 
-  _initEvents() {
-    window.onresize = debounce(100, false, this.initDivertissement.bind(this));
+  initEvents() {
+    window.onresize = debounce(100, false, this.start.bind(this));
     utils.onBeforePrint(this.destroy.bind(this));
   }
 
-  _hideLoader() {
-    document.querySelector("#loader").setAttribute("uiState", "hidden");
-  }
-
-  resizeScenes() {
-    const { innerWidth } = window;
-    const clientHeight = window.innerHeight;
-
-    [].forEach.call(document.querySelectorAll("[data-scene] svg"), (scene) => {
-      utils.setAttributes(scene, {
-        width: innerWidth,
-        height: clientHeight,
-      });
-    });
-
-    [].forEach.call(
-      document.querySelectorAll("[data-scene-placeholder]"),
-      (placeholder) => {
-        placeholder.style.height = `${clientHeight}px`;
-      }
-    );
-
-    utils.setAttributes(document.querySelector("#menu svg"), {
-      width: innerWidth,
-      height: (clientHeight * 60) / 768,
-    });
-
-    document.querySelector("#menu").style.width = `${innerWidth}px`;
-    document.querySelector("#menu").style.height = `${
-      (clientHeight * 60) / 768
-    }px`;
-  }
-
-  _buildDOMElements() {
+  buildDOMElements() {
     this.siteRoot = utils.createElementWithAttrs("figure", { role: "site" });
     this.placeholdersRoot = utils.createElementWithAttrs("figure", {
       role: "placeholder",
@@ -89,7 +89,8 @@ export default class {
 
     const nav = utils.createElementWithAttrs("nav", { id: "menu" });
     this.siteRoot.appendChild(nav);
-    for (const key in this.timing) {
+
+    Object.keys(this.timing).forEach((key) => {
       this.siteRoot.appendChild(
         utils.createElementWithAttrs("div", {
           "data-scene": key,
@@ -106,54 +107,50 @@ export default class {
 
       document.body.appendChild(fff);
       document.body.appendChild(ggg);
-    }
+    });
 
     document.body.appendChild(this.siteRoot);
   }
 
-  _initScenes() {
-    for (const name in this.scenes) {
-      this.scenes[name].init(this);
-    }
+  initScenes() {
+    Object.values(this.scenes).forEach((scene) => {
+      scene.init(this);
+    });
 
     menu.init(this);
   }
 
-  initDivertissement() {
+  start() {
     if (utils.shouldFallbackToBoringCV()) {
       this.destroy();
     } else {
-      this.resizeScenes();
+      resizeScenes();
       this.show();
     }
   }
 
-  getSkrollrConfiguration() {
-    return {
-      render: (data) => {
-        for (const name in this.scenes) {
-          if (typeof this.scenes[name].render === "function") {
-            this.scenes[name].render(data);
-          }
-        }
-      },
-      beforerender: (data) => {
-        for (const name in this.scenes) {
-          if (typeof this.scenes[name].beforerender === "function") {
-            this.scenes[name].beforerender(data);
-          }
-        }
-      },
-    };
-  }
+  initScrollyTelly() {
+    if (!scrollyTelly.get()) {
+      this.scrollyTelly = scrollyTelly.init({
+        render: (data) => {
+          Object.values(this.scenes).forEach((scene) => {
+            if (typeof scene.render === "function") {
+              scene.render(data);
+            }
+          });
+        },
+        beforerender: (data) => {
+          Object.values(this.scenes).forEach((scene) => {
+            if (typeof scene.beforerender === "function") {
+              scene.beforerender(data);
+            }
+          });
+        },
+      });
 
-  initSkrollr() {
-    if (!skrollr.get()) {
-      this.skrollr = skrollr.init(this.getSkrollrConfiguration());
+      scrollyTelly.stylesheets.init();
 
-      skrollr.stylesheets.init();
-
-      skrollr.menu.init(this.skrollr, {
+      scrollyTelly.menu.init(this.scrollyTelly, {
         animate: true,
         easing: "swing",
         scenes: this.timing,
@@ -164,14 +161,14 @@ export default class {
       });
     }
 
-    this.skrollr.refresh();
+    this.scrollyTelly.refresh();
   }
 
   show() {
     document.body.setAttribute("data-display", "divertissement");
     document.querySelector("#vignette").setAttribute("uiState", "show");
     this.siteRoot.setAttribute("uiState", "show");
-    this.initSkrollr();
+    this.initScrollyTelly();
   }
 
   destroy() {
@@ -179,8 +176,8 @@ export default class {
     document.body.removeAttribute("data-display");
     document.querySelector("#vignette").setAttribute("uiState", "hidden");
     this.siteRoot.setAttribute("uiState", "hidden");
-    if (skrollr.get()) {
-      this.skrollr.destroy();
+    if (scrollyTelly.get()) {
+      this.scrollyTelly.destroy();
       window.scroll(0, 0);
     }
   }

@@ -1,4 +1,3 @@
-import { removeAllEvents } from "./eventHandling";
 import updateClass from "./updateClass";
 import refresh from "./refresh";
 import reset from "./reset";
@@ -65,8 +64,6 @@ class Skrollr {
   }
 
   destroy() {
-    removeAllEvents();
-
     updateClass(document.documentElement, [NO_SKROLLR_CLASS], [SKROLLR_CLASS]);
 
     let skrollableIndex = 0;
