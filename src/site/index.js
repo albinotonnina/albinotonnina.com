@@ -1,16 +1,16 @@
 import { debounce } from "throttle-debounce";
 import * as utils from "./utilities";
-import menu from "../svg/menu/animation";
-import scene1 from "../svg/scene1/animation";
-import scene2 from "../svg/scene2/animation";
-import scene3 from "../svg/scene3/animation";
-import scene4 from "../svg/scene4/animation";
-import scene5 from "../svg/scene5/animation";
-import scene6 from "../svg/scene6/animation";
+import menu from "../scenes/menu/animation";
+import scene1 from "../scenes/scene1/animation";
+import scene2 from "../scenes/scene2/animation";
+import scene3 from "../scenes/scene3/animation";
+import scene4 from "../scenes/scene4/animation";
+import scene5 from "../scenes/scene5/animation";
+import scene6 from "../scenes/scene6/animation";
 import getScrollyTelly from "../scrollytelly";
 import timing from "./timing";
 import "../styles/main.scss";
-import "../svg/animation.scss";
+import "../scenes/animation.scss";
 
 const scrollyTelly = getScrollyTelly();
 
