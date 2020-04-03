@@ -25,12 +25,6 @@ export default class {
       scene6,
     };
 
-    this.defaults = {
-      mobileDeceleration: 0.001,
-      smoothScrollingDuration: 200,
-      smoothScrolling: true,
-    };
-
     this.timing = timing.scenes;
 
     this._initEvents();
@@ -106,8 +100,12 @@ export default class {
       const fff = utils.createElementWithAttrs("div", {
         "data-scene-placeholder": true,
       });
+      const ggg = utils.createElementWithAttrs("div", {
+        "data-scene-placeholder": true,
+      });
 
       document.body.appendChild(fff);
+      document.body.appendChild(ggg);
     }
 
     document.body.appendChild(this.siteRoot);
@@ -151,9 +149,7 @@ export default class {
 
   initSkrollr() {
     if (!skrollr.get()) {
-      this.skrollr = skrollr.init(
-        Object.assign(this.defaults, this.getSkrollrConfiguration())
-      );
+      this.skrollr = skrollr.init(this.getSkrollrConfiguration());
 
       skrollr.stylesheets.init();
 

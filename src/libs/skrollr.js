@@ -136,62 +136,11 @@ const skrollrFunc = (window, document) => {
     /**
      * (Re)parses some or all elements.
      */
-    refresh(elements) {
-      _skrollables = refresh(
-        elements,
-        _skrollables,
-        _instance,
-        documentElement,
-        _maxKeyFrame,
-        _forceRender
-      );
+    refresh() {
+      _skrollables = refresh(_instance, documentElement, _maxKeyFrame);
     }
 
-    /**
-     * Animates scroll top to new position.
-     */
-    animateTo(top, options = {}) {
-      const now = _now();
-      const scrollTop = this.getScrollTop();
-
-      // Setting this to a new value will automatically cause the current animation to stop, if any.
-      _scrollAnimation = {
-        startTop: scrollTop,
-        topDiff: top - scrollTop,
-        targetTop: top,
-        duration: options.duration || DEFAULT_DURATION,
-        startTime: now,
-        endTime: now + (options.duration || DEFAULT_DURATION),
-        easing: easings[options.easing || DEFAULT_EASING],
-        done: options.done,
-      };
-
-      // Don't queue the animation if there's nothing to animate.
-      if (!_scrollAnimation.topDiff) {
-        if (_scrollAnimation.done) {
-          _scrollAnimation.done.call(this, false);
-        }
-
-        _scrollAnimation = undefined;
-      }
-
-      return this;
-    }
-
-    /**
-     * Stops animateTo animation.
-     */
-    stopAnimateTo() {
-      if (_scrollAnimation && _scrollAnimation.done) {
-        _scrollAnimation.done.call(this, true);
-      }
-
-      _scrollAnimation = undefined;
-    }
-
-    setScrollTop(top, force) {
-      _forceRender = force === true;
-
+    setScrollTop(top) {
       window.scrollTo(0, top);
 
       return this;
@@ -207,20 +156,7 @@ const skrollrFunc = (window, document) => {
       return _maxKeyFrame;
     }
 
-    on(name, fn) {
-      _listeners[name] = fn;
-
-      return this;
-    }
-
-    off(name) {
-      delete _listeners[name];
-
-      return this;
-    }
-
     destroy() {
-      window.cancelAnimationFrame(_animFrame);
       removeAllEvents();
 
       updateClass(

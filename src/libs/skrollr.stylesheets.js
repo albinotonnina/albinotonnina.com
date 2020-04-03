@@ -21,7 +21,7 @@ export default (skrollr) => {
   const rxAnimationUsage = /-skrollr-animation-name\s*:\s*([\w-]+)/g;
 
   // Finds usages of attribute setters.
-  const rxAttributeSetter = /-skrollr-(anchor-target|smooth-scrolling|emit-events|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
+  const rxAttributeSetter = /-skrollr-(anchor-target|menu-offset)\s*:\s*['"]([^'"]+)['"]/g;
 
   // Extracts the selector of the given block by walking backwards to the start of the block.
   const extractSelector = (input, startIndex) => {

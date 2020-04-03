@@ -127,10 +127,7 @@
             */
       // Now finally scroll there.
       if (_animate && !fake) {
-        _skrollrInstance.animateTo(targetTop, {
-          duration: _duration(_skrollrInstance.getScrollTop(), targetTop),
-          easing: _easing,
-        });
+        alert("scroll");
       } else {
         defer(function () {
           _skrollrInstance.setScrollTop(targetTop);

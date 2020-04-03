@@ -70,10 +70,4 @@ const removeAllEvents = () => {
   _registeredEvents = [];
 };
 
-const emitEvent = (element, name, direction) => {
-  if (_listeners.keyframe) {
-    _listeners.keyframe.call(_instance, element, name, direction);
-  }
-};
-
-export { addEvent, removeEvent, removeAllEvents, emitEvent };
+export { addEvent, removeEvent, removeAllEvents };

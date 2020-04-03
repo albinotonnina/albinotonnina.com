@@ -1,4 +1,3 @@
-import { emitEvent } from "./eventHandling";
 import calcInterpolation from "./calcInterpolation";
 import updateClass from "./updateClass";
 
@@ -6,8 +5,6 @@ const SKROLLABLE_CLASS = "skrollable";
 const SKROLLABLE_BEFORE_CLASS = `${SKROLLABLE_CLASS}-before`;
 const SKROLLABLE_BETWEEN_CLASS = `${SKROLLABLE_CLASS}-between`;
 const SKROLLABLE_AFTER_CLASS = `${SKROLLABLE_CLASS}-after`;
-
-const hasProp = Object.prototype.hasOwnProperty;
 
 // Used to replace occurences of {?} with a number.
 const rxInterpolateString = /\{\?\}/g;
@@ -25,35 +22,18 @@ const interpolateString = (val) => {
 
 /**
  * Calculates and sets the style properties for the element at the given frame.
- * @param fakeFrame The frame to render at when smooth scrolling is enabled.
- * @param actualFrame The actual frame we are at.
+ * @param fakeFrame The frame to render at
  */
-const calcSteps = (
-  _instance,
-  fakeFrame,
-  actualFrame,
-  _skrollables,
-  _direction
-) => {
-  // Iterate over all skrollables.
-  let skrollableIndex = 0;
-  const skrollablesLength = _skrollables.length;
-
-  for (; skrollableIndex < skrollablesLength; skrollableIndex++) {
-    const skrollable = _skrollables[skrollableIndex];
+const calcSteps = (_instance, fakeFrame, _skrollables, _direction) => {
+  _skrollables.forEach((skrollable) => {
     const { element } = skrollable;
-    let frame = skrollable.smoothScrolling ? fakeFrame : actualFrame;
+    let frame = fakeFrame;
     const frames = skrollable.keyFrames;
-    const framesLength = frames.length;
     const firstFrame = frames[0];
     const lastFrame = frames[frames.length - 1];
     const beforeFirst = frame < firstFrame.frame;
     const afterLast = frame > lastFrame.frame;
     const firstOrLastFrame = beforeFirst ? firstFrame : lastFrame;
-    const { emitEvents } = skrollable;
-    const { lastFrameIndex } = skrollable;
-    let key;
-    let value;
 
     // If we are before/after the first/last frame, set the styles according to the given edge strategy.
     if (beforeFirst || afterLast) {
@@ -63,7 +43,7 @@ const calcSteps = (
         (beforeFirst && skrollable.edge === -1) ||
         (afterLast && skrollable.edge === 1)
       ) {
-        continue;
+        return;
       }
 
       // Add the skrollr-before or -after class.
@@ -73,24 +53,12 @@ const calcSteps = (
           [SKROLLABLE_BEFORE_CLASS],
           [SKROLLABLE_AFTER_CLASS, SKROLLABLE_BETWEEN_CLASS]
         );
-
-        // This handles the special case where we exit the first keyframe.
-        if (emitEvents && lastFrameIndex > -1) {
-          emitEvent(element, firstFrame.eventType, _direction);
-          skrollable.lastFrameIndex = -1;
-        }
       } else {
         updateClass(
           element,
           [SKROLLABLE_AFTER_CLASS],
           [SKROLLABLE_BEFORE_CLASS, SKROLLABLE_BETWEEN_CLASS]
         );
-
-        // This handles the special case where we exit the last keyframe.
-        if (emitEvents && lastFrameIndex < framesLength) {
-          emitEvent(element, lastFrame.eventType, _direction);
-          skrollable.lastFrameIndex = framesLength;
-        }
       }
 
       // Remember that we handled the edge case (before/after the first/last keyframe).
@@ -110,55 +78,38 @@ const calcSteps = (
     }
 
     // Find out between which two key frames we are right now.
-    let keyFrameIndex = 0;
+    // let keyFrameIndex = 0;
 
-    for (; keyFrameIndex < framesLength - 1; keyFrameIndex++) {
+    frames.forEach((item, keyFrameIndex) => {
       if (
         frame >= frames[keyFrameIndex].frame &&
+        frames[keyFrameIndex + 1] &&
         frame <= frames[keyFrameIndex + 1].frame
       ) {
+        // let key;
+        let value;
         const left = frames[keyFrameIndex];
         const right = frames[keyFrameIndex + 1];
 
-        for (key in left.props) {
-          if (hasProp.call(left.props, key)) {
-            let progress = (frame - left.frame) / (right.frame - left.frame);
+        Object.keys(left.props).forEach((key) => {
+          let progress = (frame - left.frame) / (right.frame - left.frame);
 
-            // Transform the current progress using the given easing function.
-            progress = left.props[key].easing(progress);
+          // Transform the current progress using the given easing function.
+          progress = left.props[key].easing(progress);
 
-            // Interpolate between the two values
-            value = calcInterpolation(
-              left.props[key].value,
-              right.props[key].value,
-              progress
-            );
+          // Interpolate between the two values
+          value = calcInterpolation(
+            left.props[key].value,
+            right.props[key].value,
+            progress
+          );
 
-            value = interpolateString(value);
-            _instance.setStyle(element, key, value);
-          }
-        }
-
-        // Are events enabled on this element?
-        // This code handles the usual cases of scrolling through different keyframes.
-        // The special cases of before first and after last keyframe are handled above.
-        if (emitEvents) {
-          // Did we pass a new keyframe?
-          if (lastFrameIndex !== keyFrameIndex) {
-            if (_direction === "down") {
-              emitEvent(element, left.eventType, _direction);
-            } else {
-              emitEvent(element, right.eventType, _direction);
-            }
-
-            skrollable.lastFrameIndex = keyFrameIndex;
-          }
-        }
-
-        break;
+          value = interpolateString(value);
+          _instance.setStyle(element, key, value);
+        });
       }
-    }
-  }
+    });
+  });
 };
 
 export default calcSteps;
