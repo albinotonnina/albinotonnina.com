@@ -10,5 +10,9 @@
   "extends": [
     "airbnb-base",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "globals":{
+    "window": true,
+    "document": true
+  }
 }

@@ -154,6 +154,7 @@ export default class {
       this.skrollr = skrollr.init(
         Object.assign(this.defaults, this.getSkrollrConfiguration())
       );
+
       skrollr.stylesheets.init();
 
       skrollr.menu.init(this.skrollr, {
