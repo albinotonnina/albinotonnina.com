@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-plusplus": "off",
+    "no-param-reassign":[
+      "error",{
+        "props": false 
+      }
+    ]
+  },
+  "globals": {
+    "window": true,
+    "document": true
+  }
+}

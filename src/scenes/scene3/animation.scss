@@ -1,0 +1,974 @@
+#scene3 {
+  .svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  background-color: #44c650;
+  $start: $scene_03_begin - 370;
+
+  #wire3 {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 0;
+    -st-animation-name: wire3;
+  }
+
+  @-st-keyframes wire3 {
+    #{$start + 195} {
+      stroke-dashoffset: 6000;
+    }
+    #{$start + 2120} {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  #title {
+    -st-animation-name: s2-title;
+  }
+
+  @-st-keyframes s2-title {
+    #{$start + 240} {
+      opacity: 0;
+      transform#{"[swing]"}: translate(0px, 0px);
+    }
+    #{$start + 270} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0px, 20px);
+    }
+  }
+
+  #linecover2 {
+    -st-animation-name: wheel2;
+    opacity: 0;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+
+  #tblock1 {
+    -st-animation-name: tblock1;
+  }
+
+  @-st-keyframes tblock1 {
+    #{$start + 540} {
+      opacity: 0;
+      transform#{"[swing]"}: translate(-30px, 0);
+    }
+    #{$start + 560} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0, 0);
+    }
+  }
+
+  #tblock2 {
+    -st-animation-name: tblock2;
+  }
+
+  @-st-keyframes tblock2 {
+    #{$start + 740} {
+      opacity: 0;
+      transform#{"[swing]"}: translate(-30px, 0);
+    }
+    #{$start + 760} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0, 0);
+    }
+  }
+
+  #tblock3 {
+    -st-animation-name: tblock3;
+  }
+
+  @-st-keyframes tblock3 {
+    #{$start + 800} {
+      opacity: 0;
+      transform#{"[swing]"}: translate(-20px, 0);
+    }
+    #{$start + 820} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0, 0);
+    }
+  }
+
+  #imac {
+    -st-animation-name: imac;
+
+    #grid rect {
+      -ms-transform-origin: 100% 100%;
+      -webkit-transform-origin: 100% 100%;
+      -moz-transform-origin: 100% 100%;
+      transform-origin: 100% 100%;
+    }
+
+    #gridbg {
+      -ms-transform-origin: 50% 100%;
+      -webkit-transform-origin: 50% 100%;
+      -moz-transform-origin: 50% 100%;
+      transform-origin: 50% 100%;
+      -st-animation-name: gridbg;
+    }
+
+    #grid1 {
+      -st-animation-name: grid1;
+    }
+
+    #grid2 {
+      -st-animation-name: grid2;
+    }
+
+    #grid3 {
+      -st-animation-name: grid3;
+    }
+
+    #grid4 {
+      -st-animation-name: grid4;
+    }
+
+    #grid5 {
+      -st-animation-name: grid5;
+    }
+
+    #grid6 {
+      -st-animation-name: grid6;
+    }
+
+    #grid7 {
+      -st-animation-name: grid7;
+    }
+
+    #grid8 {
+      -st-animation-name: grid8;
+    }
+
+    #grid9 {
+      -st-animation-name: grid9;
+    }
+
+    #grid10 {
+      -st-animation-name: grid10;
+    }
+
+    #grid11 {
+      -st-animation-name: grid11;
+    }
+
+    #b1 {
+      -st-animation-name: b1;
+    }
+
+    #b2 {
+      -st-animation-name: b2;
+    }
+
+    #b3 {
+      -st-animation-name: b3;
+    }
+
+    #b4 {
+      -st-animation-name: b4;
+    }
+
+    #bg1 {
+      -st-animation-name: s1-bg1;
+    }
+
+    #bg2 {
+      -st-animation-name: s1-bg2;
+    }
+
+    #f1 {
+      -st-animation-name: s1-f1;
+    }
+
+    #f8 {
+      -st-animation-name: s1-f8;
+    }
+
+    #f13 {
+      -st-animation-name: s1-f13;
+    }
+
+    #f18 {
+      -st-animation-name: s1-f18;
+    }
+  }
+  $imac_animation: $scene_03_begin + 30;
+
+  @-st-keyframes imac {}
+
+  @-st-keyframes gridbg {
+    #{$imac_animation + 120} {
+      transform: scale(1, 0);
+      opacity: 0;
+    }
+    #{$imac_animation + 150} {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes grid1 {
+    #{$imac_animation + 10} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 30} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid2 {
+    #{$imac_animation + 20} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 40} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid3 {
+    #{$imac_animation + 30} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 50} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid4 {
+    #{$imac_animation + 40} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 60} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid5 {
+    #{$imac_animation + 50} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 70} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid6 {
+    #{$imac_animation + 60} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 80} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid7 {
+    #{$imac_animation + 70} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 90} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid8 {
+    #{$imac_animation + 80} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 100} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid9 {
+    #{$imac_animation + 90} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 110} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid10 {
+    #{$imac_animation + 100} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 120} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes grid11 {
+    #{$imac_animation + 110} {
+      transform: scale(1, 0);
+    }
+    #{$imac_animation + 130} {
+      transform: scale(1, 1);
+    }
+  }
+
+  @-st-keyframes s1-f18 {
+    #{$imac_animation + 140} {
+      display: none;
+    }
+    #{$imac_animation + 160} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes b4 {
+    #{$imac_animation + 150} {
+      display: none;
+    }
+    #{$imac_animation + 170} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s1-f13 {
+    #{$imac_animation + 160} {
+      display: none;
+    }
+    #{$imac_animation + 180} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes b3 {
+    #{$imac_animation + 170} {
+      display: none;
+    }
+    #{$imac_animation + 190} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s1-f8 {
+    #{$imac_animation + 180} {
+      display: none;
+    }
+    #{$imac_animation + 200} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes b2 {
+    #{$imac_animation + 190} {
+      display: none;
+    }
+    #{$imac_animation + 210} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes b1 {
+    #{$imac_animation + 200} {
+      display: none;
+    }
+    #{$imac_animation + 220} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s1-f1 {
+    #{$imac_animation + 210} {
+      display: none;
+    }
+    #{$imac_animation + 230} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s1-bg2 {
+    #{$imac_animation + 220} {
+      display: none;
+    }
+    #{$imac_animation + 240} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s1-bg1 {
+    #{$imac_animation + 250} {
+      opacity: 0;
+    }
+    #{$imac_animation + 270} {
+      opacity: 1;
+    }
+  }
+
+  #ipad {
+    -st-animation-name: ipad;
+
+    #s2 {
+      #s2-bg1 {
+        -st-animation-name: s2-bg1;
+      }
+
+      #g1 {
+        -st-animation-name: s2-g1;
+      }
+
+      #g2g {
+        -st-animation-name: s2-g2g;
+      }
+
+      #g6g {
+        -st-animation-name: s2-g6g;
+      }
+
+      #g10 {
+        -st-animation-name: s2-g10;
+      }
+
+      #g11g {
+        -st-animation-name: s2-g11g;
+      }
+
+      #g15 {
+        -st-animation-name: s2-g15;
+      }
+
+      #g16 {
+        -st-animation-name: s2-g16;
+      }
+
+      #g17 {
+        -st-animation-name: s2-g17;
+      }
+
+      #g18 {
+        -st-animation-name: s2-g18;
+      }
+
+      #g19 {
+        -st-animation-name: s2-g19;
+      }
+
+      #g20 {
+        -st-animation-name: s2-g20;
+      }
+
+      #g21 {
+        -st-animation-name: s2-g21;
+      }
+    }
+  }
+  $ipad_animation: $scene_03_begin + 400;
+
+  @-st-keyframes ipad {
+    #{$ipad_animation - 30} {
+      opacity: 0;
+      transform#{"[swing]"}: translate(10px, 0);
+    }
+    #{$ipad_animation} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0px, 0);
+    }
+  }
+
+  @-st-keyframes s2-bg1 {
+    #{$ipad_animation} {
+      display: none;
+    }
+    #{$ipad_animation + 20} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g1 {
+    #{$ipad_animation + 80} {
+      display: none;
+    }
+    #{$ipad_animation + 100} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g2g {
+    #{$ipad_animation + 90} {
+      display: none;
+    }
+    #{$ipad_animation + 110} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g6g {
+    #{$ipad_animation + 100} {
+      display: none;
+    }
+    #{$ipad_animation + 120} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g10 {
+    #{$ipad_animation + 110} {
+      display: none;
+    }
+    #{$ipad_animation + 130} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g11g {
+    #{$ipad_animation + 120} {
+      display: none;
+    }
+    #{$ipad_animation + 140} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g15 {
+    #{$ipad_animation + 130} {
+      display: none;
+    }
+    #{$ipad_animation + 150} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g16 {
+    #{$ipad_animation + 140} {
+      display: none;
+    }
+    #{$ipad_animation + 160} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g17 {
+    #{$ipad_animation + 150} {
+      display: none;
+    }
+    #{$ipad_animation + 170} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g18 {
+    #{$ipad_animation + 160} {
+      display: none;
+    }
+    #{$ipad_animation + 180} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g19 {
+    #{$ipad_animation + 170} {
+      display: none;
+    }
+    #{$ipad_animation + 190} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g20 {
+    #{$ipad_animation + 180} {
+      display: none;
+    }
+    #{$ipad_animation + 200} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s2-g21 {
+    #{$ipad_animation + 190} {
+      display: none;
+    }
+    #{$ipad_animation + 210} {
+      display: inline;
+    }
+  }
+
+  #iphone {
+    -st-animation-name: iphone;
+
+    #s3 {
+      #s3-bg1 {
+        -st-animation-name: s3-bg1;
+      }
+
+      #i1 {
+        -st-animation-name: s3-i1;
+      }
+
+      #i2 {
+        -st-animation-name: s3-i2;
+      }
+
+      #i3 {
+        -st-animation-name: s3-i3;
+      }
+
+      #i4 {
+        -st-animation-name: s3-i4;
+      }
+
+      #i5 {
+        -st-animation-name: s3-i5;
+      }
+
+      #i6 {
+        -st-animation-name: s3-i6;
+      }
+
+      #i7 {
+        -st-animation-name: s3-i7;
+      }
+
+      #i8 {
+        -st-animation-name: s3-i8;
+      }
+
+      #i9 {
+        -st-animation-name: s3-i9;
+      }
+
+      #i10 {
+        -st-animation-name: s3-i10;
+      }
+
+      #i11 {
+        -st-animation-name: s3-i11;
+      }
+    }
+  }
+  $iphone_animation: $scene_03_begin + 350;
+
+  @-st-keyframes iphone {
+    #{$iphone_animation - 30} {
+      transform#{"[swing]"}: translate(10px, 0);
+      opacity: 0;
+    }
+    #{$iphone_animation} {
+      opacity: 1;
+      transform#{"[swing]"}: translate(0px, 0);
+    }
+  }
+
+  @-st-keyframes s3-bg1 {
+    #{$iphone_animation - 20} {
+      display: none;
+    }
+    #{$iphone_animation} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i1 {
+    #{$iphone_animation} {
+      display: none;
+    }
+    #{$iphone_animation + 20} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i2 {
+    #{$iphone_animation + 10} {
+      display: none;
+    }
+    #{$iphone_animation + 30} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i3 {
+    #{$iphone_animation + 20} {
+      display: none;
+    }
+    #{$iphone_animation + 40} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i4 {
+    #{$iphone_animation + 30} {
+      display: none;
+    }
+    #{$iphone_animation + 50} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i5 {
+    #{$iphone_animation + 40} {
+      display: none;
+    }
+    #{$iphone_animation + 60} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i6 {
+    #{$iphone_animation + 50} {
+      display: none;
+    }
+    #{$iphone_animation + 70} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i7 {
+    #{$iphone_animation + 60} {
+      display: none;
+    }
+    #{$iphone_animation + 80} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i8 {
+    #{$iphone_animation + 70} {
+      display: none;
+    }
+    #{$iphone_animation + 90} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i9 {
+    #{$iphone_animation + 80} {
+      display: none;
+    }
+    #{$iphone_animation + 100} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i10 {
+    #{$iphone_animation + 110} {
+      display: none;
+    }
+    #{$iphone_animation + 130} {
+      display: inline;
+    }
+  }
+
+  @-st-keyframes s3-i11 {
+    #{$iphone_animation + 120} {
+      display: none;
+    }
+    #{$iphone_animation + 140} {
+      display: inline;
+    }
+  }
+
+  #appunti {
+    -st-animation-name: appunti;
+
+    #ag1 {
+      -st-animation-name: ag1;
+    }
+
+    #ag2 {
+      -st-animation-name: ag2;
+    }
+
+    #ag3 {
+      -st-animation-name: ag3;
+    }
+
+    #ag4 {
+      -st-animation-name: ag4;
+    }
+
+    #ag5 {
+      -st-animation-name: ag5;
+    }
+  }
+  $appunti_animation: 425 + $scene_03_begin;
+
+  @-st-keyframes appunti {
+    #{$appunti_animation - 50} {
+      transform#{"[swing]"}: translate(0, 510px);
+    }
+    #{$appunti_animation} {
+      transform#{"[swing]"}: translate(0, 0);
+    }
+  }
+
+  @-st-keyframes ag1 {
+    #{$appunti_animation} {
+      opacity: 0;
+    }
+    #{$appunti_animation + 20} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes ag2 {
+    #{$appunti_animation + 20} {
+      opacity: 0;
+    }
+    #{$appunti_animation + 40} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes ag3 {
+    #{$appunti_animation + 30} {
+      opacity: 0;
+    }
+    #{$appunti_animation + 50} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes ag4 {
+    #{$appunti_animation + 40} {
+      opacity: 0;
+    }
+    #{$appunti_animation + 60} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes ag5 {
+    #{$appunti_animation + 50} {
+      opacity: 0;
+    }
+    #{$appunti_animation + 70} {
+      opacity: 1;
+    }
+  }
+
+  #diagramma1 {
+    -st-animation-name: diagramma1;
+
+    #dg1 {
+      -st-animation-name: dg1;
+    }
+
+    #dg2 {
+      -st-animation-name: dg2;
+    }
+
+    #dg3 {
+      -st-animation-name: dg3;
+    }
+
+    #dg4 {
+      -st-animation-name: dg4;
+    }
+
+    #dg5 {
+      -st-animation-name: dg5;
+    }
+
+    #dg6 {
+      -st-animation-name: dg6;
+    }
+
+    #dg7 {
+      -st-animation-name: dg7;
+    }
+
+    #dg8 {
+      -st-animation-name: dg8;
+    }
+
+    #dg9 {
+      -st-animation-name: dg9;
+    }
+  }
+  $diagramma1_animation: 570 + $scene_03_begin;
+
+  @-st-keyframes diagramma1 {
+    #{$diagramma1_animation - 50} {
+      transform#{"[swing]"}: translate(0, 610px);
+    }
+    #{$diagramma1_animation} {
+      transform#{"[swing]"}: translate(0, 0);
+    }
+  }
+
+  @-st-keyframes dg1 {
+    #{$diagramma1_animation + 20} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 40} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg2 {
+    #{$diagramma1_animation + 30} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 50} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg3 {
+    #{$diagramma1_animation + 40} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 60} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg4 {
+    #{$diagramma1_animation + 50} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 70} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg5 {
+    #{$diagramma1_animation + 60} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 80} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg6 {
+    #{$diagramma1_animation + 70} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 90} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg7 {
+    #{$diagramma1_animation + 80} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 100} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg8 {
+    #{$diagramma1_animation + 90} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 110} {
+      opacity: 1;
+    }
+  }
+
+  @-st-keyframes dg9 {
+    #{$diagramma1_animation + 100} {
+      opacity: 0;
+    }
+    #{$diagramma1_animation + 120} {
+      opacity: 1;
+    }
+  }
+}

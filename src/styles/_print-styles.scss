@@ -9,6 +9,7 @@ Print styles
     text-shadow: none !important;
     background: transparent !important;
   }
+
   html {
     background-color: #fff;
     height: auto !important;
@@ -34,63 +35,79 @@ Print styles
   .print_only {
     display: block !important;
   }
+
   .no-print {
     display: none !important;
   }
 
-  figure, #printit, #reopen, #printfriendly {
+  figure,
+  #printit,
+  #reopen,
+  #printfriendly {
     display: none !important;
     content: "";
   }
+
   body {
     display: block;
     font-size: 12px;
     overflow: hidden;
     height: auto !important;
   }
+
   /* Show link destinations in brackets after the link text */
 
-  a[href]:after {
+  a[href]::after {
     content: ": " attr(href) " ";
   }
-  a[href] {
 
+  a[href] {
     text-decoration: none;
     color: #06c;
     border: none;
   }
 
-  h3{
+  h3 {
     font-weight: bold !important;
-    a{
+
+    a {
       font-weight: bold !important;
     }
   }
+
   /* Don't show link destinations for JavaScript or internal links */
 
-  a[href^="javascript:"]:after, a[href^="#"]:after, a.plain[href]:after {
+  a[href^="javascript:"]::after,
+  a[href^="#"]::after,
+  a.plain[href]::after {
     content: "";
   }
+
   /* Show abbr title value in brackets after the text */
 
-  abbr[title]:after {
+  abbr[title]::after {
     content: " (" attr(title) ")";
   }
+
   .main-container > div > aside > p {
     //white-space: pre;
     margin: 0;
     font-size: 14px;
   }
+
   .main-container > div > aside section p {
     margin: 0;
     padding: 0;
   }
+
   .main-container > div > aside a {
     font-size: 14px;
   }
-  .main-container > div > aside p:before {
+
+  .main-container > div > aside p::before {
     content: '';
   }
+
   .main aside {
     border: 0;
     padding: 0;

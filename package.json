@@ -1,6 +1,7 @@
 {
   "name": "albinotonnina",
-  "version": "1.3.0",
+  "version": "4.0.0",
+  "license": "CC-BY-NC-ND-4.0",
   "homepage": "https://github.com/albinotonnina/albinotonnina.com",
   "author": {
     "name": "Albino Tonnina",
@@ -12,20 +13,16 @@
     "prestart": "npm run build",
     "start": "node web.js",
     "postinstall": "npm run build",
-    "dev": "node_modules/.bin/webpack-dev-server",
-    "build": "webpack",
-    "stats": "webpack --env.production.stats",
-    "test": "standard && jest",
-    "coverage": "jest --coverage"
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "animejs": "^2.0.2",
-    "express": "^3.5.0",
-    "knuth-shuffle": "^1.0.1",
-    "skrollr": "^0.6.26",
-    "skrollr-menu": "^1.0.3",
-    "skrollr-stylesheets": "^1.0.0",
-    "throttle-debounce": "^1.0.1"
+    "animejs": "^3.1.0",
+    "knuth-shuffle": "^1.0.8",
+    "throttle-debounce": "^2.1.0",
+    "webfontloader": "^1.6.28"
   },
   "repository": {
     "type": "git",
@@ -33,68 +30,35 @@
   },
   "description": "",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-jest": "^20.0.3",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "clean-webpack-plugin": "^0.1.16",
-    "eslint": "^4.6.0",
-    "eslint-loader": "^1.9.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "favicons-webpack-plugin": "0.0.7",
-    "fs": "0.0.1-security",
-    "handlebars": "^4.0.10",
-    "handlebars-loader": "^1.5.0",
-    "html-loader": "^0.5.1",
-    "html-webpack-plugin": "^2.30.1",
-    "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-webpack-plugin": "^1.5.2",
-    "jest": "^20.0.4",
-    "node-sass": "^4.5.3",
-    "raw-loader": "^0.5.1",
-    "sass-loader": "^6.0.6",
-    "standard": "^10.0.3",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "favicons-webpack-plugin": "^3.0.1",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^4.0.3",
+    "image-webpack-loader": "^6.0.0",
+    "jest": "^25.2.4",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.1",
+    "prettier": "^2.0.2",
+    "raw-loader": "^4.0.0",
+    "sass-loader": "^8.0.2",
     "string-replace-webpack-plugin": "^0.1.3",
-    "svg-inline-loader": "^0.8.0",
-    "url-loader": "^0.5.9",
-    "webfontloader": "^1.6.28",
-    "webpack": "^3.5.5",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-dev-server": "^3.2.1",
-    "webpack-hot-middleware": "^2.18.2"
-  },
-  "engines": {
-    "node": ">= 8.7.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.js?$": "babel-jest",
-      "^.+\\.html$": "<rootDir>/tests/__mocks__/htmlMock.js",
-      "^.+\\.svg$": "<rootDir>/tests/__mocks__/svgMock.js"
-    },
-    "moduleNameMapper": {
-      "moduleFileExtensions": [
-        "js",
-        "html",
-        "svg"
-      ],
-      "moduleDirectories": [
-        "node_modules"
-      ],
-      "\\.(jpg|png|gif|ttf|woff|woff2)$": "<rootDir>/tests/__mocks__/fileMock.js",
-      "\\.(css|scss)$": "<rootDir>/tests/__mocks__/styleMock.js"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{js}",
-      "!src/libs/**"
-    ],
-    "globals": {
-      "Modernizr": {
-        "svg": true
-      }
-    }
-  },
-  "license": "CC-BY-NC-ND-4.0"
+    "stylelint": "^13.3.0",
+    "stylelint-config-standard": "^20.0.0",
+    "svg-inline-loader": "^0.8.2",
+    "url-loader": "^4.0.0",
+
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
 }
