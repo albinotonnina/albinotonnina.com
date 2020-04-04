@@ -12,10 +12,8 @@ nav {
   $color5-dark: rgba(34, 144, 152, 0.99);
 
   #bgmenu {
-
     opacity: 0;
     pointer-events: none;
-
   }
 
   #sc-menu1 {
@@ -25,15 +23,19 @@ nav {
   #sc-menu3 {
     cursor: pointer;
   }
+
   #sc-menu5 {
     cursor: pointer;
   }
+
   #sc-menu6 {
     cursor: pointer;
   }
+
   #bar {
     -st-animation-name: menubar;
   }
+
   @-st-keyframes menubar {
     #{$scene_01_begin} {
       transform: scale(0, 1);
@@ -103,21 +105,22 @@ nav {
 
   #menu {
     -st-animation-name: menu;
-
   }
+
   @-st-keyframes menu {
     #{$scene_01_begin + 60} {
-      transform: translate(0px, 200px);
+      transform: translate(0, 200px);
     }
 
     #{$scene_01_begin + 100} {
-      transform: translate(0px, 0px);
+      transform: translate(0, 0);
     }
   }
 
   #barleft {
     -st-animation-name: barleft;
   }
+
   @-st-keyframes barleft {
     #{$scene_01_begin} {
       fill: $color1-light;
@@ -167,6 +170,7 @@ nav {
   #barcenter {
     -st-animation-name: barcenter;
   }
+
   @-st-keyframes barcenter {
     #{$scene_01_begin} {
       fill: $color1-dark;
@@ -216,6 +220,7 @@ nav {
   #barright {
     -st-animation-name: barright;
   }
+
   @-st-keyframes barright {
     #{$scene_01_begin} {
       fill: $color1-dark;

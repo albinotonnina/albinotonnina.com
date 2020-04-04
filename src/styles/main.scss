@@ -3,7 +3,8 @@
 @import 'scrollytelly';
 @import 'print-styles';
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -12,9 +13,9 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #151D29;
+  color: #151d29;
 
-  &[data-display="none"]{
+  &[data-display="none"] {
     background: #3498db;
   }
 }
@@ -23,6 +24,7 @@ body {
   width: 90%;
   margin: 0 auto;
   max-width: 1026px;
+
   [data-display="none"] & {
     display: none;
   }
@@ -37,15 +39,16 @@ body {
       font-weight: normal;
     }
 
-    &:link, &:visited {
+    &:link,
+    &:visited {
       color: white;
       font-weight: 100;
     }
 
-    &:hover, &:focus {
-      color: #151D29;
+    &:hover,
+    &:focus {
+      color: #151d29;
     }
-
   }
 
   #thislink {
@@ -56,9 +59,7 @@ body {
     font-weight: 100;
     font-size: 2rem;
   }
-
 }
-
 
 .portrait-mode {
   display: none;
@@ -73,13 +74,7 @@ body {
     color: white;
     padding: 1.5em;
   }
-
 }
-
-
-
-
-
 
 .main {
   padding: 0;
@@ -94,7 +89,7 @@ body {
 
   aside {
     color: white;
-    padding: 0px 5% 10px;
+    padding: 0 5% 10px;
   }
 
   p {
@@ -102,7 +97,9 @@ body {
   }
 }
 
-.main h1, .main h2, .main h3 {
+.main h1,
+.main h2,
+.main h3 {
   font-weight: 300;
 }
 
@@ -115,17 +112,16 @@ body {
 ========================================================================== */
 
 .list {
-
   time {
     float: right;
   }
 
   section {
-    border-bottom: 1px solid #151D29;
+    border-bottom: 1px solid #151d29;
     font-size: small;
     margin-left: 1em;
 
-    &:last-child{
+    &:last-child {
       border: none;
     }
   }
@@ -141,11 +137,10 @@ body {
     margin-bottom: 0;
     margin-top: 0.3em;
   }
-
 }
 
 #reopen {
-  color: #151D29;
+  color: #151d29;
 
   &:hover {
     color: white;
@@ -165,12 +160,10 @@ body {
     margin: 0;
 
     li {
-
-      &:before {
+      &::before {
         content: "-";
         color: grey;
         margin: 0 16px;
-
       }
     }
   }
@@ -186,25 +179,24 @@ body {
   font-style: italic;
 
   li {
-
-    &:last-child, &:nth-child(1) {
-      &:after {
+    &:last-child,
+    &:nth-child(1) {
+      &::after {
         content: '';
         margin: 0;
       }
     }
 
     &:nth-child(1) {
-      &:after {
+      &::after {
         margin-left: 4px;
       }
     }
 
-    &:after {
+    &::after {
       content: "-";
       color: grey;
       margin: 0 2px;
-
     }
   }
 }
@@ -221,12 +213,3 @@ body {
     width: 57%;
   }
 }
-
-
-
-
-
-
-
-
-

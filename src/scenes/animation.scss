@@ -1,7 +1,4 @@
 
-
-
-
 $scene_01_begin: 0;
 $scene_01_duration: 900;
 $scene_01_end: $scene_01_begin + $scene_01_duration;
@@ -34,8 +31,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
 @import 'scene5/animation';
 @import 'scene6/animation';
 
-
-
 #scene1 { -st-animation-name: scene1; }
 
 @-st-keyframes scene1 {
@@ -49,10 +44,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
     top: -100%;
   }
 }
-
-
-
-
 
 #scene2 { -st-animation-name: scene2; }
 
@@ -71,10 +62,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
   }
 }
 
-
-
-
-
 #scene3 { -st-animation-name: scene3; }
 
 @-st-keyframes scene3 {
@@ -92,13 +79,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
   }
 }
 
-
-
-
-
-
-
-
 #scene4 { -st-animation-name: scene4; }
 
 @-st-keyframes scene4 {
@@ -115,8 +95,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
     top: -100%;
   }
 }
-
-
 
 #scene5 { -st-animation-name: scene5; }
 
@@ -136,12 +114,6 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
   }
 }
 
-
-
-
-
-
-
 #scene6 { -st-animation-name: scene6; }
 
 @-st-keyframes scene6 {
@@ -156,4 +128,3 @@ $scene_06_end: $scene_06_begin + $scene_06_duration;
     top: 0%;
   }
 }
-

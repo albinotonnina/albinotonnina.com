@@ -14,9 +14,9 @@ export default {
 
     document.querySelector('[data-scene="scene1"] .svg').innerHTML = sceneSvg;
 
-    document.querySelector("#intro2").addEventListener("click", () => {
-      window.open("http://www.workshare.com", "_blank");
-    });
+    // document.querySelector("#intro2").addEventListener("click", () => {
+    //   window.open("http://www.workshare.com", "_blank");
+    // });
 
     document.querySelector("#viewresume").addEventListener("click", () => {
       site.destroy();

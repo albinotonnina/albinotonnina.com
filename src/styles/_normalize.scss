@@ -1,4 +1,14 @@
-article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section,
+summary {
   display: block;
 }
 
@@ -18,17 +28,17 @@ a {
   }
 
   &:hover {
-    color: #151D29;
+    color: #151d29;
     outline: 0;
   }
 
   &:focus {
-    color: #151D29;
+    color: #151d29;
     outline: thin dotted;
   }
 
   &:active {
-    color: #151D29;
+    color: #151d29;
     outline: 0;
   }
 }

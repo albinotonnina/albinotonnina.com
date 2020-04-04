@@ -1,29 +1,27 @@
 @import 'spinner';
 
 body[data-display="divertissement"] {
-
   #resume {
     display: none;
   }
 }
 
-#bottomContainer{
+#bottomContainer {
   position: absolute;
-  top:0;
+  top: 0;
   width: 100%;
-  
-  height:100%;
+  height: 100%;
   z-index: 9999;
 }
 
-[role="placeholder"]{
+[role="placeholder"] {
   position: absolute;
   top: 0;
   width: 100%;
 }
 
-[data-scene-placeholder]{
-background: red;
+[data-scene-placeholder] {
+  background: red;
 }
 
 [role="site"] {
@@ -70,7 +68,7 @@ background: red;
   opacity: 1;
   transition: 500ms opacity;
 
-  &[uiState="hidden"]{
+  &[uiState="hidden"] {
     opacity: 0;
   }
 }
@@ -80,8 +78,6 @@ background: red;
   z-index: 100;
 }
 
-
-
 .scrollable .scrollable {
   position: absolute;
 }
@@ -89,4 +85,3 @@ background: red;
 .scrollable .scrollable .scrollable {
   position: static;
 }
-
