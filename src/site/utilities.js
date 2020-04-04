@@ -1,6 +1,6 @@
 import WebFont from "webfontloader";
 
-export const waitForWebfonts = function (fonts, callback) {
+export const waitForWebfonts = (fonts, callback) => {
   WebFont.load({
     google: {
       families: fonts,
@@ -10,9 +10,7 @@ export const waitForWebfonts = function (fonts, callback) {
 };
 
 export const setAttributes = (el, attrs) => {
-  for (const key in attrs) {
-    el.setAttribute(key, attrs[key]);
-  }
+  Object.entries(attrs).forEach(([key, attr]) => el.setAttribute(key, attr));
 };
 
 export const createElementWithAttrs = (tagName, attrs) => {

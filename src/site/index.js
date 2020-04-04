@@ -149,16 +149,6 @@ export default class {
       });
 
       scrollyTelly.stylesheets.init();
-
-      scrollyTelly.menu.init(this.scrollyTelly, {
-        animate: true,
-        easing: "swing",
-        scenes: this.timing,
-        scale: 1,
-        duration(currentTop, targetTop) {
-          return Math.abs(currentTop - targetTop) * 0.5;
-        },
-      });
     }
 
     this.scrollyTelly.refresh();

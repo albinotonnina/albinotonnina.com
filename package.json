@@ -20,7 +20,8 @@
   "dependencies": {
     "animejs": "^3.1.0",
     "knuth-shuffle": "^1.0.8",
-    "throttle-debounce": "^2.1.0"
+    "throttle-debounce": "^2.1.0",
+    "webfontloader": "^1.6.28"
   },
   "repository": {
     "type": "git",
@@ -54,7 +55,7 @@
     "stylelint-config-standard": "^20.0.0",
     "svg-inline-loader": "^0.8.2",
     "url-loader": "^4.0.0",
-    "webfontloader": "^1.6.28",
+
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
