@@ -7,45 +7,28 @@ const rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|
 // The property which will be added to the DOM element to hold the ID of the scrollable.
 const SCROLLABLE_ID_DOM_PROPERTY = "___scrollable_id";
 const SCROLLABLE_CLASS = "scrollable";
-const rxCamelCase = /-([a-z0-9_])/g;
-const rxCamelCaseFn = (str, letter) => letter.toUpperCase();
 
-const scale = 1;
-
-const refresh = () => {
+const processProps = () => {
   let scrollableIdCounter = 0;
-  // Ignore that some elements may already have a scrollable ID.
 
   const scrollables = [];
 
   const elements = document.getElementsByTagName("*");
 
   [...elements].forEach((element) => {
-    // const el = elements[elementIndex];
-
     const keyFrames = [];
 
     // Iterate over all attributes and search for key frame attributes.
     [...element.attributes].forEach((attr) => {
-      const match = attr.name.match(rxKeyframeAttribute);
-      // console.log("match", match);
-      if (match === null) {
-        return;
+      const [id, , offset] = attr.name.match(rxKeyframeAttribute) || [];
+      if (id) {
+        const kf = {
+          props: attr.value,
+          element,
+        };
+        keyFrames.push(kf);
+        kf.offset = parseInt(offset, 0) || 0;
       }
-
-      const kf = {
-        props: attr.value,
-        // Point back to the element as well.
-        element,
-        // The name of the event which this keyframe will fire, if emitEvents is
-        eventType: attr.name.replace(rxCamelCase, rxCamelCaseFn),
-      };
-
-      keyFrames.push(kf);
-
-      const offset = match[2];
-
-      kf.offset = offset * scale || 0;
     });
 
     // Does this element have key frames?
@@ -84,4 +67,4 @@ const refresh = () => {
   return scrollables;
 };
 
-export default refresh;
+export default processProps;

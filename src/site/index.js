@@ -17,19 +17,12 @@ const resizeScenes = () => {
   const { innerWidth } = window;
   const clientHeight = window.innerHeight;
 
-  [].forEach.call(document.querySelectorAll("[data-scene] svg"), (scene) => {
+  document.querySelectorAll("[data-scene] svg").forEach((scene) => {
     utils.setAttributes(scene, {
       width: innerWidth,
       height: clientHeight,
     });
   });
-
-  [].forEach.call(
-    document.querySelectorAll("[data-scene-placeholder]"),
-    (placeholder) => {
-      placeholder.style.height = `${clientHeight}px`;
-    }
-  );
 
   utils.setAttributes(document.querySelector("#menu svg"), {
     width: innerWidth,
@@ -61,24 +54,55 @@ export default class {
 
     this.timing = timing.scenes;
 
-    this.initEvents();
-    this.addEventToReopenBtn();
-    this.buildDOMElements();
+    this.maxScroll = Object.values(this.timing).reduce(
+      (acc, { duration }) => acc + parseInt(duration, 0),
+      0
+    );
 
+    this.initEvents();
+    this.buildDOMElements();
     this.initScenes();
     hideLoader();
   }
 
+  resizePlaceholders() {
+    // const { innerWidth } = window;
+    const { clientHeight } = document.documentElement;
+
+    const screens = Math.round(this.maxScroll / clientHeight);
+
+    const arrayScreens = Array.from(Array(screens).keys());
+
+    document
+      .querySelectorAll("[data-scene-placeholder]")
+      .forEach((placeholder) => {
+        placeholder.parentNode.removeChild(placeholder);
+      });
+
+    arrayScreens.forEach(() => {
+      const placeholder = utils.createElementWithAttrs("div", {
+        "data-scene-placeholder": true,
+      });
+
+      document.body.insertBefore(placeholder, this.siteRoot);
+    });
+
+    document
+      .querySelectorAll("[data-scene-placeholder]")
+      .forEach((placeholder) => {
+        placeholder.style.height = `${clientHeight}px`;
+      });
+  }
+
   doInterObs() {
     const some = document.querySelectorAll("[data-scene-placeholder]");
-    const maxScroll = this.scrollyTelly.getMaxScrollTop();
 
-    document.body.style.height = `${
-      maxScroll + document.documentElement.clientHeight
-    }px`;
+    // document.body.style.height = `${
+    //   maxScroll + document.documentElement.clientHeight
+    // }px`;
 
     const threshold = utils.createThreshold(
-      maxScroll + document.documentElement.clientHeight
+      this.maxScroll + document.documentElement.clientHeight
     );
 
     const observer = new IntersectionObserver(
@@ -93,18 +117,16 @@ export default class {
     });
   }
 
-  addEventToReopenBtn() {
+  initEvents() {
+    window.onresize = debounce(100, false, this.start.bind(this));
+    utils.onBeforePrint(this.destroy.bind(this));
+
     if (document.querySelector("#reopen")) {
       document.querySelector("#reopen").addEventListener("click", (ev) => {
         ev.preventDefault();
         this.show();
       });
     }
-  }
-
-  initEvents() {
-    window.onresize = debounce(100, false, this.start.bind(this));
-    utils.onBeforePrint(this.destroy.bind(this));
   }
 
   buildDOMElements() {
@@ -123,16 +145,6 @@ export default class {
           id: key,
         })
       );
-
-      const fff = utils.createElementWithAttrs("div", {
-        "data-scene-placeholder": true,
-      });
-      const ggg = utils.createElementWithAttrs("div", {
-        "data-scene-placeholder": true,
-      });
-
-      document.body.appendChild(fff);
-      document.body.appendChild(ggg);
     });
 
     document.body.appendChild(this.siteRoot);
@@ -151,6 +163,10 @@ export default class {
       this.destroy();
     } else {
       resizeScenes();
+      this.initScrollyTelly();
+
+      this.resizePlaceholders();
+      this.doInterObs();
       this.show();
     }
   }
@@ -172,19 +188,12 @@ export default class {
         });
       },
     });
-
-    parseScrollyTellyStylesheets();
-
-    this.scrollyTelly.refresh();
-
-    this.doInterObs();
   }
 
   show() {
     document.body.setAttribute("data-display", "divertissement");
     document.querySelector("#vignette").setAttribute("uiState", "show");
     this.siteRoot.setAttribute("uiState", "show");
-    this.initScrollyTelly();
   }
 
   destroy() {

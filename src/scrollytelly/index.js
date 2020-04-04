@@ -1,5 +1,6 @@
 import updateClass from "./updateClass";
-import refresh from "./refresh";
+import processProps from "./processProps";
+import parseScrollyTellyStylesheets from "./parseStylesheets";
 import render from "./render";
 
 const SCROLLER_CLASS = "scrollyTelly";
@@ -20,25 +21,16 @@ class ScrollyTelly {
       [SCROLLER_CLASS],
       [NO_SCROLLER_CLASS]
     );
+    parseScrollyTellyStylesheets();
+    this.processProps();
   }
 
   render() {
     this.lastTop = render(this, this.scrollables, this.listeners, this.lastTop);
   }
 
-  refresh() {
-    this.scrollables = refresh();
-  }
-
-  getMaxScrollTop() {
-    let maxKeyFrame;
-    this.scrollables.forEach((scrollable) => {
-      scrollable.keyFrames.forEach((kf) => {
-        maxKeyFrame = kf.frame;
-      });
-    });
-
-    return maxKeyFrame;
+  processProps() {
+    this.scrollables = processProps();
   }
 
   destroy() {
