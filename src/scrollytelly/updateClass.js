@@ -12,21 +12,21 @@ const trim = (a) => a.replace(rxTrim, "");
  */
 const updateClass = (element, add, remove) => {
   let prop = "className";
-
+  let el = element;
   // SVG support by using className.baseVal instead of just className.
   if (window.SVGElement && element instanceof window.SVGElement) {
-    element = element[prop];
+    el = element[prop];
     prop = "baseVal";
   }
 
   // When remove is ommited, we want to overwrite/set the classes.
   if (remove === undefined) {
-    element[prop] = add;
+    el[prop] = add;
     return;
   }
 
   // Cache current classes. We will work on a string before passing back to DOM.
-  let val = element[prop];
+  let val = el[prop];
 
   // All classes to be removed.
   let classRemoveIndex = 0;
@@ -49,7 +49,7 @@ const updateClass = (element, add, remove) => {
     }
   }
 
-  element[prop] = trim(val);
+  el[prop] = trim(val);
 };
 
 export default updateClass;

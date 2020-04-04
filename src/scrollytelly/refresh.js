@@ -1,4 +1,3 @@
-import getClass from "./getClass";
 import updateClass from "./updateClass";
 import parseProps from "./parseProps";
 import fillProps from "./fillProps";
@@ -55,14 +54,9 @@ const refresh = () => {
       // It's an unknown element. Asign it a new scrollable id.
       element[SCROLLABLE_ID_DOM_PROPERTY] = scrollableIdCounter++;
       const id = element[SCROLLABLE_ID_DOM_PROPERTY];
-      const styleAttr = element.style.cssText;
-      const classAttr = getClass(element);
 
       scrollables[id] = {
         element,
-        styleAttr,
-        classAttr,
-
         keyFrames,
       };
 

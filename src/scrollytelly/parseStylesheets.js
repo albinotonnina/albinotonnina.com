@@ -1,6 +1,6 @@
 /* global XMLHttpRequest */
 
-export default (scrollyTelly) => {
+export default () => {
   let contents = [];
 
   // Finds the declaration of an animation block.
@@ -40,7 +40,8 @@ export default (scrollyTelly) => {
       rxSingleKeyframe.lastIndex = 0;
 
       // Save the animation in an object using it's name as key.
-      curAnimation = output[animation[1]] = {};
+      output[animation[1]] = {};
+      curAnimation = output[animation[1]];
 
       while ((keyframe = rxSingleKeyframe.exec(rawKeyframes[1])) !== null) {
         // Put all keyframes inside the animation using the keyframe (like botttom-top, or 100) as key
