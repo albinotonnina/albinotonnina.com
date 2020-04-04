@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "name": "albinotonnina",
-  "alias": ["albinotonnina"],
   "builds": [
     {
       "src": "package.json",
