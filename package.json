@@ -8,15 +8,10 @@
     "email": "albinotonnina@gmail.com",
     "url": "http://www.albinotonnina.com"
   },
-  "main": "web.js",
   "scripts": {
-    "prestart": "npm run build",
-    "start": "node web.js",
-    "postinstall": "npm run build",
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest"
   },
   "dependencies": {
     "animejs": "^3.1.0",
@@ -28,7 +23,6 @@
     "type": "git",
     "url": "git@github.com:albinotonnina/albinotonnina.com.git"
   },
-  "description": "",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
@@ -56,7 +50,6 @@
     "stylelint-config-standard": "^20.0.0",
     "svg-inline-loader": "^0.8.2",
     "url-loader": "^4.0.0",
-
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"

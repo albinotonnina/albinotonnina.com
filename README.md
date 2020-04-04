@@ -4,25 +4,17 @@
 
 # albinotonnina.com
 
-## Overview
-
-[www.albinotonnina.com](http://www.albinotonnina.com) source code
+[www.albinotonnina.com](http://www.albinotonnina.com) - source code
 
 ## Install
-	$ npm install
+`yarn`
 
 ## Dev
-    $ npm run dev
+`yarn dev`
 
 ## Build
-	$ npm run build
+`yarn build`
 
 ## Test
-	$ npm test
-
-### Test Coverage
-    $ npm run coverage
-
-### Bundle analysis
-	$ npm run stats
+`yarn test`
 
