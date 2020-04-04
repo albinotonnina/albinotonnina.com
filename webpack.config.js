@@ -2,8 +2,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const StringReplacePlugin = require("string-replace-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
-const imageminMozjpeg = require("imagemin-mozjpeg");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = () => {
@@ -17,20 +15,14 @@ module.exports = () => {
       path: path.resolve(__dirname, "build"),
       filename: "bundle.js",
     },
+    stats: "errors-only",
     plugins: [
       new MiniCssExtractPlugin({
         filename: "styles.css",
       }),
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
       new StringReplacePlugin(),
-      new ImageminPlugin({
-        plugins: [
-          imageminMozjpeg({
-            quality: 40,
-            progressive: true,
-          }),
-        ],
-      }),
+
       new FaviconsWebpackPlugin({
         logo: "./src/images/logo.png",
         title: "albinotonnina.com",
@@ -64,39 +56,44 @@ module.exports = () => {
           use: ["html-loader"],
         },
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(gif|png|jpe?g)$/i,
           use: [
             {
               loader: "file-loader",
+              options: {
+                name: "images/[name].[ext]",
+              },
             },
+            "image-webpack-loader",
           ],
         },
         {
           test: /\.svg$/,
-          loader: "svg-inline-loader?classPrefix",
-        },
-        {
-          test: /\.svg$/,
-          loader: StringReplacePlugin.replace({
-            replacements: [
-              {
-                pattern: /font-family="'Roboto-Thin'"/gi,
-                replacement: () => 'font-weight="100"',
-              },
-              {
-                pattern: /font-family="'Roboto-Light'"/gi,
-                replacement: () => 'font-weight="300"',
-              },
-              {
-                pattern: /font-family="'Roboto-Regular'"/gi,
-                replacement: () => 'font-weight="400"',
-              },
-              {
-                pattern: /font-family="'Roboto-Black'"/gi,
-                replacement: () => 'font-weight="900"',
-              },
-            ],
-          }),
+          use: [
+            "svg-inline-loader",
+            {
+              loader: StringReplacePlugin.replace({
+                replacements: [
+                  {
+                    pattern: /font-family="'Roboto-Thin'"/gi,
+                    replacement: () => 'font-weight="100"',
+                  },
+                  {
+                    pattern: /font-family="'Roboto-Light'"/gi,
+                    replacement: () => 'font-weight="300"',
+                  },
+                  {
+                    pattern: /font-family="'Roboto-Regular'"/gi,
+                    replacement: () => 'font-weight="400"',
+                  },
+                  {
+                    pattern: /font-family="'Roboto-Black'"/gi,
+                    replacement: () => 'font-weight="900"',
+                  },
+                ],
+              }),
+            },
+          ],
         },
       ],
     },

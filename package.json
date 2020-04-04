@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "animejs": "^3.1.0",
-    "express": "^4.17.1",
     "knuth-shuffle": "^1.0.8",
     "throttle-debounce": "^2.1.0"
   },
@@ -39,13 +38,11 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "extract-text-webpack-plugin": "^3.0.2",
     "favicons-webpack-plugin": "^3.0.1",
     "file-loader": "^6.0.0",
     "html-loader": "^1.0.0",
     "html-webpack-plugin": "^4.0.3",
-    "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-webpack-plugin": "^2.4.2",
+    "image-webpack-loader": "^6.0.0",
     "jest": "^25.2.4",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
