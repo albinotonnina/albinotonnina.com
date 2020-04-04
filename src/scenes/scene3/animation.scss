@@ -33,11 +33,11 @@
   @-st-keyframes s2-title {
     #{$start + 240} {
       opacity: 0;
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0px, 0px);
     }
     #{$start + 270} {
       opacity: 1;
-      transform#{"[swing]"}: translate(0, 20px);
+      transform#{"[swing]"}: translate(0px, 20px);
     }
   }
 
@@ -467,7 +467,7 @@
     }
     #{$ipad_animation} {
       opacity: 1;
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0px, 0);
     }
   }
 
@@ -650,7 +650,7 @@
     }
     #{$iphone_animation} {
       opacity: 1;
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0px, 0);
     }
   }
 

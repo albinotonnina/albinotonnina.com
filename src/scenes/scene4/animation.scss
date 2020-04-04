@@ -52,7 +52,7 @@
 
   @-st-keyframes list {
     #{$start3 + 100} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
     }
     #{$start3 + 150} {
       transform: translate(-200px, -230px) scale(2);
@@ -65,7 +65,7 @@
 
   @-st-keyframes listshadow {
     #{$start3 + 100} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
     #{$start3 + 120} {
@@ -80,7 +80,7 @@
 
   @-st-keyframes list2 {
     #{$start3 + 300} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
     }
     #{$start3 + 350} {
       transform: translate(-1000px, -900px) scale(2.5);
@@ -93,7 +93,7 @@
 
   @-st-keyframes list2shadow {
     #{$start3 + 300} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
     #{$start3 + 320} {
@@ -114,7 +114,7 @@
     }
     #{$start3} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -130,7 +130,7 @@
     }
     #{$start3 - 50} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -145,7 +145,7 @@
     }
     #{$start3 + 50} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -161,7 +161,7 @@
     }
     #{$start3 + 100} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -176,7 +176,7 @@
     }
     #{$start3 + 150} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -191,7 +191,7 @@
     }
     #{$start3 + 300} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 }

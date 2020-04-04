@@ -94,7 +94,7 @@
     }
 
     #{$start + 400} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 
@@ -105,11 +105,11 @@
   @-st-keyframes bus1 {
 
     #{$start + 300} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
 
     #{$start + 1200} {
-      transform: translate(-400px, 0);
+      transform: translate(-400px, 0px);
     }
   }
 
@@ -124,7 +124,7 @@
     }
 
     #{$start + 1200} {
-      transform: translate(300px, 0);
+      transform: translate(300px, 0px);
     }
   }
 
@@ -154,7 +154,7 @@
   @-st-keyframes clouds {
 
     #{$start - 150} {
-      transform: translate(-100px, 0);
+      transform: translate(-100px, 0px);
       opacity: 0;
     }
 
@@ -164,7 +164,7 @@
     }
 
     #{$start + 700} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0);
       opacity: 1;
     }
 
@@ -180,7 +180,7 @@
 
   @-st-keyframes plane {
     #{$start - 150} {
-      transform: translate(-2600px, 0);
+      transform: translate(-2600px, 0px);
       opacity: 1;
     }
 
@@ -196,22 +196,22 @@
 
   @-st-keyframes mountains {
     #{$start - 50} {
-      transform: translate(-200px, 0);
+      transform: translate(-200px, 0px);
       opacity: 0;
     }
 
     #{$start} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
       opacity: 1;
     }
 
     #{$start + 200} {
-      transform: translate(50px, 0);
+      transform: translate(50px, 0px);
       opacity: 1;
     }
 
     #{$start + 250} {
-      transform: translate(-200px, 0);
+      transform: translate(-200px, 0px);
       opacity: 0;
     }
   }
@@ -222,7 +222,7 @@
 
   @-st-keyframes torre {
     #{$start - 100} {
-      transform: translate(-1200px, 0) scale(1);
+      transform: translate(-1200px, 0px) scale(1);
       opacity: 1;
     }
 
@@ -237,7 +237,7 @@
     }
 
     #{$start + 300} {
-      transform: translate(-300px, 0) scale(1);
+      transform: translate(-300px, 0px) scale(1);
       opacity: 0;
     }
   }

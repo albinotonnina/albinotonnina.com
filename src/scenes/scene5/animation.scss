@@ -72,7 +72,7 @@ $start: $scene_05_begin;
 
   @-st-keyframes scene4r {
     #{$start + 1150} {
-      transform: rotate(0deg) translate(0, 0) scale(1);
+      transform: rotate(0deg) translate(0px, 0px) scale(1);
     }
     #{$start + 1350} {
       transform: rotate(90deg) translate(-6930px, -530px) scale(8);
@@ -175,16 +175,16 @@ $start: $scene_05_begin;
 
   @-st-keyframes desks {
     #{$start + 400} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
     }
     #{$start + 450} {
-      transform: translate(300px, 0) scale(0.6);
+      transform: translate(300px, 0px) scale(0.6);
     }
     #{$start + 900} {
-      transform: translate(300px, 0) scale(0.6);
+      transform: translate(300px, 0px) scale(0.6);
     }
     #{$start + 950} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
     }
   }
 
@@ -240,18 +240,18 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 150} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
 
   @-st-keyframes luiss {
     #{$start + 140} {
-      transform: translate(0, 1000px);
+      transform: translate(0px, 1000px);
       opacity: 0;
     }
     #{$start + 210} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
       opacity: 1;
     }
   }
@@ -262,7 +262,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 310} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -273,7 +273,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 400} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -284,7 +284,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 500} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -295,7 +295,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 610} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -306,7 +306,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 750} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -317,7 +317,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 820} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -328,7 +328,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 900} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -339,7 +339,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 1000} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -350,7 +350,7 @@ $start: $scene_05_begin;
       opacity: 0;
     }
     #{$start + 1100} {
-      transform: translate(0, 0) scale(1);
+      transform: translate(0px, 0px) scale(1);
       opacity: 1;
     }
   }
@@ -570,19 +570,19 @@ $start: $scene_05_begin;
   @-st-keyframes deskleft {
     #{$start + 400} {
       opacity: 0;
-      transform: translate(-500px, 0);
+      transform: translate(-500px, 0px);
     }
     #{$start + 450} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
     #{$start + 900} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
     #{$start + 950} {
       opacity: 0;
-      transform: translate(-500px, 0);
+      transform: translate(-500px, 0px);
     }
   }
 
@@ -593,19 +593,19 @@ $start: $scene_05_begin;
   @-st-keyframes deskright {
     #{$start + 400} {
       opacity: 0;
-      transform: translate(500px, 0);
+      transform: translate(500px, 0px);
     }
     #{$start + 450} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
     #{$start + 900} {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
     #{$start + 950} {
       opacity: 0;
-      transform: translate(500px, 0);
+      transform: translate(500px, 0px);
     }
   }
 }

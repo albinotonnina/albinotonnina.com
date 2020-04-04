@@ -109,11 +109,11 @@ nav {
 
   @-st-keyframes menu {
     #{$scene_01_begin + 60} {
-      transform: translate(0, 200px);
+      transform: translate(0px, 200px);
     }
 
     #{$scene_01_begin + 100} {
-      transform: translate(0, 0);
+      transform: translate(0px, 0px);
     }
   }
 

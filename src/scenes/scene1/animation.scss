@@ -81,7 +81,7 @@
     }
 
     #{$start + 100} {
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0px, 0px);
     }
   }
 
@@ -110,7 +110,7 @@
     }
 
     #{$start + 200} {
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0, 0px);
       opacity: 1;
     }
   }
@@ -136,7 +136,7 @@
     }
 
     #{$start + 170} {
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0, 0px);
       opacity: 1;
     }
   }
@@ -152,7 +152,7 @@
     }
 
     #{$start + 300} {
-      transform#{"[swing]"}: translate(0, 0);
+      transform#{"[swing]"}: translate(0, 0px);
       opacity: 1;
     }
   }
@@ -179,7 +179,7 @@
 
   @-st-keyframes mouse {
     #{$start + 100} {
-      transform#{"[swing]"}: translate(200px, 0) rotate(-30deg);
+      transform#{"[swing]"}: translate(200px, 0px) rotate(-30deg);
       opacity: 0;
     }
 
