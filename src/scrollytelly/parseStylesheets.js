@@ -179,13 +179,5 @@ export default (scrollyTelly) => {
     applyAttributeSetters(attributes);
   };
 
-  const init = () => {
-    scrollyTelly.stylesheets = {
-      init: () => {
-        kickstart(document.querySelectorAll("link, style"));
-      },
-    };
-  };
-
-  init(scrollyTelly);
+  kickstart(document.querySelectorAll("link, style"));
 };

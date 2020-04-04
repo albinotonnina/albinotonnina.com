@@ -7,12 +7,11 @@ import scene3 from "../scenes/scene3/animation";
 import scene4 from "../scenes/scene4/animation";
 import scene5 from "../scenes/scene5/animation";
 import scene6 from "../scenes/scene6/animation";
-import getScrollyTelly from "../scrollytelly";
+import ScrollyTelly from "../scrollytelly";
+import parseScrollyTellyStylesheets from "../scrollytelly/parseStylesheets";
 import timing from "./timing";
 import "../styles/main.scss";
 import "../scenes/animation.scss";
-
-const scrollyTelly = getScrollyTelly();
 
 const resizeScenes = () => {
   const { innerWidth } = window;
@@ -58,13 +57,40 @@ export default class {
       scene6,
     };
 
+    // this.scrollyTellyScripts = getScrollyTelly();
+
     this.timing = timing.scenes;
 
     this.initEvents();
     this.addEventToReopenBtn();
     this.buildDOMElements();
+
     this.initScenes();
     hideLoader();
+  }
+
+  doInterObs() {
+    const some = document.querySelectorAll("[data-scene-placeholder]");
+    const maxScroll = this.scrollyTelly.getMaxScrollTop();
+
+    document.body.style.height = `${
+      maxScroll + document.documentElement.clientHeight
+    }px`;
+
+    const threshold = utils.createThreshold(
+      maxScroll + document.documentElement.clientHeight
+    );
+
+    const observer = new IntersectionObserver(
+      () => this.scrollyTelly.render(),
+      {
+        rootMargin: "0px",
+        threshold,
+      }
+    );
+    some.forEach((image) => {
+      observer.observe(image);
+    });
   }
 
   addEventToReopenBtn() {
@@ -130,28 +156,28 @@ export default class {
   }
 
   initScrollyTelly() {
-    if (!scrollyTelly.get()) {
-      this.scrollyTelly = scrollyTelly.init({
-        render: (data) => {
-          Object.values(this.scenes).forEach((scene) => {
-            if (typeof scene.render === "function") {
-              scene.render(data);
-            }
-          });
-        },
-        beforerender: (data) => {
-          Object.values(this.scenes).forEach((scene) => {
-            if (typeof scene.beforerender === "function") {
-              scene.beforerender(data);
-            }
-          });
-        },
-      });
+    this.scrollyTelly = new ScrollyTelly({
+      render: (data) => {
+        Object.values(this.scenes).forEach((scene) => {
+          if (typeof scene.render === "function") {
+            scene.render(data);
+          }
+        });
+      },
+      beforerender: (data) => {
+        Object.values(this.scenes).forEach((scene) => {
+          if (typeof scene.beforerender === "function") {
+            scene.beforerender(data);
+          }
+        });
+      },
+    });
 
-      scrollyTelly.stylesheets.init();
-    }
+    parseScrollyTellyStylesheets();
 
     this.scrollyTelly.refresh();
+
+    this.doInterObs();
   }
 
   show() {
@@ -166,9 +192,8 @@ export default class {
     document.body.removeAttribute("data-display");
     document.querySelector("#vignette").setAttribute("uiState", "hidden");
     this.siteRoot.setAttribute("uiState", "hidden");
-    if (scrollyTelly.get()) {
-      this.scrollyTelly.destroy();
-      window.scroll(0, 0);
-    }
+
+    this.scrollyTelly.destroy();
+    window.scroll(0, 0);
   }
 }

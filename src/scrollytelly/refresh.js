@@ -1,6 +1,5 @@
 import getClass from "./getClass";
 import updateClass from "./updateClass";
-import reflow from "./reflow";
 import parseProps from "./parseProps";
 import fillProps from "./fillProps";
 // Find all data-attributes. data-[_constant]-[offset]-[anchor]-[anchor].
@@ -71,9 +70,6 @@ const refresh = () => {
     }
   });
 
-  // Reflow for the first time.
-  reflow(scrollables);
-
   // Now that we got all key frame numbers right, actually parse the properties.
   [...elements]
     .map((element) => scrollables[element[SCROLLABLE_ID_DOM_PROPERTY]])
@@ -84,6 +80,12 @@ const refresh = () => {
       // Fill key frames with missing properties from left and right
       fillProps(scrollable);
     });
+
+  scrollables.forEach((scrollable) => {
+    scrollable.keyFrames.forEach((kf) => {
+      kf.frame = kf.offset;
+    });
+  });
 
   return scrollables;
 };
