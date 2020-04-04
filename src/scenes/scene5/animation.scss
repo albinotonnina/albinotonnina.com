@@ -4,8 +4,7 @@ $start: $scene_05_begin;
   -st-animation-name: a_videoplayer;
 }
 
-@-st-keyframes a_videoPlayer {
-
+@-st-keyframes a_videoplayer {
   #{$start + 1350} {
     opacity: 0;
     display: none;
@@ -47,7 +46,6 @@ $start: $scene_05_begin;
   #bg {
     -st-animation-name: bg;
   }
-
   @-st-keyframes bg {
     #{$start} {
       opacity: 0;
@@ -69,7 +67,6 @@ $start: $scene_05_begin;
   #scene {
     -st-animation-name: scene4r;
   }
-
   @-st-keyframes scene4r {
     #{$start + 1150} {
       transform: rotate(0deg) translate(0px, 0px) scale(1);
@@ -82,7 +79,6 @@ $start: $scene_05_begin;
   #fg {
     -st-animation-name: fgg;
   }
-
   @-st-keyframes fgg {
     #{$start} {
       opacity: 0;
@@ -105,16 +101,13 @@ $start: $scene_05_begin;
     #title1 {
       -st-animation-name: title1;
     }
-
     #title2 {
       -st-animation-name: title2;
     }
-
     #title3 {
       -st-animation-name: title3;
     }
   }
-
   @-st-keyframes title1 {
     #{$start} {
       opacity: 0;
@@ -159,20 +152,16 @@ $start: $scene_05_begin;
 
   #desks {
     -st-animation-name: desks;
-
     #employee {
       -st-animation-name: employee;
     }
-
     #entrepeneur {
       -st-animation-name: entrepeneur;
     }
-
     #freelance {
       -st-animation-name: freelance;
     }
   }
-
   @-st-keyframes desks {
     #{$start + 400} {
       transform: translate(0px, 0px) scale(1);
@@ -192,48 +181,37 @@ $start: $scene_05_begin;
     #luiss {
       -st-animation-name: luiss;
     }
-
     #algida {
       -st-animation-name: algida;
     }
-
     #unilever {
       -st-animation-name: unilever;
     }
-
     #alitalia {
       -st-animation-name: alitalia;
     }
-
     #enel {
       -st-animation-name: enel;
     }
-
     #equitalia {
       -st-animation-name: equitalia;
     }
-
     #infostrada {
       -st-animation-name: infostrada;
     }
-
     #nintendo {
       -st-animation-name: nintendo;
     }
-
     #peroni {
       -st-animation-name: peroni;
     }
-
     #sapienza {
       -st-animation-name: sapienza;
     }
-
     #wind {
       -st-animation-name: wind;
     }
   }
-
   @-st-keyframes unilever {
     #{$start + 100} {
       transform: translate(-3000px, -8000px) scale(16);
@@ -359,7 +337,6 @@ $start: $scene_05_begin;
     -st-animation-name: mouse04;
   }
   $mousestart: $start - 200;
-
   @-st-keyframes mouse04 {
     #{$mousestart} {
       transform: rotate(1deg);
@@ -566,7 +543,6 @@ $start: $scene_05_begin;
   #deskleft {
     -st-animation-name: deskleft;
   }
-
   @-st-keyframes deskleft {
     #{$start + 400} {
       opacity: 0;
@@ -589,7 +565,6 @@ $start: $scene_05_begin;
   #deskright {
     -st-animation-name: deskright;
   }
-
   @-st-keyframes deskright {
     #{$start + 400} {
       opacity: 0;
