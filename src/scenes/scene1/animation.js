@@ -24,7 +24,7 @@ export default {
 
     this.activateCvLink();
 
-    this.sceneTiming = site.timing.scene1;
+    this.sceneTiming = site.sceneTimings.scene1;
   },
 
   beforerender(data) {

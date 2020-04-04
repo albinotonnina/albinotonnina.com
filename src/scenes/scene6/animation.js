@@ -41,8 +41,7 @@ export default {
 
     this.initClickEvents(site);
     this.skills = this.newskills;
-    this.sceneTiming = site.timing.scene6;
-
+    this.sceneTiming = site.sceneTimings.scene6;
     this.animateMe = debounce(10000, true, this.animateMe);
     this.resizeSkills = throttle(250, true, this.resizeSkills);
   },
