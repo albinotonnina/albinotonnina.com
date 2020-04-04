@@ -34,6 +34,13 @@ const sceneTimes = {
 };
 
 export default {
+  get maxScroll() {
+    return Object.values(sceneTimes).reduce(
+      (acc, { duration }) => acc + parseInt(duration, 0),
+      0
+    );
+  },
+
   get scenes() {
     let begin = 0;
 

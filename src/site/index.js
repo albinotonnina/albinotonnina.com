@@ -18,16 +18,9 @@ const hideLoader = () => {
 export default class {
   constructor() {
     this.scenes = getScenes();
-
     this.sceneTimings = timing.scenes;
-
-    this.maxScroll = Object.values(this.sceneTimings).reduce(
-      (acc, { duration }) => acc + parseInt(duration, 0),
-      0
-    );
-
+    this.maxScroll = timing.maxScroll;
     this.siteRoot = utils.createElementWithAttrs("figure", { role: "site" });
-
     this.initEvents();
     initScenes(this);
     hideLoader();
@@ -37,12 +30,10 @@ export default class {
     window.onresize = debounce(100, false, this.start.bind(this));
     utils.onBeforePrint(this.destroy.bind(this));
 
-    if (document.querySelector("#reopen")) {
-      document.querySelector("#reopen").addEventListener("click", (ev) => {
-        ev.preventDefault();
-        this.show();
-      });
-    }
+    document.querySelector("#reopen").addEventListener("click", (ev) => {
+      ev.preventDefault();
+      this.show();
+    });
   }
 
   start() {
