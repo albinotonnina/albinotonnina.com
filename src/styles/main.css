@@ -1,0 +1,25 @@
+@import "scrollytelly";
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #151d29;
+  background: linear-gradient(45deg, #eff4f9, #48b1bf);
+  background-attachment: fixed;
+}
+
+@media all and (orientation: portrait) {
+  .portrait-mode {
+  }
+}

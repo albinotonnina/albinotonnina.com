@@ -1,0 +1,25 @@
+#subContainer {
+  position: fixed;
+  z-index: 101;
+  bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  @media screen and (orientation: portrait) {
+    top: 2rem;
+    bottom: auto;
+  }
+}
+
+#subtitles {
+  font-size: 5vh;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5vh 2vh;
+  text-align: center;
+
+  @media screen and (orientation: portrait) {
+    font-size: 3vh;
+  }
+}

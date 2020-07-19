@@ -1,7 +1,10 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": [
-    
-
-  ]
+  "env": {
+    "production": {
+      "presets": [
+        ["@babel/preset-env", { "modules": false, "useBuiltIns": true }]
+      ]
+    }
+  }
 }

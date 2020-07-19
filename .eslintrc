@@ -2,28 +2,34 @@
   "env": {
     "es6": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "modules": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "extends": [
     "airbnb-base",
     "eslint:recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-plusplus": "off",
-    "no-param-reassign":[
-      "error",{
-        "props": false 
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
       }
     ]
   },
   "globals": {
     "window": true,
-    "document": true
+    "document": true,
+    "IntersectionObserver": true
   }
 }
