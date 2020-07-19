@@ -42,7 +42,7 @@ export default {
       : multiple(translate(700, -300), scale(0.3));
 
     const table = isPortrait
-      ? multiple(translate(1150, 200), scale(2))
+      ? multiple(translate(1030, 200), scale(1.6))
       : multiple(translate(1100, 200), scale(1.8));
 
     const start = isPortrait
@@ -62,7 +62,22 @@ export default {
       : multiple(translate(-300, 0), scale(1.3));
 
     return new Map([
-      ["scrollhint", disappearAt(0, 30)],
+      [
+        "scrollhint",
+        {
+          0: {
+            transform: isPortrait
+              ? multiple(translate(-0, -0), scale(4))
+              : multiple(translate(0, 0), scale(1)),
+          },
+          2: {
+            transform: isPortrait
+              ? multiple(translate(-0, -0), scale(4))
+              : multiple(translate(0, 0), scale(1)),
+          },
+          ...disappearAt(3, 30),
+        },
+      ],
       [
         "container",
         {
@@ -95,18 +110,6 @@ export default {
             transform: founder,
             opacity: 0,
           },
-        },
-      ],
-      [
-        "line",
-        {
-          0: {
-            strokeDashoffset: 200,
-          },
-          300: {
-            strokeDashoffset: 0,
-          },
-          ...disappearAt(450),
         },
       ],
       [
@@ -303,12 +306,8 @@ export default {
           },
         },
       ],
-      // ["wall", appearAt(frameView[1])],
-      // ["books", display(frameView[1] + 190, 1, frameView[1] + 799)],
-      // ["frame", display(frameView[0] - 100, 1, frameView[1] + 600)],
-      // ["boxes", display(frameView[1], 1, frameView[1] + 555)],
-      ["leftroom", appearAt(frameView[1] + 100, 1)],
-      ["interior", display(frameView[1] + 30, 1, contactsView[1] - 300, 250)],
+      ["leftroom", appearAt(frameView[1], 1)],
+      ["interior", display(frameView[1], 1, contactsView[1] - 300, 250)],
       [
         "daylights",
         display(frameView[1] + 1100, 1, contactsView[1] - 300, 250),
@@ -469,8 +468,8 @@ export default {
           },
         },
       ],
-      ["smoke1", smokeMachine(lightsOffView[0], 7)],
-      ["smoke2", smokeMachine(lightsOffView[0] + 100, 7)],
+      ["smoke1", smokeMachine(lightsOffView[0] - 100, 7)],
+      ["smoke2", smokeMachine(lightsOffView[0], 7)],
       [
         "window1",
         {

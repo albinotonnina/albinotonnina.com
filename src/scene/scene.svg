@@ -12380,6 +12380,6 @@
 		"/>
 	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M992-27.7c-19.8,0-23.2,9.1-23.1,22.2c0.1,12.5-0.1,25-0.1,37.5
 		c0,13.2,5.5,22.6,23.2,22.6c16.5,0,21.8-7.4,21.9-24.1c0.1-11-0.4-22,0.1-33C1014.5-14.5,1013.9-27.7,992-27.7z"/>
-	<text transform="matrix(1 0 0 1 829.0209 -160.4916)" font-family="'Roboto-Thin'" font-size="24px">a website to scroll down slowly.</text>
+	<text transform="matrix(1 0 0 1 939.3822 -160.4916)"><tspan x="0" y="0" font-family="'Roboto-Thin'" font-size="24px">a website </tspan><tspan x="-23.4" y="28.8" font-family="'Roboto-Thin'" font-size="24px">to scroll down </tspan><tspan x="17.2" y="57.6" font-family="'Roboto-Thin'" font-size="24px">slowly.</tspan></text>
 </g>
 </svg>

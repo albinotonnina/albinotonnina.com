@@ -12,12 +12,12 @@
   {
     "start": "1000",
     "end": "1200",
-    "text": "I've been a freelance"
+    "text": "I've been a freelancer,"
   },
   {
     "start": "1200",
     "end": "1400",
-    "text": "an employee"
+    "text": "an employee,"
   },
   {
     "start": "1600",
@@ -47,18 +47,14 @@
   {
     "start": "3400",
     "end": "3700",
-    "text": "In 2018 I joined ASOS as a senior software engineer, how cool is that?"
+    "text": "In 2018 I joined ASOS as a senior software engineer. What a ride!"
   },
   {
     "start": "3800",
     "end": "4000",
-    "text": "Quite a few things happened in my personal life as wel 👨‍👩‍👧😊"
+    "text": "And not just work, a few things happened in my personal life as well 👨‍👩‍👧😊"
   },
-  {
-    "start": "4200",
-    "end": "4500",
-    "text": "Now, admittedly, I'm a bit of a computer geek"
-  },
+
   {
     "start": "4500",
     "end": "4700",
@@ -67,12 +63,12 @@
   {
     "start": "4800",
     "end": "5100",
-    "text": "write about software engineering"
+    "text": "publish code on my github profile"
   },
   {
     "start": "5100",
     "end": "5400",
-    "text": "publish code on my github profile"
+    "text": "write about software engineering"
   },
   {
     "start": "5400",

@@ -1,35 +1,3 @@
-[role="placeholder"] {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-[role="site"] {
-  opacity: 0;
-  height: 100%;
-
-  &[uiState="show"] {
-    opacity: 1;
-  }
-
-  &[uiState="hidden"] {
-    display: none;
-  }
-
-  > div > svg {
-    position: fixed;
-    z-index: 100;
-  }
-}
-
-#framedisplay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background: white;
-}
-
 #svg1 {
   top: 0;
   position: fixed;
@@ -39,52 +7,15 @@
     text-rendering: geometricPrecision;
   }
 
-  #line,
-  #line2,
   #helloline {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 4;
-    stroke-dasharray: 200;
     stroke-dashoffset: 0;
+    stroke: #93cfd9;
+    stroke-dasharray: 300;
+    stroke-width: 1.2;
   }
-
-  #line2 {
-    stroke-dasharray: 2000;
-  }
-
-  #endline {
-    stroke-dasharray: 3000;
-    stroke-linecap: round;
-    stroke-linejoin: miter;
-    stroke-miterlimit: 4;
-    stroke-dashoffset: 0;
-  }
-
-  #viewresume {
-    cursor: pointer;
-    opacity: 0;
-
-    &:hover {
-      fill: rgba(44, 62, 80, 0.99);
-    }
-  }
-
-  #scrolldown {
-    opacity: 0;
-  }
-
-  #intro2 {
-    cursor: pointer;
-
-    &:hover text {
-      fill: rgba(214, 219, 220, 0.8) !important;
-    }
-  }
-
-  /* #container {
-    transform-origin: center;
-  } */
 
   #helloline,
   #desklogos,
@@ -133,12 +64,6 @@
     clip-path: inherit;
   }
 
-  #helloline {
-    stroke: #93cfd9;
-    stroke-dasharray: 300;
-    stroke-width: 1.2;
-  }
-
   #chair1 {
     path,
     polygon {
@@ -156,6 +81,7 @@
     transform-origin: center;
   }
 
+  #scrollhint,
   #hotballoon,
   #sky {
     transform-origin: center;
@@ -170,7 +96,6 @@
   #screen_1_,
   #screen_2_,
   #screen_3_,
-  #screen_4_,
   #screen_5_,
   #screen_7_ {
     mix-blend-mode: screen;
