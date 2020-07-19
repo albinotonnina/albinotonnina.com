@@ -49,6 +49,11 @@ export default function scene(props) {
       window.open("https://www.linkedin.com/in/albinotonnina/");
     });
   });
+  React.useEffect(() => {
+    document.querySelector("#githubbutton").addEventListener("click", () => {
+      window.open("https://github.com/albinotonnina/albinotonnina.com/");
+    });
+  });
 
   return <Svg width={props.width} height={props.height} />;
 }
