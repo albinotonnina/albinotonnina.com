@@ -1,9 +1,12 @@
-import { waitForWebfonts } from "./site/utilities";
-import Site from "./site";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-const onLoad = () => {
-  const site = new Site();
-  site.start();
-};
+const rootElement = document.getElementById("root");
 
-window.onload = waitForWebfonts(["Roboto:400,100,300,700,900"], onLoad);
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  rootElement
+);

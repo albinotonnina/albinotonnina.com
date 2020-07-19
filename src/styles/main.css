@@ -1,0 +1,135 @@
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #151d29;
+  background: linear-gradient(45deg, #eff4f9, #48b1bf);
+  background-attachment: fixed;
+}
+
+#svg1 {
+  top: 0;
+  position: fixed;
+  z-index: 100;
+
+  text {
+    text-rendering: geometricPrecision;
+  }
+
+  #helloline {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke: #93cfd9;
+    stroke-dasharray: 300;
+    stroke-width: 1.2;
+  }
+
+  #helloline,
+  #desklogos,
+  #wireframe1,
+  #wireframe2,
+  #wireframe3,
+  #wireframe4,
+  #desklaptop,
+  #deskmonitor1,
+  #deskmonitor2,
+  #deskpen,
+  #desknotes,
+  #deskkeyboard,
+  #deskcoffee,
+  #desktablewindowshadow,
+  #desktable {
+    transform-origin: left;
+
+    path,
+    polygon,
+    ellipse {
+      opacity: 0;
+      stroke: #fff;
+      fill-opacity: 0;
+      stroke-width: 0.5;
+      stroke-linecap: round;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 4;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  #desktopsource {
+    transform-origin: left;
+  }
+
+  #terminal2textclip {
+    transform-origin: 5%;
+  }
+
+  #contactsbutton,
+  #githubbutton {
+    cursor: pointer;
+  }
+
+  #framemasked {
+    clip-path: inherit;
+  }
+
+  #chair1 {
+    path,
+    polygon {
+      fill-opacity: 0;
+      stroke: #dbdbdb;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 4;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  #room {
+    transform-origin: center;
+  }
+
+  #scrollhint,
+  #hotballoon,
+  #sky {
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  #laptopwindowshadow {
+    mix-blend-mode: multiply;
+  }
+
+  #screen,
+  #screen_1_,
+  #screen_2_,
+  #screen_3_,
+  #screen_5_,
+  #screen_7_ {
+    mix-blend-mode: screen;
+  }
+
+  #dodge {
+    mix-blend-mode: color-dodge;
+  }
+
+  #companyshadows,
+  #chairshadow,
+  #tableshadow,
+  #table2shadow {
+    transform-origin: left;
+    transform-box: fill-box;
+  }
+}
