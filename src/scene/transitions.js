@@ -71,11 +71,17 @@ export default {
               : multiple(translate(0, 0), scale(1)),
           },
           2: {
+            opacity: 1,
             transform: isPortrait
               ? multiple(translate(-0, -0), scale(4))
               : multiple(translate(0, 0), scale(1)),
           },
-          ...disappearAt(3, 30),
+          30: {
+            opacity: 0,
+            transform: isPortrait
+              ? multiple(translate(-0, -0), scale(4))
+              : multiple(translate(0, 0), scale(1)),
+          },
         },
       ],
       [
