@@ -30,7 +30,7 @@ export default (_, { analyze }) => {
     entry: "./src/index.js",
     output: {
       filename: "bundle.js",
-      path: resolve("dist"),
+      path: resolve("public"),
     },
     stats: "errors-only",
     plugins: [

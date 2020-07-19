@@ -12367,6 +12367,8 @@
 		<text transform="matrix(1 0 0 1 127.0144 44.1914)" enable-background="new    "><tspan x="0" y="0" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">OH NO! </tspan><tspan x="-78.4" y="31.2" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">SOMETHING WRONG</tspan><tspan x="-14.3" y="62.4" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">WITH THE</tspan><tspan x="-55.1" y="93.6" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">CONTACT PAGE. </tspan></text>
 		
 			<text id="contactsbutton" transform="matrix(1 0 0 1 90.7851 203.428)" fill="#E5C7C7" font-family="'Roboto-Regular'" font-size="26px">CONTACT ME!</text>
+		
+			<text id="contactsbutton_1_" transform="matrix(1 0 0 1 60.873 303.428)" fill="#827575" font-family="'Roboto-Regular'" font-size="16px">*website source code on GitHub</text>
 		<path fill="#C53E3E" d="M185.3-27.9l-12-24c-0.7-1.4-2.1-2.2-3.6-2.2c-1.5,0-2.9,0.9-3.6,2.2l-12,24c-0.6,1.2-0.6,2.7,0.2,3.9
 			c0.7,1.2,2,1.9,3.4,1.9h24c1.4,0,2.7-0.7,3.4-1.9C185.8-25.2,185.9-26.7,185.3-27.9z M171.7-27.1c0,0.6-0.4,1-1,1h-2
 			c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1V-27.1z M171.7-35.1c0,0.6-0.4,1-1,1h-2c-0.6,0-1-0.4-1-1v-10
