@@ -148,7 +148,7 @@ export const animateSourceCodes = (start, end) => {
 
   for (let index = 0; index < times; index++) {
     output[start + 50 * index] = {
-      transform: translate(0, `${(Math.random() * 50).toFixed(2) - 40}px`),
+      transform: translate(0, `${(Math.random() * 50).toFixed(2) - 40}`),
     };
   }
 
