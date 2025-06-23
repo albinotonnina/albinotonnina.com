@@ -10,7 +10,7 @@ function hash(string) {
   return crypto
     .createHash("sha256")
     .update(string, "utf8")
-    .digest("HEX")
+    .digest("hex")
     .substring(0, 4);
 }
 

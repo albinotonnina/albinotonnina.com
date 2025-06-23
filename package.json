@@ -9,9 +9,9 @@
     "url": "http://www.albinotonnina.com"
   },
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "analyze": "webpack --mode production --analyze",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' webpack-dev-server --mode development",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' webpack --mode production",
+    "analyze": "NODE_OPTIONS='--openssl-legacy-provider' webpack --mode production --analyze",
     "test": "jest"
   },
   "dependencies": {
