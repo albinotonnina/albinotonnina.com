@@ -1,5 +1,9 @@
 import React from "react";
 import Svg from "./scene.svg";
+
+console.log("SVG imported:", Svg);
+console.log("SVG type:", typeof Svg);
+
 import sceneTransitions1 from "./transitions";
 import "../images/albinotonnina.com.mp4";
 import { getTransitionElements } from "./transition-utilities";

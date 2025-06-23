@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simplified version of scene.svg for testing -->
+<svg version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="496 -368 1024 768" enable-background="new 496 -368 1024 768" xml:space="preserve">
+
+<!-- Essential pattern definitions (simplified) -->
+<defs>
+	<pattern x="496" y="400" width="197.5" height="228.6" patternUnits="userSpaceOnUse" id="chair1" viewBox="0 -228.6 197.5 228.6" overflow="visible">
+		<rect y="-228.6" fill="none" width="197.5" height="228.6"/>
+		<rect x="10" y="-200" width="177.5" height="180" fill="#8B6170"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="209.3" height="154.5" patternUnits="userSpaceOnUse" id="chair1shadow" viewBox="0 -154.5 209.3 154.5" overflow="visible">
+		<rect y="-154.5" fill="none" width="209.3" height="154.5"/>
+		<ellipse cx="104.65" cy="-77.25" rx="100" ry="70" fill="#333333" opacity="0.3"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="107.6" height="169.9" patternUnits="userSpaceOnUse" id="chair2" viewBox="0 -169.9 107.6 169.9" overflow="visible">
+		<rect y="-169.9" fill="none" width="107.6" height="169.9"/>
+		<rect x="5" y="-160" width="97.6" height="150" fill="#6B5B73"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="142.9" height="112.6" patternUnits="userSpaceOnUse" id="chair2shadow" viewBox="0 -140.7 142.9 112.6" overflow="visible">
+		<rect y="-140.7" fill="none" width="142.9" height="112.6"/>
+		<ellipse cx="71.45" cy="-70.35" rx="60" ry="40" fill="#333333" opacity="0.3"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="182.4" height="201.1" patternUnits="userSpaceOnUse" id="chair3" viewBox="0 -201.1 182.4 201.1" overflow="visible">
+		<rect y="-201.1" fill="none" width="182.4" height="201.1"/>
+		<rect x="8" y="-190" width="166.4" height="180" fill="#A67B8A"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="92.6" height="111.9" patternUnits="userSpaceOnUse" id="chair4" viewBox="0 -111.9 92.6 111.9" overflow="visible">
+		<rect y="-111.9" fill="none" width="92.6" height="111.9"/>
+		<rect x="5" y="-100" width="82.6" height="90" fill="#5A4D5F"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="406.5" height="345.4" patternUnits="userSpaceOnUse" id="desk1" viewBox="0 -345.4 406.5 345.4" overflow="visible">
+		<rect y="-345.4" fill="none" width="406.5" height="345.4"/>
+		<rect x="10" y="-330" width="386.5" height="300" fill="#8B7355"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="388.3" height="293.4" patternUnits="userSpaceOnUse" id="desk2" viewBox="0 -293.4 388.3 293.4" overflow="visible">
+		<rect y="-293.4" fill="none" width="388.3" height="293.4"/>
+		<rect x="8" y="-280" width="372.3" height="260" fill="#7A634B"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="3.2" height="2" patternUnits="userSpaceOnUse" id="holes" viewBox="0 -2 3.2 2" overflow="visible">
+		<circle cx="1.6" cy="-1" r="0.8" fill="#333333"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="43.9" height="30.9" patternUnits="userSpaceOnUse" id="keyboard1" viewBox="0 -30.9 43.9 30.9" overflow="visible">
+		<rect y="-30.9" fill="none" width="43.9" height="30.9"/>
+		<rect x="2" y="-28" width="39.9" height="25" fill="#2C2C2C"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="119.5" height="128" patternUnits="userSpaceOnUse" id="monitor1" viewBox="0 -128 119.5 128" overflow="visible">
+		<rect y="-128" fill="none" width="119.5" height="128"/>
+		<rect x="5" y="-120" width="109.5" height="110" fill="#1A1A1A"/>
+		<rect x="10" y="-110" width="99.5" height="85" fill="#000000"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="112" height="107.9" patternUnits="userSpaceOnUse" id="mouse1" viewBox="0 -107.9 112 107.9" overflow="visible">
+		<rect y="-107.9" fill="none" width="112" height="107.9"/>
+		<ellipse cx="56" cy="-53.95" rx="45" ry="40" fill="#444444"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="119.2" height="73.3" patternUnits="userSpaceOnUse" id="pad1" viewBox="0 -73.3 119.2 73.3" overflow="visible">
+		<rect y="-73.3" fill="none" width="119.2" height="73.3"/>
+		<rect x="5" y="-68" width="109.2" height="60" fill="#333333"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="206.5" height="144.6" patternUnits="userSpaceOnUse" id="shadowchair4" viewBox="0 -144.6 206.5 144.6" overflow="visible">
+		<ellipse cx="103.25" cy="-72.3" rx="90" ry="60" fill="#333333" opacity="0.3"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="479.5" height="439.4" patternUnits="userSpaceOnUse" id="shadowdesk" viewBox="0 -549.2 479.5 439.4" overflow="visible">
+		<ellipse cx="239.75" cy="-329.8" rx="200" ry="180" fill="#333333" opacity="0.3"/>
+	</pattern>
+	
+	<pattern x="496" y="400" width="151.8" height="125.9" patternUnits="userSpaceOnUse" id="workstation1" viewBox="0 -125.9 151.8 125.9" overflow="visible">
+		<rect y="-125.9" fill="none" width="151.8" height="125.9"/>
+		<rect x="5" y="-120" width="141.8" height="110" fill="#555555"/>
+	</pattern>
+</defs>
+
+<!-- Main content structure -->
+<g id="container">
+	<g id="company">
+		<!-- Background walls -->
+		<g id="companywalls">
+			<rect x="496" y="-368" width="1024" height="768" fill="#F5F5F5"/>
+			<rect x="600" y="-300" width="816" height="600" fill="#E8E8E8"/>
+		</g>
+		
+		<!-- Shadows -->
+		<g id="companyshadows">
+			<!-- Simplified shadows for major elements -->
+			<rect x="700" y="100" width="400" height="200" fill="url(#shadowdesk)" opacity="0.3"/>
+			<rect x="800" y="150" width="150" height="100" fill="url(#shadowchair4)" opacity="0.3"/>
+		</g>
+		
+		<!-- Interior elements -->
+		<g id="companyinterior">
+			<!-- Simplified office elements -->
+			<rect x="700" y="50" width="400" height="250" fill="url(#desk1)"/>
+			<rect x="750" y="80" width="120" height="60" fill="url(#monitor1)"/>
+			<rect x="880" y="120" width="40" height="25" fill="url(#keyboard1)"/>
+			<rect x="930" y="130" width="60" height="50" fill="url(#mouse1)"/>
+			<rect x="810" y="120" width="100" height="40" fill="url(#pad1)"/>
+			
+			<!-- Chairs -->
+			<rect x="780" y="180" width="80" height="120" fill="url(#chair2)"/>
+			<rect x="900" y="170" width="90" height="130" fill="url(#chair1)"/>
+			
+			<!-- Workstation -->
+			<rect x="1200" y="100" width="150" height="120" fill="url(#workstation1)"/>
+		</g>
+	</g>
+	
+	<!-- Error screen with interactive buttons -->
+	<g id="errorscr2">
+		<rect x="50" y="-50" width="300" height="400" fill="#111111" opacity="0.8"/>
+		<text transform="matrix(1 0 0 1 127.0144 4.1914)">
+			<tspan x="0" y="0" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">OH NO!</tspan>
+			<tspan x="-78.4" y="31.2" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">SOMETHING WRONG</tspan>
+			<tspan x="-14.3" y="62.4" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">WITH THE</tspan>
+			<tspan x="-55.1" y="93.6" fill="#C53E3E" font-family="'Roboto-Light'" font-size="26px">CONTACT PAGE.</tspan>
+		</text>
+		
+		<!-- Critical interactive buttons -->
+		<text id="contactsbutton" transform="matrix(1 0 0 1 90.7851 163.428)" fill="#E5C7C7" font-family="'Roboto-Regular'" font-size="26px">CONTACT ME!</text>
+		<text id="githubbutton" transform="matrix(1 0 0 1 90.7841 223.428)" fill="#827575" font-family="'Roboto-Light'" font-size="12px">*website source code on GitHub</text>
+		
+		<!-- Warning icon -->
+		<path fill="#C53E3E" d="M185.3-67.9l-12-24c-0.7-1.4-2.1-2.2-3.6-2.2c-1.5,0-2.9,0.9-3.6,2.2l-12,24c-0.6,1.2-0.6,2.7,0.2,3.9
+			c0.7,1.2,2,1.9,3.4,1.9h24c1.4,0,2.7-0.7,3.4-1.9C185.8-65.2,185.9-66.7,185.3-67.9z M171.7-67.1c0,0.6-0.4,1-1,1h-2
+			c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1V-67.1z M171.7-75.1c0,0.6-0.4,1-1,1h-2c-0.6,0-1-0.4-1-1v-10
+			c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1V-75.1z"/>
+	</g>
+	
+	<!-- Main text content -->
+	<text transform="matrix(1 0 0 1 939.3822 -160.4916)">
+		<tspan x="0" y="0" font-family="'Roboto-Thin'" font-size="24px">a website</tspan>
+		<tspan x="-23.4" y="28.8" font-family="'Roboto-Thin'" font-size="24px">to scroll down</tspan>
+		<tspan x="17.2" y="57.6" font-family="'Roboto-Thin'" font-size="24px">slowly.</tspan>
+	</text>
+</g>
+</svg>
