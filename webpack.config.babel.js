@@ -14,9 +14,17 @@ function hash(string) {
 }
 
 export default (_, { analyze }) => {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  
   const config = {
     mode: process.env.NODE_ENV || "development",
-    devtool: "source-map",
+    devtool: isDevelopment ? "eval-source-map" : "source-map",
+    cache: isDevelopment ? {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+    } : false,
     devServer: {
       host: "0.0.0.0",
       hot: true,
@@ -33,7 +41,7 @@ export default (_, { analyze }) => {
     },
     entry: "./src/index.js",
     output: {
-      filename: "bundle.[contenthash].js",
+      filename: isDevelopment ? "bundle.js" : "bundle.[contenthash].js",
       path: resolve("public"),
       clean: true,
       publicPath: "/",
@@ -41,14 +49,14 @@ export default (_, { analyze }) => {
     stats: "errors-only",
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "styles.[contenthash].css",
+        filename: isDevelopment ? "styles.css" : "styles.[contenthash].css",
       }),
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
-      new FaviconsWebpackPlugin("./src/images/logo.png"),
+      ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
     ],
     optimization: {
-      minimize: true,
-      splitChunks: {
+      minimize: !isDevelopment,
+      splitChunks: isDevelopment ? false : {
         chunks: "all",
         cacheGroups: {
           scenes: {
@@ -138,7 +146,7 @@ export default (_, { analyze }) => {
               options: {
                 memo: true,
                 exportType: "default",
-                svgo: true,
+                svgo: !isDevelopment, // Disable SVGO in development for faster builds
                 svgoConfig: {
                   plugins: [
                     {
@@ -147,6 +155,22 @@ export default (_, { analyze }) => {
                         overrides: {
                           removeViewBox: false,
                           cleanupIds: false,
+                          removeUselessDefs: false,
+                          removeUnknownsAndDefaults: false,
+                          removeUselessStrokeAndFill: false,
+                          convertShapeToPath: false,
+                          mergePaths: false,
+                          convertPathData: false,
+                          removeHiddenElems: false,
+                          removeEmptyContainers: false,
+                          removeEmptyText: false,
+                          removeUnusedNS: false,
+                          convertColors: false,
+                          convertTransform: false,
+                          removeNonInheritableGroupAttrs: false,
+                          removeDimensions: false,
+                          removeStyleElement: false,
+                          removeScriptElement: false,
                         },
                       },
                     },

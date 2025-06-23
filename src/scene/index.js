@@ -1,5 +1,5 @@
 import React from "react";
-import Svg from "./scene1.svg";
+import Svg from "./scene.svg";
 
 import sceneTransitions1 from "./transitions";
 import "../images/albinotonnina.com.mp4";
