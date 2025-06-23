@@ -8,6 +8,9 @@
     "email": "albinotonnina@gmail.com",
     "url": "http://www.albinotonnina.com"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
