@@ -138,7 +138,20 @@ export default (_, { analyze }) => {
               options: {
                 memo: true,
                 exportType: "default",
-                svgo: false, // Disable SVGO completely for debugging
+                svgo: true,
+                svgoConfig: {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          cleanupIds: false,
+                        },
+                      },
+                    },
+                  ],
+                },
               },
             },
           ],
