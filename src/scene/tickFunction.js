@@ -41,7 +41,27 @@ export default (transitionsData, transitionElements) => {
 
   styles.forEach(({ selector, style }) => {
     transitionElements.get(selector).forEach((element) => {
+      // Don't apply opacity/display styles to stop elements as they break gradients
+      if (element.tagName === 'stop') {
+        return;
+      }
+      
+      // Apply the style to the element
       element.setAttribute("style", style);
+      
+      // However, if this element has stop descendants, ensure they remain visible
+      if (style.includes('opacity: 0') || style.includes('display: none')) {
+        const stopElements = element.querySelectorAll('stop');
+        stopElements.forEach(stop => {
+          const currentStyle = stop.getAttribute('style') || '';
+          // Remove opacity and display properties that might have been inherited
+          const cleanedStyle = currentStyle
+            .replace(/opacity:\s*[^;]*;?/g, '')
+            .replace(/display:\s*[^;]*;?/g, '')
+            .trim();
+          stop.setAttribute('style', cleanedStyle);
+        });
+      }
     });
   });
 };

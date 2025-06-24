@@ -1,6 +1,5 @@
 import { resolve } from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import StringReplacePlugin from "string-replace-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
@@ -10,16 +9,29 @@ function hash(string) {
   return crypto
     .createHash("sha256")
     .update(string, "utf8")
-    .digest("HEX")
+    .digest("hex")
     .substring(0, 4);
 }
 
 export default (_, { analyze }) => {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  
   const config = {
-    devtool: "source-map",
+    mode: process.env.NODE_ENV || "development",
+    devtool: isDevelopment ? "eval-source-map" : "source-map",
+    cache: isDevelopment ? {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+    } : false,
     devServer: {
       host: "0.0.0.0",
       hot: true,
+      static: {
+        directory: resolve("public"),
+      },
+      historyApiFallback: true,
     },
     resolve: {
       alias: {
@@ -29,29 +41,30 @@ export default (_, { analyze }) => {
     },
     entry: "./src/index.js",
     output: {
-      filename: "bundle.js",
+      filename: isDevelopment ? "bundle.js" : "bundle.[contenthash].js",
       path: resolve("public"),
+      clean: true,
+      publicPath: "/",
     },
     stats: "errors-only",
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "styles.css",
+        filename: isDevelopment ? "styles.css" : "styles.[contenthash].css",
       }),
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
-      new StringReplacePlugin(),
-      new FaviconsWebpackPlugin("./src/images/logo.png"),
+      ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
     ],
     optimization: {
-      minimize: true,
-      splitChunks: {
+      minimize: !isDevelopment,
+      splitChunks: isDevelopment ? false : {
+        chunks: "all",
         cacheGroups: {
           scenes: {
             test: (module) => {
+              const identifier = module.identifier();
               return (
-                module
-                  .identifier()
-                  .split("/")
-                  .reduceRight((item) => item) === "scene.svg"
+                identifier.includes("scene.svg") || 
+                identifier.includes("scene-simplified.svg")
               );
             },
             name(module) {
@@ -66,6 +79,17 @@ export default (_, { analyze }) => {
             filename: "[name].js",
             enforce: true,
             chunks: "initial",
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            priority: -10,
+            chunks: "all",
           },
         },
       },
@@ -82,24 +106,9 @@ export default (_, { analyze }) => {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: process.env.NODE_ENV === "development",
-              },
             },
             { loader: "css-loader", options: { importLoaders: 1 } },
-            {
-              loader: "postcss-loader",
-              options: {
-                ident: "postcss",
-                plugins: (loader) => [
-                  require("postcss-import")({ root: loader.resourcePath }),
-                  require("postcss-preset-env")(),
-                  require("postcss-nested")(),
-                  require("cssnano")(),
-                  require("autoprefixer")(),
-                ],
-              },
-            },
+            "postcss-loader",
           ],
         },
         {
@@ -108,78 +117,66 @@ export default (_, { analyze }) => {
         },
         {
           test: /\.(gif|png|jpe?g)$/i,
+          type: "asset/resource",
+          generator: {
+            filename: "images/[name][ext]",
+          },
           use: [
             {
-              loader: "file-loader",
+              loader: "image-webpack-loader",
               options: {
-                name: "images/[name].[ext]",
+                disable: process.env.NODE_ENV === "development",
               },
             },
-            "image-webpack-loader",
           ],
         },
         {
           test: /\.mp4$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "images/[name].[ext]",
-              },
-            },
-          ],
+          type: "asset/resource",
+          generator: {
+            filename: "images/[name][ext]",
+          },
         },
         {
           test: /\.svg$/,
-          issuer: {
-            test: /\.js?$/,
-          },
+          issuer: /\.[jt]sx?$/,
           use: [
             {
               loader: "@svgr/webpack",
               options: {
                 memo: true,
+                exportType: "default",
+                svgo: !isDevelopment, // Disable SVGO in development for faster builds
                 svgoConfig: {
                   plugins: [
-                    { prefixIds: false },
                     {
-                      cleanupIDs: false,
-                    },
-                    {
-                      reusePaths: true,
-                    },
-                    {
-                      convertShapeToPath: false,
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          cleanupIds: false,
+                          removeUselessDefs: false,
+                          removeUnknownsAndDefaults: false,
+                          removeUselessStrokeAndFill: false,
+                          convertShapeToPath: false,
+                          mergePaths: false,
+                          convertPathData: false,
+                          removeHiddenElems: false,
+                          removeEmptyContainers: false,
+                          removeEmptyText: false,
+                          removeUnusedNS: false,
+                          convertColors: false,
+                          convertTransform: false,
+                          removeNonInheritableGroupAttrs: false,
+                          removeDimensions: false,
+                          removeStyleElement: false,
+                          removeScriptElement: false,
+                        },
+                      },
                     },
                   ],
                 },
               },
-            },
-            {
-              loader: StringReplacePlugin.replace({
-                replacements: [
-                  {
-                    pattern: /font-family="'Roboto-Thin'"/gi,
-                    replacement: () => 'font-weight="100"',
-                  },
-                  {
-                    pattern: /font-family="'Roboto-Light'"/gi,
-                    replacement: () => 'font-weight="300"',
-                  },
-                  {
-                    pattern: /font-family="'Roboto-Regular'"/gi,
-                    replacement: () => 'font-weight="400"',
-                  },
-                  {
-                    pattern: /font-family="'Roboto-Black'"/gi,
-                    replacement: () => 'font-weight="900"',
-                  },
-                  {
-                    pattern: /SVGID/gi,
-                    replacement: (match, offset, string) => `${hash(string)}_`,
-                  },
-                ],
-              }),
             },
           ],
         },

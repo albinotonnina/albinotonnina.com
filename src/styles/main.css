@@ -65,6 +65,12 @@ body {
       stroke-miterlimit: 4;
       stroke-dashoffset: 0;
     }
+
+    /* Ensure gradient stop elements are always visible */
+    stop {
+      opacity: 1 !important;
+      display: block !important;
+    }
   }
 
   #desktopsource {
@@ -94,6 +100,12 @@ body {
       stroke-linejoin: miter;
       stroke-miterlimit: 4;
       stroke-dashoffset: 0;
+    }
+
+    /* Ensure gradient stop elements are always visible */
+    stop {
+      opacity: 1 !important;
+      display: block !important;
     }
   }
 

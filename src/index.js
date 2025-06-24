@@ -1,15 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { getCLS, getFID, getLCP } from "web-vitals";
 import App from "./App";
 
 const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  rootElement
+  </React.StrictMode>
 );
 
 function sendToGoogleAnalytics({ name, delta, id }) {
