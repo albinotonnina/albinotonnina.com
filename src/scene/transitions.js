@@ -1,4 +1,4 @@
-/**
+/***
  * SCENE TRANSITIONS
  * 
  * This file orchestrates the entire animated narrative of albinotonnina.com.
@@ -20,6 +20,9 @@
  * 
  * Each animation is defined as [selector, keyframe_object] pairs that are
  * processed by the animation engine in tickFunction.js
+ * 
+ * DEBUG: Animation debugger is conditionally loaded in development only.
+ * Press Ctrl/Cmd + D to toggle real-time animation information.
  */
 
 import {
@@ -36,6 +39,19 @@ import {
   smokeMachine,
   translate,
 } from "./transition-utilities";
+
+// Only import debugger in development
+let animationDebugger = null;
+if (process.env.NODE_ENV === 'development') {
+  // Dynamic import to ensure it's not included in production bundles
+  import('./animationDebugger').then(module => {
+    animationDebugger = module.default;
+    // Initialize debugger with scene timing once imported
+    if (animationDebugger) {
+      animationDebugger.init(SCENE_TIMING);
+    }
+  });
+}
 
 // ============================
 // ANIMATION CONFIGURATION
@@ -116,40 +132,52 @@ const getViewportTransforms = (isPortrait) => ({
 /**
  * Creates drawing animations for desk elements in sequence
  * Each element appears with a stroke drawing effect
+ * 
+ * DEBUG: Desk scene elements that draw themselves with stroke animation
+ * TIME: 10ms - 810ms (desk scene phase)
+ * ELEMENTS: table, monitors, laptop, keyboard, coffee, notes, pen
  */
 const createDeskDrawingAnimations = () => {
   const startTime = SCENE_TIMING.desk;
   
   return [
-    ["desktable polygon", drawStrokes(startTime, 600)],
-    ["deskmonitor1 *", drawStrokes(startTime + 100, 300)],
-    ["desklaptop *", drawStrokes(startTime + 150, 60)],
-    ["deskkeyboard *", drawStrokes(startTime + 180, 300)],
-    ["deskcoffee *", drawStrokes(startTime + 240, 30)],
-    ["desknotes *", drawStrokes(startTime + 280, 60)],
-    ["deskpen *", drawStrokes(startTime + 300, 20)],
-    ["deskmonitor2 *", drawStrokes(startTime + 400, 300)],
+    ["desktable polygon", drawStrokes(startTime, 600)],        // 10-610ms: Main desk surface
+    ["deskmonitor1 *", drawStrokes(startTime + 100, 300)],    // 110-410ms: Left monitor  
+    ["desklaptop *", drawStrokes(startTime + 150, 60)],       // 160-220ms: Laptop
+    ["deskkeyboard *", drawStrokes(startTime + 180, 300)],    // 190-490ms: Keyboard
+    ["deskcoffee *", drawStrokes(startTime + 240, 30)],       // 250-280ms: Coffee cup
+    ["desknotes *", drawStrokes(startTime + 280, 60)],        // 290-350ms: Notebook
+    ["deskpen *", drawStrokes(startTime + 300, 20)],          // 310-330ms: Pen
+    ["deskmonitor2 *", drawStrokes(startTime + 400, 300)],    // 410-710ms: Right monitor
   ];
 };
 
 /**
  * Creates wireframe animations that appear and disappear quickly
  * Used during the freelance scene transition
+ * 
+ * DEBUG: UI/UX wireframes showing during freelance work phase
+ * TIME: 800ms - 1100ms (freelance scene start)
+ * ELEMENTS: 4 wireframe mockups appearing in sequence
  */
 const createWireframeAnimations = () => {
   const [startTime] = SCENE_TIMING.freelance;
   
   return [
-    ["wireframe1 *", drawStrokesAndHide(startTime, 30, 1, 100)],
-    ["wireframe2 *", drawStrokesAndHide(startTime + 100, 30, 1, 100)],
-    ["wireframe3 *", drawStrokesAndHide(startTime + 200, 30, 1, 100)],
-    ["wireframe4 *", drawStrokesAndHide(startTime + 300, 30, 1, 100)],
+    ["wireframe1 *", drawStrokesAndHide(startTime, 30, 1, 100)],      // 800-930ms: First wireframe
+    ["wireframe2 *", drawStrokesAndHide(startTime + 100, 30, 1, 100)], // 900-1030ms: Second wireframe
+    ["wireframe3 *", drawStrokesAndHide(startTime + 200, 30, 1, 100)], // 1000-1130ms: Third wireframe
+    ["wireframe4 *", drawStrokesAndHide(startTime + 300, 30, 1, 100)], // 1100-1230ms: Fourth wireframe
   ];
 };
 
 /**
  * Creates company logo animations with sequential appearance
  * Each logo draws and then fades away
+ * 
+ * DEBUG: Corporate client logos during company employment phase
+ * TIME: 1200ms - 1650ms (company scene)
+ * ELEMENTS: 10 company logos appearing every 50ms
  */
 const createCompanyLogoAnimations = () => {
   const [startTime] = SCENE_TIMING.company;
@@ -161,7 +189,7 @@ const createCompanyLogoAnimations = () => {
     
     logoAnimations.push([
       selector, 
-      drawStrokesAndHide(startTime + delay, 60, 0.25)
+      drawStrokesAndHide(startTime + delay, 60, 0.25)  // Each logo: draw for 60ms, fade at 0.25 opacity
     ]);
   }
   
@@ -683,7 +711,14 @@ const createTransitions = (isPortrait) => {
 // ============================
 // EXPORTS
 // ============================
+
 export default {
   duration: DURATION,
   transitions: createTransitions,
+  
+  // Export debugger for external access (development only)
+  ...(process.env.NODE_ENV === 'development' && {
+    debugger: animationDebugger,
+    sceneTiming: SCENE_TIMING,
+  }),
 };

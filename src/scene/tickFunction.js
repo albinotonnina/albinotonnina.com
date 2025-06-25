@@ -3,6 +3,15 @@ import calculateStyles from "./calculateStyles";
 
 import { browser } from "./transition-utilities";
 
+// Only import debugger in development
+let animationDebugger = null;
+if (process.env.NODE_ENV === 'development') {
+  // Dynamic import to ensure it's not included in production bundles
+  import('./animationDebugger').then(module => {
+    animationDebugger = module.default;
+  });
+}
+
 // const shakishaki = new SvgFilter();
 
 // shakishaki
@@ -26,6 +35,9 @@ import { browser } from "./transition-utilities";
 export default (transitionsData, transitionElements) => {
   const currentFrame = window.pageYOffset;
 
+  // Update debugger with current state
+  const activeSelectors = [];
+
   // if (browser.startsWith("chrom")) {
   //   if (currentFrame > 6000 && currentFrame < 6600) {
   //     document.querySelector("#leftroom").setAttribute("filter", shakishaki);
@@ -40,6 +52,11 @@ export default (transitionsData, transitionElements) => {
   const styles = calculateStyles(currentFrame, transitionsData);
 
   styles.forEach(({ selector, style }) => {
+    // Track active animations for debugger
+    if (style && style.trim() !== '') {
+      activeSelectors.push(selector);
+    }
+
     transitionElements.get(selector).forEach((element) => {
       // Don't apply opacity/display styles to stop elements as they break gradients
       if (element.tagName === "stop") {
@@ -64,4 +81,9 @@ export default (transitionsData, transitionElements) => {
       }
     });
   });
+
+  // Update debugger with animation state (development only)
+  if (process.env.NODE_ENV === 'development' && animationDebugger) {
+    animationDebugger.update(currentFrame, activeSelectors);
+  }
 };

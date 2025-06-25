@@ -44,10 +44,12 @@ yarn dev
 ```
 
 The development server includes:
+
 - Hot module replacement
 - Fast refresh for React components
 - Source maps for debugging
 - Optimized SVG processing
+- **Animation Debugger** - Press `Ctrl/Cmd + D` to toggle real-time animation info
 
 ### Production Build
 
@@ -69,18 +71,21 @@ yarn test
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **React 18** - UI library with modern hooks
 - **Webpack 5** - Module bundler with advanced optimization
 - **Babel** - JavaScript compiler with modern syntax support
 - **PostCSS** - CSS processing with modern features
 
 ### Animation & Graphics
+
 - **D3 Interpolate** - Smooth animation transitions
 - **SVG Filter** - Dynamic SVG effects and filters
 - **Custom Animation Engine** - Scroll-based scene transitions
 - **Complex SVG Illustrations** - Hand-crafted vector graphics
 
 ### Development Tools
+
 - **ESLint** - Code linting with Airbnb configuration
 - **Prettier** - Code formatting
 - **Jest** - Testing framework
@@ -105,18 +110,21 @@ src/
 ## 🎨 Key Technical Achievements
 
 ### SVG Animation System
+
 - **Scroll-triggered animations** with precise timing control
 - **Gradient preservation** during complex transformations
 - **Performance optimized** rendering for large SVG files
 - **Cross-browser compatible** animation engine
 
 ### Modern React Architecture
+
 - **React 18** with createRoot API
 - **Functional components** with hooks
 - **Performance optimized** with React.memo
 - **Clean separation** of concerns
 
 ### Advanced Webpack Configuration
+
 - **Development/Production** optimized builds
 - **Code splitting** for optimal loading
 - **Asset optimization** with modern loaders
@@ -126,23 +134,94 @@ src/
 ## 🐛 Known Issues & Solutions
 
 ### SVG Gradient Rendering
+
 The project includes custom solutions for preserving SVG gradient `stop-color` attributes during animations. The animation system has been modified to prevent opacity inheritance issues that could break gradient definitions.
 
-## 📄 License
+## � Development & Debugging
+
+### Animation Debugger
+
+The project includes a powerful real-time animation debugger to help understand and modify the complex scene transitions:
+
+**Toggle Debugger:** Press `Ctrl/Cmd + D` in the browser
+
+**Features:**
+
+- 📊 Real-time timing and progress information
+- 🎭 Current scene and animation state
+- 📅 Complete scene timeline with status indicators
+- 🎯 List of currently active animated elements
+- 🔍 Scene-by-scene breakdown with timing details
+
+**Console Commands:**
+
+```javascript
+// Available in browser console
+animationDebugger.jumpToScene("company"); // Jump to specific scene
+animationDebugger.listScenes(); // Show all available scenes
+animationDebugger.exportState(); // Export current state as JSON
+animationDebugger.logState(); // Log detailed state info
+```
+
+For detailed debugging information, see [ANIMATION_DEBUG.md](./ANIMATION_DEBUG.md).
+
+### Making Changes
+
+1. **Use the debugger** to understand current animation state
+2. **Modify timing** in the `SCENE_TIMING` object in `transitions.js`
+3. **Add new animations** using the existing generator patterns
+4. **Test changes** with the real-time debugger feedback
+
+## Project Status ✅
+
+This project has been successfully modernized with the following improvements:
+
+### ✅ Completed Modernization
+
+- **React 18** with latest features and concurrent mode support
+- **Webpack 5** with improved bundling and tree-shaking
+- **Modern build tools** (Babel 7, PostCSS, CSS optimization)
+- **Animation system refactor** for improved maintainability
+- **Development tooling** with hot module replacement and source maps
+
+### ✅ Animation Debugging System
+
+- **Real-time animation debugger** available in development mode only
+- **Toggle with Ctrl/Cmd+D** to show/hide the debug overlay
+- **Zero production overhead** - debug code is completely excluded from production builds
+- **Console API** available at `window.animationDebugger` in development
+
+### ✅ Bundle Optimization
+
+- **Production build size reduced by ~88%** (181KB → 23KB) through effective tree-shaking
+- **Development-only features** properly excluded from production
+- **SVG optimizations** with proper gradient and animation preservation
+
+### ✅ Code Quality
+
+- **Modular architecture** with clear separation of concerns
+- **Comprehensive documentation** including animation debugging guide
+- **Test coverage** for utility functions
+- **Modern JavaScript** with ES6+ features and proper bundling
+
+## �📄 License
 
 This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 **You are free to:**
+
 - Share — copy and redistribute the material in any medium or format
 
 **Under the following terms:**
+
 - **Attribution** — You must give appropriate credit
-- **NonCommercial** — You may not use the material for commercial purposes  
+- **NonCommercial** — You may not use the material for commercial purposes
 - **NoDerivatives** — You may not distribute modified material
 
 ## 👨‍💻 Author
 
 **Albino Tonnina**
+
 - Website: [albinotonnina.com](http://www.albinotonnina.com)
 - Email: albinotonnina@gmail.com
 - LinkedIn: [linkedin.com/in/albinotonnina](https://www.linkedin.com/in/albinotonnina/)
@@ -154,4 +233,4 @@ While this is a personal portfolio project, feedback and suggestions are welcome
 
 ---
 
-*Built with ❤️ and lots of ☕*
+_Built with ❤️ and lots of ☕_

@@ -168,11 +168,21 @@ export default (_, { analyze }) => {
                           convertColors: false,
                           convertTransform: false,
                           removeNonInheritableGroupAttrs: false,
-                          removeDimensions: false,
-                          removeStyleElement: false,
-                          removeScriptElement: false,
                         },
                       },
+                    },
+                    // These plugins are not part of preset-default, so they need to be separate
+                    {
+                      name: "removeDimensions",
+                      active: false,
+                    },
+                    {
+                      name: "removeStyleElement",
+                      active: false,
+                    },
+                    {
+                      name: "removeScriptElement", 
+                      active: false,
                     },
                   ],
                 },
