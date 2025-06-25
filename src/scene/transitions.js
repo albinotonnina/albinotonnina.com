@@ -45,6 +45,10 @@ export default {
       ? multiple(translate(1030, 200), scale(1.6))
       : multiple(translate(1100, 200), scale(1.8));
 
+    const pixels = isPortrait
+      ? multiple(translate(-400, -800), scale(7.6))
+      : multiple(translate(17430, 12850), scale(42.8));
+
     const start = isPortrait
       ? multiple(translate(-4300, -400), scale(5))
       : multiple(translate(-4200, -400), scale(5));
@@ -345,6 +349,12 @@ export default {
           },
           [lightsOffView[0] + 600]: {
             transform: table,
+          },
+          [contactsView[0] + 100]: {
+            transform: table,
+          },
+          [contactsView[0] + 400]: {
+            transform: pixels,
           },
         },
       ],
