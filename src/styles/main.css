@@ -113,6 +113,10 @@ body {
     transform-origin: center;
   }
 
+  #scrollhint {
+    opacity: 0;
+  }
+
   #scrollhint,
   #hotballoon,
   #sky {

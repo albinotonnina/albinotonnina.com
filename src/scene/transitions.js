@@ -1,26 +1,26 @@
 /***
  * SCENE TRANSITIONS
- * 
+ *
  * This file orchestrates the entire animated narrative of albinotonnina.com.
  * The animation is structured as a cinematic sequence with multiple scenes:
- * 
+ *
  * 1. DESK SCENE - Drawing of workspace elements
- * 2. FREELANCE SCENE - Transition to freelance work environment  
+ * 2. FREELANCE SCENE - Transition to freelance work environment
  * 3. COMPANY SCENE - Corporate work phase with exploding elements
  * 4. FOUNDER SCENE - Starting own company
  * 5. FRAME SCENE - Landscape and environmental animations
  * 6. LIGHTS OFF SCENE - Dramatic lighting effects and shadows
  * 7. CONTACTS SCENE - Terminal interfaces and error screens
- * 
+ *
  * The file is organized into logical sections:
  * - Configuration constants (timing, transforms)
  * - Animation generators for specific element types
  * - Core scene transition functions
  * - Main factory function that combines everything
- * 
+ *
  * Each animation is defined as [selector, keyframe_object] pairs that are
  * processed by the animation engine in tickFunction.js
- * 
+ *
  * DEBUG: Animation debugger is conditionally loaded in development only.
  * Press Ctrl/Cmd + D to toggle real-time animation information.
  */
@@ -42,9 +42,9 @@ import {
 
 // Only import debugger in development
 let animationDebugger = null;
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   // Dynamic import to ensure it's not included in production bundles
-  import('./animationDebugger').then(module => {
+  import("./animationDebugger").then((module) => {
     animationDebugger = module.default;
     // Initialize debugger with scene timing once imported
     if (animationDebugger) {
@@ -101,7 +101,7 @@ const getViewportTransforms = (isPortrait) => ({
 
   pixels: isPortrait
     ? multiple(translate(-400, -800), scale(7.6))
-    : multiple(translate(17430, 12850), scale(42.8)),
+    : multiple(translate(317500, 246000), scale(800)),
 
   // Scene-specific positions
   start: isPortrait
@@ -132,39 +132,39 @@ const getViewportTransforms = (isPortrait) => ({
 /**
  * Creates drawing animations for desk elements in sequence
  * Each element appears with a stroke drawing effect
- * 
+ *
  * DEBUG: Desk scene elements that draw themselves with stroke animation
  * TIME: 10ms - 810ms (desk scene phase)
  * ELEMENTS: table, monitors, laptop, keyboard, coffee, notes, pen
  */
 const createDeskDrawingAnimations = () => {
   const startTime = SCENE_TIMING.desk;
-  
+
   return [
-    ["desktable polygon", drawStrokes(startTime, 600)],        // 10-610ms: Main desk surface
-    ["deskmonitor1 *", drawStrokes(startTime + 100, 300)],    // 110-410ms: Left monitor  
-    ["desklaptop *", drawStrokes(startTime + 150, 60)],       // 160-220ms: Laptop
-    ["deskkeyboard *", drawStrokes(startTime + 180, 300)],    // 190-490ms: Keyboard
-    ["deskcoffee *", drawStrokes(startTime + 240, 30)],       // 250-280ms: Coffee cup
-    ["desknotes *", drawStrokes(startTime + 280, 60)],        // 290-350ms: Notebook
-    ["deskpen *", drawStrokes(startTime + 300, 20)],          // 310-330ms: Pen
-    ["deskmonitor2 *", drawStrokes(startTime + 400, 300)],    // 410-710ms: Right monitor
+    ["desktable polygon", drawStrokes(startTime, 600)], // 10-610ms: Main desk surface
+    ["deskmonitor1 *", drawStrokes(startTime + 100, 300)], // 110-410ms: Left monitor
+    ["desklaptop *", drawStrokes(startTime + 150, 60)], // 160-220ms: Laptop
+    ["deskkeyboard *", drawStrokes(startTime + 180, 300)], // 190-490ms: Keyboard
+    ["deskcoffee *", drawStrokes(startTime + 240, 30)], // 250-280ms: Coffee cup
+    ["desknotes *", drawStrokes(startTime + 280, 60)], // 290-350ms: Notebook
+    ["deskpen *", drawStrokes(startTime + 300, 20)], // 310-330ms: Pen
+    ["deskmonitor2 *", drawStrokes(startTime + 400, 300)], // 410-710ms: Right monitor
   ];
 };
 
 /**
  * Creates wireframe animations that appear and disappear quickly
  * Used during the freelance scene transition
- * 
+ *
  * DEBUG: UI/UX wireframes showing during freelance work phase
  * TIME: 800ms - 1100ms (freelance scene start)
  * ELEMENTS: 4 wireframe mockups appearing in sequence
  */
 const createWireframeAnimations = () => {
   const [startTime] = SCENE_TIMING.freelance;
-  
+
   return [
-    ["wireframe1 *", drawStrokesAndHide(startTime, 30, 1, 100)],      // 800-930ms: First wireframe
+    ["wireframe1 *", drawStrokesAndHide(startTime, 30, 1, 100)], // 800-930ms: First wireframe
     ["wireframe2 *", drawStrokesAndHide(startTime + 100, 30, 1, 100)], // 900-1030ms: Second wireframe
     ["wireframe3 *", drawStrokesAndHide(startTime + 200, 30, 1, 100)], // 1000-1130ms: Third wireframe
     ["wireframe4 *", drawStrokesAndHide(startTime + 300, 30, 1, 100)], // 1100-1230ms: Fourth wireframe
@@ -174,7 +174,7 @@ const createWireframeAnimations = () => {
 /**
  * Creates company logo animations with sequential appearance
  * Each logo draws and then fades away
- * 
+ *
  * DEBUG: Corporate client logos during company employment phase
  * TIME: 1200ms - 1650ms (company scene)
  * ELEMENTS: 10 company logos appearing every 50ms
@@ -182,17 +182,17 @@ const createWireframeAnimations = () => {
 const createCompanyLogoAnimations = () => {
   const [startTime] = SCENE_TIMING.company;
   const logoAnimations = [];
-  
+
   for (let i = 1; i <= 10; i++) {
     const selector = i === 1 ? "logo1" : `logo${i} *`;
     const delay = (i - 1) * 50;
-    
+
     logoAnimations.push([
-      selector, 
-      drawStrokesAndHide(startTime + delay, 60, 0.25)  // Each logo: draw for 60ms, fade at 0.25 opacity
+      selector,
+      drawStrokesAndHide(startTime + delay, 60, 0.25), // Each logo: draw for 60ms, fade at 0.25 opacity
     ]);
   }
-  
+
   return logoAnimations;
 };
 
@@ -202,7 +202,7 @@ const createCompanyLogoAnimations = () => {
  */
 const createDeskExplosionAnimations = () => {
   const [startTime] = SCENE_TIMING.company;
-  
+
   const explosionConfig = [
     { element: "desklaptop", x: -100, y: -10, scale: 1, delay: 0 },
     { element: "deskmonitor1", x: -100, y: -200, scale: 1, delay: 10 },
@@ -218,7 +218,7 @@ const createDeskExplosionAnimations = () => {
 
   return explosionConfig.map(({ element, x, y, scale, delay }) => [
     element,
-    explodeIt(x, y, scale, delay, startTime)
+    explodeIt(x, y, scale, delay, startTime),
   ]);
 };
 
@@ -228,7 +228,7 @@ const createDeskExplosionAnimations = () => {
  */
 const createShadowAnimations = () => {
   const [startTime] = SCENE_TIMING.lightsOff;
-  
+
   const baseShadowConfig = {
     [startTime]: {
       transform: multiple(translate(0, 0), scale(0.8, 1)),
@@ -253,7 +253,7 @@ const createShadowAnimations = () => {
  */
 const createLightingAnimations = () => {
   const [startTime] = SCENE_TIMING.lightsOff;
-  
+
   return [
     // Moving dodge light effect
     [
@@ -270,7 +270,7 @@ const createLightingAnimations = () => {
         },
       },
     ],
-    
+
     // Main lights appearing
     [
       "light",
@@ -288,7 +288,7 @@ const createLightingAnimations = () => {
         [startTime + 350]: { opacity: 0.4 },
       },
     ],
-    
+
     // Darkness overlays
     [
       "dark1",
@@ -319,7 +319,7 @@ const createErrorScreenAnimation = () => {
   const [startTime] = SCENE_TIMING.contacts;
   const flickerTimes = [0, 160, 200, 240, 280, 320, 360, 400];
   const animation = { 0: { opacity: 0 } };
-  
+
   // Create flicker pattern
   flickerTimes.forEach((time) => {
     const flickerStart = startTime + time;
@@ -328,7 +328,7 @@ const createErrorScreenAnimation = () => {
     animation[flickerStart + 30] = { opacity: 1 };
     animation[flickerStart + 31] = { opacity: 0 };
   });
-  
+
   return ["errorscr1", animation];
 };
 
@@ -405,11 +405,19 @@ const createSourceCodeAnimations = () => {
       "desktopsource path",
       {
         0: { opacity: 0 },
-        [freelanceStart - 240]: { opacity: 0, fillOpacity: 0, strokeOpacity: 0 },
-        [freelanceStart - 220]: { opacity: 1, fillOpacity: 1, strokeOpacity: 1 },
+        [freelanceStart - 240]: {
+          opacity: 0,
+          fillOpacity: 0,
+          strokeOpacity: 0,
+        },
+        [freelanceStart - 220]: {
+          opacity: 1,
+          fillOpacity: 1,
+          strokeOpacity: 1,
+        },
       },
     ],
-    
+
     // Main source code animation
     ["source", animateSourceCodes(freelanceStart - 240, founderEnd)],
 
@@ -493,7 +501,7 @@ const createFrameAnimations = (transforms) => {
   return [
     // Frame appearance
     ["frame", appearAt(frameStart, 100)],
-    
+
     // Skyline movement
     [
       "skyline",
@@ -503,21 +511,25 @@ const createFrameAnimations = (transforms) => {
         [frameEnd]: { transform: translate(520, 0) },
       },
     ],
-    
+
     // Rome city
     ["rome", disappearAt(frameEnd)],
-    
+
     // Hot air balloon movement
     [
       "hotballoon",
       {
         [frameStart]: { transform: multiple(translate(-160, 140), rotate(0)) },
-        [frameEnd - 200]: { transform: multiple(translate(-130, -20), rotate(0)) },
+        [frameEnd - 200]: {
+          transform: multiple(translate(-130, -20), rotate(0)),
+        },
         [frameEnd]: { transform: multiple(translate(-180, 10), rotate(20)) },
-        [frameEnd + 200]: { transform: multiple(translate(-200, 20), rotate(20)) },
+        [frameEnd + 200]: {
+          transform: multiple(translate(-200, 20), rotate(20)),
+        },
       },
     ],
-    
+
     // Frame masking
     [
       "framemasked",
@@ -544,8 +556,8 @@ const createFrameAnimations = (transforms) => {
         [frameEnd + 1600]: { transform: transforms.total },
         [lightsOffStart + 400]: { transform: transforms.total },
         [lightsOffStart + 600]: { transform: transforms.table },
-        [contactsStart + 100]: { transform: transforms.table },
-        [contactsStart + 400]: { transform: transforms.pixels },
+        // [contactsStart - 100]: { transform: transforms.table },
+        // [contactsStart + 800]: { transform: transforms.pixels },
       },
     ],
   ];
@@ -562,7 +574,10 @@ const createDetailAnimations = () => {
 
   return [
     // Window shadows and reflections
-    ["desktablewindowshadow", display(freelanceStart, 1, freelanceEnd - 40, 10)],
+    [
+      "desktablewindowshadow",
+      display(freelanceStart, 1, freelanceEnd - 40, 10),
+    ],
     ["laptopwindowshadow", display(freelanceStart, 1, freelanceEnd - 50)],
     [
       "desktableshadow",
@@ -619,8 +634,8 @@ const createTerminalAnimations = (transforms) => {
       "terminal2",
       {
         0: { opacity: 0 },
-        [contactsStart - 400]: { opacity: 0, transform: scale(0.7) },
-        [contactsStart - 370]: { opacity: 1, transform: scale(1) },
+        [contactsStart - 500]: { opacity: 0, transform: scale(0.7) },
+        [contactsStart - 270]: { opacity: 1, transform: scale(1) },
       },
     ],
 
@@ -682,22 +697,22 @@ const createTransitions = (isPortrait) => {
   return new Map([
     // Core narrative and camera movements
     ...createCoreSceneTransitions(transforms),
-    
+
     // Source code and programming elements
     ...createSourceCodeAnimations(),
-    
+
     // Environment and room transitions
     ...createEnvironmentAnimations(),
-    
+
     // Frame and landscape animations
     ...createFrameAnimations(transforms),
-    
+
     // Detail elements (shadows, windows, etc.)
     ...createDetailAnimations(),
-    
+
     // Terminal and tech interface
     ...createTerminalAnimations(transforms),
-    
+
     // Generated animation sequences
     ...createDeskDrawingAnimations(),
     ...createWireframeAnimations(),
@@ -715,9 +730,9 @@ const createTransitions = (isPortrait) => {
 export default {
   duration: DURATION,
   transitions: createTransitions,
-  
+
   // Export debugger for external access (development only)
-  ...(process.env.NODE_ENV === 'development' && {
+  ...(process.env.NODE_ENV === "development" && {
     debugger: animationDebugger,
     sceneTiming: SCENE_TIMING,
   }),
