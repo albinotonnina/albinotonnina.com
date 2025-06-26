@@ -74,14 +74,20 @@ export default function scene(props) {
   });
 
   React.useEffect(() => {
-    document.querySelector("#contactsbutton").addEventListener("click", () => {
-      window.open("https://www.linkedin.com/in/albinotonnina/");
-    });
+    const contactsButton = document.querySelector("#contactsbutton");
+    if (contactsButton) {
+      contactsButton.addEventListener("click", () => {
+        window.open("https://www.linkedin.com/in/albinotonnina/");
+      });
+    }
   });
   React.useEffect(() => {
-    document.querySelector("#githubbutton").addEventListener("click", () => {
-      window.open("https://github.com/albinotonnina/albinotonnina.com/");
-    });
+    const githubButton = document.querySelector("#githubbutton");
+    if (githubButton) {
+      githubButton.addEventListener("click", () => {
+        window.open("https://github.com/albinotonnina/albinotonnina.com/");
+      });
+    }
   });
 
   return <Svg width={props.width} height={props.height} />;
