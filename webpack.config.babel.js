@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import crypto from "crypto";
+const SVGIdPlugin = require("./webpack/svg-id-plugin.js");
 
 function hash(string) {
   return crypto
@@ -52,6 +53,12 @@ export default (_, { analyze }) => {
         filename: isDevelopment ? "styles.css" : "styles.[contenthash].css",
       }),
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
+      // SVG processing: once at startup in dev, every build in production
+      new SVGIdPlugin({
+        files: ['src/scene/scene.svg'],
+        cleanName: 'framemask_1',
+        runOnce: isDevelopment // Only run once in development
+      }),
       ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
     ],
     optimization: {
