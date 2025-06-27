@@ -57,7 +57,7 @@ if (process.env.NODE_ENV === "development") {
 // ANIMATION CONFIGURATION
 // ============================
 
-const DURATION = 8200;
+const DURATION = 12200;
 
 /**
  * Scene timing configuration - defines when each scene phase begins/ends
@@ -71,6 +71,7 @@ const SCENE_TIMING = {
   frame: [1800, 2500],
   lightsOff: [4300, 6300],
   contacts: [6100, 8400],
+  space: [8400, 12000],
 };
 
 /**
@@ -99,10 +100,6 @@ const getViewportTransforms = (isPortrait) => ({
     ? multiple(translate(1030, 200), scale(1.6))
     : multiple(translate(1100, 200), scale(1.8)),
 
-  pixels: isPortrait
-    ? multiple(translate(-400, -800), scale(7.6))
-    : multiple(translate(317500, 246000), scale(800)),
-
   // Scene-specific positions
   start: isPortrait
     ? multiple(translate(-4300, -400), scale(5))
@@ -122,6 +119,10 @@ const getViewportTransforms = (isPortrait) => ({
 
   scrollHint: isPortrait
     ? multiple(translate(0, 0), scale(4))
+    : multiple(translate(0, 0), scale(1)),
+
+  space: isPortrait
+    ? multiple(translate(0, 0), scale(1))
     : multiple(translate(0, 0), scale(1)),
 });
 
@@ -332,6 +333,30 @@ const createErrorScreenAnimation = () => {
   return ["errorscr1", animation];
 };
 
+/**
+ * Creates space scene animations
+ * Example: Space element appears, moves, and fades out
+ */
+const createSpaceAnimations = (transforms) => {
+  const [spaceStart] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
+  return [
+    [
+      "space",
+      {
+        0: { opacity: 0 },
+        [spaceStart]: {
+          opacity: 0,
+          transform: transforms.space,
+        },
+        [spaceStart + 520]: {
+          opacity: 1,
+          transform: transforms.space,
+        },
+      },
+    ],
+  ];
+};
+
 // ============================
 // CORE SCENE TRANSITIONS
 // ============================
@@ -349,6 +374,7 @@ const createCoreSceneTransitions = (transforms) => {
     frame: [frameStart, frameEnd],
     lightsOff: [lightsOffStart, lightsOffEnd],
     contacts: [contactsStart, contactsEnd],
+    space: [spaceStart, spaceEnd],
   } = SCENE_TIMING;
 
   return [
@@ -556,8 +582,6 @@ const createFrameAnimations = (transforms) => {
         [frameEnd + 1600]: { transform: transforms.total },
         [lightsOffStart + 400]: { transform: transforms.total },
         [lightsOffStart + 600]: { transform: transforms.table },
-        // [contactsStart - 100]: { transform: transforms.table },
-        // [contactsStart + 800]: { transform: transforms.pixels },
       },
     ],
   ];
@@ -616,8 +640,8 @@ const createTerminalAnimations = (transforms) => {
         0: { opacity: 0 },
         [lightsOffStart + 800]: { opacity: 0, transform: scale(0.7) },
         [lightsOffStart + 830]: { opacity: 1, transform: scale(1) },
-        [contactsStart - 300]: { opacity: 1, transform: scale(1) },
-        [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
+        // [contactsStart - 300]: { opacity: 1, transform: scale(1) },
+        // [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
       },
     ],
     [
@@ -626,8 +650,8 @@ const createTerminalAnimations = (transforms) => {
         0: { opacity: 0 },
         [lightsOffStart + 600]: { opacity: 0, transform: scale(0.7) },
         [lightsOffStart + 630]: { opacity: 1, transform: scale(1) },
-        [contactsStart - 300]: { opacity: 1, transform: scale(1) },
-        [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
+        // [contactsStart - 300]: { opacity: 1, transform: scale(1) },
+        // [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
       },
     ],
     [
@@ -720,6 +744,7 @@ const createTransitions = (isPortrait) => {
     ...createDeskExplosionAnimations(),
     ...createShadowAnimations(),
     ...createLightingAnimations(),
+    ...createSpaceAnimations(transforms), // <-- Added here
   ]);
 };
 
