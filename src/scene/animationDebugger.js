@@ -200,7 +200,7 @@ class AnimationDebugger {
    * Generate time information display
    */
   getTimeInfo() {
-    const totalDuration = 8200; // From DURATION constant
+    const totalDuration = 12200; // From DURATION constant in transitions.js
     const progress = (this.currentTime / totalDuration) * 100;
     
     return `

@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const svgPath = path.resolve(__dirname, '../src/scene/scene.svg');
 const processor = new SVGIdProcessor({
-  cleanName: 'framemask_1_' // This will generate 'framemask_1' to match your transitions.js
+  cleanName: 'framemask_1_' // This will generate 'framemask_1_' to match your transitions.js
 });
 
 if (fs.existsSync(svgPath)) {

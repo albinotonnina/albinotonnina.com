@@ -36,6 +36,43 @@ body {
     stroke-width: 1.2;
   }
 
+  #spacelines {
+    path {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 4;
+      stroke-dashoffset: 0;
+      stroke: #93cfd9;
+      stroke-width: 1.2;
+      opacity: 1;
+    }
+
+    #sl1 path {
+      stroke-dasharray: 2800;
+    }
+    #sl2 path {
+      stroke-dasharray: 800;
+    }
+    #sl3 path {
+      stroke-dasharray: 400;
+    }
+    #sl4 path {
+      stroke-dasharray: 400;
+    }
+    #sl5 path {
+      stroke-dasharray: 1800;
+    }
+    #sl6 path {
+      stroke-dasharray: 400;
+    }
+    #sl7 path {
+      stroke-dasharray: 600;
+    }
+    #sl8 path {
+      stroke-dasharray: 1800;
+    }
+  }
+
   #helloline,
   #desklogos,
   #wireframe1,

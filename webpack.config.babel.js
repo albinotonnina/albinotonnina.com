@@ -56,7 +56,7 @@ export default (_, { analyze }) => {
       // SVG processing: once at startup in dev, every build in production
       new SVGIdPlugin({
         files: ['src/scene/scene.svg'],
-        cleanName: 'framemask_1',
+        cleanName: 'framemask_1_',
         runOnce: isDevelopment // Only run once in development
       }),
       ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),

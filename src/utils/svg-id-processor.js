@@ -2,7 +2,7 @@ export default class SVGIdProcessor {
   constructor(options = {}) {
     this.options = {
       prefix: options.prefix || '',
-      cleanName: options.cleanName || 'framemask_1',
+      cleanName: options.cleanName || 'framemask_1_',
       ...options
     };
   }

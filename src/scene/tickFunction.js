@@ -26,6 +26,18 @@ shakishaki
 export default (transitionsData, transitionElements) => {
   const currentFrame = window.pageYOffset;
 
+  const styles = calculateStyles(currentFrame, transitionsData);
+
+  // Update debugger if available (development only)
+  if (process.env.NODE_ENV === "development" && window.animationDebugger) {
+    // Extract active element names from the styles
+    const activeElements = styles.map(({ selector }) => 
+      selector.replace('#', '') // Remove the # prefix to get just the element name
+    );
+    
+    window.animationDebugger.update(currentFrame, activeElements);
+  }
+
   if (browser.startsWith("chrom")) {
     if (currentFrame > 6000 && currentFrame < 6600) {
       document.querySelector("#leftroom").setAttribute("filter", shakishaki);
@@ -36,8 +48,6 @@ export default (transitionsData, transitionElements) => {
       document.querySelector("#leftroom").setAttribute("filter", "none");
     }
   }
-
-  const styles = calculateStyles(currentFrame, transitionsData);
 
   styles.forEach(({ selector, style }) => {
     transitionElements.get(selector).forEach((element) => {

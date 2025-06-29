@@ -42,16 +42,6 @@ import {
 
 // Only import debugger in development
 let animationDebugger = null;
-if (process.env.NODE_ENV === "development") {
-  // Dynamic import to ensure it's not included in production bundles
-  import("./animationDebugger").then((module) => {
-    animationDebugger = module.default;
-    // Initialize debugger with scene timing once imported
-    if (animationDebugger) {
-      animationDebugger.init(SCENE_TIMING);
-    }
-  });
-}
 
 // ============================
 // ANIMATION CONFIGURATION
@@ -70,9 +60,30 @@ const SCENE_TIMING = {
   founder: [1600, 1800],
   frame: [1800, 2500],
   lightsOff: [4300, 6300],
-  contacts: [6100, 8400],
-  space: [8400, 12000],
+  contacts: [6100, 7400],
+  space: [7400, 12000],
 };
+
+// Initialize debugger after SCENE_TIMING is available
+if (process.env.NODE_ENV === "development") {
+  // Dynamic import to ensure it's not included in production bundles
+  import("./animationDebugger")
+    .then((module) => {
+      animationDebugger = module.default;
+      // Initialize debugger with scene timing once imported
+      if (animationDebugger && animationDebugger.init) {
+        animationDebugger.init(SCENE_TIMING);
+        // Ensure it's available globally for tick function
+        window.animationDebugger = animationDebugger;
+        console.log(
+          "🎬 Animation Debugger loaded! Press Ctrl/Cmd + D to toggle."
+        );
+      }
+    })
+    .catch((error) => {
+      console.warn("Failed to load animation debugger:", error);
+    });
+}
 
 /**
  * Responsive transform configurations for different viewport orientations
@@ -338,7 +349,10 @@ const createErrorScreenAnimation = () => {
  * Example: Space element appears, moves, and fades out
  */
 const createSpaceAnimations = (transforms) => {
-  const [spaceStart] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
+  const [spaceStart, spaceEnd] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
+
+  const animationStart = spaceStart - 50; // Start animation slightly before space scene begins
+
   return [
     [
       "space",
@@ -348,10 +362,66 @@ const createSpaceAnimations = (transforms) => {
           opacity: 0,
           transform: transforms.space,
         },
-        [spaceStart + 520]: {
+        [spaceStart + 50]: {
           opacity: 1,
           transform: transforms.space,
         },
+      },
+    ],
+    [
+      "sl1 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl2 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 800, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl3 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl4 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl5 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 1800, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl6 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl7 *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 600, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+      },
+    ],
+    [
+      "sl_nine *",
+      {
+        [animationStart + 200]: { strokeDashoffset: 1800, opacity: 1 },
+        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
   ];
