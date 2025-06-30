@@ -385,42 +385,41 @@ const createSpaceAnimations = (transforms) => {
     [
       "sl3 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 200]: { strokeDashoffset: 400, opacity: 0 },
+        [animationStart + 500]: { strokeDashoffset: 400, opacity: 0 },
+        [animationStart + 501]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 1030]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
     [
       "sl4 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
         [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
     [
       "sl5 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 1800, opacity: 1 },
+        [animationStart + 200]: { strokeDashoffset: 1000, opacity: 0 },
+        [animationStart + 400]: { strokeDashoffset: 1000, opacity: 0 },
+        [animationStart + 401]: { strokeDashoffset: 1000, opacity: 1 },
         [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
     [
       "sl6 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 400, opacity: 1 },
+        [animationStart + 200]: { strokeDashoffset: 800, opacity: 0 },
+        [animationStart + 400]: { strokeDashoffset: 800, opacity: 0 },
+        [animationStart + 401]: { strokeDashoffset: 800, opacity: 1 },
         [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
     [
       "sl7 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 600, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
-      },
-    ],
-    [
-      "sl_nine *",
-      {
-        [animationStart + 200]: { strokeDashoffset: 1800, opacity: 1 },
+        [animationStart + 200]: { strokeDashoffset: 2000, opacity: 1 },
         [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],

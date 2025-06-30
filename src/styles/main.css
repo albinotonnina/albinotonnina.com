@@ -49,27 +49,37 @@ body {
 
     #sl1 path {
       stroke-dasharray: 2800;
+
     }
+
     #sl2 path {
       stroke-dasharray: 800;
+
     }
+
     #sl3 path {
       stroke-dasharray: 400;
+
     }
+
     #sl4 path {
-      stroke-dasharray: 400;
+      stroke-dasharray: 2800;
+
     }
+
     #sl5 path {
-      stroke-dasharray: 1800;
+      stroke-dasharray: 1000;
+
     }
+
     #sl6 path {
-      stroke-dasharray: 400;
+      stroke-dasharray: 800;
+
     }
+
     #sl7 path {
-      stroke-dasharray: 600;
-    }
-    #sl8 path {
-      stroke-dasharray: 1800;
+      stroke-dasharray: 2000;
+
     }
   }
 
@@ -128,6 +138,7 @@ body {
   }
 
   #chair1 {
+
     path,
     polygon {
       fill-opacity: 0;
