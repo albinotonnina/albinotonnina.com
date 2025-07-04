@@ -179,8 +179,13 @@ const createDevelopmentDebugger = () => {
         time < this.sceneTiming.contacts[1]
       )
         return "contacts";
+      if (
+        time >= this.sceneTiming.space[0] &&
+        time < this.sceneTiming.space[1]
+      )
+        return "space";
 
-      return "post-contacts";
+      return "post-space";
     }
 
     /**
@@ -212,6 +217,9 @@ const createDevelopmentDebugger = () => {
           break;
         case "contacts":
           [sceneStart, sceneEnd] = this.sceneTiming.contacts;
+          break;
+        case "space":
+          [sceneStart, sceneEnd] = this.sceneTiming.space;
           break;
         default:
           return 1;
@@ -255,7 +263,8 @@ const createDevelopmentDebugger = () => {
         frame: "🖼️",
         lightsOff: "🌙",
         contacts: "💻",
-        "post-contacts": "✅",
+        space: "🌌",
+        "post-space": "✅",
       };
 
       const progressBar =
@@ -348,10 +357,10 @@ const createDevelopmentDebugger = () => {
           emoji: "🌙",
         },
         {
-          name: "CONTACTS",
-          start: this.sceneTiming.contacts[0],
-          end: this.sceneTiming.contacts[1],
-          emoji: "💻",
+          name: "SPACE",
+          start: this.sceneTiming.space[0],
+          end: this.sceneTiming.space[1],
+          emoji: "🌌",
         },
       ];
 

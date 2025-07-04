@@ -36,52 +36,6 @@ body {
     stroke-width: 1.2;
   }
 
-  #spacelines {
-    path {
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-miterlimit: 4;
-      stroke-dashoffset: 0;
-      stroke: #93cfd9;
-      stroke-width: 1.2;
-      opacity: 1;
-    }
-
-    #sl1 path {
-      stroke-dasharray: 2800;
-
-    }
-
-    #sl2 path {
-      stroke-dasharray: 800;
-
-    }
-
-    #sl3 path {
-      stroke-dasharray: 400;
-
-    }
-
-    #sl4 path {
-      stroke-dasharray: 2800;
-
-    }
-
-    #sl5 path {
-      stroke-dasharray: 1000;
-
-    }
-
-    #sl6 path {
-      stroke-dasharray: 800;
-
-    }
-
-    #sl7 path {
-      stroke-dasharray: 2000;
-
-    }
-  }
 
   #helloline,
   #desklogos,
@@ -197,6 +151,137 @@ body {
     transform-box: fill-box;
   }
 }
+
+
+#errorscr1 {
+  transform-origin: center;
+  opacity: 0;
+}
+
+#space {
+  transform-origin: center;
+  opacity: 0;
+}
+
+#spacelines,
+#moon,
+#moon2 {
+  opacity: 0;
+}
+
+#bulblines {
+
+  path,
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #FFE3B3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 2000;
+  }
+}
+
+
+#bulbEllipses1,
+#bulbEllipses2 {
+
+  path,
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #FFE3B3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 800;
+  }
+}
+
+#spacelines {
+  path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-width: 1.2;
+    opacity: 1;
+  }
+
+  #sl1 path {
+    stroke-dasharray: 2800;
+  }
+
+  #sl2 path {
+    stroke-dasharray: 800;
+  }
+
+  #sl3 path {
+    stroke-dasharray: 400;
+  }
+
+  #sl4 path {
+    stroke-dasharray: 2800;
+  }
+
+  #sl5 path {
+    stroke-dasharray: 1000;
+  }
+
+  #sl6 path {
+    stroke-dasharray: 800;
+  }
+
+  #sl7 path {
+    stroke-dasharray: 2000;
+  }
+}
+
+#collab {
+  transform-origin: center;
+  /* opacity: 0; */
+}
+
+#ladder {
+
+
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #FFE3B3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 100;
+
+  }
+}
+
+#people {
+
+
+  path {
+    /* fill-opacity: 0; */
+    stroke: #FFE3B3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400;
+
+  }
+}
+
+#sourcecode {
+  transform-origin: center;
+  opacity: 0;
+}
+
 
 .visually-hidden {
   clip: rect(0 0 0 0);

@@ -47,7 +47,7 @@ let animationDebugger = null;
 // ANIMATION CONFIGURATION
 // ============================
 
-const DURATION = 12200;
+const DURATION = 16200;
 
 /**
  * Scene timing configuration - defines when each scene phase begins/ends
@@ -60,8 +60,8 @@ const SCENE_TIMING = {
   founder: [1600, 1800],
   frame: [1800, 2500],
   lightsOff: [4300, 6300],
-  contacts: [6100, 7400],
-  space: [7400, 12000],
+  space: [6100, 13000],
+  contacts: [13000, 15200],
 };
 
 // Initialize debugger after SCENE_TIMING is available
@@ -135,6 +135,10 @@ const getViewportTransforms = (isPortrait) => ({
   space: isPortrait
     ? multiple(translate(0, 0), scale(1))
     : multiple(translate(0, 0), scale(1)),
+
+  bulbZoomed: isPortrait
+    ? multiple(translate(-1000, 0), scale(2, 2))
+    : multiple(translate(0, 0), scale(1, 1))
 });
 
 // ============================
@@ -328,7 +332,7 @@ const createLightingAnimations = () => {
  * Simulates a glitchy terminal screen effect
  */
 const createErrorScreenAnimation = () => {
-  const [startTime] = SCENE_TIMING.contacts;
+  const [startTime] = SCENE_TIMING.space;
   const flickerTimes = [0, 160, 200, 240, 280, 320, 360, 400];
   const animation = { 0: { opacity: 0 } };
 
@@ -351,78 +355,161 @@ const createErrorScreenAnimation = () => {
 const createSpaceAnimations = (transforms) => {
   const [spaceStart, spaceEnd] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
 
-  const animationStart = spaceStart - 50; // Start animation slightly before space scene begins
+  const animationStart = spaceStart; // Start animation slightly before space scene begins
+  const linesStart = spaceStart + 1600; // Start animation slightly before space scene begins
+  const bulbLinesStart = spaceStart + 400; // Start animation slightly before space scene begins
 
   return [
     [
       "space",
       {
         0: { opacity: 0 },
-        [spaceStart]: {
+        [animationStart + 200]: {
           opacity: 0,
           transform: transforms.space,
         },
-        [spaceStart + 50]: {
+        [animationStart + 250]: {
           opacity: 1,
           transform: transforms.space,
+        },
+      },
+    ],
+    ["bulblines *", drawStrokes(bulbLinesStart, 2000, 10)],
+    ["bulbEllipses1 *", drawStrokes(bulbLinesStart + 550, 800, 1)],
+    ["bulbEllipses2 *", drawStrokes(bulbLinesStart + 500, 800, 1)],
+    [
+      "bulb",
+      {
+        0: { opacity: 0 },
+        [animationStart + 550]: {
+          opacity: 1,
+          transform: transforms.bulbZoomed,
+        },
+        [animationStart + 1301]: {
+          opacity: 1,
+          transform: transforms.bulbZoomed,
+        },
+        [animationStart + 1600]: {
+          opacity: 1,
+          transform: multiple(translate(-14791, 135), scale(16, 16)),
+        },
+        [animationStart + 1650]: {
+          opacity: 0,
+          transform: multiple(translate(-14791, 138), scale(16, 16)),
+        },
+      },
+    ],
+    [
+      "spacelines",
+      {
+        [animationStart + 1499]: {
+          opacity: 0,
+        },
+        [animationStart + 2400]: {
+          opacity: 1,
+          transform: multiple(translate(0, 0), scale(1, 1)),
+        },
+        [animationStart + 3600]: {
+          opacity: 1,
+          transform: multiple(translate(0, 0), scale(2, 2)),
         },
       },
     ],
     [
       "sl1 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 3600]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 4000]: { strokeDashoffset: 2800, opacity: 0 },
       },
     ],
     [
       "sl2 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 800, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 800, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 3600]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 4000]: { strokeDashoffset: 800, opacity: 0 },
       },
     ],
     [
       "sl3 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 400, opacity: 0 },
-        [animationStart + 500]: { strokeDashoffset: 400, opacity: 0 },
-        [animationStart + 501]: { strokeDashoffset: 400, opacity: 1 },
-        [animationStart + 1030]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 400, opacity: 0 },
+        [linesStart + 500]: { strokeDashoffset: 400, opacity: 0 },
+        [linesStart + 501]: { strokeDashoffset: 400, opacity: 1 },
+        [linesStart + 1030]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 3600]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 4000]: { strokeDashoffset: 400, opacity: 0 },
       },
     ],
     [
       "sl4 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 2800, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 3600]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 4000]: { strokeDashoffset: 2800, opacity: 0 },
       },
     ],
     [
       "sl5 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 1000, opacity: 0 },
-        [animationStart + 400]: { strokeDashoffset: 1000, opacity: 0 },
-        [animationStart + 401]: { strokeDashoffset: 1000, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 1000, opacity: 0 },
+        [linesStart + 400]: { strokeDashoffset: 1000, opacity: 0 },
+        [linesStart + 401]: { strokeDashoffset: 1000, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
     [
       "sl6 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 800, opacity: 0 },
-        [animationStart + 400]: { strokeDashoffset: 800, opacity: 0 },
-        [animationStart + 401]: { strokeDashoffset: 800, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 800, opacity: 0 },
+        [linesStart + 400]: { strokeDashoffset: 800, opacity: 0 },
+        [linesStart + 401]: { strokeDashoffset: 800, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 3600]: { strokeDashoffset: 1, opacity: 1 },
+        [animationStart + 4000]: { strokeDashoffset: 800, opacity: 0 },
       },
     ],
     [
       "sl7 *",
       {
-        [animationStart + 200]: { strokeDashoffset: 2000, opacity: 1 },
-        [animationStart + 830]: { strokeDashoffset: 1, opacity: 1 },
+        [linesStart + 200]: { strokeDashoffset: 2000, opacity: 1 },
+        [linesStart + 830]: { strokeDashoffset: 1, opacity: 1 },
       },
     ],
+    [
+      "moon",
+      {
+        [animationStart + 1600]: { opacity: 0 },
+        [animationStart + 1601]: { opacity: 1 },
+        [animationStart + 4200]: { opacity: 1 },
+        [animationStart + 4600]: { opacity: 0.7 },
+        [animationStart + 4600]: {
+          opacity: 0.7,
+          transform: multiple(translate(0, 0), scale(1, 1)),
+        },
+        [animationStart + 5600]: {
+          opacity: 0.7,
+          transform: multiple(translate(0, 400), scale(1, 1)),
+        },
+      },
+    ],
+    ["moon2", {
+      [animationStart + 4700]: { opacity: 0 },
+      [animationStart + 4750]: { opacity: 1 },
+    }],
+    ["collab", {
+      [animationStart + 4600]: { transform: multiple(translate(0, 0), scale(1, 1)), },
+      [animationStart + 5600]: { transform: multiple(translate(0, 400), scale(1, 1)), },
+    }],
+    ...Array.from({ length: 23 }, (_, i) => [
+      `ladder :nth-child(${i + 1}n)`, 
+      drawStrokes(animationStart + 5200 + (i * 16), 100, 10)
+    ]),
+    ["people *", drawStrokes(animationStart + 5600, 400, 10)]
   ];
 };
 
@@ -442,7 +529,6 @@ const createCoreSceneTransitions = (transforms) => {
     founder: [founderStart, founderEnd],
     frame: [frameStart, frameEnd],
     lightsOff: [lightsOffStart, lightsOffEnd],
-    contacts: [contactsStart, contactsEnd],
     space: [spaceStart, spaceEnd],
   } = SCENE_TIMING;
 
@@ -542,8 +628,7 @@ const createEnvironmentAnimations = () => {
     freelance: [freelanceStart, freelanceEnd],
     company: [companyStart, companyEnd],
     founder: [founderStart],
-    frame: [frameStart, frameEnd],
-    contacts: [, contactsEnd],
+    frame: [, , frameEnd],
   } = SCENE_TIMING;
 
   return [
@@ -589,7 +674,7 @@ const createEnvironmentAnimations = () => {
 const createFrameAnimations = (transforms) => {
   const {
     frame: [frameStart, frameEnd],
-    contacts: [contactsStart, contactsEnd],
+    space: [spaceStart, spaceEnd],
     lightsOff: [lightsOffStart],
   } = SCENE_TIMING;
 
@@ -637,8 +722,8 @@ const createFrameAnimations = (transforms) => {
 
     // Room transitions and camera movements
     ["leftroom", appearAt(frameEnd, 1)],
-    ["interior", display(frameEnd, 1, contactsEnd - 300, 250)],
-    ["daylights", display(frameEnd + 1100, 1, contactsEnd - 300, 250)],
+    ["interior", display(frameEnd, 1, spaceStart, 250)],
+    ["daylights", display(frameEnd + 1100, 1, spaceStart, 250)],
     [
       "room",
       {
@@ -694,7 +779,7 @@ const createDetailAnimations = () => {
 const createTerminalAnimations = (transforms) => {
   const {
     lightsOff: [lightsOffStart],
-    contacts: [contactsStart, contactsEnd],
+    space: [spaceStart, spaceEnd],
   } = SCENE_TIMING;
 
   return [
@@ -709,8 +794,6 @@ const createTerminalAnimations = (transforms) => {
         0: { opacity: 0 },
         [lightsOffStart + 800]: { opacity: 0, transform: scale(0.7) },
         [lightsOffStart + 830]: { opacity: 1, transform: scale(1) },
-        // [contactsStart - 300]: { opacity: 1, transform: scale(1) },
-        // [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
       },
     ],
     [
@@ -719,16 +802,14 @@ const createTerminalAnimations = (transforms) => {
         0: { opacity: 0 },
         [lightsOffStart + 600]: { opacity: 0, transform: scale(0.7) },
         [lightsOffStart + 630]: { opacity: 1, transform: scale(1) },
-        // [contactsStart - 300]: { opacity: 1, transform: scale(1) },
-        // [contactsStart - 270]: { opacity: 0, transform: scale(0.7) },
       },
     ],
     [
       "terminal2",
       {
         0: { opacity: 0 },
-        [contactsStart - 500]: { opacity: 0, transform: scale(0.7) },
-        [contactsStart - 270]: { opacity: 1, transform: scale(1) },
+        [spaceStart - 500]: { opacity: 0, transform: scale(0.7) },
+        [spaceStart - 270]: { opacity: 1, transform: scale(1) },
       },
     ],
 
@@ -736,42 +817,62 @@ const createTerminalAnimations = (transforms) => {
     [
       "terminal2textclip",
       {
-        [contactsStart - 300]: { transform: scale(1, 1) },
-        [contactsStart - 200]: { transform: scale(2.6, 1) },
+        [spaceStart - 300]: { transform: scale(1, 1) },
+        [spaceStart - 200]: { transform: scale(2.6, 1) },
       },
     ],
     [
       "terminal2cursor",
       {
-        [contactsStart - 300]: { transform: translate(0, 0) },
-        [contactsStart - 201]: { transform: translate(52, 0) },
-        [contactsStart - 200]: { transform: translate(28, 12) },
+        [spaceStart - 300]: { transform: translate(0, 0) },
+        [spaceStart - 201]: { transform: translate(52, 0) },
+        [spaceStart - 200]: { transform: translate(28, 12) },
       },
     ],
     [
       "terminal2line2",
       {
-        ...appearAt(contactsStart - 200),
-        ...disappearAt(contactsStart + 200),
+        ...appearAt(spaceStart - 200),
+        ...disappearAt(spaceStart + 200),
       },
     ],
 
     // Final error screens
     createErrorScreenAnimation(),
-    [
-      "errorscr2",
-      {
-        0: { opacity: 0 },
-        [contactsStart + 519]: {
-          opacity: 0,
-          transform: transforms.scrollHint,
-        },
-        [contactsStart + 520]: {
-          opacity: 1,
-          transform: transforms.scrollHint,
-        },
-      },
-    ],
+    // [
+    //   "errorscr2",
+    //   {
+    //     0: { opacity: 0 },
+    //     [contactsStart + 519]: {
+    //       opacity: 0,
+    //       transform: transforms.scrollHint,
+    //     },
+    //     [contactsStart + 520]: {
+    //       opacity: 1,
+    //       transform: transforms.scrollHint,
+    //     },
+    //   },
+    // ],
+  ];
+};
+
+const createContactsAnimations = () => {
+  const {
+    contacts: [contactsStart, contactsEnd],
+  } = SCENE_TIMING;
+
+  return [
+    // Contacts scene appearance
+    ["contacts", appearAt(contactsStart, 1)],
+
+    // // Terminal and error screens
+    // ["terminal3", display(contactsStart + 100, 1, contactsEnd - 100)],
+    // ["terminal3textclip", drawStrokes(contactsStart + 200, 500)],
+    // ["terminal3cursor", drawStrokes(contactsStart + 300, 500)],
+    // ["terminal3line2", drawStrokes(contactsStart + 400, 500)],
+
+    // // Contact links appearing
+    // ["contactlinks *", drawStrokes(contactsStart + 500, 500)],
   ];
 };
 
@@ -813,7 +914,8 @@ const createTransitions = (isPortrait) => {
     ...createDeskExplosionAnimations(),
     ...createShadowAnimations(),
     ...createLightingAnimations(),
-    ...createSpaceAnimations(transforms), // <-- Added here
+    ...createSpaceAnimations(transforms),
+    ...createContactsAnimations()
   ]);
 };
 
