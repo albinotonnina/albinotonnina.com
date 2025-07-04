@@ -91,64 +91,67 @@ if (process.env.NODE_ENV === "development") {
  * Responsive transform configurations for different viewport orientations
  * Each transform includes positioning and scaling for various scene elements
  */
-const getViewportTransforms = (isPortrait) => ({
-  // Camera positions and zoom levels
-  frameZoomed: isPortrait
-    ? multiple(translate(6400, 16800), scale(7.2))
-    : multiple(translate(4800, 11360), scale(5)),
+const getViewportTransforms = (isPortrait) => {
+  // Pre-calculate common values to avoid repeated function calls
+  const zeroTransform = multiple(translate(0, 0), scale(1));
 
-  frame: isPortrait
-    ? multiple(translate(4000, 7000), scale(3.5))
-    : multiple(translate(2200, 2700), scale(1.4)),
+  return {
+    // Camera positions and zoom levels
+    frameZoomed: isPortrait
+      ? multiple(translate(6400, 16800), scale(7.2))
+      : multiple(translate(4800, 11360), scale(5)),
 
-  lanyard: isPortrait
-    ? multiple(translate(4600, 5400), scale(4))
-    : multiple(translate(2200, 1600), scale(1.4)),
+    frame: isPortrait
+      ? multiple(translate(4000, 7000), scale(3.5))
+      : multiple(translate(2200, 2700), scale(1.4)),
 
-  total: isPortrait
-    ? multiple(translate(800, -100), scale(0.5))
-    : multiple(translate(700, -300), scale(0.3)),
+    lanyard: isPortrait
+      ? multiple(translate(4600, 5400), scale(4))
+      : multiple(translate(2200, 1600), scale(1.4)),
 
-  table: isPortrait
-    ? multiple(translate(1030, 200), scale(1.6))
-    : multiple(translate(1100, 200), scale(1.8)),
+    total: isPortrait
+      ? multiple(translate(800, -100), scale(0.5))
+      : multiple(translate(700, -300), scale(0.3)),
 
-  // Scene-specific positions
-  start: isPortrait
-    ? multiple(translate(-4300, -400), scale(5))
-    : multiple(translate(-4200, -400), scale(5)),
+    table: isPortrait
+      ? multiple(translate(1030, 200), scale(1.6))
+      : multiple(translate(1100, 200), scale(1.8)),
 
-  freelance: isPortrait
-    ? multiple(translate(-980, -200), scale(2))
-    : multiple(translate(-500, -200), scale(1.5)),
+    // Scene-specific positions
+    start: isPortrait
+      ? multiple(translate(-4300, -400), scale(5))
+      : multiple(translate(-4200, -400), scale(5)),
 
-  company: isPortrait
-    ? multiple(translate(-800, 450), scale(1.7))
-    : multiple(translate(0, 50), scale(1)),
+    freelance: isPortrait
+      ? multiple(translate(-980, -200), scale(2))
+      : multiple(translate(-500, -200), scale(1.5)),
 
-  founder: isPortrait
-    ? multiple(translate(-1100, 0), scale(2))
-    : multiple(translate(-300, 0), scale(1.3)),
+    company: isPortrait
+      ? multiple(translate(-800, 450), scale(1.7))
+      : multiple(translate(0, 50), scale(1)),
 
-  scrollHint: isPortrait
-    ? multiple(translate(0, 0), scale(4))
-    : multiple(translate(0, 0), scale(1)),
+    founder: isPortrait
+      ? multiple(translate(-1100, 0), scale(2))
+      : multiple(translate(-300, 0), scale(1.3)),
 
-  space: isPortrait
-    ? multiple(translate(0, 0), scale(1))
-    : multiple(translate(0, 0), scale(1)),
+    scrollHint: isPortrait
+      ? multiple(translate(0, 0), scale(4))
+      : zeroTransform,
 
-  bulbZoomed: isPortrait
-    ? multiple(translate(-1000, 0), scale(2, 2))
-    : multiple(translate(0, 0), scale(1, 1)),
-});
+    space: zeroTransform,
+
+    bulbZoomed: isPortrait
+      ? multiple(translate(-1000, 0), scale(2, 2))
+      : multiple(translate(0, 0), scale(1, 1)),
+  };
+};
 
 // ============================
 // ANIMATION GENERATORS
 // ============================
 
 /**
- * Creates drawing animations for desk elements in sequence
+ * Creates desk drawing animations in sequence
  * Each element appears with a stroke drawing effect
  *
  * DEBUG: Desk scene elements that draw themselves with stroke animation
@@ -158,16 +161,22 @@ const getViewportTransforms = (isPortrait) => ({
 const createDeskDrawingAnimations = () => {
   const startTime = SCENE_TIMING.desk;
 
-  return [
-    ["desktable polygon", drawStrokes(startTime, 600)], // 10-610ms: Main desk surface
-    ["deskmonitor1 *", drawStrokes(startTime + 100, 300)], // 110-410ms: Left monitor
-    ["desklaptop *", drawStrokes(startTime + 150, 60)], // 160-220ms: Laptop
-    ["deskkeyboard *", drawStrokes(startTime + 180, 300)], // 190-490ms: Keyboard
-    ["deskcoffee *", drawStrokes(startTime + 240, 30)], // 250-280ms: Coffee cup
-    ["desknotes *", drawStrokes(startTime + 280, 60)], // 290-350ms: Notebook
-    ["deskpen *", drawStrokes(startTime + 300, 20)], // 310-330ms: Pen
-    ["deskmonitor2 *", drawStrokes(startTime + 400, 300)], // 410-710ms: Right monitor
+  // Static animation config reduces function calls
+  const deskAnimations = [
+    ["desktable polygon", startTime, 600],
+    ["deskmonitor1 *", startTime + 100, 300],
+    ["desklaptop *", startTime + 150, 60],
+    ["deskkeyboard *", startTime + 180, 300],
+    ["deskcoffee *", startTime + 240, 30],
+    ["desknotes *", startTime + 280, 60],
+    ["deskpen *", startTime + 300, 20],
+    ["deskmonitor2 *", startTime + 400, 300],
   ];
+
+  return deskAnimations.map(([selector, start, duration]) => [
+    selector,
+    drawStrokes(start, duration),
+  ]);
 };
 
 /**
@@ -181,12 +190,20 @@ const createDeskDrawingAnimations = () => {
 const createWireframeAnimations = () => {
   const [startTime] = SCENE_TIMING.freelance;
 
-  return [
-    ["wireframe1 *", drawStrokesAndHide(startTime, 30, 1, 100)], // 800-930ms: First wireframe
-    ["wireframe2 *", drawStrokesAndHide(startTime + 100, 30, 1, 100)], // 900-1030ms: Second wireframe
-    ["wireframe3 *", drawStrokesAndHide(startTime + 200, 30, 1, 100)], // 1000-1130ms: Third wireframe
-    ["wireframe4 *", drawStrokesAndHide(startTime + 300, 30, 1, 100)], // 1100-1230ms: Fourth wireframe
+  // Static config for wireframe animations
+  const wireframeConfigs = [
+    ["wireframe1 *", startTime, 30, 1, 100],
+    ["wireframe2 *", startTime + 100, 30, 1, 100],
+    ["wireframe3 *", startTime + 200, 30, 1, 100],
+    ["wireframe4 *", startTime + 300, 30, 1, 100],
   ];
+
+  return wireframeConfigs.map(
+    ([selector, start, duration, strokeWidth, hideDelay]) => [
+      selector,
+      drawStrokesAndHide(start, duration, strokeWidth, hideDelay),
+    ]
+  );
 };
 
 /**
@@ -201,13 +218,20 @@ const createCompanyLogoAnimations = () => {
   const [startTime] = SCENE_TIMING.company;
   const logoAnimations = [];
 
+  // Pre-calculate the drawStrokesAndHide animation to avoid repeated function calls
+  const baseLogoAnimation = { delay: 0, duration: 60, opacity: 0.25 };
+
   for (let i = 1; i <= 10; i++) {
     const selector = i === 1 ? "logo1" : `logo${i} *`;
-    const delay = (i - 1) * 50;
+    const currentDelay = startTime + (i - 1) * 50;
 
     logoAnimations.push([
       selector,
-      drawStrokesAndHide(startTime + delay, 60, 0.25), // Each logo: draw for 60ms, fade at 0.25 opacity
+      drawStrokesAndHide(
+        currentDelay,
+        baseLogoAnimation.duration,
+        baseLogoAnimation.opacity
+      ),
     ]);
   }
 
@@ -221,20 +245,21 @@ const createCompanyLogoAnimations = () => {
 const createDeskExplosionAnimations = () => {
   const [startTime] = SCENE_TIMING.company;
 
-  const explosionConfig = [
-    { element: "desklaptop", x: -100, y: -10, scale: 1, delay: 0 },
-    { element: "deskmonitor1", x: -100, y: -200, scale: 1, delay: 10 },
-    { element: "desklogos", x: -100, y: -200, scale: 1, delay: 10 },
-    { element: "wireframe4", x: -100, y: -200, scale: 1, delay: 10 },
-    { element: "desktopsource", x: 0, y: -300, scale: 1, delay: 15 },
-    { element: "deskmonitor2", x: 0, y: -300, scale: 1, delay: 15 },
-    { element: "deskpen", x: -50, y: -200, scale: 1, delay: 15 },
-    { element: "desknotes", x: -30, y: -300, scale: 1, delay: 15 },
-    { element: "deskkeyboard", x: -20, y: -300, scale: 1, delay: 15 },
-    { element: "deskcoffee", x: -40, y: -100, scale: 1, delay: 5 },
+  // Static config array reduces memory allocation
+  const explosionConfigs = [
+    ["desklaptop", -100, -10, 1, 0],
+    ["deskmonitor1", -100, -200, 1, 10],
+    ["desklogos", -100, -200, 1, 10],
+    ["wireframe4", -100, -200, 1, 10],
+    ["desktopsource", 0, -300, 1, 15],
+    ["deskmonitor2", 0, -300, 1, 15],
+    ["deskpen", -50, -200, 1, 15],
+    ["desknotes", -30, -300, 1, 15],
+    ["deskkeyboard", -20, -300, 1, 15],
+    ["deskcoffee", -40, -100, 1, 5],
   ];
 
-  return explosionConfig.map(({ element, x, y, scale: itemScale, delay }) => [
+  return explosionConfigs.map(([element, x, y, itemScale, delay]) => [
     element,
     explodeIt(startTime + delay, x, y, itemScale),
   ]);
@@ -338,14 +363,15 @@ const createErrorScreenAnimation = () => {
   const flickerTimes = [0, 160, 200, 240, 280, 320, 360, 400];
   const animation = { 0: { opacity: 0 } };
 
-  // Create flicker pattern
-  flickerTimes.forEach((time) => {
+  // Create flicker pattern - optimized to avoid repeated object creation
+  for (let i = 0; i < flickerTimes.length; i++) {
+    const time = flickerTimes[i];
     const flickerStart = startTime + time;
     animation[flickerStart - 1] = { opacity: 0 };
     animation[flickerStart] = { opacity: 1 };
     animation[flickerStart + 30] = { opacity: 1 };
     animation[flickerStart + 31] = { opacity: 0 };
-  });
+  }
 
   return ["errorscr1", animation];
 };
@@ -355,13 +381,20 @@ const createErrorScreenAnimation = () => {
  * Example: Space element appears, moves, and fades out
  */
 const createSpaceAnimations = (transforms) => {
-  const [spaceStart] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
+  const [spaceStart] = SCENE_TIMING.space;
 
-  const animationStart = spaceStart; // Start animation slightly before space scene begins
-  const linesStart = spaceStart + 1600; // Start animation slightly before space scene begins
-  const bulbLinesStart = spaceStart + 400; // Start animation slightly before space scene begins
+  const animationStart = spaceStart;
+  const linesStart = spaceStart + 1600;
+  const bulbLinesStart = spaceStart + 400;
 
-  return [
+  // Pre-calculate common transforms to avoid repeated function calls
+  const bulbTransform1 = multiple(translate(-14791, 135), scale(16, 16));
+  const bulbTransform2 = multiple(translate(-14791, 138), scale(16, 16));
+  const spaceTransform = multiple(translate(0, 0), scale(1, 1));
+  const spaceTransform2 = multiple(translate(0, 0), scale(2, 2));
+  const moonTransform1 = multiple(translate(0, 400), scale(1, 1));
+
+  const baseAnimations = [
     [
       "space",
       {
@@ -393,11 +426,11 @@ const createSpaceAnimations = (transforms) => {
         },
         [animationStart + 1600]: {
           opacity: 1,
-          transform: multiple(translate(-14791, 135), scale(16, 16)),
+          transform: bulbTransform1,
         },
         [animationStart + 1650]: {
           opacity: 0,
-          transform: multiple(translate(-14791, 138), scale(16, 16)),
+          transform: bulbTransform2,
         },
       },
     ],
@@ -409,11 +442,11 @@ const createSpaceAnimations = (transforms) => {
         },
         [animationStart + 2400]: {
           opacity: 1,
-          transform: multiple(translate(0, 0), scale(1, 1)),
+          transform: spaceTransform,
         },
         [animationStart + 3600]: {
           opacity: 1,
-          transform: multiple(translate(0, 0), scale(2, 2)),
+          transform: spaceTransform2,
         },
       },
     ],
@@ -491,18 +524,18 @@ const createSpaceAnimations = (transforms) => {
         [animationStart + 4600]: { opacity: 0.7 },
         [animationStart + 4600]: {
           opacity: 0.7,
-          transform: multiple(translate(0, 0), scale(1, 1)),
+          transform: spaceTransform,
         },
         [animationStart + 5600]: {
           opacity: 0.7,
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
         },
         [animationStart + 6800]: {
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
           opacity: 0.7,
         },
         [animationStart + 7100]: {
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
           opacity: 0,
         },
       },
@@ -520,27 +553,34 @@ const createSpaceAnimations = (transforms) => {
       "collab",
       {
         [animationStart + 4600]: {
-          transform: multiple(translate(0, 0), scale(1, 1)),
+          transform: spaceTransform,
         },
         [animationStart + 5600]: {
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
         },
         [animationStart + 6800]: {
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
           opacity: 1,
         },
         [animationStart + 7100]: {
-          transform: multiple(translate(0, 400), scale(1, 1)),
+          transform: moonTransform1,
           opacity: 0,
         },
       },
     ],
-    ...Array.from({ length: 23 }, (_, i) => [
-      `ladder :nth-child(${i + 1}n)`,
-      drawStrokes(animationStart + 5200 + i * 16, 100, 10),
-    ]),
     ["people *", drawStrokes(animationStart + 5600, 400, 10)],
   ];
+
+  // Generate ladder animations more efficiently
+  const ladderAnimations = [];
+  for (let i = 0; i < 23; i++) {
+    ladderAnimations.push([
+      `ladder :nth-child(${i + 1}n)`,
+      drawStrokes(animationStart + 5200 + i * 16, 100, 10),
+    ]);
+  }
+
+  return [...baseAnimations, ...ladderAnimations];
 };
 
 // ============================
@@ -893,43 +933,42 @@ const createContactsAnimations = () => {
 const createTransitions = (isPortrait) => {
   const transforms = getViewportTransforms(isPortrait);
 
-  // Combine all animation groups
-  return new Map([
-    // Core narrative and camera movements
-    ...createCoreSceneTransitions(transforms),
+  // Create all animation groups efficiently
+  const animationGroups = [
+    createCoreSceneTransitions(transforms),
+    createSourceCodeAnimations(),
+    createEnvironmentAnimations(),
+    createFrameAnimations(transforms),
+    createDetailAnimations(),
+    createTerminalAnimations(transforms),
+    createDeskDrawingAnimations(),
+    createWireframeAnimations(),
+    createCompanyLogoAnimations(),
+    createDeskExplosionAnimations(),
+    createShadowAnimations(),
+    createLightingAnimations(),
+    createSpaceAnimations(transforms),
+    createContactsAnimations(),
+  ];
 
-    // Source code and programming elements
-    ...createSourceCodeAnimations(),
+  // Flatten all animations into a single Map more efficiently
+  const allAnimations = new Map();
+  for (let i = 0; i < animationGroups.length; i++) {
+    const group = animationGroups[i];
+    for (let j = 0; j < group.length; j++) {
+      const [key, value] = group[j];
+      allAnimations.set(key, value);
+    }
+  }
 
-    // Environment and room transitions
-    ...createEnvironmentAnimations(),
-
-    // Frame and landscape animations
-    ...createFrameAnimations(transforms),
-
-    // Detail elements (shadows, windows, etc.)
-    ...createDetailAnimations(),
-
-    // Terminal and tech interface
-    ...createTerminalAnimations(transforms),
-
-    // Generated animation sequences
-    ...createDeskDrawingAnimations(),
-    ...createWireframeAnimations(),
-    ...createCompanyLogoAnimations(),
-    ...createDeskExplosionAnimations(),
-    ...createShadowAnimations(),
-    ...createLightingAnimations(),
-    ...createSpaceAnimations(transforms),
-    ...createContactsAnimations(),
-  ]);
+  return allAnimations;
 };
 
 // ============================
 // EXPORTS
 // ============================
 
-export default {
+const transitions = {
   duration: DURATION,
   transitions: createTransitions,
 
@@ -939,3 +978,5 @@ export default {
     sceneTiming: SCENE_TIMING,
   }),
 };
+
+export default transitions;
