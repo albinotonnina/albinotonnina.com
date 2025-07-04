@@ -107,27 +107,47 @@
   {
     "start": "8000",
     "end": "8600",
-    "text": "The path isn’t always clear. Sometimes, it feels like climbing in the dark, guided only by the faint glow of what you hope to become."
+    "text": "The path isn’t always clear. Sometimes, it feels like climbing in the dark, guided only by the faint glow of what you hope to become.",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   },
   {
     "start": "8600",
     "end": "9200",
-    "text": "But every step teaches you something. Every stumble shapes your stride. And one day, you look back and realize—you’ve built your own mountain."
+    "text": "But every step teaches you something. Every stumble shapes your stride. And one day, you look back and realize—you’ve built your own mountain.",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   },
   {
     "start": "9200",
     "end": "10400",
-    "text": "Keep climbing. The view is worth it."
+    "text": "Keep climbing. The view is worth it.",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   },
   {
     "start": "11100",
     "end": "11800",
-    "text": "I used to think the best developers were the ones who knew the most."
+    "text": "I used to think the best developers were the ones who knew the most.",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   },
   {
     "start": "11800",
     "end": "12600",
-    "text": "Now I know they’re the ones who help the most."
+    "text": "Now I know they’re the ones who help the most.",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   },
   {
     "start": "13200",
@@ -137,6 +157,10 @@
   {
     "start": "13900",
     "end": "14500",
-    "text": "And if you have any questions, feel free to reach out!"
+    "text": "And if you have any questions, feel free to reach out!",
+    "position": {
+      "portrait": "bottom",
+      "landscape": "bottom"
+    }
   }
 ]

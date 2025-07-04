@@ -57,7 +57,7 @@ export default function App() {
         height={dimensions.height}
         isPortrait={dimensions.isPortrait}
       />
-      <Subtitles isPortrait={dimensions.isPortrait} />
+      <Subtitles />
     </>
   );
 }

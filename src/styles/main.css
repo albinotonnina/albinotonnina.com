@@ -277,10 +277,11 @@ body {
   }
 }
 
-#sourcecode {
+#contacts {
   transform-origin: center;
   opacity: 0;
 }
+
 
 
 .visually-hidden {

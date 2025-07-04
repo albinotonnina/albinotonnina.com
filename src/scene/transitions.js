@@ -60,8 +60,8 @@ const SCENE_TIMING = {
   founder: [1600, 1800],
   frame: [1800, 2500],
   lightsOff: [4300, 6300],
-  space: [6100, 13000],
-  contacts: [13000, 15200],
+  space: [6100, 13400],
+  contacts: [13400, 15200],
 };
 
 // Initialize debugger after SCENE_TIMING is available
@@ -495,15 +495,21 @@ const createSpaceAnimations = (transforms) => {
           opacity: 0.7,
           transform: multiple(translate(0, 400), scale(1, 1)),
         },
+              [animationStart + 6800]: {transform: multiple(translate(0, 400), scale(1, 1)), opacity: 0.7 },
+      [animationStart + 7100]: {transform: multiple(translate(0, 400), scale(1, 1)),opacity: 0 },
       },
     ],
     ["moon2", {
       [animationStart + 4700]: { opacity: 0 },
-      [animationStart + 4750]: { opacity: 1 },
+      [animationStart + 4900]: { opacity: 1 },
+      [animationStart + 6800]: { opacity: 1 },
+      [animationStart + 7100]: { opacity: 0 },
     }],
     ["collab", {
       [animationStart + 4600]: { transform: multiple(translate(0, 0), scale(1, 1)), },
       [animationStart + 5600]: { transform: multiple(translate(0, 400), scale(1, 1)), },
+      [animationStart + 6800]: { transform: multiple(translate(0, 400), scale(1, 1)), opacity:1 },
+      [animationStart + 7100]: { transform: multiple(translate(0, 400), scale(1, 1)), opacity: 0 },
     }],
     ...Array.from({ length: 23 }, (_, i) => [
       `ladder :nth-child(${i + 1}n)`, 
@@ -837,22 +843,9 @@ const createTerminalAnimations = (transforms) => {
       },
     ],
 
-    // Final error screens
+    
     createErrorScreenAnimation(),
-    // [
-    //   "errorscr2",
-    //   {
-    //     0: { opacity: 0 },
-    //     [contactsStart + 519]: {
-    //       opacity: 0,
-    //       transform: transforms.scrollHint,
-    //     },
-    //     [contactsStart + 520]: {
-    //       opacity: 1,
-    //       transform: transforms.scrollHint,
-    //     },
-    //   },
-    // ],
+  
   ];
 };
 
@@ -863,16 +856,9 @@ const createContactsAnimations = () => {
 
   return [
     // Contacts scene appearance
-    ["contacts", appearAt(contactsStart, 1)],
+    ["contacts", appearAt(contactsStart, 200)],
 
-    // // Terminal and error screens
-    // ["terminal3", display(contactsStart + 100, 1, contactsEnd - 100)],
-    // ["terminal3textclip", drawStrokes(contactsStart + 200, 500)],
-    // ["terminal3cursor", drawStrokes(contactsStart + 300, 500)],
-    // ["terminal3line2", drawStrokes(contactsStart + 400, 500)],
 
-    // // Contact links appearing
-    // ["contactlinks *", drawStrokes(contactsStart + 500, 500)],
   ];
 };
 
