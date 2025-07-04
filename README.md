@@ -241,12 +241,14 @@ For detailed debugging information, see [ANIMATION_DEBUG.md](./ANIMATION_DEBUG.m
 The project follows modern development practices:
 
 **Code Quality Standards:**
+
 - All JavaScript follows ESLint rules with modern Babel parser
 - CSS follows Stylelint standards with PostCSS support
 - Consistent formatting enforced by Prettier
 - Comprehensive test coverage for utility functions
 
 **Development Workflow:**
+
 1. **Before committing**, run `yarn lint` and `yarn lint:css` to check for issues
 2. **Use `yarn format`** to ensure consistent code formatting
 3. **Fix linting issues** with `yarn lint:fix` and `yarn lint:css:fix` when possible
@@ -254,6 +256,7 @@ The project follows modern development practices:
 5. **Maintain clean code** with proper separation of concerns
 
 **File Organization:**
+
 - Animation logic separated into focused modules
 - Utility functions extracted for reusability
 - CSS organized with clear naming conventions
