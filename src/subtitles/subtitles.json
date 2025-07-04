@@ -142,22 +142,8 @@
   },
   {
     "start": "11800",
-    "end": "12600",
+    "end": "13000",
     "text": "Now I know they’re the ones who help the most.",
-    "position": {
-      "portrait": "bottom",
-      "landscape": "bottom"
-    }
-  },
-  {
-    "start": "13200",
-    "end": "13900",
-    "text": "I hope you enjoyed this little journey through my life and career."
-  },
-  {
-    "start": "13900",
-    "end": "14500",
-    "text": "And if you have any questions, feel free to reach out!",
     "position": {
       "portrait": "bottom",
       "landscape": "bottom"

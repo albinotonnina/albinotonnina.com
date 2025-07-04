@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Svg from "./scene.svg";
 
 import sceneTransitions1 from "./transitions";
@@ -15,46 +15,71 @@ const getTicker = (observer) => {
 };
 
 const createThreshold = (height) => {
-  const count = window.Math.ceil(height / 1);
-  const t = [];
+  const count = Math.ceil(height / 1);
+  const thresholds = [];
   const ratio = 1 / count;
   for (let i = 0; i < count; i += 1) {
-    t.push(i * ratio);
+    thresholds.push(i * ratio);
   }
-  return t;
+  return thresholds;
 };
 
-export default function scene(props) {
-  React.useEffect(() => {
-    // Replace font-family with font-weight for better web rendering
+// Font family to weight mapping
+const FONT_WEIGHT_MAP = {
+  "Roboto-Thin": "100",
+  "Roboto-Light": "300",
+  "Roboto-Regular": "400",
+  "Roboto-Black": "900",
+};
+
+// Button configurations
+const BUTTON_CONFIGS = {
+  contactsbutton: {
+    url: "https://www.linkedin.com/in/albinotonnina/",
+    type: "link",
+  },
+  githubbutton: {
+    url: "https://github.com/albinotonnina/albinotonnina.com/",
+    type: "link",
+  },
+  emailbutton: {
+    type: "email",
+    user: "albinotonnina+website",
+    domain: "gmail.com",
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+export default function Scene({ width, height, isPortrait }) {
+  // Font replacement effect
+  useEffect(() => {
     const replaceFonts = () => {
       const textElements = document.querySelectorAll("text, tspan");
       textElements.forEach((element) => {
         const fontFamily = element.getAttribute("font-family");
         if (fontFamily) {
-          if (fontFamily.includes("Roboto-Thin")) {
-            element.setAttribute("font-weight", "100");
-            element.removeAttribute("font-family");
-          } else if (fontFamily.includes("Roboto-Light")) {
-            element.setAttribute("font-weight", "300");
-            element.removeAttribute("font-family");
-          } else if (fontFamily.includes("Roboto-Regular")) {
-            element.setAttribute("font-weight", "400");
-            element.removeAttribute("font-family");
-          } else if (fontFamily.includes("Roboto-Black")) {
-            element.setAttribute("font-weight", "900");
+          // Use the font weight mapping
+          const fontEntries = Object.keys(FONT_WEIGHT_MAP);
+          const matchedFont = fontEntries.find((font) =>
+            fontFamily.includes(font)
+          );
+          if (matchedFont) {
+            element.setAttribute("font-weight", FONT_WEIGHT_MAP[matchedFont]);
             element.removeAttribute("font-family");
           }
         }
       });
     };
 
-    // Run font replacement after component mounts and after any updates
-    setTimeout(replaceFonts, 0);
-  });
+    // Run font replacement after component mounts
+    const timeoutId = setTimeout(replaceFonts, 0);
 
-  React.useEffect(() => {
-    const transitionsData = sceneTransitions1.transitions(props.isPortrait);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  // Intersection observer effect
+  useEffect(() => {
+    const transitionsData = sceneTransitions1.transitions(isPortrait);
     const transitionElements = getTransitionElements(transitionsData);
 
     const observer = new IntersectionObserver(
@@ -71,24 +96,46 @@ export default function scene(props) {
     return () => {
       observer.disconnect();
     };
-  });
+  }, [isPortrait]);
 
-  React.useEffect(() => {
-    const contactsButton = document.querySelector("#contactsbutton");
-    if (contactsButton) {
-      contactsButton.addEventListener("click", () => {
-        window.open("https://www.linkedin.com/in/albinotonnina/");
-      });
-    }
-  });
-  React.useEffect(() => {
-    const githubButton = document.querySelector("#githubbutton");
-    if (githubButton) {
-      githubButton.addEventListener("click", () => {
-        window.open("https://github.com/albinotonnina/albinotonnina.com/");
-      });
-    }
-  });
+  // Button event handlers effect
+  useEffect(() => {
+    const eventHandlers = [];
 
-  return <Svg width={props.width} height={props.height} />;
+    // Setup button event listeners
+    const buttonKeys = Object.keys(BUTTON_CONFIGS);
+    buttonKeys.forEach((buttonId) => {
+      const config = BUTTON_CONFIGS[buttonId];
+      const button = document.querySelector(`#${buttonId}`);
+      if (button) {
+        const handleClick = () => {
+          if (config.type === "email") {
+            const email = `${config.user}@${config.domain}`;
+            window.open(`mailto:${email}`);
+          } else {
+            window.open(config.url);
+          }
+        };
+
+        button.addEventListener("click", handleClick);
+        eventHandlers.push({ button, handleClick });
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      eventHandlers.forEach(({ button, handleClick }) => {
+        button.removeEventListener("click", handleClick);
+      });
+    };
+  }, []);
+
+  return <Svg width={width} height={height} />;
 }
+
+// Add prop validation to avoid lint warnings
+Scene.defaultProps = {
+  width: 0,
+  height: 0,
+  isPortrait: false,
+};

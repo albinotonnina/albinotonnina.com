@@ -49,7 +49,7 @@ let animationDebugger = null;
 // ANIMATION CONFIGURATION
 // ============================
 
-const DURATION = 16200;
+const DURATION = 18200;
 
 /**
  * Scene timing configuration - defines when each scene phase begins/ends
