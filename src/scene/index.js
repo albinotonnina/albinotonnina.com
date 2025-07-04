@@ -28,22 +28,22 @@ export default function scene(props) {
   React.useEffect(() => {
     // Replace font-family with font-weight for better web rendering
     const replaceFonts = () => {
-      const textElements = document.querySelectorAll('text, tspan');
-      textElements.forEach(element => {
-        const fontFamily = element.getAttribute('font-family');
+      const textElements = document.querySelectorAll("text, tspan");
+      textElements.forEach((element) => {
+        const fontFamily = element.getAttribute("font-family");
         if (fontFamily) {
-          if (fontFamily.includes('Roboto-Thin')) {
-            element.setAttribute('font-weight', '100');
-            element.removeAttribute('font-family');
-          } else if (fontFamily.includes('Roboto-Light')) {
-            element.setAttribute('font-weight', '300');
-            element.removeAttribute('font-family');
-          } else if (fontFamily.includes('Roboto-Regular')) {
-            element.setAttribute('font-weight', '400');
-            element.removeAttribute('font-family');
-          } else if (fontFamily.includes('Roboto-Black')) {
-            element.setAttribute('font-weight', '900');
-            element.removeAttribute('font-family');
+          if (fontFamily.includes("Roboto-Thin")) {
+            element.setAttribute("font-weight", "100");
+            element.removeAttribute("font-family");
+          } else if (fontFamily.includes("Roboto-Light")) {
+            element.setAttribute("font-weight", "300");
+            element.removeAttribute("font-family");
+          } else if (fontFamily.includes("Roboto-Regular")) {
+            element.setAttribute("font-weight", "400");
+            element.removeAttribute("font-family");
+          } else if (fontFamily.includes("Roboto-Black")) {
+            element.setAttribute("font-weight", "900");
+            element.removeAttribute("font-family");
           }
         }
       });

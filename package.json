@@ -16,7 +16,13 @@
     "build": "webpack --mode production",
     "analyze": "webpack --mode production --analyze",
     "test": "jest",
-    "process-svg": "node scripts/process-svg.js"
+    "process-svg": "node scripts/process-svg.js",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,json,css,md}\"",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix"
   },
   "dependencies": {
     "d3-interpolate": "^1.4.0",
@@ -35,10 +41,11 @@
     "url": "git@github.com:albinotonnina/albinotonnina.com.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/core": "^7.28.0",
+    "@babel/eslint-parser": "^7.28.0",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
-    "@babel/preset-env": "^7.23.0",
-    "@babel/preset-react": "^7.22.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
     "@babel/register": "^7.22.0",
     "@babel/runtime": "^7.23.0",
     "@svgr/webpack": "^8.1.0",

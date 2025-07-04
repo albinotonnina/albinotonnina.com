@@ -1,4 +1,4 @@
-/***
+/** *
  * SCENE TRANSITIONS
  *
  * This file orchestrates the entire animated narrative of albinotonnina.com.
@@ -75,12 +75,14 @@ if (process.env.NODE_ENV === "development") {
         animationDebugger.init(SCENE_TIMING);
         // Ensure it's available globally for tick function
         window.animationDebugger = animationDebugger;
+        // eslint-disable-next-line no-console
         console.log(
           "🎬 Animation Debugger loaded! Press Ctrl/Cmd + D to toggle."
         );
       }
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.warn("Failed to load animation debugger:", error);
     });
 }
@@ -138,7 +140,7 @@ const getViewportTransforms = (isPortrait) => ({
 
   bulbZoomed: isPortrait
     ? multiple(translate(-1000, 0), scale(2, 2))
-    : multiple(translate(0, 0), scale(1, 1))
+    : multiple(translate(0, 0), scale(1, 1)),
 });
 
 // ============================
@@ -232,9 +234,9 @@ const createDeskExplosionAnimations = () => {
     { element: "deskcoffee", x: -40, y: -100, scale: 1, delay: 5 },
   ];
 
-  return explosionConfig.map(({ element, x, y, scale, delay }) => [
+  return explosionConfig.map(({ element, x, y, scale: itemScale, delay }) => [
     element,
-    explodeIt(x, y, scale, delay, startTime),
+    explodeIt(startTime + delay, x, y, itemScale),
   ]);
 };
 
@@ -353,7 +355,7 @@ const createErrorScreenAnimation = () => {
  * Example: Space element appears, moves, and fades out
  */
 const createSpaceAnimations = (transforms) => {
-  const [spaceStart, spaceEnd] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
+  const [spaceStart] = SCENE_TIMING.space; // Use frame scene timing as a base, adjust as needed
 
   const animationStart = spaceStart; // Start animation slightly before space scene begins
   const linesStart = spaceStart + 1600; // Start animation slightly before space scene begins
@@ -495,27 +497,49 @@ const createSpaceAnimations = (transforms) => {
           opacity: 0.7,
           transform: multiple(translate(0, 400), scale(1, 1)),
         },
-              [animationStart + 6800]: {transform: multiple(translate(0, 400), scale(1, 1)), opacity: 0.7 },
-      [animationStart + 7100]: {transform: multiple(translate(0, 400), scale(1, 1)),opacity: 0 },
+        [animationStart + 6800]: {
+          transform: multiple(translate(0, 400), scale(1, 1)),
+          opacity: 0.7,
+        },
+        [animationStart + 7100]: {
+          transform: multiple(translate(0, 400), scale(1, 1)),
+          opacity: 0,
+        },
       },
     ],
-    ["moon2", {
-      [animationStart + 4700]: { opacity: 0 },
-      [animationStart + 4900]: { opacity: 1 },
-      [animationStart + 6800]: { opacity: 1 },
-      [animationStart + 7100]: { opacity: 0 },
-    }],
-    ["collab", {
-      [animationStart + 4600]: { transform: multiple(translate(0, 0), scale(1, 1)), },
-      [animationStart + 5600]: { transform: multiple(translate(0, 400), scale(1, 1)), },
-      [animationStart + 6800]: { transform: multiple(translate(0, 400), scale(1, 1)), opacity:1 },
-      [animationStart + 7100]: { transform: multiple(translate(0, 400), scale(1, 1)), opacity: 0 },
-    }],
+    [
+      "moon2",
+      {
+        [animationStart + 4700]: { opacity: 0 },
+        [animationStart + 4900]: { opacity: 1 },
+        [animationStart + 6800]: { opacity: 1 },
+        [animationStart + 7100]: { opacity: 0 },
+      },
+    ],
+    [
+      "collab",
+      {
+        [animationStart + 4600]: {
+          transform: multiple(translate(0, 0), scale(1, 1)),
+        },
+        [animationStart + 5600]: {
+          transform: multiple(translate(0, 400), scale(1, 1)),
+        },
+        [animationStart + 6800]: {
+          transform: multiple(translate(0, 400), scale(1, 1)),
+          opacity: 1,
+        },
+        [animationStart + 7100]: {
+          transform: multiple(translate(0, 400), scale(1, 1)),
+          opacity: 0,
+        },
+      },
+    ],
     ...Array.from({ length: 23 }, (_, i) => [
-      `ladder :nth-child(${i + 1}n)`, 
-      drawStrokes(animationStart + 5200 + (i * 16), 100, 10)
+      `ladder :nth-child(${i + 1}n)`,
+      drawStrokes(animationStart + 5200 + i * 16, 100, 10),
     ]),
-    ["people *", drawStrokes(animationStart + 5600, 400, 10)]
+    ["people *", drawStrokes(animationStart + 5600, 400, 10)],
   ];
 };
 
@@ -530,12 +554,9 @@ const createSpaceAnimations = (transforms) => {
 const createCoreSceneTransitions = (transforms) => {
   const {
     desk: deskTime,
-    freelance: [freelanceStart, freelanceEnd],
+    freelance: [freelanceStart],
     company: [companyStart, companyEnd],
     founder: [founderStart, founderEnd],
-    frame: [frameStart, frameEnd],
-    lightsOff: [lightsOffStart, lightsOffEnd],
-    space: [spaceStart, spaceEnd],
   } = SCENE_TIMING;
 
   return [
@@ -680,7 +701,7 @@ const createEnvironmentAnimations = () => {
 const createFrameAnimations = (transforms) => {
   const {
     frame: [frameStart, frameEnd],
-    space: [spaceStart, spaceEnd],
+    space: [spaceStart],
     lightsOff: [lightsOffStart],
   } = SCENE_TIMING;
 
@@ -782,10 +803,11 @@ const createDetailAnimations = () => {
 /**
  * Creates terminal and technology interface animations
  */
+// eslint-disable-next-line no-unused-vars
 const createTerminalAnimations = (transforms) => {
   const {
     lightsOff: [lightsOffStart],
-    space: [spaceStart, spaceEnd],
+    space: [spaceStart],
   } = SCENE_TIMING;
 
   return [
@@ -843,22 +865,18 @@ const createTerminalAnimations = (transforms) => {
       },
     ],
 
-    
     createErrorScreenAnimation(),
-  
   ];
 };
 
 const createContactsAnimations = () => {
   const {
-    contacts: [contactsStart, contactsEnd],
+    contacts: [contactsStart],
   } = SCENE_TIMING;
 
   return [
     // Contacts scene appearance
     ["contacts", appearAt(contactsStart, 200)],
-
-
   ];
 };
 
@@ -901,7 +919,7 @@ const createTransitions = (isPortrait) => {
     ...createShadowAnimations(),
     ...createLightingAnimations(),
     ...createSpaceAnimations(transforms),
-    ...createContactsAnimations()
+    ...createContactsAnimations(),
   ]);
 };
 

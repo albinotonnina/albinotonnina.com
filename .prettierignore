@@ -1,0 +1,15 @@
+# Ignore build outputs
+public/
+dist/
+build/
+
+# Ignore dependencies
+node_modules/
+
+# Ignore generated files
+*.min.js
+*.min.css
+
+# Ignore other files
+*.log
+.DS_Store

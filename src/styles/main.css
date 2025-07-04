@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   color: #151d29;
   background: linear-gradient(45deg, #eff4f9, #48b1bf);
   background-attachment: fixed;
@@ -23,7 +23,7 @@ body {
   z-index: 100;
 
   text {
-    text-rendering: geometricPrecision;
+    text-rendering: geometricprecision;
   }
 
   #helloline {
@@ -35,7 +35,6 @@ body {
     stroke-dasharray: 300;
     stroke-width: 1.2;
   }
-
 
   #helloline,
   #desklogos,
@@ -92,7 +91,6 @@ body {
   }
 
   #chair1 {
-
     path,
     polygon {
       fill-opacity: 0;
@@ -152,7 +150,6 @@ body {
   }
 }
 
-
 #errorscr1 {
   transform-origin: center;
   opacity: 0;
@@ -170,11 +167,10 @@ body {
 }
 
 #bulblines {
-
   path,
   polygon {
     /* fill-opacity: 0; */
-    stroke: #FFE3B3;
+    stroke: #ffe3b3;
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: miter;
@@ -184,14 +180,12 @@ body {
   }
 }
 
-
 #bulbEllipses1,
 #bulbEllipses2 {
-
   path,
   polygon {
     /* fill-opacity: 0; */
-    stroke: #FFE3B3;
+    stroke: #ffe3b3;
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: miter;
@@ -242,38 +236,33 @@ body {
 
 #collab {
   transform-origin: center;
+
   /* opacity: 0; */
 }
 
 #ladder {
-
-
   polygon {
     /* fill-opacity: 0; */
-    stroke: #FFE3B3;
+    stroke: #ffe3b3;
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: miter;
     stroke-miterlimit: 4;
     stroke-dashoffset: 0;
     stroke-dasharray: 100;
-
   }
 }
 
 #people {
-
-
   path {
     /* fill-opacity: 0; */
-    stroke: #FFE3B3;
+    stroke: #ffe3b3;
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: miter;
     stroke-miterlimit: 4;
     stroke-dashoffset: 0;
     stroke-dasharray: 400;
-
   }
 }
 
@@ -281,8 +270,6 @@ body {
   transform-origin: center;
   opacity: 0;
 }
-
-
 
 .visually-hidden {
   clip: rect(0 0 0 0);

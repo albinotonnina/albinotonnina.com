@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+      }
+    ],
+    "selector-id-pattern": null,
+    "no-descending-specificity": null,
+    "selector-class-pattern": null
+  },
+  "ignoreFiles": ["**/*.min.css", "**/dist/**/*.css"]
+}

@@ -51,6 +51,23 @@ The development server includes:
 - Optimized SVG processing
 - **Animation Debugger** - Press `Ctrl/Cmd + D` to toggle real-time animation info
 
+### Recommended Development Setup
+
+For the best development experience, I recommend using **VS Code** with the following extensions:
+
+- **Stylelint** - CSS linting integration
+- **Prettier** - Code formatting
+- **Tailwind CSS IntelliSense** - CSS class completion
+- **CSS Peek** - Navigate to CSS definitions
+- **HTML CSS Class Completion** - Auto-complete CSS classes
+
+The project includes VS Code configuration for:
+
+- ✅ **Format on save** for consistent code style
+- ✅ **CSS syntax highlighting** with proper language association
+- ✅ **Integrated linting** with error highlighting
+- ✅ **Auto-fix on save** for Stylelint issues
+
 ### Production Build
 
 ```bash
@@ -66,7 +83,43 @@ yarn analyze
 ```bash
 # Run tests
 yarn test
+
+# Run tests in watch mode
+yarn test --watch
 ```
+
+### Code Quality
+
+```bash
+# Lint JavaScript files
+yarn lint
+
+# Fix auto-fixable JavaScript issues
+yarn lint:fix
+
+# Lint CSS files
+yarn lint:css
+
+# Fix auto-fixable CSS issues
+yarn lint:css:fix
+
+# Format all files with Prettier
+yarn format
+```
+
+## 🛠️ Available Scripts
+
+| Command             | Description                              |
+| ------------------- | ---------------------------------------- |
+| `yarn dev`          | Start development server with hot reload |
+| `yarn build`        | Build for production                     |
+| `yarn analyze`      | Analyze bundle size                      |
+| `yarn test`         | Run test suite                           |
+| `yarn lint`         | Lint JavaScript files                    |
+| `yarn lint:fix`     | Fix auto-fixable JavaScript issues       |
+| `yarn lint:css`     | Lint CSS files                           |
+| `yarn lint:css:fix` | Fix auto-fixable CSS issues              |
+| `yarn format`       | Format all files with Prettier           |
 
 ## 🛠️ Tech Stack
 
@@ -86,10 +139,12 @@ yarn test
 
 ### Development Tools
 
-- **ESLint** - Code linting with Airbnb configuration
-- **Prettier** - Code formatting
+- **ESLint** - Code linting with modern Babel parser and comprehensive rules
+- **Prettier** - Code formatting with consistent style
+- **Stylelint** - CSS linting with PostCSS support
 - **Jest** - Testing framework
 - **Webpack Bundle Analyzer** - Bundle size analysis
+- **VS Code Integration** - Configured for optimal development experience
 
 ## 📁 Project Structure
 
@@ -100,11 +155,27 @@ src/
 │   ├── scene.svg    # Complex interactive SVG illustration
 │   ├── transitions.js    # Animation definitions
 │   ├── tickFunction.js   # Animation engine
-│   └── ...
+│   ├── animationDebugger.js # Development animation debugger
+│   ├── calculateStyles.js   # Animation style calculations
+│   └── transition-utilities.js # Animation utility functions
 ├── styles/          # CSS and styling
+│   ├── main.css     # Main application styles
+│   └── ...
 ├── subtitles/       # Text content and subtitles
 ├── images/          # Static assets
+├── utils/           # Utility functions
+│   └── svg-id-processor.js # SVG processing utilities
 └── index.js         # Application entry point
+
+# Configuration files
+├── .eslintrc        # ESLint configuration
+├── .prettierrc      # Prettier configuration
+├── .stylelintrc     # Stylelint configuration
+├── webpack.config.babel.js # Webpack configuration
+├── jest.config.js   # Jest test configuration
+└── .vscode/         # VS Code workspace configuration
+    ├── settings.json    # Editor settings
+    └── extensions.json  # Recommended extensions
 ```
 
 ## 🎨 Key Technical Achievements
@@ -165,6 +236,29 @@ animationDebugger.logState(); // Log detailed state info
 
 For detailed debugging information, see [ANIMATION_DEBUG.md](./ANIMATION_DEBUG.md).
 
+### Development Best Practices
+
+The project follows modern development practices:
+
+**Code Quality Standards:**
+- All JavaScript follows ESLint rules with modern Babel parser
+- CSS follows Stylelint standards with PostCSS support
+- Consistent formatting enforced by Prettier
+- Comprehensive test coverage for utility functions
+
+**Development Workflow:**
+1. **Before committing**, run `yarn lint` and `yarn lint:css` to check for issues
+2. **Use `yarn format`** to ensure consistent code formatting
+3. **Fix linting issues** with `yarn lint:fix` and `yarn lint:css:fix` when possible
+4. **Test changes** thoroughly using the animation debugger
+5. **Maintain clean code** with proper separation of concerns
+
+**File Organization:**
+- Animation logic separated into focused modules
+- Utility functions extracted for reusability
+- CSS organized with clear naming conventions
+- Test files co-located with source code
+
 ### Making Changes
 
 1. **Use the debugger** to understand current animation state
@@ -197,12 +291,14 @@ This project has been successfully modernized with the following improvements:
 - **Development-only features** properly excluded from production
 - **SVG optimizations** with proper gradient and animation preservation
 
-### ✅ Code Quality
+### ✅ Code Quality & Development Experience
 
-- **Modular architecture** with clear separation of concerns
-- **Comprehensive documentation** including animation debugging guide
-- **Test coverage** for utility functions
-- **Modern JavaScript** with ES6+ features and proper bundling
+- **ESLint** with modern Babel parser and comprehensive linting rules
+- **Prettier** for consistent code formatting across the project
+- **Stylelint** for CSS linting with PostCSS and modern CSS support
+- **VS Code integration** with proper syntax highlighting and format-on-save
+- **Automated formatting** and linting with pre-configured scripts
+- **Development workflow** optimized for modern JavaScript/CSS development
 
 ## �📄 License
 

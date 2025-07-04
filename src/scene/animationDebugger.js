@@ -48,6 +48,7 @@ const createDevelopmentDebugger = () => {
 
       // Show welcome message once
       if (!this.hasShownWelcome) {
+        // eslint-disable-next-line no-console
         console.log(
           "🎬 Animation Debugger available! Press Ctrl/Cmd + D to toggle."
         );
@@ -64,10 +65,12 @@ const createDevelopmentDebugger = () => {
         this.overlay.style.display = this.isEnabled ? "block" : "none";
       }
 
+      // eslint-disable-next-line no-console
       console.log(
         `Animation Debugger ${this.isEnabled ? "enabled" : "disabled"}`
       );
       if (this.isEnabled) {
+        // eslint-disable-next-line no-console
         console.log("Press Ctrl/Cmd + D to toggle debugger");
       }
     }
@@ -137,8 +140,8 @@ const createDevelopmentDebugger = () => {
 
       content.innerHTML = `
       ${timeInfo}
-      ${this.renderCurrentScene(currentScene, sceneProgress)}
-      ${this.renderActiveAnimations(activeElements)}
+      ${AnimationDebugger.renderCurrentScene(currentScene, sceneProgress)}
+      ${AnimationDebugger.renderActiveAnimations(activeElements)}
       ${this.renderSceneTimeline()}
     `;
     }
@@ -179,10 +182,7 @@ const createDevelopmentDebugger = () => {
         time < this.sceneTiming.contacts[1]
       )
         return "contacts";
-      if (
-        time >= this.sceneTiming.space[0] &&
-        time < this.sceneTiming.space[1]
-      )
+      if (time >= this.sceneTiming.space[0] && time < this.sceneTiming.space[1])
         return "space";
 
       return "post-space";
@@ -195,7 +195,8 @@ const createDevelopmentDebugger = () => {
       if (!this.sceneTiming || scene === "unknown") return 0;
 
       const time = this.currentTime;
-      let sceneStart, sceneEnd;
+      let sceneStart;
+      let sceneEnd;
 
       switch (scene) {
         case "desk":
@@ -254,7 +255,7 @@ const createDevelopmentDebugger = () => {
     /**
      * Render current scene information
      */
-    renderCurrentScene(scene, progress) {
+    static renderCurrentScene(scene, progress) {
       const sceneEmojis = {
         desk: "🖥️",
         freelance: "🏠",
@@ -283,7 +284,7 @@ const createDevelopmentDebugger = () => {
     /**
      * Render active animations
      */
-    renderActiveAnimations(activeElements) {
+    static renderActiveAnimations(activeElements) {
       const maxVisible = 8; // Limit to prevent overflow
       const visibleElements = activeElements.slice(0, maxVisible);
       const remaining = activeElements.length - maxVisible;
@@ -300,7 +301,7 @@ const createDevelopmentDebugger = () => {
       } else {
         visibleElements.forEach((element) => {
           const truncatedName =
-            element.length > 25 ? element.substring(0, 25) + "..." : element;
+            element.length > 25 ? `${element.substring(0, 25)}...` : element;
           animationsHtml += `<div style="color: #9f9;">• ${truncatedName}</div>`;
         });
 
@@ -375,8 +376,24 @@ const createDevelopmentDebugger = () => {
         const isActive =
           this.currentTime >= scene.start && this.currentTime <= scene.end;
         const isPast = this.currentTime > scene.end;
-        const color = isActive ? "#00ff00" : isPast ? "#666" : "#999";
-        const indicator = isActive ? "▶️" : isPast ? "✅" : "⏳";
+
+        let color;
+        if (isActive) {
+          color = "#00ff00";
+        } else if (isPast) {
+          color = "#666";
+        } else {
+          color = "#999";
+        }
+
+        let indicator;
+        if (isActive) {
+          indicator = "▶️";
+        } else if (isPast) {
+          indicator = "✅";
+        } else {
+          indicator = "⏳";
+        }
 
         timelineHtml += `
         <div style="color: ${color}; margin: 3px 0; display: flex; justify-content: space-between;">
@@ -396,11 +413,13 @@ const createDevelopmentDebugger = () => {
     logState() {
       if (!this.isEnabled) return;
 
+      /* eslint-disable no-console */
       console.group("🎬 Animation State");
       console.log("Current Time:", this.currentTime);
       console.log("Current Scene:", this.getCurrentScene());
       console.log("Scene Timing:", this.sceneTiming);
       console.groupEnd();
+      /* eslint-enable no-console */
     }
 
     /**
@@ -421,6 +440,7 @@ const createDevelopmentDebugger = () => {
      */
     jumpToScene(sceneName) {
       if (!this.sceneTiming || !this.sceneTiming[sceneName]) {
+        // eslint-disable-next-line no-console
         console.error(
           `Scene "${sceneName}" not found. Available scenes:`,
           Object.keys(this.sceneTiming)
@@ -430,12 +450,13 @@ const createDevelopmentDebugger = () => {
 
       let targetTime;
       if (Array.isArray(this.sceneTiming[sceneName])) {
-        targetTime = this.sceneTiming[sceneName][0]; // Start of scene
+        [targetTime] = this.sceneTiming[sceneName]; // Start of scene
       } else {
         targetTime = this.sceneTiming[sceneName];
       }
 
       window.scrollTo(0, targetTime);
+      // eslint-disable-next-line no-console
       console.log(`🎬 Jumped to ${sceneName} scene at ${targetTime}ms`);
     }
 
@@ -444,10 +465,12 @@ const createDevelopmentDebugger = () => {
      */
     listScenes() {
       if (!this.sceneTiming) {
+        // eslint-disable-next-line no-console
         console.log("Scene timing not initialized");
         return;
       }
 
+      /* eslint-disable no-console */
       console.group("🎭 Available Scenes");
       Object.entries(this.sceneTiming).forEach(([name, timing]) => {
         const timeRange = Array.isArray(timing)
@@ -456,6 +479,7 @@ const createDevelopmentDebugger = () => {
         console.log(`${name}: ${timeRange}`);
       });
       console.groupEnd();
+      /* eslint-enable no-console */
     }
   }
 

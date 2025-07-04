@@ -1,6 +1,19 @@
 {
   "files.associations": {
-    "*.css": "postcss"
+    "*.css": "css"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "css.validate": true,
+  "css.lint.unknownAtRules": "ignore",
+  "emmet.includeLanguages": {
+    "css": "css"
+  },
+  "stylelint.validate": ["css"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.formatOnSave": true
+  }
 }
