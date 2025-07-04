@@ -875,8 +875,10 @@ const createContactsAnimations = () => {
   } = SCENE_TIMING;
 
   return [
-    // Contacts scene appearance
     ["contacts", appearAt(contactsStart, 200)],
+    ["door *", drawStrokes(contactsStart + 200, 800, 10)],
+    ["doorlight", appearAt(contactsStart + 800, 100)],
+    ["doorlightwall", appearAt(contactsStart + 800, 100)],
   ];
 };
 

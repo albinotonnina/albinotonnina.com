@@ -271,6 +271,22 @@ body {
   opacity: 0;
 }
 
+#door{
+  transform-origin: center;
+
+
+  polygon {
+    opacity: 0;
+    stroke: #fff;
+    fill-opacity: 0;
+    stroke-width: 0.5;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+  }
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
