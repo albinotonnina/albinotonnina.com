@@ -23,6 +23,8 @@
  *
  * DEBUG: Animation debugger is conditionally loaded in development only.
  * Press Ctrl/Cmd + D to toggle real-time animation information.
+ *
+ * Portfolio by Albino Tonnina, licensed under CC BY-NC-ND 4.0. Ref: ATSignaturePortfolio2025 Do not use as your own portfolio.
  */
 
 import {

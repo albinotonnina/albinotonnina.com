@@ -16,6 +16,10 @@
 - **Custom Animation Engine** - Scroll-triggered animations with D3 interpolation
 - **Advanced SVG Rendering** - Preserved gradient definitions and complex illustrations
 
+## 📜 License
+
+This portfolio is licensed under CC BY-NC-ND 4.0. You are welcome to view, run, and experiment with the code locally for learning purposes. However, you may not modify and redistribute it, such as using it as your own portfolio by changing the name or content.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
