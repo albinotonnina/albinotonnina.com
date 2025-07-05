@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import sceneTransitions1 from "./scene/transitions";
 import Scene from "./scene";
 import Subtitles from "./subtitles";
@@ -25,12 +25,12 @@ const getDimentions = () => ({
 });
 
 export default function App() {
-  const [dimensions, setDimensions] = React.useState(getDimentions);
+  const [dimensions, setDimensions] = useState(getDimentions);
 
   const screens = Math.round(sceneTransitions1.duration / dimensions.height);
   const arrayScreens = Array.from(Array(screens).keys());
 
-  React.useEffect(() => {
+  useEffect(() => {
     const debouncedHandleResize = throttle(
       setDimensions.bind(null, getDimentions),
       100,

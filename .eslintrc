@@ -13,7 +13,10 @@
     },
     "requireConfigFile": false,
     "babelOptions": {
-      "presets": ["@babel/preset-env", "@babel/preset-react"],
+      "presets": [
+        "@babel/preset-env",
+        ["@babel/preset-react", { "runtime": "automatic" }],
+      ],
     },
   },
   "extends": [
@@ -32,6 +35,7 @@
       },
     ],
     "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
   },
   "globals": {
     "window": true,

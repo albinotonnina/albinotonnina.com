@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import subtitlesData from "./subtitles.json";
 import sceneTransitions1 from "../scene/transitions";
 
@@ -31,8 +31,8 @@ const getTicker = (observer) => {
 };
 
 export default function Subtitles() {
-  const [currentSubtitle, setCurrentSubtitle] = React.useState(null);
-  const [currentPosition, setCurrentPosition] = React.useState(null);
+  const [currentSubtitle, setCurrentSubtitle] = useState(null);
+  const [currentPosition, setCurrentPosition] = useState(null);
 
   const onTick = () => {
     const subtitle = getSubtitle();
@@ -46,7 +46,7 @@ export default function Subtitles() {
     threshold: createThreshold(sceneTransitions1.duration + window.innerHeight),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     getTicker(observer);
 
     return () => {
