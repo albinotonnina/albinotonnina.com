@@ -50,7 +50,7 @@ const BUTTON_CONFIGS = {
 };
 
 // eslint-disable-next-line react/prop-types
-export default function Scene({ width, height, isPortrait }) {
+export default function Scene({ width = 0, height = 0, isPortrait = false }) {
   // Font replacement effect
   useEffect(() => {
     const replaceFonts = () => {
@@ -132,10 +132,3 @@ export default function Scene({ width, height, isPortrait }) {
 
   return <Svg width={width} height={height} />;
 }
-
-// Add prop validation to avoid lint warnings
-Scene.defaultProps = {
-  width: 0,
-  height: 0,
-  isPortrait: false,
-};

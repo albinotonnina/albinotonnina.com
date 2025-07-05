@@ -918,9 +918,9 @@ const createContactsAnimations = () => {
 
   return [
     ["contacts", appearAt(contactsStart, 200)],
-    ["door *", drawStrokes(contactsStart + 200, 800, 10)],
-    ["doorlight", appearAt(contactsStart + 800, 100)],
-    ["doorlightwall", appearAt(contactsStart + 800, 100)],
+    ["door *", drawStrokes(contactsStart + 800, 800, 10)],
+    ["doorlight", appearAt(contactsStart + 1600, 100)],
+    ["doorlightwall", appearAt(contactsStart + 1600, 100)],
   ];
 };
 
