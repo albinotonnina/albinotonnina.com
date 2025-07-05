@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Svg from "./scene.svg";
 
 import sceneTransitions1 from "./transitions";
