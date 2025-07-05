@@ -1,6 +1,6 @@
 /* global describe, it, expect */
 
-import * as u from "../src/scene/transition-utilities";
+import * as u from "./transition-utilities";
 
 describe("Transition Utilities", () => {
   describe("rotate", () => {

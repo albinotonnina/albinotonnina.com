@@ -50,7 +50,13 @@ export default (transitionsData, transitionElements) => {
   }
 
   styles.forEach(({ selector, style }) => {
-    transitionElements.get(selector).forEach((element) => {
+    const elements = transitionElements.get(selector);
+    if (!elements) return;
+
+    elements.forEach((element) => {
+      // Skip null/undefined elements
+      if (!element) return;
+
       // Don't apply opacity/display styles to stop elements as they break gradients
       if (element.tagName === "stop") {
         return;
@@ -61,16 +67,19 @@ export default (transitionsData, transitionElements) => {
 
       // However, if this element has stop descendants, ensure they remain visible
       if (style.includes("opacity: 0") || style.includes("display: none")) {
-        const stopElements = element.querySelectorAll("stop");
-        stopElements.forEach((stop) => {
-          const currentStyle = stop.getAttribute("style") || "";
-          // Remove opacity and display properties that might have been inherited
-          const cleanedStyle = currentStyle
-            .replace(/opacity:\s*[^;]*;?/g, "")
-            .replace(/display:\s*[^;]*;?/g, "")
-            .trim();
-          stop.setAttribute("style", cleanedStyle);
-        });
+        // Only call querySelectorAll if the method exists
+        if (element.querySelectorAll) {
+          const stopElements = element.querySelectorAll("stop");
+          stopElements.forEach((stop) => {
+            const currentStyle = stop.getAttribute("style") || "";
+            // Remove opacity and display properties that might have been inherited
+            const cleanedStyle = currentStyle
+              .replace(/opacity:\s*[^;]*;?/g, "")
+              .replace(/display:\s*[^;]*;?/g, "")
+              .trim();
+            stop.setAttribute("style", cleanedStyle);
+          });
+        }
       }
     });
   });
