@@ -46,6 +46,13 @@ jest.mock("./animation/transitions", () => ({
 // Mock CSS import
 jest.mock("./styles/main.css", () => ({}));
 
+// Mock window.scrollTo globally to prevent JSDOM errors
+Object.defineProperty(window, "scrollTo", {
+  writable: true,
+  configurable: true,
+  value: jest.fn(),
+});
+
 // Mock window dimensions
 const mockWindowDimensions = {
   innerWidth: 1024,
@@ -383,6 +390,92 @@ describe("App Component", () => {
       });
 
       jest.useRealTimers();
+    });
+  });
+
+  describe("Scroll-to-top Functionality", () => {
+    beforeEach(() => {
+      // Mock history.scrollRestoration
+      Object.defineProperty(window, "history", {
+        writable: true,
+        configurable: true,
+        value: {
+          scrollRestoration: "auto",
+        },
+      });
+
+      // Clear the global scrollTo mock
+      window.scrollTo.mockClear();
+    });
+
+    it("scrolls to top immediately on mount", () => {
+      render(<App />);
+
+      expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    });
+
+    it("sets scroll restoration to manual if supported", () => {
+      render(<App />);
+
+      expect(window.history.scrollRestoration).toBe("manual");
+    });
+
+    it("scrolls to top after delay", async () => {
+      jest.useFakeTimers();
+
+      render(<App />);
+
+      // Clear the immediate scrollTo call
+      window.scrollTo.mockClear();
+
+      // Fast forward time to trigger the delayed scroll
+      act(() => {
+        jest.advanceTimersByTime(100);
+      });
+
+      expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+
+      jest.useRealTimers();
+    });
+
+    it("clears timeout on unmount", () => {
+      jest.useFakeTimers();
+      const clearTimeoutSpy = jest.spyOn(global, "clearTimeout");
+
+      const { unmount } = render(<App />);
+
+      unmount();
+
+      expect(clearTimeoutSpy).toHaveBeenCalled();
+
+      clearTimeoutSpy.mockRestore();
+      jest.useRealTimers();
+    });
+
+    it("handles missing scrollRestoration gracefully", () => {
+      // Mock environment without scrollRestoration support
+      Object.defineProperty(window, "history", {
+        writable: true,
+        configurable: true,
+        value: {},
+      });
+
+      expect(() => {
+        render(<App />);
+      }).not.toThrow();
+
+      // Should still call scrollTo
+      expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    });
+
+    it("preserves scroll behavior when scrollRestoration is not supported", () => {
+      // Mock environment without scrollRestoration support
+      delete window.history.scrollRestoration;
+
+      render(<App />);
+
+      // Should still call scrollTo even without scrollRestoration
+      expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
     });
   });
 });

@@ -30,6 +30,26 @@ export default function App() {
   const screens = Math.round(sceneTransitions1.duration / dimensions.height);
   const arrayScreens = Array.from(Array(screens).keys());
 
+  // Scroll to top on mount to ensure animations start from the correct position
+  useEffect(() => {
+    // Disable scroll restoration to prevent browser from restoring scroll position
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // Force scroll to top immediately on mount
+    window.scrollTo(0, 0);
+
+    // Also scroll to top after a brief delay to ensure it takes effect
+    const scrollTimeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
+    return () => {
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   useEffect(() => {
     const debouncedHandleResize = throttle(
       setDimensions.bind(null, getDimentions),

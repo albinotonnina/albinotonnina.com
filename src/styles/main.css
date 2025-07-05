@@ -1,5 +1,8 @@
 html {
   scroll-behavior: smooth;
+  
+  /* Prevent browser from restoring scroll position on refresh */
+  overscroll-behavior: contain;
 }
 
 html,
