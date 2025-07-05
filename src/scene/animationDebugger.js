@@ -363,6 +363,12 @@ const createDevelopmentDebugger = () => {
           end: this.sceneTiming.space[1],
           emoji: "🌌",
         },
+        {
+          name: "CONTACTS",
+          start: this.sceneTiming.contacts[0],
+          end: this.sceneTiming.contacts[1],
+          emoji: "💻",
+        },
       ];
 
       let timelineHtml = `
