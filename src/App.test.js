@@ -11,7 +11,8 @@ import "@testing-library/jest-dom";
 import App from "./App";
 
 // Mock the Scene component
-jest.mock("./scene", () => {
+jest.mock("./animation", () => {
+  // eslint-disable-next-line react/prop-types
   function MockScene({ width, height, isPortrait }) {
     return (
       <div
@@ -24,6 +25,7 @@ jest.mock("./scene", () => {
       </div>
     );
   }
+
   MockScene.displayName = "MockScene";
   return MockScene;
 });
@@ -37,7 +39,7 @@ jest.mock("./subtitles", () => {
 });
 
 // Mock the scene transitions
-jest.mock("./scene/transitions", () => ({
+jest.mock("./animation/transitions", () => ({
   duration: 5000, // Mock duration value
 }));
 

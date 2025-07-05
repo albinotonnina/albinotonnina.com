@@ -32,7 +32,7 @@ jest.mock("./subtitles.json", () => [
 ]);
 
 // Mock the scene transitions
-jest.mock("../scene/transitions", () => ({
+jest.mock("../animation/transitions", () => ({
   duration: 1000,
 }));
 

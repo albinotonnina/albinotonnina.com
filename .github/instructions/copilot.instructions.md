@@ -45,3 +45,5 @@ Coding standards, domain knowledge, and preferences that AI should follow.
 - Ensure code is well-structured and follows the project's architecture.
 - Use appropriate data structures and algorithms for the task at hand.
 - Ensure code is maintainable and easy to extend in the future.
+- Use yarn, not npm, for package management.
+- You don't need confirmation to run commands

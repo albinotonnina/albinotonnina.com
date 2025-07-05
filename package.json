@@ -28,6 +28,7 @@
     "d3-interpolate": "^1.4.0",
     "ease-component": "^1.0.0",
     "favicons": "^7.0.1",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "scroll": "^3.0.1",

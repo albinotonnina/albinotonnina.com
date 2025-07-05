@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import sceneTransitions1 from "./scene/transitions";
-import Scene from "./scene";
+import sceneTransitions1 from "./animation/transitions";
+import Scene from "./animation";
 import Subtitles from "./subtitles";
 import "./styles/main.css";
 
