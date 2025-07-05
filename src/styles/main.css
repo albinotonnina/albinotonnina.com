@@ -287,6 +287,19 @@ body {
   }
 }
 
+#doorhand {
+  path {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400;
+  }
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

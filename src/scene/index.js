@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Svg from "./scene.svg";
 
 import sceneTransitions1 from "./transitions";
-import "../images/albinotonnina.com.mp4";
+// import "../images/albinotonnina.com.mp4";
 import { getTransitionElements } from "./transition-utilities";
 import onTick from "./tickFunction";
 
