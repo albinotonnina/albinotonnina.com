@@ -358,3 +358,29 @@ body {
   white-space: nowrap;
   width: 1px;
 }
+
+/* iOS Chrome specific fixes */
+
+/* Chrome on iOS has different User Agent - CriOS */
+@supports (-webkit-touch-callout: none) {
+  /* This targets iOS devices */
+  body {
+    /* Prevent extra scrollable space on iOS Chrome */
+    overscroll-behavior-y: contain;
+
+    /* Prevent bounce scrolling */
+    -webkit-overflow-scrolling: touch;
+
+    /* Ensure proper height calculation */
+    min-height: 100vh;
+  }
+  
+  /* Prevent extra space at the bottom */
+  html {
+    /* Contain overscroll behavior */
+    overscroll-behavior: contain;
+
+    /* Ensure height is properly calculated */
+    height: 100%;
+  }
+}

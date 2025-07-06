@@ -46,6 +46,19 @@ export default function App() {
     // Force scroll to top immediately on mount
     window.scrollTo(0, 0);
 
+    // iOS Chrome specific fix - set document height to prevent extra scrolling
+    const isIOSChrome = () => {
+      const { userAgent } = navigator;
+      return /iPhone|iPad|iPod/.test(userAgent) && /CriOS/.test(userAgent);
+    };
+
+    if (isIOSChrome()) {
+      // Set a fixed document height to prevent extra scrollable space
+      const expectedHeight = sceneTransitions1.duration + window.innerHeight;
+      document.body.style.height = `${expectedHeight}px`;
+      document.documentElement.style.height = `${expectedHeight}px`;
+    }
+
     // Also scroll to top after a brief delay to ensure it takes effect
     const scrollTimeout = setTimeout(() => {
       window.scrollTo(0, 0);
@@ -102,10 +115,41 @@ export default function App() {
       }
     };
 
+    // iOS Chrome specific fix - prevent extra scrolling beyond content
+    const isIOSChrome = () => {
+      const { userAgent } = navigator;
+      return /iPhone|iPad|iPod/.test(userAgent) && /CriOS/.test(userAgent);
+    };
+
+    const preventExtraScrollOnIOSChrome = () => {
+      if (!isIOSChrome()) return;
+
+      const maxScroll = sceneTransitions1.duration;
+      const currentScroll = window.pageYOffset;
+      
+      // If scrolled beyond the intended content, snap back
+      if (currentScroll > maxScroll) {
+        window.scrollTo(0, maxScroll);
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    
+    if (isIOSChrome()) {
+      window.addEventListener("scroll", preventExtraScrollOnIOSChrome, {
+        passive: true,
+      });
+      window.addEventListener("touchend", preventExtraScrollOnIOSChrome, {
+        passive: true,
+      });
+    }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      if (isIOSChrome()) {
+        window.removeEventListener("scroll", preventExtraScrollOnIOSChrome);
+        window.removeEventListener("touchend", preventExtraScrollOnIOSChrome);
+      }
     };
   }, []);
 

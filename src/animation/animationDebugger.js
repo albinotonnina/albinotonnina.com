@@ -461,9 +461,12 @@ const createDevelopmentDebugger = () => {
         targetTime = this.sceneTiming[sceneName];
       }
 
-      window.scrollTo(0, targetTime);
+      // Don't use window.scrollTo as it can interfere with animation scrolling
+      // Instead, just log the time for debugging purposes
       // eslint-disable-next-line no-console
-      console.log(`🎬 Jumped to ${sceneName} scene at ${targetTime}ms`);
+      console.log(`🎬 Scene ${sceneName} timing: ${targetTime}ms`);
+      // eslint-disable-next-line no-console
+      console.log(`Current time: ${this.currentTime}ms`);
     }
 
     /**
