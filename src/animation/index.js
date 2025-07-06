@@ -93,17 +93,8 @@ export default function Scene({ width = 0, height = 0, isPortrait = false }) {
 
     getTicker(observer);
 
-    // Handle fast scroll events to ensure animations don't skip frames
-    const handleFastScroll = () => {
-      // Force a tick update for fast scroll positions
-      onTick(transitionsData, transitionElements, []);
-    };
-
-    window.addEventListener("fastScroll", handleFastScroll);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("fastScroll", handleFastScroll);
     };
   }, [isPortrait]);
 
