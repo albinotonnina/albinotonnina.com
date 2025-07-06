@@ -31,8 +31,8 @@ const createContactsAnimations = (
   disappearAt,
   drawStrokes
 ) => {
-  const transforms = getContactsTransforms(isPortrait);
-  // TODO: Use transforms when needed for viewport-responsive positioning
+  // const transforms = getContactsTransforms(isPortrait);
+
   const {
     contacts: [contactsStart],
   } = SCENE_TIMING;
@@ -42,9 +42,26 @@ const createContactsAnimations = (
     ["door *", drawStrokes(contactsStart + 1000, 800, 10)],
     ["doorlight", appearAt(contactsStart + 1700, 100)],
     ["doorlightwall", appearAt(contactsStart + 1700, 100)],
-    ["opensourcetext", appearAt(contactsStart + 1800, 100)],
-    ["contactstext", disappearAt(contactsStart + 1000, 100)],
     ["doorhand *", drawStrokes(contactsStart + 2600, 100, 10)],
+    [
+      "contactMe",
+      {
+        [contactsStart]: { opacity: 0 },
+        [contactsStart + 200]: { opacity: 1 },
+        [contactsStart + 900]: { opacity: 1 },
+        [contactsStart + 1000]: { opacity: 0 },
+      },
+    ],
+    [
+      "sourceCode",
+      {
+        [1]: { opacity: 0 },
+        [contactsStart + 1800]: { opacity: 0 },
+        [contactsStart + 1900]: { opacity: 1 },
+        [contactsStart + 2500]: { opacity: 1 },
+        [contactsStart + 2600]: { opacity: 0 },
+      },
+    ],
   ];
 };
 

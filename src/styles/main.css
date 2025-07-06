@@ -314,8 +314,39 @@ body {
 
   @media screen and (orientation: portrait) {
     opacity: 1;
-    transform: translate(610px, -280px) scale(3)
+    transform: translate(610px, -280px) scale(3);
   }
+}
+
+#contactMe, #sourceCode {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ededed;
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  z-index: 102;
+  font-weight: 300;
+  opacity: 0;
+
+  p{
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+
+  @media screen and (orientation: portrait) {
+    width: 90%;
+  }
+
+}
+
+#sourceCode{
+  @media screen and (orientation: portrait) {
+    top: 20%;
+  }
+
 }
 
 .visually-hidden {

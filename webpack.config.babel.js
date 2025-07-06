@@ -16,16 +16,18 @@ function hash(string) {
 
 export default (_, { analyze }) => {
   const isDevelopment = process.env.NODE_ENV === "development";
-  
+
   const config = {
     mode: process.env.NODE_ENV || "development",
     devtool: isDevelopment ? "eval-source-map" : "source-map",
-    cache: isDevelopment ? {
-      type: 'filesystem',
-      buildDependencies: {
-        config: [__filename],
-      },
-    } : false,
+    cache: isDevelopment
+      ? {
+          type: "filesystem",
+          buildDependencies: {
+            config: [__filename],
+          },
+        }
+      : false,
     devServer: {
       host: "0.0.0.0",
       hot: true,
@@ -55,51 +57,55 @@ export default (_, { analyze }) => {
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
       // SVG processing: once at startup in dev, every build in production
       new SVGIdPlugin({
-        files: ['src/scene/scene.svg'],
-        cleanName: 'framemask_1_',
-        runOnce: isDevelopment // Only run once in development
+        files: ["src/animation/scene.svg"],
+        cleanName: "framemask_1_",
+        runOnce: isDevelopment, // Only run once in development
       }),
-      ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
+      ...(isDevelopment
+        ? []
+        : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
     ],
     optimization: {
       minimize: !isDevelopment,
-      splitChunks: isDevelopment ? false : {
-        chunks: "all",
-        cacheGroups: {
-          scenes: {
-            test: (module) => {
-              const identifier = module.identifier();
-              return (
-                identifier.includes("scene.svg") || 
-                identifier.includes("scene-simplified.svg")
-              );
-            },
-            name(module) {
-              const moduleFolder = module
-                .identifier()
-                .split("/")
-                .slice(1, -1)
-                .pop();
-
-              return `${moduleFolder}`;
-            },
-            filename: "[name].js",
-            enforce: true,
-            chunks: "initial",
-          },
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            priority: -10,
+      splitChunks: isDevelopment
+        ? false
+        : {
             chunks: "all",
+            cacheGroups: {
+              scenes: {
+                test: (module) => {
+                  const identifier = module.identifier();
+                  return (
+                    identifier.includes("scene.svg") ||
+                    identifier.includes("scene-simplified.svg")
+                  );
+                },
+                name(module) {
+                  const moduleFolder = module
+                    .identifier()
+                    .split("/")
+                    .slice(1, -1)
+                    .pop();
+
+                  return `${moduleFolder}`;
+                },
+                filename: "[name].js",
+                enforce: true,
+                chunks: "initial",
+              },
+              default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true,
+              },
+              vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: "vendors",
+                priority: -10,
+                chunks: "all",
+              },
+            },
           },
-        },
-      },
     },
     module: {
       rules: [
@@ -188,7 +194,7 @@ export default (_, { analyze }) => {
                       active: false,
                     },
                     {
-                      name: "removeScriptElement", 
+                      name: "removeScriptElement",
                       active: false,
                     },
                   ],
