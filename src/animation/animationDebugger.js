@@ -236,10 +236,10 @@ const createDevelopmentDebugger = () => {
      * Generate time information display
      */
     getTimeInfo() {
-      const totalDuration = 12200; // From DURATION constant in transitions.js
+      const totalDuration = 18000; // From DURATION constant in transitions.js
       const progress = (this.currentTime / totalDuration) * 100;
 
-      return `
+      return `  
       <div style="margin-bottom: 15px; padding: 8px; background: rgba(0, 255, 0, 0.1); border-radius: 4px;">
         <div><strong>⏱️ TIME:</strong> ${this.currentTime.toFixed(0)}ms / ${totalDuration}ms</div>
         <div><strong>📊 PROGRESS:</strong> ${progress.toFixed(1)}%</div>

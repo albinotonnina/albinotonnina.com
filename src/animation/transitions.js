@@ -91,7 +91,7 @@ let animationDebugger = null;
 // ANIMATION CONFIGURATION
 // ============================
 
-const DURATION = 18200;
+const DURATION = 18000;
 
 /**
  * Scene timing configuration - defines when each scene phase begins/ends
@@ -105,7 +105,7 @@ const SCENE_TIMING = {
   frame: [1800, 2500],
   lightsOff: [4300, 6300],
   space: [6100, 13400],
-  contacts: [13400, 15200],
+  contacts: [13400, 18000],
 };
 
 // Initialize debugger after SCENE_TIMING is available
