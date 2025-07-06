@@ -8,19 +8,50 @@
  * ELEMENTS: frame, skyline, hot air balloon, room transitions
  */
 
+import { multiple, translate, scale } from "../transition-utilities";
+
+/**
+ * Creates viewport-responsive transform configurations for frame scene
+ */
+const getFrameTransforms = (isPortrait) => {
+  return {
+    // Camera positions and zoom levels
+    frameZoomed: isPortrait
+      ? multiple(translate(6400, 16800), scale(7.2))
+      : multiple(translate(4800, 11360), scale(5)),
+
+    frame: isPortrait
+      ? multiple(translate(4000, 7000), scale(3.5))
+      : multiple(translate(2200, 2700), scale(1.4)),
+
+    lanyard: isPortrait
+      ? multiple(translate(4600, 5400), scale(4))
+      : multiple(translate(2200, 1600), scale(1.4)),
+
+    total: isPortrait
+      ? multiple(translate(800, -100), scale(0.5))
+      : multiple(translate(700, -300), scale(0.3)),
+
+    table: isPortrait
+      ? multiple(translate(1030, 200), scale(1.6))
+      : multiple(translate(1100, 200), scale(1.8)),
+  };
+};
+
 /**
  * Creates frame and landscape animations
  */
 const createFrameAnimations = (
   SCENE_TIMING,
-  transforms,
+  isPortrait,
   appearAt,
   disappearAt,
   display,
-  translate,
-  multiple,
+  translateUtil,
+  multipleUtil,
   rotate
 ) => {
+  const transforms = getFrameTransforms(isPortrait);
   const {
     frame: [frameStart, frameEnd],
     space: [spaceStart],
@@ -36,8 +67,8 @@ const createFrameAnimations = (
       "skyline",
       {
         ...appearAt(frameStart - 1),
-        [frameStart]: { transform: translate(-300, 0) },
-        [frameEnd]: { transform: translate(520, 0) },
+        [frameStart]: { transform: translateUtil(-300, 0) },
+        [frameEnd]: { transform: translateUtil(520, 0) },
       },
     ],
 
@@ -48,13 +79,17 @@ const createFrameAnimations = (
     [
       "hotballoon",
       {
-        [frameStart]: { transform: multiple(translate(-160, 140), rotate(0)) },
-        [frameEnd - 200]: {
-          transform: multiple(translate(-130, -20), rotate(0)),
+        [frameStart]: {
+          transform: multipleUtil(translateUtil(-160, 140), rotate(0)),
         },
-        [frameEnd]: { transform: multiple(translate(-180, 10), rotate(20)) },
+        [frameEnd - 200]: {
+          transform: multipleUtil(translateUtil(-130, -20), rotate(0)),
+        },
+        [frameEnd]: {
+          transform: multipleUtil(translateUtil(-180, 10), rotate(20)),
+        },
         [frameEnd + 200]: {
-          transform: multiple(translate(-200, 20), rotate(20)),
+          transform: multipleUtil(translateUtil(-200, 20), rotate(20)),
         },
       },
     ],

@@ -131,65 +131,6 @@ if (process.env.NODE_ENV === "development") {
     });
 }
 
-/**
- * Responsive transform configurations for different viewport orientations
- * Each transform includes positioning and scaling for various scene elements
- */
-const getViewportTransforms = (isPortrait) => {
-  // Pre-calculate common values to avoid repeated function calls
-  const zeroTransform = multiple(translate(0, 0), scale(1));
-
-  return {
-    // Camera positions and zoom levels
-    frameZoomed: isPortrait
-      ? multiple(translate(6400, 16800), scale(7.2))
-      : multiple(translate(4800, 11360), scale(5)),
-
-    frame: isPortrait
-      ? multiple(translate(4000, 7000), scale(3.5))
-      : multiple(translate(2200, 2700), scale(1.4)),
-
-    lanyard: isPortrait
-      ? multiple(translate(4600, 5400), scale(4))
-      : multiple(translate(2200, 1600), scale(1.4)),
-
-    total: isPortrait
-      ? multiple(translate(800, -100), scale(0.5))
-      : multiple(translate(700, -300), scale(0.3)),
-
-    table: isPortrait
-      ? multiple(translate(1030, 200), scale(1.6))
-      : multiple(translate(1100, 200), scale(1.8)),
-
-    // Scene-specific positions
-    start: isPortrait
-      ? multiple(translate(-4300, -400), scale(5))
-      : multiple(translate(-4200, -400), scale(5)),
-
-    freelance: isPortrait
-      ? multiple(translate(-980, -200), scale(2))
-      : multiple(translate(-500, -200), scale(1.5)),
-
-    company: isPortrait
-      ? multiple(translate(-800, 450), scale(1.7))
-      : multiple(translate(0, 50), scale(1)),
-
-    founder: isPortrait
-      ? multiple(translate(-1100, 0), scale(2))
-      : multiple(translate(-300, 0), scale(1.3)),
-
-    scrollHint: isPortrait
-      ? multiple(translate(0, 0), scale(4))
-      : zeroTransform,
-
-    space: zeroTransform,
-
-    bulbZoomed: isPortrait
-      ? multiple(translate(-1000, 0), scale(2, 2))
-      : multiple(translate(0, 0), scale(1, 1)),
-  };
-};
-
 // ============================
 // MAIN TRANSITIONS FACTORY
 // ============================
@@ -199,12 +140,10 @@ const getViewportTransforms = (isPortrait) => {
  * Combines all animation types into a complete scene
  */
 const createTransitions = (isPortrait) => {
-  const transforms = getViewportTransforms(isPortrait);
-
   // Create all animation groups efficiently using imported scene modules
   const animationGroups = [
     // Core scene transitions and camera movements
-    createCoreSceneTransitions(SCENE_TIMING, transforms, disappearAt),
+    createCoreSceneTransitions(SCENE_TIMING, isPortrait, disappearAt),
 
     // Desk scene animations
     createDeskDrawingAnimations(SCENE_TIMING, drawStrokes),
@@ -232,7 +171,7 @@ const createTransitions = (isPortrait) => {
     // Frame scene animations
     createFrameAnimations(
       SCENE_TIMING,
-      transforms,
+      isPortrait,
       appearAt,
       disappearAt,
       display,
@@ -249,7 +188,7 @@ const createTransitions = (isPortrait) => {
     // Space scene animations
     createSpaceAnimations(
       SCENE_TIMING,
-      transforms,
+      isPortrait,
       drawStrokes,
       multiple,
       translate,
@@ -258,7 +197,13 @@ const createTransitions = (isPortrait) => {
     [createErrorScreenAnimation(SCENE_TIMING)],
 
     // Contacts scene animations
-    createContactsAnimations(SCENE_TIMING, appearAt, disappearAt, drawStrokes),
+    createContactsAnimations(
+      SCENE_TIMING,
+      isPortrait,
+      appearAt,
+      disappearAt,
+      drawStrokes
+    ),
   ];
 
   // Flatten all animations into a single Map more efficiently

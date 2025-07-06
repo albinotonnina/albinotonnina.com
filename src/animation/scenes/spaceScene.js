@@ -8,6 +8,22 @@
  * ELEMENTS: space, bulb, moon, collaboration, error screens
  */
 
+import { multiple, translate, scale } from "../transition-utilities";
+
+/**
+ * Creates viewport-responsive transform configurations for space scene
+ */
+const getSpaceTransforms = (isPortrait) => {
+  const zeroTransform = multiple(translate(0, 0), scale(1));
+
+  return {
+    space: zeroTransform,
+    bulbZoomed: isPortrait
+      ? multiple(translate(-1000, 0), scale(2, 2))
+      : multiple(translate(0, 0), scale(1, 1)),
+  };
+};
+
 /**
  * Creates the flickering error screen animation
  * Simulates a glitchy terminal screen effect
@@ -35,12 +51,13 @@ export const createErrorScreenAnimation = (SCENE_TIMING) => {
  */
 export const createSpaceAnimations = (
   SCENE_TIMING,
-  transforms,
+  isPortrait,
   drawStrokes,
-  multiple,
-  translate,
-  scale
+  multipleUtil,
+  translateUtil,
+  scaleUtil
 ) => {
+  const transforms = getSpaceTransforms(isPortrait);
   const [spaceStart] = SCENE_TIMING.space;
 
   const animationStart = spaceStart;
@@ -48,11 +65,17 @@ export const createSpaceAnimations = (
   const bulbLinesStart = spaceStart + 400;
 
   // Pre-calculate common transforms to avoid repeated function calls
-  const bulbTransform1 = multiple(translate(-14791, 135), scale(16, 16));
-  const bulbTransform2 = multiple(translate(-14791, 138), scale(16, 16));
-  const spaceTransform = multiple(translate(0, 0), scale(1, 1));
-  const spaceTransform2 = multiple(translate(0, 0), scale(2, 2));
-  const moonTransform1 = multiple(translate(0, 400), scale(1, 1));
+  const bulbTransform1 = multipleUtil(
+    translateUtil(-14791, 135),
+    scaleUtil(16, 16)
+  );
+  const bulbTransform2 = multipleUtil(
+    translateUtil(-14791, 138),
+    scaleUtil(16, 16)
+  );
+  const spaceTransform = multipleUtil(translateUtil(0, 0), scaleUtil(1, 1));
+  const spaceTransform2 = multipleUtil(translateUtil(0, 0), scaleUtil(2, 2));
+  const moonTransform1 = multipleUtil(translateUtil(0, 400), scaleUtil(1, 1));
 
   const baseAnimations = [
     [

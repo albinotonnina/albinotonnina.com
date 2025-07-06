@@ -8,15 +8,31 @@
  * ELEMENTS: contacts, door, lighting, text
  */
 
+import { multiple, translate, scale } from "../transition-utilities";
+
+/**
+ * Creates viewport-responsive transform configurations for contacts scene
+ */
+const getContactsTransforms = (isPortrait) => {
+  return {
+    contacts: isPortrait
+      ? multiple(translate(0, 0), scale(1.5))
+      : multiple(translate(0, 0), scale(1)),
+  };
+};
+
 /**
  * Creates contacts scene animations
  */
 const createContactsAnimations = (
   SCENE_TIMING,
+  isPortrait,
   appearAt,
   disappearAt,
   drawStrokes
 ) => {
+  const transforms = getContactsTransforms(isPortrait);
+  // TODO: Use transforms when needed for viewport-responsive positioning
   const {
     contacts: [contactsStart],
   } = SCENE_TIMING;

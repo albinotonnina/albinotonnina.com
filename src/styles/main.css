@@ -303,6 +303,21 @@ body {
   }
 }
 
+#textlandscape {
+  @media screen and (orientation: portrait) {
+    opacity: 0;
+  }
+}
+
+#textportrait {
+  opacity: 0;
+
+  @media screen and (orientation: portrait) {
+    opacity: 1;
+    transform: translate(610px, -280px) scale(3)
+  }
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
