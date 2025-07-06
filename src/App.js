@@ -126,7 +126,7 @@ export default function App() {
 
       const maxScroll = sceneTransitions1.duration;
       const currentScroll = window.pageYOffset;
-      
+
       // If scrolled beyond the intended content, snap back
       if (currentScroll > maxScroll) {
         window.scrollTo(0, maxScroll);
@@ -134,7 +134,7 @@ export default function App() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    
+
     if (isIOSChrome()) {
       window.addEventListener("scroll", preventExtraScrollOnIOSChrome, {
         passive: true,
