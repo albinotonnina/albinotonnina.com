@@ -21,13 +21,9 @@ body {
 }
 
 #svg1 {
+  top: 0;
   position: fixed;
   z-index: 100;
-
-  /* iOS Safari landscape mode fix */
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
 
   text {
     text-rendering: geometricprecision;
@@ -439,44 +435,5 @@ body {
 
     /* Ensure height is properly calculated */
     height: 100%;
-  }
-}
-
-/* iOS Safari landscape mode specific fixes */
-@media screen and (orientation: landscape) {
-  /* Target iOS Safari specifically */
-  @supports (-webkit-appearance: none) {
-    html, body {
-      height: 100vh;
-      overflow-x: hidden;
-    }
-    
-    #svg1 {
-      /* Force full viewport coverage in iOS Safari landscape */
-      width: 100vw !important;
-      height: 100vh !important;
-      max-width: 100vw;
-      max-height: 100vh;
-    }
-  }
-}
-
-/* iOS Chrome landscape mode fixes */
-@media screen and (orientation: landscape) {
-  /* Target iOS Chrome specifically */
-  @supports (-webkit-touch-callout: none) and (not (-webkit-appearance: none)) {
-    html, body {
-      height: 100vh;
-      width: 100vw;
-      overflow-x: hidden;
-    }
-    
-    #svg1 {
-      /* Force full viewport coverage in iOS Chrome landscape */
-      width: 100vw !important;
-      height: 100vh !important;
-      max-width: 100vw;
-      max-height: 100vh;
-    }
   }
 }
