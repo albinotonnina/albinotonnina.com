@@ -1,21 +1,29 @@
 {
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true,
+    "node": true,
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
-      "modules": true,
-      "experimentalObjectRestSpread": true
-    }
+      "jsx": true,
+    },
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": [
+        "@babel/preset-env",
+        ["@babel/preset-react", { "runtime": "automatic" }],
+      ],
+    },
   },
   "extends": [
-    "airbnb-base",
     "eslint:recommended",
+    "airbnb-base",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended"
   ],
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
@@ -23,13 +31,20 @@
     "no-param-reassign": [
       "error",
       {
-        "props": false
-      }
-    ]
+        "props": false,
+      },
+    ],
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
   },
   "globals": {
     "window": true,
     "document": true,
-    "IntersectionObserver": true
-  }
+    "IntersectionObserver": true,
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
 }

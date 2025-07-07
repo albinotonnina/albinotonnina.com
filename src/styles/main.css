@@ -1,5 +1,8 @@
 html {
   scroll-behavior: smooth;
+  
+  /* Prevent browser from restoring scroll position on refresh */
+  overscroll-behavior: contain;
 }
 
 html,
@@ -11,7 +14,7 @@ body {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   color: #151d29;
   background: linear-gradient(45deg, #eff4f9, #48b1bf);
   background-attachment: fixed;
@@ -23,7 +26,7 @@ body {
   z-index: 100;
 
   text {
-    text-rendering: geometricPrecision;
+    text-rendering: geometricprecision;
   }
 
   #helloline {
@@ -78,7 +81,7 @@ body {
   }
 
   #terminal2textclip {
-    transform-origin: 5%;
+    transform-origin: 2%;
   }
 
   #contactsbutton,
@@ -111,6 +114,10 @@ body {
 
   #room {
     transform-origin: center;
+  }
+
+  #scrollhint {
+    opacity: 0;
   }
 
   #scrollhint,
@@ -146,6 +153,219 @@ body {
   }
 }
 
+#errorscr1 {
+  transform-origin: center;
+  opacity: 0;
+}
+
+#space {
+  transform-origin: center;
+  opacity: 0;
+}
+
+#spacelines,
+#moon,
+#moon2 {
+  opacity: 0;
+}
+
+#bulblines {
+  path,
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 3000;
+  }
+}
+
+#bulbEllipses1,
+#bulbEllipses2 {
+  path,
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 800;
+  }
+}
+
+#bulbbase{
+  path {
+    /* fill: #ffe3b3;
+    fill-opacity: 0.5; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+  }
+}
+
+#spacelines {
+  path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-width: 1.2;
+    opacity: 1;
+  }
+
+  #sl1 path {
+    stroke-dasharray: 2800;
+  }
+
+  #sl2 path {
+    stroke-dasharray: 800;
+  }
+
+  #sl3 path {
+    stroke-dasharray: 400;
+  }
+
+  #sl4 path {
+    stroke-dasharray: 2800;
+  }
+
+  #sl5 path {
+    stroke-dasharray: 1000;
+  }
+
+  #sl6 path {
+    stroke-dasharray: 800;
+  }
+
+  #sl7 path {
+    stroke-dasharray: 2000;
+  }
+}
+
+#collab {
+  transform-origin: center;
+
+  /* opacity: 0; */
+}
+
+#ladder {
+  polygon {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 100;
+  }
+}
+
+#people {
+  path {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400;
+  }
+}
+
+#contacts {
+  transform-origin: center;
+  opacity: 0;
+}
+
+#door{
+  transform-origin: center;
+
+
+  polygon {
+    opacity: 0;
+    stroke: #fff;
+    fill-opacity: 0;
+    stroke-width: 0.5;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+  }
+}
+
+#doorhand {
+  path {
+    /* fill-opacity: 0; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400;
+  }
+}
+
+#textlandscape {
+  @media screen and (orientation: portrait) {
+    opacity: 0;
+  }
+}
+
+#textportrait {
+  opacity: 0;
+
+  @media screen and (orientation: portrait) {
+    opacity: 1;
+    transform: translate(610px, -280px) scale(3);
+  }
+}
+
+#contactMe, #sourceCode {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ededed;
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  z-index: 102;
+  font-weight: 300;
+  opacity: 0;
+  display: none;
+
+
+  p{
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+
+  @media screen and (orientation: portrait) {
+    width: 90%;
+  }
+
+}
+
+#sourceCode{
+  max-width: 800px;
+
+  @media screen and (orientation: portrait) {
+    top: 20%;
+  }
+
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -154,4 +374,68 @@ body {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+/* Modern anchor link styling */
+#contactMe a, #sourceCode a {
+  color: #4facfe;
+  text-decoration: none;
+  position: relative;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+#contactMe a:hover, #sourceCode a:hover {
+  color: #00d4ff;
+  border-bottom-color: #00d4ff;
+  transform: translateY(-1px);
+}
+
+#contactMe a:focus, #sourceCode a:focus {
+  outline: 2px solid #4facfe;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+#contactMe a::after, #sourceCode a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4facfe, #00d4ff);
+  transition: width 0.3s ease;
+}
+
+#contactMe a:hover::after, #sourceCode a:hover::after {
+  width: 100%;
+}
+
+/* iOS Chrome specific fixes */
+
+/* Chrome on iOS has different User Agent - CriOS */
+@supports (-webkit-touch-callout: none) {
+  /* This targets iOS devices */
+  body {
+    /* Prevent extra scrollable space on iOS Chrome */
+    overscroll-behavior-y: contain;
+
+    /* Prevent bounce scrolling */
+    -webkit-overflow-scrolling: touch;
+
+    /* Ensure proper height calculation */
+    min-height: 100vh;
+  }
+  
+  /* Prevent extra space at the bottom */
+  html {
+    /* Contain overscroll behavior */
+    overscroll-behavior: contain;
+
+    /* Ensure height is properly calculated */
+    height: 100%;
+  }
 }

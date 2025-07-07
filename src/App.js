@@ -1,6 +1,6 @@
-import React from "react";
-import sceneTransitions1 from "./scene/transitions";
-import Scene from "./scene";
+import { useState, useEffect } from "react";
+import sceneTransitions1 from "./animation/transitions";
+import Scene from "./animation";
 import Subtitles from "./subtitles";
 import "./styles/main.css";
 
@@ -24,13 +24,52 @@ const getDimentions = () => ({
   isPortrait: window.innerHeight > window.innerWidth,
 });
 
+// Fast scroll configuration
+const FAST_SCROLL_CONFIG = {
+  threshold: 100, // pixels per frame to trigger fast scroll handling
+  useRAF: true, // use requestAnimationFrame for smooth handling
+};
+
 export default function App() {
-  const [dimensions, setDimensions] = React.useState(getDimentions);
+  const [dimensions, setDimensions] = useState(getDimentions);
 
   const screens = Math.round(sceneTransitions1.duration / dimensions.height);
   const arrayScreens = Array.from(Array(screens).keys());
 
-  React.useEffect(() => {
+  // Scroll to top on mount to ensure animations start from the correct position
+  useEffect(() => {
+    // Disable scroll restoration to prevent browser from restoring scroll position
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // Force scroll to top immediately on mount
+    window.scrollTo(0, 0);
+
+    // iOS Chrome specific fix - set document height to prevent extra scrolling
+    const isIOSChrome = () => {
+      const { userAgent } = navigator;
+      return /iPhone|iPad|iPod/.test(userAgent) && /CriOS/.test(userAgent);
+    };
+
+    if (isIOSChrome()) {
+      // Set a fixed document height to prevent extra scrollable space
+      const expectedHeight = sceneTransitions1.duration + window.innerHeight;
+      document.body.style.height = `${expectedHeight}px`;
+      document.documentElement.style.height = `${expectedHeight}px`;
+    }
+
+    // Also scroll to top after a brief delay to ensure it takes effect
+    const scrollTimeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
+    return () => {
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
+  useEffect(() => {
     const debouncedHandleResize = throttle(
       setDimensions.bind(null, getDimentions),
       100,
@@ -41,6 +80,108 @@ export default function App() {
       window.removeEventListener("resize", debouncedHandleResize);
     };
   });
+
+  // Enhanced scroll monitoring to handle fast scrolling
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const handleFastScroll = () => {
+      const currentScrollY = window.pageYOffset;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+
+      // If scrolling too fast (more than 100px per frame), trigger additional updates
+      if (scrollDelta > FAST_SCROLL_CONFIG.threshold) {
+        // Dispatch a custom event to notify the animation system
+        window.dispatchEvent(
+          new CustomEvent("fastScroll", {
+            detail: { scrollY: currentScrollY, delta: scrollDelta },
+          })
+        );
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        if (FAST_SCROLL_CONFIG.useRAF) {
+          requestAnimationFrame(handleFastScroll);
+        } else {
+          handleFastScroll();
+        }
+        ticking = true;
+      }
+    };
+
+    // iOS Chrome specific fix - prevent extra scrolling beyond content
+    const isIOSChrome = () => {
+      const { userAgent } = navigator;
+      return /iPhone|iPad|iPod/.test(userAgent) && /CriOS/.test(userAgent);
+    };
+
+    const preventExtraScrollOnIOSChrome = () => {
+      if (!isIOSChrome()) return;
+
+      const maxScroll = sceneTransitions1.duration;
+      const currentScroll = window.pageYOffset;
+
+      // If scrolled beyond the intended content, snap back
+      if (currentScroll > maxScroll) {
+        window.scrollTo(0, maxScroll);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    if (isIOSChrome()) {
+      window.addEventListener("scroll", preventExtraScrollOnIOSChrome, {
+        passive: true,
+      });
+      window.addEventListener("touchend", preventExtraScrollOnIOSChrome, {
+        passive: true,
+      });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (isIOSChrome()) {
+        window.removeEventListener("scroll", preventExtraScrollOnIOSChrome);
+        window.removeEventListener("touchend", preventExtraScrollOnIOSChrome);
+      }
+    };
+  }, []);
+
+  // Development helper for testing fast scroll solution
+  if (process.env.NODE_ENV === "development") {
+    let fastScrollCount = 0;
+    let totalScrollEvents = 0;
+
+    const logFastScroll = () => {
+      fastScrollCount++;
+      // eslint-disable-next-line no-console
+      console.log(`🚀 Fast scroll detected! Count: ${fastScrollCount}`);
+    };
+
+    const logScroll = () => {
+      totalScrollEvents++;
+    };
+
+    window.addEventListener("fastScroll", logFastScroll);
+    window.addEventListener("scroll", logScroll);
+
+    // Expose stats for debugging
+    window.fastScrollStats = {
+      getFastScrollCount: () => fastScrollCount,
+      getTotalScrollCount: () => totalScrollEvents,
+      getConfig: () => FAST_SCROLL_CONFIG,
+      reset: () => {
+        fastScrollCount = 0;
+        totalScrollEvents = 0;
+      },
+    };
+  }
 
   return (
     <>
@@ -57,7 +198,7 @@ export default function App() {
         height={dimensions.height}
         isPortrait={dimensions.isPortrait}
       />
-      <Subtitles isPortrait={dimensions.isPortrait} />
+      <Subtitles />
     </>
   );
 }

@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import crypto from "crypto";
+const SVGIdPlugin = require("./webpack/svg-id-plugin.js");
 
 function hash(string) {
   return crypto
@@ -15,16 +16,18 @@ function hash(string) {
 
 export default (_, { analyze }) => {
   const isDevelopment = process.env.NODE_ENV === "development";
-  
+
   const config = {
     mode: process.env.NODE_ENV || "development",
     devtool: isDevelopment ? "eval-source-map" : "source-map",
-    cache: isDevelopment ? {
-      type: 'filesystem',
-      buildDependencies: {
-        config: [__filename],
-      },
-    } : false,
+    cache: isDevelopment
+      ? {
+          type: "filesystem",
+          buildDependencies: {
+            config: [__filename],
+          },
+        }
+      : false,
     devServer: {
       host: "0.0.0.0",
       hot: true,
@@ -52,47 +55,57 @@ export default (_, { analyze }) => {
         filename: isDevelopment ? "styles.css" : "styles.[contenthash].css",
       }),
       new HtmlWebpackPlugin({ template: "./src/index.html" }),
-      ...(isDevelopment ? [] : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
+      // SVG processing: once at startup in dev, every build in production
+      new SVGIdPlugin({
+        files: ["src/animation/scene.svg"],
+        cleanName: "framemask_1_",
+        runOnce: isDevelopment, // Only run once in development
+      }),
+      ...(isDevelopment
+        ? []
+        : [new FaviconsWebpackPlugin("./src/images/logo.png")]),
     ],
     optimization: {
       minimize: !isDevelopment,
-      splitChunks: isDevelopment ? false : {
-        chunks: "all",
-        cacheGroups: {
-          scenes: {
-            test: (module) => {
-              const identifier = module.identifier();
-              return (
-                identifier.includes("scene.svg") || 
-                identifier.includes("scene-simplified.svg")
-              );
-            },
-            name(module) {
-              const moduleFolder = module
-                .identifier()
-                .split("/")
-                .slice(1, -1)
-                .pop();
-
-              return `${moduleFolder}`;
-            },
-            filename: "[name].js",
-            enforce: true,
-            chunks: "initial",
-          },
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            priority: -10,
+      splitChunks: isDevelopment
+        ? false
+        : {
             chunks: "all",
+            cacheGroups: {
+              scenes: {
+                test: (module) => {
+                  const identifier = module.identifier();
+                  return (
+                    identifier.includes("scene.svg") ||
+                    identifier.includes("scene-simplified.svg")
+                  );
+                },
+                name(module) {
+                  const moduleFolder = module
+                    .identifier()
+                    .split("/")
+                    .slice(1, -1)
+                    .pop();
+
+                  return `${moduleFolder}`;
+                },
+                filename: "[name].js",
+                enforce: true,
+                chunks: "initial",
+              },
+              default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true,
+              },
+              vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: "vendors",
+                priority: -10,
+                chunks: "all",
+              },
+            },
           },
-        },
-      },
     },
     module: {
       rules: [
@@ -168,11 +181,21 @@ export default (_, { analyze }) => {
                           convertColors: false,
                           convertTransform: false,
                           removeNonInheritableGroupAttrs: false,
-                          removeDimensions: false,
-                          removeStyleElement: false,
-                          removeScriptElement: false,
                         },
                       },
+                    },
+                    // These plugins are not part of preset-default, so they need to be separate
+                    {
+                      name: "removeDimensions",
+                      active: false,
+                    },
+                    {
+                      name: "removeStyleElement",
+                      active: false,
+                    },
+                    {
+                      name: "removeScriptElement",
+                      active: false,
                     },
                   ],
                 },

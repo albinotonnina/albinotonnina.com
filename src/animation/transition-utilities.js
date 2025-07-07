@@ -55,11 +55,11 @@ export const display = (start, durationStart, end, durationEnd) => ({
 });
 
 export const explodeIt = (
+  start,
   offsetX = -500,
   offsetY = 200,
   scaleXY = 2,
-  rotateDeg = 0,
-  start
+  rotateDeg = 0
 ) => {
   const idle = {
     transform: multiple(translate(0, 0), scale(1), rotate(0)),
