@@ -11,6 +11,10 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+
+  /* Ensure full viewport coverage on iOS */
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 body {
@@ -18,12 +22,25 @@ body {
   color: #151d29;
   background: linear-gradient(45deg, #eff4f9, #48b1bf);
   background-attachment: fixed;
+
+  /* Ensure background covers full viewport */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #svg1 {
   top: 0;
+  left: 0;
   position: fixed;
   z-index: 100;
+
+  /* Ensure SVG covers full viewport */
+  width: 100vw;
+  height: 100vh;
+
+  /* Fix iOS Safari viewport issues */
+  min-width: 100vw;
+  min-height: 100vh;
 
   text {
     text-rendering: geometricprecision;
@@ -435,5 +452,50 @@ body {
 
     /* Ensure height is properly calculated */
     height: 100%;
+  }
+}
+
+/* iOS landscape mode specific fixes */
+@media screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  html, body {
+    /* Force full viewport coverage on iOS landscape */
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  #svg1 {
+    /* Ensure SVG fills entire viewport in iOS landscape */
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  
+  body {
+    /* Prevent white margins on iOS landscape */
+    margin: 0;
+    padding: 0;
+    background-size: 100vw 100vh;
+  }
+}
+
+/* Additional iOS Safari specific fixes */
+@supports (-webkit-overflow-scrolling: touch) {
+  /* This specifically targets iOS Safari */
+  html {
+    /* Prevent viewport changes on scroll */
+    height: -webkit-fill-available;
+  }
+  
+  body {
+    /* Use webkit-fill-available for iOS Safari */
+    min-height: -webkit-fill-available;
+  }
+  
+  #svg1 {
+    /* Ensure SVG always fills available space */
+    height: -webkit-fill-available;
+    width: 100vw;
   }
 }
