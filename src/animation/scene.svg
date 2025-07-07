@@ -12563,10 +12563,10 @@
 		<defs>
 			<rect id="framemask" x="-515.6" y="-2075.7" width="319" height="199.4"/>
 		</defs>
-		<clipPath id="framemask_00000026856276528676414460000004388478028603368589_">
+		<clipPath id="framemask_1_">
 			<use xlink:href="#framemask"  overflow="visible"/>
 		</clipPath>
-		<g id="framemasked" clip-path="url(#framemask_00000026856276528676414460000004388478028603368589_)">
+		<g id="framemasked" clip-path="url(#framemask_1_)">
 			
 				<linearGradient id="sky_00000103949401178105138060000000761051832447367078_" gradientUnits="userSpaceOnUse" x1="-149.3409" y1="-1353.4" x2="-149.3409" y2="-2644.1775">
 				<stop  offset="0.3566" style="stop-color:#AF7437"/>
