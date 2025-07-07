@@ -157,22 +157,21 @@ export const createTerminalAnimations = (
       "terminal2textclip",
       {
         [spaceStart - 300]: { transform: scale(1, 1) },
-        [spaceStart - 200]: { transform: scale(2.6, 1) },
+        [spaceStart - 200]: { transform: scale(3, 1) },
       },
     ],
     [
       "terminal2cursor",
       {
         [spaceStart - 300]: { transform: translate(0, 0) },
-        [spaceStart - 201]: { transform: translate(52, 0) },
-        [spaceStart - 200]: { transform: translate(28, 12) },
+        [spaceStart - 221]: { transform: translate(63, 0) },
       },
     ],
     [
       "terminal2line2",
       {
-        [spaceStart - 200]: { opacity: 1 },
-        [spaceStart + 200]: { opacity: 0 },
+        [spaceStart - 220]: { opacity: 0 },
+        [spaceStart - 219]: { opacity: 1 },
       },
     ],
   ];

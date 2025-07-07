@@ -81,7 +81,7 @@ body {
   }
 
   #terminal2textclip {
-    transform-origin: 5%;
+    transform-origin: 2%;
   }
 
   #contactsbutton,
@@ -179,7 +179,7 @@ body {
     stroke-linejoin: miter;
     stroke-miterlimit: 4;
     stroke-dashoffset: 0;
-    stroke-dasharray: 2000;
+    stroke-dasharray: 3000;
   }
 }
 
@@ -195,6 +195,19 @@ body {
     stroke-miterlimit: 4;
     stroke-dashoffset: 0;
     stroke-dasharray: 800;
+  }
+}
+
+#bulbbase{
+  path {
+    /* fill: #ffe3b3;
+    fill-opacity: 0.5; */
+    stroke: #ffe3b3;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 4;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -329,6 +342,8 @@ body {
   z-index: 102;
   font-weight: 300;
   opacity: 0;
+  display: none;
+  max-width: 880px;
 
   p{
     margin: 0;
@@ -357,6 +372,44 @@ body {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+/* Modern anchor link styling */
+#contactMe a, #sourceCode a {
+  color: #4facfe;
+  text-decoration: none;
+  position: relative;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+#contactMe a:hover, #sourceCode a:hover {
+  color: #00d4ff;
+  border-bottom-color: #00d4ff;
+  transform: translateY(-1px);
+}
+
+#contactMe a:focus, #sourceCode a:focus {
+  outline: 2px solid #4facfe;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+#contactMe a::after, #sourceCode a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4facfe, #00d4ff);
+  transition: width 0.3s ease;
+}
+
+#contactMe a:hover::after, #sourceCode a:hover::after {
+  width: 100%;
 }
 
 /* iOS Chrome specific fixes */

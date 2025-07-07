@@ -60,7 +60,7 @@ export const createSpaceAnimations = (
   const transforms = getSpaceTransforms(isPortrait);
   const [spaceStart] = SCENE_TIMING.space;
 
-  const animationStart = spaceStart;
+  const animationStart = spaceStart + 100;
   const linesStart = spaceStart + 1600;
   const bulbLinesStart = spaceStart + 400;
 
@@ -92,7 +92,7 @@ export const createSpaceAnimations = (
         },
       },
     ],
-    ["bulblines *", drawStrokes(bulbLinesStart, 2000, 10)],
+    ["bulblines *", drawStrokes(bulbLinesStart, 3000, 15)],
     ["bulbEllipses1 *", drawStrokes(bulbLinesStart + 550, 800, 1)],
     ["bulbEllipses2 *", drawStrokes(bulbLinesStart + 500, 800, 1)],
     [
@@ -117,6 +117,7 @@ export const createSpaceAnimations = (
         },
       },
     ],
+    ["bulbbase *", drawStrokes(bulbLinesStart + 550, 800, 1)],
     [
       "spacelines",
       {
@@ -127,7 +128,7 @@ export const createSpaceAnimations = (
           opacity: 1,
           transform: spaceTransform,
         },
-        [animationStart + 3600]: {
+        [animationStart + 3200]: {
           opacity: 1,
           transform: spaceTransform2,
         },
