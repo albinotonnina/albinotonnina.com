@@ -343,7 +343,7 @@ body {
   font-weight: 300;
   opacity: 0;
   display: none;
-  max-width: 880px;
+
 
   p{
     margin: 0;
@@ -358,6 +358,8 @@ body {
 }
 
 #sourceCode{
+  max-width: 800px;
+
   @media screen and (orientation: portrait) {
     top: 20%;
   }
