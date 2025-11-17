@@ -11,6 +11,37 @@ const videos = Object.keys(videoModules)
   })
   .map((path) => videoModules[path].default);
 
+// Preload strategy: preload next 3 videos in the queue
+const preloadQueue = new Set();
+const preloadedBlobs = new Map();
+
+const preloadVideo = async (videoUrl) => {
+  if (preloadedBlobs.has(videoUrl) || preloadQueue.has(videoUrl)) {
+    return;
+  }
+
+  preloadQueue.add(videoUrl);
+
+  try {
+    const response = await fetch(videoUrl);
+    if (response.ok) {
+      const blob = await response.blob();
+      preloadedBlobs.set(videoUrl, blob);
+    }
+  } catch (error) {
+    console.warn(`Failed to preload video: ${videoUrl}`, error);
+  } finally {
+    preloadQueue.delete(videoUrl);
+  }
+};
+
+const getVideoUrl = (videoPath) => {
+  if (preloadedBlobs.has(videoPath)) {
+    return URL.createObjectURL(preloadedBlobs.get(videoPath));
+  }
+  return videoPath;
+};
+
 export default function VideoPlayer() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -60,10 +91,18 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (videoRef.current) {
+      const videoUrl = getVideoUrl(videos[currentVideoIndex]);
+      videoRef.current.src = videoUrl;
       videoRef.current.load();
       if (isPlaying) {
         videoRef.current.play();
       }
+    }
+
+    // Preload next 3 videos in the queue
+    for (let i = 1; i <= 3; i++) {
+      const nextIndex = (currentVideoIndex + i) % videos.length;
+      preloadVideo(videos[nextIndex]);
     }
   }, [currentVideoIndex, isPlaying]);
 
@@ -89,7 +128,6 @@ export default function VideoPlayer() {
         className={`w-full h-auto object-cover cursor-pointer ${
           isPlaying ? 'block' : 'hidden'
         }`}
-        src={videos[currentVideoIndex]}
         onEnded={handleVideoEnd}
       />
 
