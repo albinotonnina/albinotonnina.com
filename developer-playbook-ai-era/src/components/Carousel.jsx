@@ -11,20 +11,28 @@ import medievalLadyImg from '../assets/medieval_lady.jpg';
 import managerWomanImg from '../assets/manager_woman.jpg';
 import cavemanImg from '../assets/caveman.jpg';
 import nobleLadyImg from '../assets/noble_lady.jpg';
+import astronautImg from '../assets/astronaut.jpg';
+import babyImg from '../assets/baby.jpg';
+import monkImg from '../assets/monk.jpg';
+import grumpyManImg from '../assets/grumpy_man.jpg';
 
 const testimonials = [
-  { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.' },
-  { src: engineerImg, alt: 'Engineer', testimonial: 'Finally, a technical guide that actually makes sense. No hype, just facts. *chef\'s kiss*' },
-  { src: girlImg, alt: 'Little Girl', testimonial: 'My big sister said this book is like having a superpower. I believe her!' },
-  { src: pirateImg, alt: 'Pirate', testimonial: 'Arr, aye! This be the treasure map fer them developers. Shiver me timbers, it\'s brilliant!' },
-  { src: robotImg, alt: 'Robot', testimonial: '01010100 01101000 01101001 01110011 00100000 01100010 01101111 01101111 01101011 = Highly recommend!' },
-  { src: pharaohImg, alt: 'Pharaoh', testimonial: 'Hail! This ancient wisdom for the modern era shall guide thy kingdom through the AI transformation!' },
-  { src: grinchImg, alt: 'Grinch', testimonial: 'Even my small heart grew three sizes reading this. You mean... AI isn\'t stealing Christmas? Wonderful!' },
-  { src: engineer2Img, alt: 'Engineer 2', testimonial: 'My colleague kept hogging this book. Had to buy my own copy. Worth every penny!' },
-  { src: medievalLadyImg, alt: 'Medieval Lady', testimonial: 'Verily, this tome doth illuminate the path forward with grace and wisdom most profound, good sire!' },
-  { src: managerWomanImg, alt: 'Manager Woman', testimonial: 'As a team lead, this helped me understand how to better support my developers in the AI era. Essential reading!' },
-  { src: cavemanImg, alt: 'Caveman', testimonial: 'Gruk not understand all words, but Gruk learn much! AI future bright. Book make sense of fire... and code!' },
-    { src: nobleLadyImg, alt: 'Noble Lady', testimonial: 'Most exquisite! A treatise worthy of the finest libraries. This shall elevate discourse among the learned!' },
+  { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.', stars: 4 },
+  { src: engineerImg, alt: 'Engineer', testimonial: 'Finally, a technical guide that actually makes sense. No hype, just facts. *chef\'s kiss*', stars: 5 },
+  { src: girlImg, alt: 'Little Girl', testimonial: 'My big sister said this book is like having a superpower. I believe her!', stars: 5 },
+  { src: grumpyManImg, alt: 'Grumpy Man', testimonial: 'Worst book ever. Completely ruined my day. I laughed, I cried, I actually learned things. Absolutely terrible!', stars: 1 },
+  { src: pirateImg, alt: 'Pirate', testimonial: 'Arr, aye! This be the treasure map fer them developers. Shiver me timbers, it\'s brilliant!', stars: 4 },
+  { src: robotImg, alt: 'Robot', testimonial: '01010100 01101000 01101001 01110011 00100000 01100010 01101111 01101111 01101011 = Highly recommend!', stars: 5 },
+  { src: pharaohImg, alt: 'Pharaoh', testimonial: 'Hail! This ancient wisdom for the modern era shall guide thy kingdom through the AI transformation!', stars: 5 },
+  { src: grinchImg, alt: 'Grinch', testimonial: 'Even my small heart grew three sizes reading this. You mean... AI isn\'t stealing Christmas? Wonderful!', stars: 2 },
+  { src: engineer2Img, alt: 'Engineer 2', testimonial: 'My colleague kept hogging this book. Had to buy my own copy. Worth every penny!', stars: 5 },
+  { src: medievalLadyImg, alt: 'Medieval Lady', testimonial: 'Verily, this tome doth illuminate the path forward with grace and wisdom most profound, good sire!', stars: 5 },
+  { src: managerWomanImg, alt: 'Manager Woman', testimonial: 'As a team lead, this helped me understand how to better support my developers in the AI era. Essential reading!', stars: 5 },
+  { src: cavemanImg, alt: 'Caveman', testimonial: 'Gruk not understand all words, but Gruk learn much! AI future bright. Book make sense of fire... and code!', stars: 3 },
+  { src: nobleLadyImg, alt: 'Noble Lady', testimonial: 'Most exquisite! A treatise worthy of the finest libraries. This shall elevate discourse among the learned!', stars: 5 },
+  { src: astronautImg, alt: 'Astronaut', testimonial: 'Houston, we have a breakthrough! This guide navigated me through the AI cosmos. Truly out of this world!', stars: 5 },
+  { src: babyImg, alt: 'Baby', testimonial: 'Goo goo ga ga! Even babies know this book is genius. *babbles excitedly* Best recommendation ever!', stars: 5 },
+  { src: monkImg, alt: 'Monk', testimonial: 'Namaste. This book has brought me inner peace and outer clarity on AI. The path to enlightenment is now clear.', stars: 5 },
 ];
 
 export default function Carousel() {
@@ -169,7 +177,7 @@ export default function Carousel() {
                   scrollSnapAlign: 'start',
                 }}
               >
-                <div className="bg-white/5 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-playbook-red/50 transition-all duration-300 hover:shadow-lg hover:shadow-playbook-red/20 h-full">
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-playbook-red/50 transition-all duration-300 hover:shadow-lg hover:shadow-playbook-red/20 h-full flex flex-col">
                   {/* Image */}
                   <div className="overflow-hidden rounded-t-lg">
                     <img
@@ -179,13 +187,13 @@ export default function Carousel() {
                     />
                   </div>
 
-                  {/* Testimonial text */}
-                  <div className="p-5">
-                    <p className="text-gray-300 text-sm leading-relaxed italic">
+                  {/* Testimonial text and stars */}
+                  <div className="p-5 flex flex-col flex-grow">
+                    <p className="text-gray-300 text-sm leading-relaxed italic flex-grow">
                       "{item.testimonial}"
                     </p>
                     <div className="flex justify-center gap-1 mt-4">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(item.stars)].map((_, i) => (
                         <svg
                           key={i}
                           className="w-4 h-4 text-playbook-red fill-current"
@@ -209,7 +217,7 @@ export default function Carousel() {
                   scrollSnapAlign: 'start',
                 }}
               >
-                <div className="bg-white/5 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-playbook-red/50 transition-all duration-300 hover:shadow-lg hover:shadow-playbook-red/20 h-full">
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-playbook-red/50 transition-all duration-300 hover:shadow-lg hover:shadow-playbook-red/20 h-full flex flex-col">
                   {/* Image */}
                   <div className="overflow-hidden rounded-t-lg">
                     <img
@@ -219,13 +227,13 @@ export default function Carousel() {
                     />
                   </div>
 
-                  {/* Testimonial text */}
-                  <div className="p-5">
-                    <p className="text-gray-300 text-sm leading-relaxed italic">
+                  {/* Testimonial text and stars */}
+                  <div className="p-5 flex flex-col flex-grow">
+                    <p className="text-gray-300 text-sm leading-relaxed italic flex-grow">
                       "{item.testimonial}"
                     </p>
                     <div className="flex justify-center gap-1 mt-4">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(item.stars)].map((_, i) => (
                         <svg
                           key={i}
                           className="w-4 h-4 text-playbook-red fill-current"
