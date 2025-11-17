@@ -1,5 +1,5 @@
 import React from 'react';
-import heroImage from '../assets/hero/hero1.jpg';
+import VideoPlayer from './VideoPlayer';
 
 export default function Hero() {
   return (
@@ -39,27 +39,17 @@ export default function Hero() {
             </p>
 
 
-            {/* Hero image - Mobile only, appears after title */}
+            {/* Hero video - Mobile only, appears after title */}
             <div className="lg:hidden flex items-center justify-center mt-8">
-              <div className="rounded-lg overflow-hidden shadow-2xl max-w-sm w-full">
-                <img
-                  src={heroImage}
-                  alt="The Developer's Playbook for the AI Era"
-                  className="w-full h-auto object-cover"
-                />
+              <div className="w-full max-w-sm">
+                <VideoPlayer />
               </div>
             </div>
           </div>
 
-          {/* Hero image - Desktop only */}
+          {/* Hero video - Desktop only */}
           <div className="hidden lg:flex items-center justify-center">
-            <div className="rounded-lg overflow-hidden shadow-2xl">
-              <img
-                src={heroImage}
-                alt="The Developer's Playbook for the AI Era"
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            <VideoPlayer />
           </div>
         </div>
       </section>
