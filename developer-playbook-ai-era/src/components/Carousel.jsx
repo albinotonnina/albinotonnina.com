@@ -24,9 +24,9 @@ const testimonials = [
   { src: medievalLadyImg, alt: 'Medieval Lady', testimonial: 'Verily, this tome doth illuminate the path forward with grace and wisdom most profound, good sire!' },
   { src: managerWomanImg, alt: 'Manager Woman', testimonial: 'As a team lead, this helped me understand how to better support my developers in the AI era. Essential reading!' },
   { src: cavemanImg, alt: 'Caveman', testimonial: 'Gruk not understand all words, but Gruk learn much! AI future bright. Book make sense of fire... and code!' },
-  { src: nobleLadyImg, alt: 'Noble Lady', testimonial: 'Most exquisite! A treatise worthy of the finest libraries. This shall elevate discourse among the learned!' },
+    { src: nobleLadyImg, alt: 'Noble Lady', testimonial: 'Most exquisite! A treatise worthy of the finest libraries. This shall elevate discourse among the learned!' },
 ];
-®
+
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
