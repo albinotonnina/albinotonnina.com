@@ -12,9 +12,9 @@ export default function App() {
   return (
     <div className="bg-playbook-dark text-white">
       <Hero />
-      <Carousel />
       <Message />
       <Overview />
+      <Carousel />
       <ThemesSection />
       <WhoShouldRead />
       <Promise />

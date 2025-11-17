@@ -22,7 +22,7 @@ const themes = [
     points: [
       'AI-enhanced development lifecycle',
       'Why QA becomes more important, not less',
-      'Your specific role in 2025 and beyond',
+      'Your specific role in the AI era',
     ],
   },
   {

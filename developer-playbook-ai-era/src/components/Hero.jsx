@@ -37,11 +37,7 @@ export default function Hero() {
             <p className="text-xl sm:text-2xl mb-12 leading-relaxed text-white/90 max-w-2xl">
               Master Thinking Over Typing
             </p>
-            <p className="text-lg sm:text-xl mb-12 leading-relaxed text-white/80 max-w-2xl italic">
-              Your brain is not obsolete.
-              <br />
-              AI is just better at typing.
-            </p>
+
 
             {/* Hero image - Mobile only, appears after title */}
             <div className="lg:hidden flex items-center justify-center mt-8">

@@ -1,5 +1,6 @@
 import React from 'react';
 import useAmazonLink from '../hooks/useAmazonLink';
+import koalaImg from '../assets/book/koala.jpg';
 
 export default function CTA() {
   const { url, countryName } = useAmazonLink();
@@ -12,6 +13,13 @@ export default function CTA() {
           Get instant access to the Developer's Playbook and start mastering the AI era today.
           Available in multiple formats: Web, PDF, DOCX, and HTML.
         </p>
+        <div className="mb-8">
+          <img
+            src={koalaImg}
+            alt="Koala with Developer's Playbook"
+            className="w-96 h-96 object-cover rounded-lg mx-auto"
+          />
+        </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href={url}
@@ -21,9 +29,9 @@ export default function CTA() {
           >
             Get Your Copy on Amazon
           </a>
-          <p className="text-white/80 text-sm">
+          {/* <p className="text-white/80 text-sm">
             ({countryName})
-          </p>
+          </p> */}
         </div>
       </div>
     </section>
