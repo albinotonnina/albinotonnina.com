@@ -15,6 +15,9 @@ import astronautImg from '../assets/astronaut.jpg';
 import babyImg from '../assets/baby.jpg';
 import monkImg from '../assets/monk.jpg';
 import grumpyManImg from '../assets/grumpy_man.jpg';
+import gymBroImg from '../assets/gym_bro.jpg';
+import alienImg from '../assets/alien.jpg';
+import timeTravelerImg from '../assets/time_traveler.jpg';
 
 const testimonials = [
   { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.', stars: 4 },
@@ -33,6 +36,9 @@ const testimonials = [
   { src: astronautImg, alt: 'Astronaut', testimonial: 'Houston, we have a breakthrough! This guide navigated me through the AI cosmos. Truly out of this world!', stars: 5 },
   { src: babyImg, alt: 'Baby', testimonial: 'Goo goo ga ga! Even babies know this book is genius. *babbles excitedly* Best recommendation ever!', stars: 5 },
   { src: monkImg, alt: 'Monk', testimonial: 'Namaste. This book has brought me inner peace and outer clarity on AI. The path to enlightenment is now clear.', stars: 5 },
+  { src: gymBroImg, alt: 'Gym Bro', testimonial: 'BRO. This book PUMPED me UP! Now I\'m SHREDDING code and crushing AI gains. LET\'S GOOOO! 💪', stars: 5 },
+  { src: alienImg, alt: 'Alien', testimonial: '🛸 Greetings. Your species\' understanding of AI is... acceptable. Will report to command. 5 Earth stars.', stars: 5 },
+  { src: timeTravelerImg, alt: 'Time Traveler', testimonial: 'I read this book in 2050 and it changed my past. Wait... paradox? Anyway, highly recommend!', stars: 5 },
 ];
 
 export default function Carousel() {
