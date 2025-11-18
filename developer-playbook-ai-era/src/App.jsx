@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from './components/Hero';
+import Author from './components/Author';
 import Carousel from './components/Carousel';
 import Message from './components/Message';
 import Overview from './components/Overview';
@@ -15,6 +16,7 @@ export default function App() {
       <Message />
       <Overview />
       <Carousel />
+      <Author />
       <ThemesSection />
       <WhoShouldRead />
       <Promise />
