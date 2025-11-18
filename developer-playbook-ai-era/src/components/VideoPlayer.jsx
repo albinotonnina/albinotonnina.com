@@ -53,10 +53,13 @@ export default function VideoPlayer() {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        setIsPlaying(false);
       } else {
-        videoRef.current.play();
+        videoRef.current.play().catch(() => {
+          // Handle autoplay policy restrictions
+        });
+        setIsPlaying(true);
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -74,7 +77,7 @@ export default function VideoPlayer() {
       if (isPlaying) {
         setShowControls(false);
       }
-    }, 3000);
+    }, 2000);
   };
 
   const handleVideoEnd = () => {
@@ -140,12 +143,12 @@ export default function VideoPlayer() {
         />
       )}
 
-      {/* Play/Pause overlay on hover */}
+      {/* Play/Pause overlay on hover - don't show after clicking play */}
       {showControls && !isPlaying && (
         <>
           {/* Center play/pause icon */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300">
-            <div className="bg-white/10 backdrop-blur-md rounded-full p-6 hover:bg-white/20 transition-all duration-300">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-white/10 backdrop-blur-md rounded-full p-6">
               <svg
                 className="w-12 h-12 text-white"
                 fill="currentColor"
