@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css}\""
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
