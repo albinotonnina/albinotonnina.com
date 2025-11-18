@@ -143,10 +143,10 @@ export default function VideoPlayer() {
         />
       )}
 
-      {/* Play/Pause overlay on hover - don't show after clicking play */}
+      {/* Play/Pause overlay on hover - only show when hovering/paused */}
       {showControls && !isPlaying && (
         <>
-          {/* Center play/pause icon */}
+          {/* Center play/pause icon with darker background */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 pointer-events-none">
             <div className="bg-white/10 backdrop-blur-md rounded-full p-6">
               <svg
@@ -161,7 +161,7 @@ export default function VideoPlayer() {
         </>
       )}
 
-      {/* Next video button - always visible */}
+      {/* Next video button - only visible when showing controls */}
       {showControls && (
         <button
           onClick={(e) => {
@@ -187,24 +187,11 @@ export default function VideoPlayer() {
         </button>
       )}
 
-      {/* Play indicator when not playing - only show on hover */}
-      {!isPlaying && showControls && (
-        <div className="absolute inset-0 flex items-center justify-center transition-all duration-300">
-          <svg
-            className="w-20 h-20 text-white opacity-100 transition-all duration-300"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </div>
-      )}
-
-      {/* Play button on load - no background */}
+      {/* Play button on load - no background, always clickable */}
       {!isPlaying && !showControls && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center cursor-pointer">
           <svg
-            className="w-20 h-20 text-white opacity-60 transition-opacity duration-300"
+            className="w-20 h-20 text-white opacity-60 hover:opacity-100 transition-opacity duration-300"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
