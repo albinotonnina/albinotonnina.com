@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoPlayer from './VideoPlayer';
+import brainIcon from '../assets/brain.png';
 
 export default function Hero() {
   return (
@@ -10,6 +11,13 @@ export default function Hero() {
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
             {/* Text content */}
             <div className="text-center lg:text-left">
+              <div className="flex justify-center lg:justify-start mb-3 sm:mb-6 lg:mb-8">
+                <img
+                  src={brainIcon}
+                  alt="Brain"
+                  className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+                />
+              </div>
               <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-3 sm:mb-6 lg:mb-8 leading-tight text-white">
                 The Developer's
                 <br />
