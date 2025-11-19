@@ -111,7 +111,7 @@ export default function VideoPlayer() {
 
   return (
     <div
-      className="relative w-full rounded-lg overflow-hidden shadow-2xl bg-black group"
+      className="relative w-full rounded-lg overflow-hidden bg-black group"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={handlePlayPause}
@@ -124,6 +124,7 @@ export default function VideoPlayer() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         aspectRatio: '640 / 480',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px -8px rgba(0, 0, 0, 0.6)',
       }}
     >
       {/* Video element - shown when playing */}
@@ -162,8 +163,8 @@ export default function VideoPlayer() {
         </>
       )}
 
-      {/* Next video button - only visible when showing controls */}
-      {showControls && (
+      {/* Next video button - only visible when playing */}
+      {isPlaying && (
         <button
           onClick={(e) => {
             e.stopPropagation();
