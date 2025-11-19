@@ -58,46 +58,63 @@ export default function CTA() {
               </ul>
             </div>
 
-            {/* Premium Amazon Button */}
-            <div className="w-full">
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  flex items-center justify-center gap-2
-                  w-full
-                  bg-gradient-to-b from-yellow-400 to-yellow-500 
-                  hover:from-yellow-300 hover:to-yellow-400
-                  text-black
-                  font-bold text-xl py-5 px-8 rounded-lg
-                  shadow-xl hover:shadow-2xl
-                  transition-all duration-300
-                  border-b-4 border-yellow-600 hover:border-yellow-500
-                  active:translate-y-1 active:border-b-2
-                  group
-                "
-              >
-                <span>🛒</span>
-                <span>Buy on Amazon Now</span>
-                <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-              <p className="text-gray-400 text-sm mt-3 text-center">
-                Available for {countryName} • One-click checkout
-              </p>
-            </div>
 
-            {/* Trust Badges */}
-            {/* <div className="flex items-center gap-6 text-gray-400 text-sm pt-4 border-t border-gray-700 w-full">
-              <div className="flex-1">
-                <div className="font-semibold text-white">⭐ 4.8/5 Stars</div>
-                <div>Rated by 1,200+ readers</div>
+
+            {/* Purchase Options */}
+            <div className="w-full mt-12 pt-8 border-t border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-6">Choose Your Format</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Ebook Option */}
+                <div className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-white/20 transition-all">
+                  <div className="text-sm text-gray-400 mb-2">Format</div>
+                  <div className="font-bold text-white mb-3">Ebook</div>
+                  <div className="text-2xl font-bold text-playbook-red mb-4">£17.99</div>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded text-center transition-all"
+                  >
+                    Buy Now
+                  </a>
+                </div>
+
+                {/* Paperback Option - Highlighted */}
+                <div className="relative md:scale-105 z-10">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-playbook-red text-white text-sm font-bold px-4 py-1 rounded-full whitespace-nowrap">
+                    BEST VALUE
+                  </div>
+                  <div className="bg-gradient-to-b from-playbook-red/20 to-playbook-red/10 border-2 border-playbook-red rounded-lg p-6 shadow-xl shadow-playbook-red/20">
+                    <div className="text-sm text-gray-300 mb-2">Format</div>
+                    <div className="font-bold text-white mb-3 text-lg">Paperback</div>
+                    <div className="text-2xl font-bold text-white mb-4">£23.99</div>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-playbook-red hover:bg-playbook-red/90 text-white font-semibold py-2 px-4 rounded transition-all"
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                </div>
+
+                {/* Hardcover Option */}
+                <div className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-white/20 transition-all">
+                  <div className="text-sm text-gray-400 mb-2">Format</div>
+                  <div className="font-bold text-white mb-3">Hardcover</div>
+                  <div className="text-2xl font-bold text-playbook-red mb-4">£29.99</div>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded text-center transition-all"
+                  >
+                    Buy Now
+                  </a>
+                </div>
               </div>
-              <div className="flex-1">
-                <div className="font-semibold text-white">🚀 Instant Access</div>
-                <div>eBook + PDF formats</div>
-              </div>
-            </div> */}
+            </div>
           </div>
         </div>
 
