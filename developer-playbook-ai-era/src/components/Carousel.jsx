@@ -21,14 +21,16 @@ import gymBroImg from '../assets/gym_bro.jpg';
 import alienImg from '../assets/alien.jpg';
 import timeTravelerImg from '../assets/time_traveler.jpg';
 import runnerImg from '../assets/runner.jpg';
+import grandmaImg from '../assets/grandma.jpg';
+import sleepyDeveloperImg from '../assets/sleepy_developer.jpg';
 
 const testimonials = [
-  { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.', stars: 4 },
   { src: engineerImg, alt: 'Engineer', testimonial: 'Finally, a technical guide that actually makes sense. No hype, just facts. *chef\'s kiss*', stars: 5 },
   { src: girlImg, alt: 'Little Girl', testimonial: 'My big sister said this book is like having a superpower. I believe her!', stars: 5 },
-  { src: grumpyManImg, alt: 'Grumpy Man', testimonial: 'Worst book ever. Completely ruined my day. I laughed, I cried, I actually learned things. Absolutely terrible!', stars: 1 },
+  { src: grandmaImg, alt: 'Confused Grandma', testimonial: 'My grandson says I should read this. I still don\'t know how to turn it on, but it smells nice!', stars: 2 },
   { src: pirateImg, alt: 'Pirate', testimonial: 'Arr, aye! This be the treasure map fer them developers. Shiver me timbers, it\'s brilliant!', stars: 4 },
   { src: robotImg, alt: 'Robot', testimonial: '01010100 01101000 01101001 01110011 00100000 01100010 01101111 01101111 01101011 = Highly recommend!', stars: 5 },
+  { src: sleepyDeveloperImg, alt: 'Sleepy Developer', testimonial: 'Read this at 3 AM during a deadline... somehow everything clicked. Also I may have hallucinated half of it.', stars: 3 },
   { src: pharaohImg, alt: 'Pharaoh', testimonial: 'Hail! This ancient wisdom for the modern era shall guide thy kingdom through the AI transformation!', stars: 5 },
   { src: grinchImg, alt: 'Grinch', testimonial: 'Even my small heart grew three sizes reading this. You mean... AI isn\'t stealing Christmas? Wonderful!', stars: 2 },
   { src: engineer2Img, alt: 'Engineer 2', testimonial: 'My colleague kept hogging this book. Had to buy my own copy. Worth every penny!', stars: 5 },
@@ -36,6 +38,7 @@ const testimonials = [
   { src: managerWomanImg, alt: 'Manager Woman', testimonial: 'As a team lead, this helped me understand how to better support my developers in the AI era. Essential reading!', stars: 5 },
   { src: cavemanImg, alt: 'Caveman', testimonial: 'Gruk not understand all words, but Gruk learn much! AI future bright. Book make sense of fire... and code!', stars: 3 },
   { src: nobleLadyImg, alt: 'Noble Lady', testimonial: 'Most exquisite! A treatise worthy of the finest libraries. This shall elevate discourse among the learned!', stars: 5 },
+  { src: grumpyManImg, alt: 'Grumpy Man', testimonial: 'Worst book ever. Completely ruined my day. I laughed, I cried, I actually learned things. Absolutely terrible!', stars: 1 },
   { src: astronautImg, alt: 'Astronaut', testimonial: 'Houston, we have a breakthrough! This guide navigated me through the AI cosmos. Truly out of this world!', stars: 4 },
   { src: babyImg, alt: 'Baby', testimonial: 'Goo goo ga ga! Even babies know this book is genius. *babbles excitedly* Best recommendation ever!', stars: 5 },
   { src: monkImg, alt: 'Monk', testimonial: 'Namaste. This book has brought me inner peace and outer clarity on AI. The path to enlightenment is now clear.', stars: 5 },
@@ -43,6 +46,7 @@ const testimonials = [
   { src: alienImg, alt: 'Alien', testimonial: '🛸 Greetings. Your species\' understanding of AI is... acceptable. Will report to command. 5 Earth stars.', stars: 5 },
   { src: timeTravelerImg, alt: 'Time Traveler', testimonial: 'I read this book in 2050 and it changed my past. Wait... paradox? Anyway, highly recommend!', stars: 5 },
   { src: runnerImg, alt: 'Tuner', testimonial: 'Wait, I actually read another book. I\'m here by mistake. But honestly? This one is better anyway. 1 star!', stars: 1 },
+  { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.', stars: 4 },
 ];
 
 const StarRating = ({ stars }) => (
@@ -68,7 +72,7 @@ export default function Carousel() {
     {
       loop: true,
       align: 'start',
-      slidesToScroll: 1,
+      slidesToScroll: 2,
     },
     []
   );
