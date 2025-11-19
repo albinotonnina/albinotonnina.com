@@ -206,11 +206,6 @@ export default function Carousel() {
             />
           ))}
         </div>
-
-        {/* Counter */}
-        <div className="text-center mt-4 text-gray-400 text-sm">
-          {selectedIndex + 1} / {testimonials.length}
-        </div>
       </div>
     </section>
   );

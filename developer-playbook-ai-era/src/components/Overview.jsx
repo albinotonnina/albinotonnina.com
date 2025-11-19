@@ -10,7 +10,7 @@ export default function Overview() {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold text-playbook-red mb-4">46,000+ Words</h3>
+              <h3 className="text-2xl font-bold text-playbook-red mb-4">60,500+ Words</h3>
               <p className="text-gray-300 leading-relaxed">
                 Comprehensive without being overwhelming. 12 chapters covering foundation,
                 technical domains, practice, and the future.
@@ -49,7 +49,7 @@ export default function Overview() {
             <div>
               <h3 className="text-2xl font-bold text-playbook-red mb-4">Multiple Formats</h3>
               <p className="text-gray-300 leading-relaxed">
-                Web, PDF, DOCX, HTML. Read how you want. Search. Annotate. Share.
+                Available as eBook, Paperback, and Hardcover. Read how you want, wherever you want.
               </p>
             </div>
           </div>
