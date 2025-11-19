@@ -123,6 +123,7 @@ export default function VideoPlayer() {
         backgroundImage: `url(${coverImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        aspectRatio: '640 / 480',
       }}
     >
       {/* Video element - shown when playing */}
