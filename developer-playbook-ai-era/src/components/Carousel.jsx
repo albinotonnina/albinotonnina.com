@@ -140,7 +140,7 @@ export default function Carousel() {
 
                     {/* Testimonial content - fixed space below */}
                     <div className="p-4 flex flex-col justify-center min-h-32">
-                      <p className="text-gray-300 text-xs leading-relaxed italic">
+                      <p className="text-gray-300 text-base leading-relaxed italic">
                         "{item.testimonial}"
                       </p>
                       <div className="mt-3">
