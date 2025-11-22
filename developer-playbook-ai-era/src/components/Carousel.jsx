@@ -67,12 +67,13 @@ export default function Carousel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
   const autoPlayRef = React.useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: 'start',
-      slidesToScroll: 2,
+      slidesToScroll: isMobile ? 1 : 2,
     },
     []
   );
@@ -111,6 +112,15 @@ export default function Carousel() {
       emblaApi?.off('reInit', onSelect);
     };
   }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-playbook-dark">
