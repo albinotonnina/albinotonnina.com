@@ -1,7 +1,28 @@
 import React from 'react';
+import useAmazonLink, { ASINS } from '../hooks/useAmazonLink';
 import koalaImg from '../assets/book/koala.jpg';
 
+/**
+ * UniversalBookLink Component
+ * Generates a geo-localized Amazon affiliate link for a specific book format (ASIN).
+ * 
+ * @param {string} asin - The Amazon Standard Identification Number (e.g., ASINS.KINDLE, ASINS.PAPERBACK, ASINS.HARDCOVER)
+ * @returns {string} The geo-localized Amazon affiliate URL
+ * 
+ * @example
+ * <UniversalBookLink asin={ASINS.KINDLE} />
+ * <UniversalBookLink asin={ASINS.PAPERBACK} />
+ * <UniversalBookLink asin={ASINS.HARDCOVER} />
+ */
+export function UniversalBookLink({ asin }) {
+  const { url, loading } = useAmazonLink(asin);
+  return loading ? '#' : url;
+}
+
 export default function CTA() {
+  const { url: kindleUrl } = useAmazonLink(ASINS.KINDLE);
+  const { url: paperbackUrl } = useAmazonLink(ASINS.PAPERBACK);
+  const { url: hardcoverUrl } = useAmazonLink(ASINS.HARDCOVER);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-playbook-dark to-black">
@@ -68,7 +89,7 @@ export default function CTA() {
                   <div className="font-bold text-white mb-3">Ebook</div>
                   <div className="text-2xl font-bold text-playbook-red mb-4">£17.99</div>
                   <a
-                    href="https://mybook.to/DeveloperPlaybookEbook"
+                    href={kindleUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded text-center transition-all"
@@ -87,7 +108,7 @@ export default function CTA() {
                     <div className="font-bold text-white mb-3 text-lg">Paperback</div>
                     <div className="text-2xl font-bold text-white mb-4">£23.99</div>
                     <a
-                      href="https://mybook.to/DeveloperPlayBookAiEra"
+                      href={paperbackUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full bg-playbook-red hover:bg-playbook-red/90 text-white font-semibold py-2 px-4 rounded transition-all"
@@ -103,7 +124,7 @@ export default function CTA() {
                   <div className="font-bold text-white mb-3">Hardcover</div>
                   <div className="text-2xl font-bold text-playbook-red mb-4">£29.99</div>
                   <a
-                    href="https://mybook.to/DevPlayBookAiEraPHardC"
+                    href={hardcoverUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded text-center transition-all"

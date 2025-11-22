@@ -1,92 +1,125 @@
-import { useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
-// Map of country codes to Amazon domain and search query
-const AMAZON_REGIONS = {
-  // North America
-  US: { domain: 'amazon.com', country: 'United States' },
-  CA: { domain: 'amazon.ca', country: 'Canada' },
-  MX: { domain: 'amazon.com.mx', country: 'Mexico' },
+// --- CONFIGURATION REQUIRED ---
 
-  // Europe
-  GB: { domain: 'amazon.co.uk', country: 'United Kingdom' },
-  DE: { domain: 'amazon.de', country: 'Germany' },
-  FR: { domain: 'amazon.fr', country: 'France' },
-  IT: { domain: 'amazon.it', country: 'Italy' },
-  ES: { domain: 'amazon.es', country: 'Spain' },
-  NL: { domain: 'amazon.nl', country: 'Netherlands' },
-  SE: { domain: 'amazon.se', country: 'Sweden' },
-  PL: { domain: 'amazon.pl', country: 'Poland' },
+// ASINs for your book editions (based on the screenshot):
+export const ASINS = {
+  KINDLE: 'B0G3D55C64',
+  PAPERBACK: '191937101X',
+  HARDCOVER: '1919371001',
+};
+const DEFAULT_ASIN = ASINS.KINDLE;
 
-  // Asia Pacific
-  JP: { domain: 'amazon.co.jp', country: 'Japan' },
-  AU: { domain: 'amazon.com.au', country: 'Australia' },
-  IN: { domain: 'amazon.in', country: 'India' },
-  SG: { domain: 'amazon.sg', country: 'Singapore' },
-
-  // Brazil
-  BR: { domain: 'amazon.com.br', country: 'Brazil' },
+// 2. Map the Amazon country code (locale) to your unique Associates Tracking ID.
+// The IDs below have been extracted from your Amazon Associates "Link Stores" screenshot.
+const AFFILIATE_CONFIG = {
+  // United States (.com) - Default Fallback
+  US: { domain: 'com', trackingId: 'albinotonnina-20', label: 'Amazon US' },
+  // United Kingdom (.co.uk) - Primary ID
+  GB: { domain: 'co.uk', trackingId: 'albinotonnina-21', label: 'Amazon UK' },
+  // Canada
+  CA: { domain: 'ca', trackingId: 'albinotonni06-20', label: 'Amazon Canada' },
+  // Germany
+  DE: { domain: 'de', trackingId: 'albinotonniof-21', label: 'Amazon Germany' },
+  // France
+  FR: { domain: 'fr', trackingId: 'albinotonni05-21', label: 'Amazon France' },
+  // Italy
+  IT: { domain: 'it', trackingId: 'albinotonnioa-21', label: 'Amazon Italia' },
+  // Spain
+  ES: { domain: 'es', trackingId: 'albinotonni03-21', label: 'Amazon Spain' },
+  // Australia
+  AU: { domain: 'com.au', trackingId: 'albinotonnina-22', label: 'Amazon Australia' },
 };
 
-/**
- * Detects user's likely region based on browser locale and timezone
- * Returns country code (ISO 3166-1 alpha-2)
- */
-export const detectUserCountry = () => {
-  // Get locale from browser
-  const locale = navigator.language || navigator.userLanguage;
+// Default fallback configuration for unsupported or unknown locations
+const DEFAULT_CONFIG = AFFILIATE_CONFIG['GB'];
 
-  // Extract country code if present (e.g., "en-US" -> "US")
-  if (locale && locale.includes('-')) {
-    const [, country] = locale.split('-');
-    const countryCode = country.toUpperCase();
-    if (AMAZON_REGIONS[countryCode]) {
+/**
+ * Detect country code from browser language settings
+ * Examples: "en-GB" -> "GB", "de-DE" -> "DE", "fr-FR" -> "FR"
+ */
+const detectCountryFromBrowserLanguage = () => {
+  try {
+    const browserLanguage = navigator.language || navigator.userLanguage;
+    const countryCode = browserLanguage.split('-')[1]?.toUpperCase();
+
+    if (countryCode && AFFILIATE_CONFIG[countryCode]) {
+      console.log('[useAmazonLink] Detected country from browser language:', countryCode);
       return countryCode;
     }
+  } catch (err) {
+    console.warn('[useAmazonLink] Browser language detection failed:', err.message);
   }
 
-  // Try to detect from language alone
-  const languageMap = {
-    en: 'US', // Default English to US
-    de: 'DE',
-    fr: 'FR',
-    it: 'IT',
-    es: 'ES',
-    ja: 'JP',
-    pt: 'BR',
-    nl: 'NL',
-    sv: 'SE',
-    pl: 'PL',
-  };
-
-  const language = locale.split('-')[0].toLowerCase();
-  if (languageMap[language]) {
-    return languageMap[language];
-  }
-
-  // Fallback to US
-  return 'US';
+  return null;
 };
 
 /**
- * Hook to get the appropriate Amazon link for the user's region
- * @param {string} searchQuery - The search query (e.g., "developer playbook ai era")
- * @returns {object} - { url, countryCode, countryName }
+ * Custom React Hook to generate a geo-localized Amazon affiliate link.
+ * Uses browser language detection for fast, reliable country detection.
+ *
+ * @param {string} asin - The Amazon Standard Identification Number (e.g., ASINS.KINDLE).
+ * @param {string} forceCountry - Optional: Force a specific country code for testing (e.g., 'GB', 'US', 'CA')
+ * @returns {{url: string, countryName: string, loading: boolean, error: string | null, detectedCountry: string}}
  */
-export const useAmazonLink = (searchQuery = 'developer playbook ai era') => {
-  return useMemo(() => {
-    const countryCode = detectUserCountry();
-    const region = AMAZON_REGIONS[countryCode] || AMAZON_REGIONS.US;
+export default function useAmazonLink(asin = DEFAULT_ASIN, forceCountry = null) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [linkData, setLinkData] = useState({
+    url: '#',
+    countryName: DEFAULT_CONFIG.label,
+    detectedCountry: 'US',
+  });
 
-    // Construct Amazon search URL
-    const url = `https://${region.domain}/s?k=${encodeURIComponent(searchQuery)}`;
+  useEffect(() => {
+    if (!asin) {
+      setError('ASIN is required.');
+      return;
+    }
 
-    return {
-      url,
+    let countryCode = 'US'; // Start with US fallback
+    let fetchError = null;
+
+    // If forceCountry is provided, use it directly (useful for testing)
+    if (forceCountry) {
+      countryCode = forceCountry;
+      console.log('[useAmazonLink] Using forced country code:', forceCountry);
+    } else {
+      // Detect from browser language
+      const detected = detectCountryFromBrowserLanguage();
+      if (detected) {
+        countryCode = detected;
+      }
+    }
+
+    // Determine the final link configuration
+    const linkConfig = AFFILIATE_CONFIG[countryCode]
+      ? AFFILIATE_CONFIG[countryCode]
+      : DEFAULT_CONFIG;
+
+    // Construct the full, affiliated URL
+    const finalUrl = `https://www.amazon.${linkConfig.domain}/dp/${asin}?tag=${linkConfig.trackingId}`;
+
+    console.log('[useAmazonLink] Generated link:', {
       countryCode,
-      countryName: region.country,
-      domain: region.domain,
-    };
-  }, [searchQuery]);
-};
+      domain: linkConfig.domain,
+      trackingId: linkConfig.trackingId,
+    });
 
-export default useAmazonLink;
+    setLinkData({
+      url: finalUrl,
+      countryName: linkConfig.label,
+      detectedCountry: countryCode,
+    });
+    setError(fetchError);
+    setLoading(false);
+  }, [asin, forceCountry]); // Re-run effect if ASIN or forceCountry changes
+
+  return {
+    url: linkData.url,
+    countryName: linkData.countryName,
+    loading,
+    error,
+    detectedCountry: linkData.detectedCountry,
+  };
+}
