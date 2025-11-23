@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import sceneTransitions1 from "./animation/transitions";
 import Scene from "./animation";
 import Subtitles from "./subtitles";
+import BookBanner from "./components/BookBanner";
 import "./styles/main.css";
 
 function throttle(func, wait, immediate) {
@@ -185,6 +186,7 @@ export default function App() {
 
   return (
     <>
+      <BookBanner />
       {arrayScreens.map((el) => (
         <div
           key={el}
