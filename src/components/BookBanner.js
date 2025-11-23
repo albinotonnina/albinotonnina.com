@@ -7,7 +7,7 @@ export default function BookBanner() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 10000); // 10 seconds
+    }, 20000); // 10 seconds
 
     return () => clearTimeout(timer);
   }, []);
