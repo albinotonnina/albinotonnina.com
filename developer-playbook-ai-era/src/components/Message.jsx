@@ -17,7 +17,7 @@ export default function Message() {
           <p>
             It's about thinking more clearly and focusing on what machines can't do:
             <span className="block font-semibold text-playbook-dark mt-2">
-              architecture, judgment, domain expertise, and strategic problem-solving.
+              architecture, judgement, domain expertise, and strategic problem-solving.
             </span>
           </p>
         </div>

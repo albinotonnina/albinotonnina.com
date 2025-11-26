@@ -23,6 +23,7 @@ import timeTravelerImg from '../assets/time_traveler.jpg';
 import runnerImg from '../assets/runner.jpg';
 import grandmaImg from '../assets/grandma.jpg';
 import sleepyDeveloperImg from '../assets/sleepy_developer.jpg';
+import leonardoImg from '../assets/leonardo.jpg';
 
 const testimonials = [
   { src: engineerImg, alt: 'Engineer', testimonial: 'Finally, a technical guide that actually makes sense. No hype, just facts. *chef\'s kiss*', stars: 5 },
@@ -47,6 +48,7 @@ const testimonials = [
   { src: timeTravelerImg, alt: 'Time Traveler', testimonial: 'I read this book in 2050 and it changed my past. Wait... paradox? Anyway, highly recommend!', stars: 5 },
   { src: runnerImg, alt: 'Tuner', testimonial: 'Wait, I actually read another book. I\'m here by mistake. But honestly? This one is better anyway. 1 star!', stars: 1 },
   { src: bearImg, alt: 'Bear', testimonial: 'This book is un-BEAR-ably good! Helped me hibernate through the AI winter with confidence.', stars: 4 },
+  { src: leonardoImg, alt: 'Leonard', testimonial: 'I have deciphered the codes of the heavens and the earth, yet this "AI" remains a delightful puzzle. Is the "cloud" made of vapor or dreams? Truly a masterpiece of confusion!', stars: 5 },
 ];
 
 const StarRating = ({ stars }) => (
@@ -211,11 +213,10 @@ export default function Carousel() {
             <button
               key={index}
               onClick={() => scrollTo(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                index === selectedIndex
+              className={`h-2.5 rounded-full transition-all duration-300 ${index === selectedIndex
                   ? 'bg-playbook-red w-8'
                   : 'bg-white/30 hover:bg-white/50 w-2.5'
-              }`}
+                }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
