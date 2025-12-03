@@ -16,7 +16,7 @@ const AFFILIATE_CONFIG = {
   // United States (.com) - Default Fallback
   US: { domain: 'com', trackingId: 'albinotonnina-20', label: 'Amazon US' },
   // United Kingdom (.co.uk) - Primary ID
-  GB: { domain: 'co.uk', trackingId: 'albinotonnina-21', label: 'Amazon UK' },
+  GB: { domain: 'co.uk', trackingId: 'albinotonni01-21', label: 'Amazon UK' },
   // Canada
   CA: { domain: 'ca', trackingId: 'albinotonni06-20', label: 'Amazon Canada' },
   // Germany
